@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+
+div {
+  display: block;
+}
+
+#main-footer {
+    background: #343a40;
+    color: #ffff;
+}
+
+#page-logo {
+    width: 65x;
+    height: 65px;
+    margin-bottom: 5px;
+    margin-top: 30px;
+    top: 20%;
+}
+
+#page-logo-text {
+    margin-top: 45px;
+    margin-left: 14px;
+}
+
+#main-body {
+    min-height: 90vh;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 20rem;
+    object-fit: cover;
+}
+
+//CKEditor setting
+
+.ck {
+    .ck-editor {
+        min-width: 100%;
+    }
+}
+
+.ck-editor__editable {
+    max-height: 80rem;
+    min-height: 20rem;
+    min-width: 100rem;
+}
+
+.ck-editor__editable_inline {
+    max-height: 80rem;
+    min-height: 20rem;
+    min-width: 100%;
+}
+
+html {
+    width: 100vw;
+    overflow-x: hiddem;
+}
+
+textarea {
+    resize: none;
+}
+
+.my_category {
+    &:last-child {
+        margin-bottom: 0.25rem;
+    }
+}
