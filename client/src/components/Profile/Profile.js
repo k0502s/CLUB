@@ -71,7 +71,7 @@ const Profile = (props) => {
   return (
     <Fragment>
       <Helmet title={`Profile | ${userName}님의 프로필`} />
-      <Col sm="12" md={{ size: 6, offset: 3 }}>
+      <Col sm="12" md={{ size: 6, offset: 2 }}>
         <Card>
           <CardHeader>
             <strong>Edit Password</strong>
@@ -135,9 +135,9 @@ const Profile = (props) => {
                 {errorMsg ? <Alert color="danger">{errorMsg}</Alert> : ""}
               </FormGroup>
               <Button
-                color="success"
+                color="dark"
                 block
-                className="mt-4 mb-4 col-md-3 offset-9"
+                className="mt-4 mb-4 col-md-3"
               >
                 제출하기
               </Button>

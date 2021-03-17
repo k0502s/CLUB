@@ -15,7 +15,7 @@ const MyRouter = () => {
             <Header />
             <AppNavbar />
             <Row>
-                <Col md={{ size: 3, offset: 1 }} xs={{ size: 12 }} sm={{ size: 10, offset: 1 }}>
+                <Col md={{ size: 3, offset: 1 }} xs={{ size: 10, offset: 1 }} sm={{ size: 10, offset: 1 }}>
                     <SideNav />
                 </Col>
                 <Col mb={7} className='mt-3'>

@@ -10,11 +10,11 @@ const SideNav = () => {
              <Card>
                 <CardBody>
                     <Login />
-                    <CardTitle tag="h5">Special Title Treatment</CardTitle>
-                    <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
-                    <Button>Go somewhere</Button>
+                    {/* <CardTitle tag="h5">Special Title Treatment</CardTitle>
+                    <CardText>With supporting text below as a natural lead-in to additional content.</CardText> */}
+                    {/* <Button>Go somewhere</Button> */}
                 </CardBody>
-                <CardFooter>Footer</CardFooter>
+                <CardFooter style={{color:'gray'}}>즐겁게 사진을 찍고 싶은분은 누군든 환영입니다!</CardFooter>
             </Card>
             </Col>
          </Row>
