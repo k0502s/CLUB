@@ -137,7 +137,7 @@ const Profile = (props) => {
               <Button
                 color="dark"
                 block
-                className="mt-4 mb-4 col-md-3"
+                className="mt-2 offset-md-9 col-md-3 "
               >
                 제출하기
               </Button>
