@@ -32,6 +32,34 @@ div {
     object-fit: cover;
 }
 
+#fab {
+    width: 60px;
+    height: 60px;
+    background-color: rgb(9, 137, 196);
+    border-radius: 50%;
+    box-shadow: 0 6px 10px 0 rgb(55, 54, 54);
+    transition: all 0.1s ease-in-out;
+  
+    font-size: 50px;
+    color: white;
+    text-align: center;
+    line-height: 70px;
+  
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+ }
+  
+ #fab:hover {
+    box-shadow: 0 6px 14px 0 #666;
+    transform: scale(1.05);
+ }
+
+ #btn {
+    background: -webkit-linear-gradient(right, #a445b2, #fa4299, #a445b2, #fa4299);
+    border-radius: 50px;
+ }
+
 //CKEditor setting
 
 .ck {

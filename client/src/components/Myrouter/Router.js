@@ -4,6 +4,8 @@ import Footer from '../Footer/Footer';
 import AppNavbar from '../Nav/AppNavbar';
 import SideNav from '../Nav/SideNav';
 import Profile from '../Profile/Profile';
+import Chat from '../Chat/Chat';
+import ChatButton from '../Chat/Section/ChatButton'
 import LandingPage from '../LandingPage/LandingPage';
 import { ProfileProtectedRoute } from '../../productedRoute/ProtectedRoute';
 import { Container, Row, Col } from 'reactstrap';
@@ -22,12 +24,14 @@ const MyRouter = () => {
                     <Container id="main-body">
                         <Switch>
                             <Route exact path="/" component={LandingPage} />
+                            <Route exact path="/chat" component={Chat} />
                             <ProfileProtectedRoute exact path="/user/:userName/profile" component={Profile} />
                             <Redirect from="*" to="/" />
                         </Switch>
                     </Container>
                 </Col>
             </Row>
+            <ChatButton />
             <Footer />
         </Fragment>
     );
