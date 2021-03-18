@@ -1,14 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from './Section/Message';
 import { CHAT_REQUEST } from '../../redux/types';
-// import { List, Icon, Avatar } from 'antd';
+import { Input, InputGroupAddon, Button, InputGroup } from 'reactstrap';
 // import Card from './Sections/Card';
 
 const Chat = () => {
     const dispatch = useDispatch();
     const messagesFromRedux = useSelector((state) => state.message.messages);
+    const [Mes, setMes] = useState('');
 
     useEffect(() => {
         eventQuery('qu1');
@@ -99,18 +100,22 @@ const Chat = () => {
         }
     };
 
-    const keyPressHanlder = (e) => {
-        if (e.key === 'Enter') {
-            if (!e.target.value) {
-                return alert('메세지를 입력해야 합니다.');
-            }
+    const messageHanlder = (e) => {
+        //we will send request to text query route
 
-            //we will send request to text query route
-            textQuery(e.target.value);
-
-            e.target.value = '';
-        }
+        setMes(e.target.value);
     };
+
+    const MesHanlder = (e) => {
+        e.preventDefault();
+
+        textQuery(Mes);
+
+        setMes('');
+    };
+
+
+    //cofs.tistory.com/12 [CofS]
 
     // const renderCards = (cards) => {
     //     return cards.map((card, i) => <Card key={i} cardInfo={card.structValue} />);
@@ -152,26 +157,32 @@ const Chat = () => {
     return (
         <div
             style={{
-                height: 700,
-                width: 600,
-                border: '3px solid black',
-                borderRadius: '7px',
+                height: 510,
+                width: 498,
+                // border: '3px solid black',
+                // borderRadius: '7px',
             }}
         >
-            <div style={{ height: 644, width: '100%', overflow: 'auto' }}>{renderMessage(messagesFromRedux)}</div>
-            <input
-                style={{
-                    margin: 0,
-                    width: '100%',
-                    height: 50,
-                    borderRadius: '4px',
-                    padding: '5px',
-                    fontSize: '1rem',
-                }}
-                placeholder="전달할 메세지를 입력해주세요..."
-                onKeyPress={keyPressHanlder}
-                type="text"
-            />
+            <div style={{ height: 460, width: '100%', overflow: 'auto' }}>{renderMessage(messagesFromRedux)}</div>
+            <InputGroup>
+             <InputGroupAddon addonType="append">
+                    <Button color="secondary" onClick={MesHanlder}>
+                        보내기
+                    </Button>
+                </InputGroupAddon>
+                <Input
+                    style={{
+                        margin: 0,
+                        height: 50,
+                        padding: '5px',
+                        fontSize: '1rem',
+                    }}
+                    placeholder="전달할 메세지를 입력해주세요..."
+                    onChange={messageHanlder}
+                    value={Mes}
+                    type="text"
+                />
+            </InputGroup>
         </div>
     );
 };
