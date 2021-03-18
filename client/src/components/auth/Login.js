@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useCallback, useEffect } from 'react';
-import Register from '../auth/Register'
+import Register from '../auth/Register';
 import { Link } from 'react-router-dom';
 import { Alert, Form, FormGroup, Label, Input, Button, NavLink } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
@@ -76,7 +76,7 @@ const Login = () => {
                 {user && user.name ? (
                     <Fragment>
                         <div style={{ marginLeft: '4.5rem', fontStyle: 'unset', fontSize: '30px' }}>안녕하세요.</div>
-                        <NavLink style={{ marginLeft: '4rem', fontStyle: 'unset', fontSize: '30px', color:'black' }}>{user ? `${user.name} 님.` : ''}</NavLink>
+                        <NavLink style={{ marginLeft: '4rem', fontStyle: 'unset', fontSize: '30px', color: 'black' }}>{user ? `${user.name} 님.` : ''}</NavLink>
                     </Fragment>
                 ) : (
                     <NavLink>
@@ -85,14 +85,20 @@ const Login = () => {
                 )}
             </Form>
             <Form>
+                {user && user.name ? (
+                    <Link to={`/user/${user.name}/profile`}>
+                        <Button color="dark" style={{ marginTop: '1rem', marginLeft: '5rem', width: '50%' }} block>
+                            프로필 수정
+                        </Button>
+                    </Link>
+                ) : (
+                    <NavLink>
+                        <strong>No User</strong>
+                    </NavLink>
+                )}
                 <Link onClick={onLogout} to="/">
                     <Button color="dark" style={{ marginTop: '1rem', marginLeft: '5rem', width: '50%' }} block>
                         로그아웃
-                    </Button>
-                </Link>
-                <Link to={`/user/${user.name}/profile`} >
-                <Button color="dark" style={{ marginTop: '1rem', marginLeft: '5rem', width: '50%' }} block>
-                        프로필
                     </Button>
                 </Link>
             </Form>
