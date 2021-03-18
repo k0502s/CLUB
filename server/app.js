@@ -9,7 +9,7 @@ import cors from "cors";
 //Routes
 import userRoutes from "./routes/api/user.js";
 import authRoutes from "./routes/api/auth.js";
-
+import chatbotRoutes from "./routes/api/chatbot.js"
 
 
 import morgan from 'morgan';
@@ -40,6 +40,7 @@ mongoose.connect(MONGO_URI, {
 app.get('/');
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/chatbot", chatbotRoutes);
 
 
 export default app;
