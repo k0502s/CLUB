@@ -2,7 +2,7 @@ import express from 'express';
 import structjson from'./structjson.js';
 import dialogflow from 'dialogflow';
 import uuid from 'uuid';
-import { Chat } from '../models/chat.js';
+import  Chat from '../../models/chat.js';
 import config from '../../config/index.js';
 
 
