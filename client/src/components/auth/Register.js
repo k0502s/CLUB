@@ -59,8 +59,8 @@ const RegisterModal = () => {
   };
   return (
     <div>
-      <Button onClick={handleToggle} color="dark" style={{ marginTop: '1rem', marginLeft: '5rem', width: '50%' }} block>
-        Register
+      <Button onClick={handleToggle} color="dark" block className='mt-2'>
+        회원 가입
       </Button>
       <Modal isOpen={modal} toggle={handleToggle}>
         <ModalHeader toggle={handleToggle}>Register</ModalHeader>
