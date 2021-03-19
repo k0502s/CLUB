@@ -14,7 +14,7 @@ const ChatButton = () => {
             <Button onClick={toggle} id="fab">
             <FontAwesomeIcon icon={faQuestion} size="xs" style={{marginBottom:'16px'}}/>
             </Button>
-            <Modal isOpen={modal} modalTransition={{ timeout: 700 }} toggle={toggle} style={{width: '382px', marginRight:'50px'}}>
+            <Modal isOpen={modal} modalTransition={{ timeout: 700 }} toggle={toggle} >
                 <ModalHeader toggle={toggle}>문의 사항 접수</ModalHeader>
                 <Chat />
             </Modal>

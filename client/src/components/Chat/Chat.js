@@ -3,7 +3,7 @@ import Axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from './Section/Message';
 import { CHAT_REQUEST } from '../../redux/types';
-import { Input, InputGroupAddon, Button, InputGroup } from 'reactstrap';
+import { Input, InputGroupAddon, Button, InputGroup, Row, Col, CardBody, Card } from 'reactstrap';
 // import Card from './Sections/Card';
 
 const Chat = () => {
@@ -114,7 +114,6 @@ const Chat = () => {
         setMes('');
     };
 
-
     //cofs.tistory.com/12 [CofS]
 
     // const renderCards = (cards) => {
@@ -155,35 +154,34 @@ const Chat = () => {
     };
 
     return (
-        <div
-            style={{
-                height: 510,
-                width: 498,
-                // border: '3px solid black',
-                // borderRadius: '7px',
-            }}
-        >
-            <div style={{ height: 460, width: '100%', overflow: 'auto' }}>{renderMessage(messagesFromRedux)}</div>
-            <InputGroup>
-             <InputGroupAddon addonType="append">
-                    <Button color="secondary" onClick={MesHanlder}>
-                        보내기
-                    </Button>
-                </InputGroupAddon>
-                <Input
-                    style={{
-                        margin: 0,
-                        height: 50,
-                        padding: '5px',
-                        fontSize: '1rem',
-                    }}
-                    placeholder="전달할 메세지를 입력해주세요..."
-                    onChange={messageHanlder}
-                    value={Mes}
-                    type="text"
-                />
-            </InputGroup>
-        </div>
+        <Col >
+            <Col>
+                <Card style={{ height: 460, overflow: 'auto', border: '1px'}}>
+                    <CardBody>{renderMessage(messagesFromRedux)} </CardBody>
+                </Card>
+            </Col>
+            <Row>
+                <InputGroup>
+                    <Input
+                        style={{
+                            margin: 0,
+                            height: 50,
+                            padding: '5px',
+                            fontSize: '1rem',
+                        }}
+                        placeholder="전달할 메세지를 입력해주세요..."
+                        onChange={messageHanlder}
+                        value={Mes}
+                        type="text"
+                    />
+                    <InputGroupAddon addonType="append">
+                        <Button color="secondary" onClick={MesHanlder}>
+                            보내기
+                        </Button>
+                    </InputGroupAddon>
+                </InputGroup>
+            </Row>
+        </Col>
     );
 };
 
