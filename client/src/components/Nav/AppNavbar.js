@@ -20,7 +20,7 @@ const AppNavbar = () => {
     return (
         <Fragment>
             <Col md={{ size: 10, offset: 1 }} sm={12}>
-                <Navbar color="dark" dark expand="lg" className="sticky-top" style={{ borderRadius: 27 }}>
+                <Navbar dark expand="lg" className="sticky-top" id="nav">
                     <NavbarToggler onClick={toggle} style={{ borderRadius: 100 }} />
                     <Collapse isOpen={isOpen} navbar>
                         <Nav className="mr-auto ml-5" navbar>

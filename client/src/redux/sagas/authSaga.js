@@ -183,7 +183,7 @@ function* EditPassword(action) {
       type: PASSWORD_EDIT_UPLOADING_SUCCESS,
       payload: result,
     });
-    yield put(push("/"));
+    yield put(push("/editsuccess"));
   } catch (e) {
     yield put({
       type: PASSWORD_EDIT_UPLOADING_FAILURE,

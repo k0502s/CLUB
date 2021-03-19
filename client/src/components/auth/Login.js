@@ -7,7 +7,6 @@ import { LOGIN_REQUEST, LOGOUT_REQUEST } from '../../redux/types';
 
 const Login = () => {
     const [localMsg, setLocalMsg] = useState('');
-    const [User, setUser] = useState('')
     const [form, setValues] = useState({
         email: '',
         password: '',
@@ -34,6 +33,11 @@ const Login = () => {
         }
         
     }, [errorMsg]);
+
+    useEffect(() => {
+        
+    }, [user]);
+
 
     const onChange = (e) => {
         setValues({
@@ -66,8 +70,8 @@ const Login = () => {
                         Password
                     </Label>
                     <Input style={{ width: '80%', marginLeft: '1.5rem' }} type="password" name="password" id="password" placeholder="Password" onChange={onChange} />
-                    <Button color="dark" className='mt-4' block>
-                        로그인
+                    <Button  className='mt-4' block id='btn'>
+                        LOGIN
                     </Button>
                     <Register />
                 </FormGroup>
@@ -80,8 +84,8 @@ const Login = () => {
             <Form className="col mt-2">
                 {user && user.name ? (
                     <Fragment>
-                        <CardTitle tag="h5">안녕하세요.</CardTitle>
-                        <CardSubtitle tag="h6" className="mb-2 text-muted">{user ? `${user.name} 님.` : ''}</CardSubtitle>
+                        <CardTitle tag="h5" style={{textAlign:'center'}}>안녕하세요.</CardTitle>
+                        <CardSubtitle tag="h6" className="mb-2 text-muted"  style={{textAlign:'center', textDecoration:'underline', textDecorationThickness:'2.22px'}}>{user ? `${user.name} 님.` : ''}</CardSubtitle>
                     </Fragment>
                 ) : (
                     <NavLink>
@@ -93,8 +97,8 @@ const Login = () => {
                 <Col>
                 {user && user.name ? (
                     <Link to={`/user/${user.name}/profile`}>
-                        <Button color="dark" className='mt-4' block>
-                            프로필 수정
+                        <Button  className='mt-4' block id='btn'>
+                            PROFILE EDIT
                         </Button>
                     </Link>
                 ) : (
@@ -105,8 +109,8 @@ const Login = () => {
                 </Col>
                 <Col>
                 <Link onClick={onLogout} to="/">
-                    <Button color="dark" className='mt-2' block>
-                        로그아웃
+                    <Button  className='mt-2' block id='btn'>
+                        LOGOUT
                     </Button>
                 </Link>
                 </Col>

@@ -31,7 +31,6 @@ import {
     errorMsg: "",
     successMsg: "",
     previousMatchMsg: "",
-    editsuccess: false,
   };
 
         const authReducer = (state = initialState, action) => {
@@ -52,6 +51,7 @@ import {
                 ...action.payload,
                 isAuthenticated: true,
                 isLoading: false,
+                userName: action.payload.user.name,
                 userId: action.payload.user.id,
                 userRole: action.payload.user.role,
                 errorMsg: "",
@@ -118,7 +118,7 @@ import {
                     successMsg: action.payload.data.success_msg,
                     errorMsg: "",
                     previousMsg: "",
-                    editsuccess: true
+                    
                   };
                 case PASSWORD_EDIT_UPLOADING_FAILURE:
                   return {

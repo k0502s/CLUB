@@ -59,11 +59,11 @@ const RegisterModal = () => {
   };
   return (
     <div>
-      <Button onClick={handleToggle} color="dark" block className='mt-2'>
-        회원 가입
+      <Button onClick={handleToggle} block className='mt-2' id='btn'>
+        REGISTER
       </Button>
       <Modal isOpen={modal} toggle={handleToggle}>
-        <ModalHeader toggle={handleToggle}>Register</ModalHeader>
+        <ModalHeader toggle={handleToggle}>회원 가입</ModalHeader>
         <ModalBody>
           {localMsg ? <Alert color="danger">{localMsg}</Alert> : null}
           <Form onSubmit={onSubmit}>
@@ -92,8 +92,8 @@ const RegisterModal = () => {
                 placeholder="Password"
                 onChange={onChange}
               />
-              <Button color="dark" className="mt-2" block>
-                Register
+              <Button className="mt-2" block id='btn'>
+                가입하기
               </Button>
             </FormGroup>
           </Form>
