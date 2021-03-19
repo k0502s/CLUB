@@ -7,11 +7,11 @@ const SideNav = () => {
         <div>
         <Row>
             <Col className='mt-3'>
-             <Card body outline color="success">
+             <Card id='sidenav'>
                 <CardBody>
                     <Login />
                 </CardBody>
-                <CardFooter style={{color:'gray'}}>즐겁게 사진을 찍고 싶은분은 누군든 환영입니다!</CardFooter>
+                <CardFooter style={{color:'gray', textAlign:'center'}}>즐겁게 사진을 찍고 싶은분은 누구든지 환영입니다!</CardFooter>
             </Card>
             </Col>
          </Row>

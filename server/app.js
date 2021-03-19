@@ -10,6 +10,7 @@ import cors from "cors";
 import userRoutes from "./routes/api/user.js";
 import authRoutes from "./routes/api/auth.js";
 import chatbotRoutes from "./routes/api/chatbot.js"
+import photoRoutes from "./routes/api/photo.js"
 
 
 import morgan from 'morgan';
@@ -41,6 +42,7 @@ app.get('/');
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/chatbot", chatbotRoutes);
+app.use("/api/photo", photoRoutes);
 
 
 export default app;
