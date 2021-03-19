@@ -2,6 +2,9 @@ import {
     CHAT_REQUEST,
     CHAT_SUCCESS,
     CHAT_FAILURE,
+    CHAT_RESET_REQUEST,
+    CHAT_RESET_SUCCESS,
+    CHAT_RESET_FAILURE
   } from "../types";
 
 
@@ -25,6 +28,20 @@ import {
                     ...state,
                     messages: []
                     };
+                    case CHAT_RESET_REQUEST:
+                      return {
+                        ...state,
+                        };
+                    case CHAT_RESET_SUCCESS:
+                      return {
+                        ...state,
+                        messages: []
+                        };
+                    case CHAT_RESET_FAILURE:
+                      return {
+                        ...state,
+                        messages: 'Reset error'
+                        };
 
               default:
                   return state;             

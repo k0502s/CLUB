@@ -5,6 +5,9 @@ import {
   CHAT_FAILURE,
   CHAT_SUCCESS,
   CHAT_REQUEST,
+  CHAT_RESET_REQUEST,
+  CHAT_RESET_SUCCESS,
+  CHAT_RESET_FAILURE
 } from "../types";
 
 
@@ -31,8 +34,27 @@ function* watchChat() {
 }
 
 
+
+function* chatrest() {
+  try {
+    yield put({
+      type: CHAT_RESET_SUCCESS,
+    });
+  } catch (e) {
+    yield put({
+      type: CHAT_RESET_FAILURE,
+    });
+    console.error(e);
+  }
+}
+
+function* watchchatrest() {
+  yield takeEvery(CHAT_RESET_REQUEST, chatrest);
+}
+
+
 export default function* chatSaga() {
   yield all([
-    fork(watchChat)
+    fork(watchChat), fork(watchchatrest)
   ]);
 }
