@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useCallback, useEffect } from 'react';
 import Register from '../auth/Register';
 import { Link } from 'react-router-dom';
-import { Alert, Form, FormGroup, Label, Input, Button, NavLink, Col, CardTitle, CardSubtitle} from 'reactstrap';
+import { Alert, Form, FormGroup, Label, Input, Button, NavLink, Col, CardTitle, CardSubtitle } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { LOGIN_REQUEST, LOGOUT_REQUEST } from '../../redux/types';
 
@@ -22,22 +22,15 @@ const Login = () => {
         });
     }, [dispatch]);
 
-   
-
-
     useEffect(() => {
         try {
             setLocalMsg(errorMsg);
         } catch (e) {
             console.log(e);
         }
-        
     }, [errorMsg]);
 
-    useEffect(() => {
-        
-    }, [user]);
-
+    useEffect(() => {}, [user]);
 
     const onChange = (e) => {
         setValues({
@@ -70,12 +63,16 @@ const Login = () => {
                         Password
                     </Label>
                     <Input style={{ width: '80%', marginLeft: '1.5rem' }} type="password" name="password" id="password" placeholder="Password" onChange={onChange} />
-                    <Button  className='mt-4' block id='btn'>
-                        LOGIN
-                    </Button>
-                    <Register />
+                    <Col>
+                        <Button className="mt-4" block id="btn">
+                            LOGIN
+                        </Button>
+                    </Col>
                 </FormGroup>
             </Form>
+            <Col>
+                <Register />
+            </Col>
         </Fragment>
     );
 
@@ -84,8 +81,12 @@ const Login = () => {
             <Form className="col mt-2">
                 {user && user.name ? (
                     <Fragment>
-                        <CardTitle tag="h5" style={{textAlign:'center'}}>안녕하세요.</CardTitle>
-                        <CardSubtitle tag="h6" className="mb-2 text-muted"  style={{textAlign:'center', textDecoration:'underline', textDecorationThickness:'2.22px'}}>{user ? `${user.name} 님.` : ''}</CardSubtitle>
+                        <CardTitle tag="h5" style={{ textAlign: 'center' }}>
+                            안녕하세요.
+                        </CardTitle>
+                        <CardSubtitle tag="h6" className="mb-2 text-muted" style={{ textAlign: 'center', textDecoration: 'underline', textDecorationThickness: '2.22px' }}>
+                            {user ? `${user.name} 님.` : ''}
+                        </CardSubtitle>
                     </Fragment>
                 ) : (
                     <NavLink>
@@ -95,24 +96,24 @@ const Login = () => {
             </Form>
             <Form>
                 <Col>
-                {user && user.name ? (
-                    <Link to={`/user/${user.name}/profile`}>
-                        <Button  className='mt-4' block id='btn'>
-                            PROFILE EDIT
-                        </Button>
-                    </Link>
-                ) : (
-                    <NavLink>
-                        <strong>No User</strong>
-                    </NavLink>
-                )}
+                    {user && user.name ? (
+                        <Link to={`/user/${user.name}/profile`}>
+                            <Button className="mt-4" block id="btn">
+                                PROFILE EDIT
+                            </Button>
+                        </Link>
+                    ) : (
+                        <NavLink>
+                            <strong>No User</strong>
+                        </NavLink>
+                    )}
                 </Col>
                 <Col>
-                <Link onClick={onLogout} to="/">
-                    <Button  className='mt-2' block id='btn'>
-                        LOGOUT
-                    </Button>
-                </Link>
+                    <Link onClick={onLogout} to="/">
+                        <Button className="mt-3" block id="btn">
+                            LOGOUT
+                        </Button>
+                    </Link>
                 </Col>
             </Form>
         </Fragment>

@@ -14,15 +14,21 @@ import {
   Button,
 } from "reactstrap";
 
+const Sexes = [
+  { key: 1, value: '남' },
+  { key: 2, value: '여' },
+];
 const RegisterModal = () => {
   const [modal, setModal] = useState(false);
+  const [Sex, setSex] = useState(0);
   const [form, setValue] = useState({
     name: "",
     email: "",
     password: "",
+    camera: ""
   });
   const [localMsg, setLocalMsg] = useState("");
-  const { errorMsg } = useSelector((state) => state.auth);
+  const { errorMsg1 } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
   const handleToggle = () => {
@@ -34,11 +40,11 @@ const RegisterModal = () => {
 
   useEffect(() => {
     try {
-      setLocalMsg(errorMsg);
+      setLocalMsg(errorMsg1);
     } catch (e) {
       console.error(e);
     }
-  }, [errorMsg]);
+  }, [errorMsg1]);
 
   const onChange = (e) => {
     setValue({
@@ -47,10 +53,15 @@ const RegisterModal = () => {
     });
   };
 
+  const sexChangeHandler = (e) => {
+    setSex(e.target.value);
+};
+
   const onSubmit = (e) => {
     e.preventDefault();
-    const { name, email, password } = form;
-    const newUser = { name, email, password };
+    const { name, email, password, camera } = form;
+
+    const newUser = { name, email, password, camera, sex: Sex };
     console.log(newUser, "newUser");
     dispatch({
       type: REGISTER_REQUEST,
@@ -59,7 +70,7 @@ const RegisterModal = () => {
   };
   return (
     <div>
-      <Button onClick={handleToggle} block className='mt-2' id='btn'>
+      <Button onClick={handleToggle} block id='btn'>
         REGISTER
       </Button>
       <Modal isOpen={modal} toggle={handleToggle}>
@@ -92,6 +103,22 @@ const RegisterModal = () => {
                 placeholder="Password"
                 onChange={onChange}
               />
+              <Label for="camera">Camera</Label>
+              <Input
+                type="text"
+                name="camera"
+                id="camera"
+                placeholder="Camera"
+                onChange={onChange}
+              />
+              <select onChange={sexChangeHandler} value={Sex} name="sex" style={{marginTop: 30, marginBottom: 30}}>
+                    <option value="">성별을 선택해주세요</option>
+                    {Sexes.map((item) => (
+                        <option key={item.key} value={item.key}>
+                            {item.value}
+                        </option>
+                    ))}
+                </select>
               <Button className="mt-2" block id='btn'>
                 가입하기
               </Button>

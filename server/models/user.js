@@ -7,6 +7,14 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  sex: {
+    type: Number,
+    default: 1,
+},
+  camera: {
+    type: String,
+    required: true,
+  },
   email: {
     type: String,
     required: true,
