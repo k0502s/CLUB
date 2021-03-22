@@ -2,6 +2,7 @@ import React, { Fragment, useState, useCallback, useEffect } from 'react';
 import { Navbar, Container, NavbarToggler, Collapse, Nav, NavItem, Form, Button, Col, NavLink, DropdownItem, DropdownToggle, UncontrolledDropdown, DropdownMenu } from 'reactstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { LOGOUT_REQUEST } from '../../redux/types';
+import { Link } from 'react-router-dom';
 
 const AppNavbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -34,9 +35,13 @@ const AppNavbar = () => {
                                     포토 갤러리
                                 </DropdownToggle>
                                 <DropdownMenu right>
+                                    <Link to='/bestphotolist'>
                                     <DropdownItem>베스트 갤러리</DropdownItem>
+                                    </Link>
                                     <DropdownItem divider />
+                                    <Link to='/photolist'>
                                     <DropdownItem>작품 갤러리</DropdownItem>
+                                    </Link>
                                 </DropdownMenu>
                             </UncontrolledDropdown>
                             <UncontrolledDropdown nav inNavbar>

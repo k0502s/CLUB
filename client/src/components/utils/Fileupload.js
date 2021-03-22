@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Form, Input } from 'reactstrap';
+import { Button, Form, Input, Col, Row} from 'reactstrap';
 import Dropzone from 'react-dropzone';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBriefcase, faPaperPlane, faQuestion, faImage, faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -43,6 +43,7 @@ function FileUpload(props) {
 
     return (
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Col>
             <Dropzone onDrop={dropHandler}>
                 {({ getRootProps, getInputProps }) => (
                     <section>
@@ -63,7 +64,8 @@ function FileUpload(props) {
                     </section>
                 )}
             </Dropzone>
-
+            </Col>
+            <Col>
             <div style={{ display: 'flex', width: '350px', height: '240px', overflow: 'scroll' }}>
                 {Images.map((image, index) => (
                     <div onClick={() => deleteHandler(image)} key={index}>
@@ -71,6 +73,7 @@ function FileUpload(props) {
                     </div>
                 ))}
             </div>
+            </Col>
         </div>
     );
 }

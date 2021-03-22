@@ -151,7 +151,7 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                successMsg: action.payload.data.success_msg,
+                successMsg: action.payload.data.success,
                 errorMsg: '',
                 previousMsg: '',
             };

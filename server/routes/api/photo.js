@@ -73,7 +73,60 @@ router.post('/', async (req, res) => {
     }
 });
 
+const getPagination = (page, size) => {
+    const limit = size ? +size : 8;
+    const offset = page ? page * limit : 0;
 
+    return { limit, offset };
+};
+
+router.get('/photos', async (req, res) => {
+    try {
+        const { page, size, title } = req.query;
+        var condition = title ? { title: { $regex: new RegExp(title), $options: 'i' } } : {};
+
+        const { limit, offset } = getPagination(page, size);
+
+        await Photo.paginate(condition, { offset, limit }).then((data) => {
+            console.log(data);
+            res.send({
+                totalItems: data.totalDocs,
+                photodata: data.docs,
+                totalPages: data.totalPages,
+                currentPage: data.page - 1,
+            });
+        });
+    } catch (e) {
+        res.status(500).send({
+            message: err.message || 'Some error occurred',
+        });
+    }
+});
+
+
+router.get('/bestphotos', async (req, res) => {
+    try {
+        const { page, size, title } = req.query;
+        var condition = title ? { title: { $regex: new RegExp(title), $options: 'i' }, views: { $gte : 1}
+    } : {views: { $gte : 1} };
+
+        const { limit, offset } = getPagination(page, size);
+
+        await Photo.paginate(condition, { offset, limit }).then((data) => {
+            console.log(data);
+            res.send({
+                totalItems: data.totalDocs,
+                bestphotodata: data.docs,
+                totalPages: data.totalPages,
+                currentPage: data.page - 1,
+            });
+        });
+    } catch (e) {
+        res.status(500).send({
+            message: err.message || 'Some error occurred',
+        });
+    }
+});
 
 
 export default router;

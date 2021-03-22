@@ -1,13 +1,13 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import Pagination from '@material-ui/lab/Pagination';
-import { useSelector, useDispatch } from 'react-redux';
-import { PHOTO_LIST_REQUEST } from '../../redux/types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { useSelector, useDispatch } from 'react-redux';
+import { BESTPHOTO_LIST_REQUEST } from '../../redux/types';
 import { Card, CardTitle, CardText, CardImg, CardImgOverlay, Row, Col, Button, InputGroup, InputGroupAddon, Input, Label } from 'reactstrap';
 
-const PhotoList = () => {
+const BestPhotoList = () => {
     const dispatch = useDispatch();
     const [searchTitle, setSearchTitle] = useState([]);
 
@@ -15,7 +15,7 @@ const PhotoList = () => {
 
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(9);
-    const { photodata, totalPages } = useSelector((state) => state.photo);
+    const { bestphotodata, totalPages } = useSelector((state) => state.photo);
     const pageSizes = [9, 15];
 
     const getRequestParams = (searchTitle, page, pageSize) => {
@@ -40,7 +40,7 @@ const PhotoList = () => {
         const params = getRequestParams(searchTitle, page, pageSize);
 
         dispatch({
-            type: PHOTO_LIST_REQUEST,
+            type: BESTPHOTO_LIST_REQUEST,
             payload: { params },
         });
     };
@@ -64,15 +64,13 @@ const PhotoList = () => {
     return (
         <Fragment>
             <Row md={{ size: 5, offset: 1 }} id="topborder">
-                <h5>작품 갤러리</h5>
-                <Link to="/addphoto">
-                    <Button>글쓰기</Button>
-                </Link>
+                <h5>베스트 갤러리</h5>
+                <h6>갤러리에 등록된 사진중 조회수가 높은 작품을 전시합니다!</h6>
             </Row>
 
             <Row>
-                <Col>
-                <span style={{ fontWeight: 'bold'}}>HOME</span> <FontAwesomeIcon icon={faArrowRight}/> 포토 갤러리 <FontAwesomeIcon icon={faArrowRight} /> <span style={{ fontWeight: 'bolder' }}>작품 갤러리</span>
+            <Col>
+            <span style={{ fontWeight: 'bold'}}>HOME</span><FontAwesomeIcon icon={faArrowRight} /> 포토 갤러리 <FontAwesomeIcon icon={faArrowRight} /> <span style={{fontWeight: 'bolder'}}>베스트 갤러리</span>
                 </Col>
 
                 <Col md={{ size: 5, offset: 1 }}>
@@ -87,8 +85,8 @@ const PhotoList = () => {
 
             {/* Cards */}
             <Row>
-                {photodata &&
-                    photodata.map((photo, index) => (
+                {bestphotodata &&
+                    bestphotodata.map((photo, index) => (
                         <Col md={{ size: 4 }} className="mb-3 mt-3" key={index}>
                             <Card inverse>
                                 <CardImg width="100%" src={photo.images[0]} alt="Card image cap" id="photoimg" />
@@ -120,4 +118,4 @@ const PhotoList = () => {
     );
 };
 
-export default PhotoList;
+export default BestPhotoList;
