@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Form, Input } from 'reactstrap';
+import { Button, Form, Input, Label, Card, CardTitle, CardText, Row, Col } from 'reactstrap';
 import FileUpload from '../utils/Fileupload';
 import { useDispatch, useSelector } from 'react-redux';
 import { PHOTO_UPLOADING_REQUEST } from '../../redux/types';
@@ -73,32 +73,33 @@ const AddPhotoPage = (props) => {
     };
 
     return (
-        <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
-            <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
-                <h2>포토 추가하기</h2>
-            </div>
-            <Form onSubmit={submitHandler} name="myform">
-                {/* DropZone   */}
-                <FileUpload refreshFunction={updateImages} />
-                <label>제목</label>
-                <Input onChange={titleChangeHandler} value={Title} name="title" />
-                <br />
-                <label>설명</label>
-                <Input onChange={descriptionChangeHandler} value={Description} name="description" />
-                <br />
-                <select onChange={continentChangeHandler} value={Continent} name="continent">
-                    <option value="">장르를 선택해주세요</option>
-                    {Continents.map((item) => (
-                        <option key={item.key} value={item.key}>
-                            {item.value}
-                        </option>
-                    ))}
-                </select>
-                <Button className="col-md-2 offset-md-10" onClick={submitHandler}>
-                    확인
-                </Button>
-            </Form>
-        </div>
+        <Card body style={{height:'700px', borderRadius:'50px'}}>
+                <CardTitle tag="h3">
+                    포토 추가하기
+                </CardTitle>
+                <Form onSubmit={submitHandler} name="myform">
+                    {/* DropZone   */}
+                    <FileUpload refreshFunction={updateImages} />
+                    <Label>제목</Label>
+                    <Input onChange={titleChangeHandler} value={Title} name="title" />
+                    <br />
+                    <Label>설명</Label>
+                    <Input onChange={descriptionChangeHandler} value={Description} name="description" />
+                    <br />
+                    <Label>장르</Label>
+                    <Input onChange={continentChangeHandler} value={Continent} name="continent" type="select">
+                        <option value="">장르를 선택해주세요</option>
+                        {Continents.map((item) => (
+                            <option key={item.key} value={item.key}>
+                                {item.value}
+                            </option>
+                        ))}
+                    </Input>
+                    <Button className="col-md-2 offset-md-10 mt-5" onClick={submitHandler}>
+                        확인
+                    </Button>
+                </Form>
+            </Card>
     );
 };
 
