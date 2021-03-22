@@ -2,17 +2,30 @@
 
 
 
-
-.background {
+body {
     width: 100%;
     height: 100%;
     background: url('../assets/img/fkyhynowp-4-jakob-owens.jpg') no-repeat;
     background-size: cover;
-    z-index: -1;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
 }
 
-div {
-    display: block;
+
+#topborder {
+    border-bottom: 1px solid rgba(173, 0, 242, 0.871);
+    border-top: 1px solid rgba(173, 0, 242, 0.871);
+    padding: 20px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content:space-between
+}
+
+#topspan {
+ color: gray;
+ font-weight: bold;
 }
 
 #main-footer {
@@ -23,9 +36,8 @@ div {
 #page-logo {
     width: 65x;
     height: 65px;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
     margin-top: 30px;
-    top: 20%;
 }
 
 #page-logo-text {
@@ -106,7 +118,8 @@ div {
 
 html {
     width: 100vw;
-    overflow-x: hiddem;
+    overflow-x:hidden;
+    overflow-y:scroll;
 }
 
 textarea {
@@ -207,4 +220,11 @@ textarea {
     right: -12px;
     border-bottom: 20px solid transparent;
     border-left: 20px solid #fc6d4c;
+}
+
+
+/////photo img
+
+#photoimg {
+    max-height: 235px;
 }
