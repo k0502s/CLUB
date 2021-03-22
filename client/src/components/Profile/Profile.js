@@ -14,6 +14,7 @@ const Profile = (props) => {
         rePassword: '',
         email: '',
         name: '',
+        camera: ''
     });
     const dispatch = useDispatch();
     const onChange = (e) => {
@@ -25,7 +26,7 @@ const Profile = (props) => {
 
     const onSubmit = async (e) => {
         await e.preventDefault();
-        const { previousPassword, password, rePassword, email, name } = form;
+        const { previousPassword, password, rePassword, email, name, camera } = form;
         const token = localStorage.getItem('token');
 
         const body = {
@@ -37,6 +38,7 @@ const Profile = (props) => {
             userName,
             email,
             name,
+            camera
         };
 
         dispatch({
@@ -54,16 +56,20 @@ const Profile = (props) => {
             <Col sm="12" md={{ size: 6, offset: 2 }}>
                 <Card>
                     <CardHeader>
-                        <strong>Edit Password</strong>
+                        <strong>회원정보 수정</strong>
                     </CardHeader>
                     <CardBody>
                         <Form onSubmit={onSubmit}>
                             <FormGroup>
-                                <Label for="title">닉네임</Label>
+                                <Label for="title">새로운 닉네임</Label>
                                 <Input type="text" name="name" id="name" className="form-control" onChange={onChange} />
                             </FormGroup>
                             <FormGroup>
-                                <Label for="title">이메일</Label>
+                                <Label for="title">새로운 카메라</Label>
+                                <Input type="text" name="camera" id="camera" className="form-control" onChange={onChange} />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="title">새로운 이메일</Label>
                                 <Input type="text" name="email" id="email" className="form-control" onChange={onChange} />
                             </FormGroup>
                             <FormGroup>

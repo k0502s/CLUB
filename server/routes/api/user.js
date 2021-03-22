@@ -79,7 +79,7 @@ router.post('/', (req, res) => {
 
 router.post('/:userName/profile', auth, async (req, res) => {
     try {
-        const { previousPassword, password, rePassword, userId, email, name } = req.body;
+        const { previousPassword, password, rePassword, userId, email, name, camera } = req.body;
         console.log(req.body, 'userName Profile');
         const result = await User.findById(userId, 'password');
         // Check for existing user
@@ -111,10 +111,11 @@ router.post('/:userName/profile', auth, async (req, res) => {
                             result.password = hash;
                             result.name = name;
                             result.email = email;
+                            result.camera = camera;
                             result.save();
                         });
                     });
-                    res.status(200).json({ success_msg: '비밀번호 업데이트에 성공했습니다' });
+                    res.status(200).json({ success: '비밀번호 업데이트에 성공했습니다' });
                 } else {
                     res.status(400).json({ fail_msg: '새로운 비밀번호가 일치하지 않습니다' });
                 }
