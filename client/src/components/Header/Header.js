@@ -10,7 +10,7 @@ const Header = () => {
                 <Col md={{ size: 2, offset: 2 }} sm={{offset: 3}} style={{display: 'flex'}}>
                     <img src={logo} id='page-logo'
                     />
-                     <h3 id="page-logo-text">사진 동호회</h3>
+                     <h3 id="page-logo-text">Photo Club</h3>
                 </Col>
             </Row>
         </div>
