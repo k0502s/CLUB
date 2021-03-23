@@ -2,7 +2,7 @@ import React, { useEffect, useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import Pagination from '@material-ui/lab/Pagination';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faMouse } from '@fortawesome/free-solid-svg-icons';
 import { useSelector, useDispatch } from 'react-redux';
 import { BESTPHOTO_LIST_REQUEST } from '../../redux/types';
 import { Card, CardTitle, CardText, CardImg, CardImgOverlay, Row, Col, Button, InputGroup, InputGroupAddon, Input, Label } from 'reactstrap';
@@ -65,7 +65,7 @@ const BestPhotoList = () => {
         <Fragment>
             <Row md={{ size: 5, offset: 1 }} id="topborder">
                 <h5>베스트 갤러리</h5>
-                <h6>갤러리에 등록된 사진중 조회수가 높은 작품을 전시합니다!</h6>
+                <h6>갤러리에 등록된 사진중 조회수가 10 이상인 작품을 전시합니다!</h6>
             </Row>
 
             <Row>
@@ -95,6 +95,11 @@ const BestPhotoList = () => {
                                     <CardImgOverlay>
                                         <CardTitle tag="h5">{photo.title}</CardTitle>
                                         <CardText>{photo.description}</CardText>
+                                        <CardText>
+                                            {' '}
+                                            <FontAwesomeIcon icon={faMouse} />
+                                            &nbsp;{photo.views}
+                                        </CardText>
                                         <CardText>
                                             <small className="text-muted">{photo.date}</small>
                                         </CardText>

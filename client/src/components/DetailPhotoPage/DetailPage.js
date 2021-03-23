@@ -7,6 +7,7 @@ import { PHOTO_DELETE_REQUEST, PHOTO_DERAIL_REQUEST } from '../../redux/types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt, faCommentDots, faMouse } from '@fortawesome/free-solid-svg-icons';
 
+
 const DetailPhotoPage = (props) => {
     const dispatch = useDispatch();
     const { detailphoto, writerId } = useSelector((state) => state.photo);

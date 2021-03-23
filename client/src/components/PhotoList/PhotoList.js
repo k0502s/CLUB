@@ -4,7 +4,7 @@ import Pagination from '@material-ui/lab/Pagination';
 import { useSelector, useDispatch } from 'react-redux';
 import { PHOTO_LIST_REQUEST } from '../../redux/types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faMouse } from '@fortawesome/free-solid-svg-icons';
 import { Card, CardTitle, CardText, CardImg, CardImgOverlay, Row, Col, Button, InputGroup, InputGroupAddon, Input, Label } from 'reactstrap';
 
 const PhotoList = () => {
@@ -99,6 +99,11 @@ const PhotoList = () => {
                                         <CardText>{photo.description}</CardText>
                                         <CardText>
                                             <small className="text-muted">{photo.date}</small>
+                                        </CardText>
+                                        <CardText>
+                                            {' '}
+                                            <FontAwesomeIcon icon={faMouse} />
+                                            &nbsp;{photo.views}
                                         </CardText>
                                     </CardImgOverlay>
                                 </Card>
