@@ -18,9 +18,6 @@ const Message = (props) => {
         					</div>
         				</li> ) : (
         				<li class="out">
-        					<div class="chat-img">
-        						<img alt="Avtar" src="https://bootdey.com/img/Content/avatar/avatar6.png"/>
-        					</div>
         					<div class="chat-body">
         						<div class="chat-message">
         							<h5>{props.who}</h5>
