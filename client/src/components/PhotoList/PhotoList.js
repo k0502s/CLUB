@@ -72,7 +72,8 @@ const PhotoList = () => {
 
             <Row>
                 <Col>
-                <span style={{ fontWeight: 'bold'}}>HOME</span> <FontAwesomeIcon icon={faArrowRight}/> 포토 갤러리 <FontAwesomeIcon icon={faArrowRight} /> <span style={{ fontWeight: 'bolder' }}>작품 갤러리</span>
+                    <span style={{ fontWeight: 'bold' }}>HOME</span> <FontAwesomeIcon icon={faArrowRight} /> 포토 갤러리 <FontAwesomeIcon icon={faArrowRight} />{' '}
+                    <span style={{ fontWeight: 'bolder' }}>작품 갤러리</span>
                 </Col>
 
                 <Col md={{ size: 5, offset: 1 }}>
@@ -90,16 +91,18 @@ const PhotoList = () => {
                 {photodata &&
                     photodata.map((photo, index) => (
                         <Col md={{ size: 4 }} className="mb-3 mt-3" key={index}>
-                            <Card inverse>
-                                <CardImg width="100%" src={photo.images[0]} alt="Card image cap" id="photoimg" />
-                                <CardImgOverlay>
-                                    <CardTitle tag="h5">{photo.title}</CardTitle>
-                                    <CardText>{photo.description}</CardText>
-                                    <CardText>
-                                        <small className="text-muted">{photo.date}</small>
-                                    </CardText>
-                                </CardImgOverlay>
-                            </Card>
+                            <Link to={`/photo/${photo._id}`}>
+                                <Card inverse>
+                                    <CardImg width="100%" src={photo.images[0]} alt="Card image cap" id="photoimg" />
+                                    <CardImgOverlay>
+                                        <CardTitle tag="h5">{photo.title}</CardTitle>
+                                        <CardText>{photo.description}</CardText>
+                                        <CardText>
+                                            <small className="text-muted">{photo.date}</small>
+                                        </CardText>
+                                    </CardImgOverlay>
+                                </Card>
+                            </Link>
                         </Col>
                     ))}
             </Row>

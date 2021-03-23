@@ -10,16 +10,14 @@ import {
     PHOTO_LIST_FAILURE,
     BESTPHOTO_LIST_REQUEST,
     BESTPHOTO_LIST_SUCCESS,
-    BESTPHOTO_LIST_FAILURE
-    // MEMBER_DELETE_REQUEST,
-    // MEMBER_DELETE_SUCCESS,
-    // MEMBER_DELETE_FAILURE,
-    // MEMBER_SINGLELIST_REQUEST,
-    // MEMBER_SINGLELIST_SUCCESS,
-    // MEMBER_SINGLELIST_FAILURE,
-    // MEMBER_UPDATELIST_REQUEST,
-    // MEMBER_UPDATELIST_SUCCESS,
-    // MEMBER_UPDATELIST_FAILURE,
+    BESTPHOTO_LIST_FAILURE,
+    PHOTO_DERAIL_REQUEST,
+    PHOTO_DERAIL_SUCCESS,
+    PHOTO_DERAIL_FAILURE,
+    PHOTO_DELETE_REQUEST,
+    PHOTO_DELETE_SUCCESS,
+    PHOTO_DELETE_FAILURE
+
 } from '../types';
 
 
@@ -40,9 +38,7 @@ function* photoUpload(action) {
             type: PHOTO_UPLOADING_SUCCESS,
             payload: result.data,
         });
-        yield all([
-            put(push('/photolist')),
-        ]);
+        yield put(push(`/photo/${result.data.id}`));
     } catch (e) {
         yield put({
             type: PHOTO_UPLOADING_FAILURE,
@@ -118,6 +114,76 @@ function* watchBestPhotoList() {
 }
 
 
+// photo Detail
+
+const photodetailAPI = (id) => {
+  console.log(id, "photoId");
+ 
+  return axios.get(`/api/photo/photo_by_id?id=${id}`);
+};
+
+function* photoDetail(action) {
+  try {
+    const result = yield call(photodetailAPI, action.payload);
+    console.log(result);
+    yield put({
+      type: PHOTO_DERAIL_SUCCESS,
+      payload: result.data,
+    });
+  } catch (e) {
+    yield put({
+      type: PHOTO_DERAIL_FAILURE,
+      payload: e.response,
+    });
+  }
+}
+
+function* watchPhotoDetail() {
+  yield takeEvery(PHOTO_DERAIL_REQUEST, photoDetail);
+}
+
+
+
+// photo Delete
+
+const photodeleteAPI = (payload) => {
+  console.log(payload, "delete");
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const token = payload.token;
+
+  if (token) {
+    config.headers["x-auth-token"] = token;
+  }
+ 
+  return axios.delete(`/api/photo/${payload.id}`, config);
+};
+
+function* photoDelete(action) {
+  try {
+    const result = yield call(photodeleteAPI, action.payload);
+    console.log(result);
+    yield put({
+      type: PHOTO_DELETE_SUCCESS,
+    });
+    yield put(push("/photolist"));
+  } catch (e) {
+    yield put({
+      type: PHOTO_DELETE_FAILURE,
+      payload: e.response,
+    });
+  }
+}
+
+function* watchPhotoDelete() {
+  yield takeEvery(PHOTO_DELETE_REQUEST, photoDelete);
+}
+
+
 export default function* photoSaga() {
-    yield all([fork(watchphotoUpload), fork(watchPhotoList), fork(watchBestPhotoList)]);
+    yield all([fork(watchphotoUpload), fork(watchPhotoList), fork(watchBestPhotoList), fork(watchPhotoDetail), fork(watchPhotoDelete)]);
 }

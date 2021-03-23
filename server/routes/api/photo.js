@@ -1,6 +1,8 @@
 import express from 'express';
 import multer from 'multer';
 import Photo from '../../models/photo.js';
+import User from '../../models/user.js';
+import auth from "../../middleware/auth.js";
 
 const router = express.Router();
 
@@ -66,7 +68,7 @@ router.post('/', async (req, res) => {
         const photo = new Photo(req.body);
 
         await photo.save(() => {
-            res.status(200).json({ success: true });
+            res.status(200).json({ success: true, id: photo._id });
         });
     } catch (e) {
         res.status(400).json({ success: false, err });
@@ -103,12 +105,10 @@ router.get('/photos', async (req, res) => {
     }
 });
 
-
 router.get('/bestphotos', async (req, res) => {
     try {
         const { page, size, title } = req.query;
-        var condition = title ? { title: { $regex: new RegExp(title), $options: 'i' }, views: { $gte : 1}
-    } : {views: { $gte : 1} };
+        var condition = title ? { title: { $regex: new RegExp(title), $options: 'i' }, views: { $gte: 1 } } : { views: { $gte: 1 } };
 
         const { limit, offset } = getPagination(page, size);
 
@@ -128,5 +128,36 @@ router.get('/bestphotos', async (req, res) => {
     }
 });
 
+router.get('/photo_by_id', async (req, res) => {
+    try {
+        const photoId = req.query.id
+        const photodetail = await Photo.findById({ _id: photoId }).populate({ path: 'writer', select: 'name' });
+        photodetail.views += 1;
+        photodetail.save();
+        res.json(photodetail);
+    } catch (e) {
+        res.status(500).send({
+            message: err.message || 'Some error occurred',
+        });
+    }
+});
+
+router.delete('/:id', auth, async (req, res) => {
+    try {
+        await Photo.deleteMany({ _id: req.params.id });
+        // await Comment.deleteMany({ post: req.params.id });
+        // await User.findByIdAndUpdate(req.user.id, {
+        //   $pull: {
+        //     posts: req.params.id,
+        //     comments: { post_id: req.params.id },
+        //   },
+        // });
+        return res.json({ success: true });
+    } catch (e) {
+        res.status(500).send({
+            message: err.message || 'Some error occurred',
+        });
+    }
+});
 
 export default router;

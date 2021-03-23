@@ -8,6 +8,7 @@ import EditSuccess from '../Profile/Section/EditSuccess';
 import AddPhotoPage from '../AddPhotoPage/AddPhotoPage';
 import PhotoList from '../PhotoList/PhotoList';
 import BestPhotoList from '../PhotoList/BestPhotoList';
+import DetailPhotoPage from '../DetailPhotoPage/DetailPage';
 import { ProfileProtectedRoute } from '../../productedRoute/ProtectedRoute';
 import { Container, Row, Col } from 'reactstrap';
 import { Switch, Route, Redirect } from 'react-router-dom';
@@ -26,6 +27,7 @@ const MyRouter = () => {
                             <Route exact path="/addphoto" component={AddPhotoPage} />
                             <Route exact path="/photolist" component={PhotoList} />
                             <Route exact path="/bestphotolist" component={BestPhotoList} />
+                            <Route exact path="/photo/:id" component={DetailPhotoPage} />
                             <Route exact path="/chat" component={Chat} />
                             <Route exact path="/editsuccess" component={EditSuccess} />
                             <ProfileProtectedRoute exact path="/user/:userName/profile" component={Profile} />

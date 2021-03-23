@@ -7,7 +7,7 @@ const PhotoSchema = new mongoose.Schema(
     {
         writer: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'User',
+            ref: 'user',
         },
         title: {
             type: String,
@@ -26,7 +26,7 @@ const PhotoSchema = new mongoose.Schema(
         },
         views: {
             type: Number,
-            default: -2,
+            default: -1,
         },
         date: {
             type: String,

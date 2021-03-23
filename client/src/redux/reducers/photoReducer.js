@@ -8,15 +8,9 @@ import {
     BESTPHOTO_LIST_REQUEST,
     BESTPHOTO_LIST_SUCCESS,
     BESTPHOTO_LIST_FAILURE,
-    // MEMBER_DELETE_REQUEST,
-    // MEMBER_DELETE_SUCCESS,
-    // MEMBER_DELETE_FAILURE,
-    // MEMBER_SINGLELIST_REQUEST,
-    // MEMBER_SINGLELIST_SUCCESS,
-    // MEMBER_SINGLELIST_FAILURE,
-    // MEMBER_UPDATELIST_REQUEST,
-    // MEMBER_UPDATELIST_SUCCESS,
-    // MEMBER_UPDATELIST_FAILURE,
+    PHOTO_DERAIL_REQUEST,
+    PHOTO_DERAIL_SUCCESS,
+    PHOTO_DERAIL_FAILURE,
 } from '../types';
 
 const initialState = {
@@ -28,6 +22,9 @@ const initialState = {
     totalPages: '',
     currentPage: '',
     bestphotodata: '',
+    detailphoto:'',
+    writerName:'',
+    writerId:'',
 };
 
 const photoReducer = (state = initialState, action) => {
@@ -96,6 +93,28 @@ const photoReducer = (state = initialState, action) => {
                 bestphotodata: '',
                 totalPages: '',
                 currentPage: '',
+            };
+
+        case PHOTO_DERAIL_REQUEST:
+            return {
+                ...state,
+                errorMsg: '',
+                isLoading: true,
+            };
+        case PHOTO_DERAIL_SUCCESS:
+            return {
+                ...state,
+               detailphoto: action.payload,
+               writerName: action.payload.writer.name,
+               writerId: action.payload.writer._id
+            };
+        case PHOTO_DERAIL_FAILURE:
+            return {
+                ...state,
+                errorMsg: 'error',
+                detailphoto:'',
+                writerName:'',
+                writerId:''
             };
 
         default:
