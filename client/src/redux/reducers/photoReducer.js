@@ -11,6 +11,12 @@ import {
     PHOTO_DERAIL_REQUEST,
     PHOTO_DERAIL_SUCCESS,
     PHOTO_DERAIL_FAILURE,
+    PHOTO_EDIT_UPLOADING_REQUEST,
+    PHOTO_EDIT_UPLOADING_SUCCESS,
+    PHOTO_EDIT_UPLOADING_FAILURE,
+    PHOTO_EDIT_LOADING_REQUEST,
+    PHOTO_EDIT_LOADING_SUCCESS,
+    PHOTO_EDIT_LOADING_FAILURE,
 } from '../types';
 
 const initialState = {
@@ -22,9 +28,10 @@ const initialState = {
     totalPages: '',
     currentPage: '',
     bestphotodata: '',
-    detailphoto:'',
-    writerName:'',
-    writerId:'',
+    detailphoto: '',
+    detailimages:'',
+    writerName: '',
+    writerId: '',
 };
 
 const photoReducer = (state = initialState, action) => {
@@ -104,17 +111,51 @@ const photoReducer = (state = initialState, action) => {
         case PHOTO_DERAIL_SUCCESS:
             return {
                 ...state,
-               detailphoto: action.payload,
-               writerName: action.payload.writer.name,
-               writerId: action.payload.writer._id
+                detailphoto: action.payload,
+                writerName: action.payload.writer.name,
+                writerId: action.payload.writer._id,
             };
         case PHOTO_DERAIL_FAILURE:
             return {
                 ...state,
                 errorMsg: 'error',
-                detailphoto:'',
-                writerName:'',
-                writerId:''
+                detailphoto: '',
+                writerName: '',
+                writerId: '',
+            };
+        case PHOTO_EDIT_UPLOADING_REQUEST:
+            return {
+                ...state,
+                errorMsg: '',
+                isLoading: true,
+            };
+        case PHOTO_EDIT_UPLOADING_SUCCESS:
+            return {
+                ...state,
+            };
+        case PHOTO_EDIT_UPLOADING_FAILURE:
+            return {
+                ...state,
+                errorMsg: 'error',
+            };
+        case PHOTO_EDIT_LOADING_REQUEST:
+            return {
+                ...state,
+                errorMsg: '',
+                isLoading: true,
+            };
+        case PHOTO_EDIT_LOADING_SUCCESS:
+            return {
+                ...state,
+                detailphoto: action.payload,
+                detailimages: action.payload.images
+            };
+        case PHOTO_EDIT_LOADING_FAILURE:
+            return {
+                ...state,
+                errorMsg: 'error',
+                detailphoto: '',
+                detailimages:''
             };
 
         default:
