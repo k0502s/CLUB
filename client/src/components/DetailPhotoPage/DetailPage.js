@@ -30,7 +30,7 @@ const DetailPhotoPage = (props) => {
             payload: {
                 id: props.match.params.id,
                 token: localStorage.getItem('token'),
-                continents: detailphoto.continents
+                genres: detailphoto.genres,
             },
         });
     };
@@ -57,7 +57,7 @@ const DetailPhotoPage = (props) => {
                 </Col>
             </Row>
             <Row>
-            <Col md={{offset:10}}>
+                <Col md={{ offset: 10 }}>
                     {writerId === userId && (
                         <Button className="btn-danger" onClick={onDeleteClick}>
                             삭제

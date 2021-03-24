@@ -20,7 +20,7 @@ const PhotoSchema = new mongoose.Schema(
             type: Array,
             default: [],
         },
-        continents: {
+        genres: {
             type: Number,
             default: 1,
         },

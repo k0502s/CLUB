@@ -4,7 +4,7 @@ import FileUpload from '../utils/Fileupload';
 import { useDispatch, useSelector } from 'react-redux';
 import { PHOTO_UPLOADING_REQUEST } from '../../redux/types';
 
-const Continents = [
+const Genres = [
     { key: 1, value: '풍경' },
     { key: 2, value: '인물' },
     { key: 3, value: '접사' },
@@ -12,24 +12,21 @@ const Continents = [
 ];
 
 const AddPhotoPage = (props) => {
-    const [Title, setTitle] = useState('');
-    const [Description, setDescription] = useState('');
-    const [Continent, setContinent] = useState(0);
+    const [form, setValues] = useState({
+        title: '',
+        description: '',
+        genres: '',
+    });
     const [Images, setImages] = useState([]);
     const dispatch = useDispatch();
 
     const { user } = useSelector((state) => state.auth);
 
-    const titleChangeHandler = (e) => {
-        setTitle(e.currentTarget.value);
-    };
-
-    const descriptionChangeHandler = (e) => {
-        setDescription(e.currentTarget.value);
-    };
-
-    const continentChangeHandler = (e) => {
-        setContinent(e.currentTarget.value);
+    const onChange = (e) => {
+        setValues({
+            ...form,
+            [e.target.name]: e.target.value,
+        });
     };
 
     const updateImages = (newImages) => {
@@ -39,32 +36,33 @@ const AddPhotoPage = (props) => {
     const submitHandler = (e) => {
         e.preventDefault();
 
-        const title = document.myform.title.value;
-        const description = document.myform.description.value;
-        const continent = document.myform.continent.value;
+        const titleinput = document.myform.title.value;
+        const descriptioninput = document.myform.description.value;
+        const genresinput = document.myform.genres.value;
         // if(name==="" || camera==="" || age==="" || sex===""){
         //     return alert("빈 칸에 정보를 입력해야 합니다.")
         // }
-        if (title === '') {
+        if (titleinput === '') {
             return alert('제목 정보를 입력해야 합니다.');
         }
-        if (description === '') {
+        if (descriptioninput === '') {
             return alert('설명 정보를 입력해야 합니다.');
         }
-        if (continent === '') {
+        if (genresinput === '') {
             return alert('장르 정보를 입력해야 합니다.');
         }
         if (Images === []) {
             return alert('사진을 입력해야 합니다.');
         }
 
-       
+        const { title, description, genres } = form;
+
         const body = {
             writer: user._id,
-            title: Title,
-            description: Description,
+            title: title,
+            description: description,
             images: Images,
-            continents: Continent,
+            genres: genres,
         };
         dispatch({
             type: PHOTO_UPLOADING_REQUEST,
@@ -87,7 +85,7 @@ const AddPhotoPage = (props) => {
                     <CardText>1. 이미지 파일 사이즈는 100 * 1024 * 1024의 제한을 두고 있습니다.</CardText>
                     <CardText>2. 추가로 한 장 이상의 이미지 파일을 업로드 할 수 있습니다.</CardText>
                     <CardText>
-                        <FileUpload refreshFunction={updateImages} removefile={removefile}/>
+                        <FileUpload refreshFunction={updateImages} removefile={removefile} />
                     </CardText>
                 </Card>
                 <CardBody>
@@ -98,15 +96,15 @@ const AddPhotoPage = (props) => {
                     </Col>
                     <Form onSubmit={submitHandler} name="myform">
                         <Label>제목</Label>
-                        <Input onChange={titleChangeHandler} value={Title} name="title" />
+                        <Input onChange={onChange} value={form.CardTitle} name="title" />
                         <br />
                         <Label>설명</Label>
-                        <Input type="textarea" onChange={descriptionChangeHandler} value={Description} name="description" />
+                        <Input onChange={onChange} type="textarea" value={form.description} name="description" />
                         <br />
                         <Label>장르</Label>
-                        <Input onChange={continentChangeHandler} value={Continent} name="continent" type="select">
+                        <Input onChange={onChange} value={form.genre} name="genres" type="select">
                             <option value="">장르를 선택해주세요</option>
-                            {Continents.map((item) => (
+                            {Genres.map((item) => (
                                 <option key={item.key} value={item.key}>
                                     {item.value}
                                 </option>

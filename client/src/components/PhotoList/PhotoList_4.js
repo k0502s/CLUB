@@ -33,7 +33,7 @@ const PhotoList_4 = () => {
             params.size = pageSize;
         }
 
-        params.continents = 4;
+        params.genres = 4;
 
         return params;
     };

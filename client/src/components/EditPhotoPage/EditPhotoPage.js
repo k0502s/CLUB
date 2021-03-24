@@ -4,7 +4,7 @@ import FileUpload from '../utils/Fileupload';
 import { useDispatch, useSelector } from 'react-redux';
 import { PHOTO_EDIT_LOADING_REQUEST, PHOTO_EDIT_UPLOADING_REQUEST } from '../../redux/types';
 
-const Continents = [
+const Genres = [
     { key: 1, value: '풍경' },
     { key: 2, value: '인물' },
     { key: 3, value: '접사' },
@@ -16,7 +16,7 @@ const AddPhotoPage = (props) => {
     const [form, setValues] = useState({
         title: '',
         description: '',
-        continent: '',
+        genres: '',
     });
     const dispatch = useDispatch();
 
@@ -37,10 +37,10 @@ const AddPhotoPage = (props) => {
         setValues({
             title: detailphoto.title,
             description: detailphoto.description,
-            continent: detailphoto.continent,
+            genres: detailphoto.genres,
         });
         setImages([...detailimages]);
-    }, [detailphoto.title, detailphoto.description, detailphoto.continent, detailphoto.images]);
+    }, [detailphoto.title, detailphoto.description, detailphoto.genres, detailphoto.images]);
 
     const onChange = (e) => {
         setValues({
@@ -58,7 +58,7 @@ const AddPhotoPage = (props) => {
 
         const titleinput = document.myform.title.value;
         const descriptioninput = document.myform.description.value;
-        const continentinput = document.myform.continent.value;
+        const genresinput = document.myform.genres.value;
         // if(name==="" || camera==="" || age==="" || sex===""){
         //     return alert("빈 칸에 정보를 입력해야 합니다.")
         // }
@@ -68,21 +68,21 @@ const AddPhotoPage = (props) => {
         if (descriptioninput === '') {
             return alert('설명 정보를 입력해야 합니다.');
         }
-        if (continentinput === '') {
+        if (genresinput === '') {
             return alert('장르 정보를 입력해야 합니다.');
         }
         if (Images === []) {
             return alert('사진을 입력해야 합니다.');
         }
 
-        const { title, description, continent } = form;
+        const { title, description, genres } = form;
 
         const body = {
             id: detailphoto._id,
             title: title,
             description: description,
             images: Images,
-            continents: continent,
+            genres: genres,
         };
         dispatch({
             type: PHOTO_EDIT_UPLOADING_REQUEST,
@@ -122,9 +122,9 @@ const AddPhotoPage = (props) => {
                         <Input onChange={onChange} type="textarea" defaultValue={detailphoto.description} name="description" />
                         <br />
                         <Label>장르</Label>
-                        <Input onChange={onChange} defaultValue={detailphoto.continent} name="continent" type="select">
+                        <Input onChange={onChange} defaultValue={detailphoto.genres} name="continent" type="select">
                             <option value="">장르를 선택해주세요</option>
-                            {Continents.map((item) => (
+                            {Genres.map((item) => (
                                 <option key={item.key} value={item.key}>
                                     {item.value}
                                 </option>

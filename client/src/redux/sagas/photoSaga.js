@@ -22,7 +22,7 @@ import {
     PHOTO_EDIT_UPLOADING_FAILURE,
     PHOTO_EDIT_LOADING_REQUEST,
     PHOTO_EDIT_LOADING_SUCCESS,
-    PHOTO_EDIT_LOADING_FAILURE
+    PHOTO_EDIT_LOADING_FAILURE,
 } from '../types';
 
 // uploading
@@ -160,13 +160,14 @@ const photodeleteAPI = (payload) => {
 
 function* photoDelete(action) {
     try {
-        const continents = action.payload.continents
+        const genres = action.payload.genres;
+
         const result = yield call(photodeleteAPI, action.payload);
         console.log(result);
         yield put({
             type: PHOTO_DELETE_SUCCESS,
         });
-        yield put(push(`/photolist_${continents}`));
+        yield put(push(`/photolist_${genres}`));
     } catch (e) {
         yield put({
             type: PHOTO_DELETE_FAILURE,
@@ -179,70 +180,63 @@ function* watchPhotoDelete() {
     yield takeEvery(PHOTO_DELETE_REQUEST, photoDelete);
 }
 
-
-
-
 // Post Edit Load
 
 const photoEditLoadAPI = (id) => {
-console.log(id, 'editloading')
+    console.log(id, 'editloading');
 
-  return axios.get(`/api/photo/${id}/edit`);
+    return axios.get(`/api/photo/${id}/edit`);
 };
 
 function* photoEditLoad(action) {
-  try {
-    const result = yield call(photoEditLoadAPI, action.payload);
-    yield put({
-      type: PHOTO_EDIT_LOADING_SUCCESS,
-      payload: result.data,
-    });
-  } catch (e) {
-    yield put({
-      type: PHOTO_EDIT_LOADING_FAILURE,
-      payload: e,
-    });
-    yield put(push("/"));
-  }
+    try {
+        const result = yield call(photoEditLoadAPI, action.payload);
+        yield put({
+            type: PHOTO_EDIT_LOADING_SUCCESS,
+            payload: result.data,
+        });
+    } catch (e) {
+        yield put({
+            type: PHOTO_EDIT_LOADING_FAILURE,
+            payload: e,
+        });
+        yield put(push('/'));
+    }
 }
 
 function* watchPhotoEditLoad() {
-  yield takeEvery(PHOTO_EDIT_LOADING_REQUEST, photoEditLoad);
+    yield takeEvery(PHOTO_EDIT_LOADING_REQUEST, photoEditLoad);
 }
-
-
 
 // Photo Edit Upload
 
 const PhotoupdateAPI = (PhotoData) => {
-  console.log(PhotoData, 'PhotoData');
+    console.log(PhotoData, 'PhotoData');
 
-  return axios.post(`api/photo/${PhotoData.id}/edit`, PhotoData);
+    return axios.post(`api/photo/${PhotoData.id}/edit`, PhotoData);
 };
 
 function* photoUpdate(action) {
-  try {
-      const result = yield call(PhotoupdateAPI, action.payload);
-      console.log(result);
-      yield put({
-          type: PHOTO_EDIT_UPLOADING_SUCCESS,
-          payload: result.data,
-      });
-      yield put(push(`/photo/${result.data.id}`));
-  } catch (e) {
-      yield put({
-          type: PHOTO_EDIT_UPLOADING_FAILURE,
-          payload: e.response,
-      });
-  }
+    try {
+        const result = yield call(PhotoupdateAPI, action.payload);
+        console.log(result);
+        yield put({
+            type: PHOTO_EDIT_UPLOADING_SUCCESS,
+            payload: result.data,
+        });
+        yield put(push(`/photo/${result.data.id}`));
+    } catch (e) {
+        yield put({
+            type: PHOTO_EDIT_UPLOADING_FAILURE,
+            payload: e.response,
+        });
+    }
 }
 
 function* watchPhotoUpdate() {
-  yield takeEvery(PHOTO_EDIT_UPLOADING_REQUEST, photoUpdate);
+    yield takeEvery(PHOTO_EDIT_UPLOADING_REQUEST, photoUpdate);
 }
 
-
 export default function* photoSaga() {
-    yield all([fork(watchphotoUpload), fork(watchPhotoList), fork(watchBestPhotoList), fork(watchPhotoDetail), fork(watchPhotoDelete)
-    ,fork(watchPhotoEditLoad),fork(watchPhotoUpdate)]);
+    yield all([fork(watchphotoUpload), fork(watchPhotoList), fork(watchBestPhotoList), fork(watchPhotoDetail), fork(watchPhotoDelete), fork(watchPhotoEditLoad), fork(watchPhotoUpdate)]);
 }
