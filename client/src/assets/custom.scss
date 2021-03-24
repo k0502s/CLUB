@@ -21,6 +21,11 @@ body {
     justify-content: space-between;
 }
 
+#drop {
+    -webkit-overflow-scrolling: touch;
+     height: 500px;
+}
+
 #topspan {
     color: gray;
     font-weight: bold;

@@ -1,6 +1,4 @@
-import axios from 'axios';
-import { call, put, takeEvery, all, fork } from "redux-saga/effects";
-import { push } from "connected-react-router";
+import { put, takeEvery, all, fork } from "redux-saga/effects";
 import {
   CHAT_FAILURE,
   CHAT_SUCCESS,

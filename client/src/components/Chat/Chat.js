@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Message from './Section/Message';
 import { CHAT_REQUEST } from '../../redux/types';
 import { Input, InputGroupAddon, Button, InputGroup, Row, Col, CardBody, Card } from 'reactstrap';
-// import Card from './Sections/Card';
+
 
 const Chat = () => {
     const dispatch = useDispatch();
@@ -16,7 +16,7 @@ const Chat = () => {
     }, []);
 
     const textQuery = async (text) => {
-        //  First  Need to  take care of the message I sent
+       
         let conversation = {
             who: 'user',
             content: {
@@ -32,12 +32,11 @@ const Chat = () => {
 
         // console.log('text I sent', conversation)
 
-        // We need to take care of the message Chatbot sent
         const textQueryVariables = {
             text: text,
         };
         try {
-            //I will send request to the textQuery ROUTE
+           
             const response = await Axios.post('/api/chatbot/textQuery', textQueryVariables);
 
             for (let content of response.data.fulfillmentMessages) {
@@ -67,12 +66,12 @@ const Chat = () => {
     };
 
     const eventQuery = async (event) => {
-        // We need to take care of the message Chatbot sent
+        
         const eventQueryVariables = {
             event: event,
         };
         try {
-            //I will send request to the textQuery ROUTE
+            
             const response = await Axios.post('/api/chatbot/eventQuery', eventQueryVariables);
             for (let content of response.data.fulfillmentMessages) {
                 let conversation = {
@@ -101,7 +100,7 @@ const Chat = () => {
     };
 
     const messageHanlder = (e) => {
-        //we will send request to text query route
+        
 
         setMes(e.target.value);
     };
@@ -119,14 +118,14 @@ const Chat = () => {
     const renderOneMessage = (message, i) => {
         console.log('message', message);
 
-        // we need to give some condition here to separate message kinds
+        
 
-        // template for normal text
+        
         if (message.content && message.content.text && message.content.text.text) {
             return <Message key={i} who={message.who} text={message.content.text.text} />;
         }
 
-        // template for card message
+       
     };
 
     const renderMessage = (returnedMessages) => {

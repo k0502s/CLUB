@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import PhotoInfo from './Section/PhotoInfo';
 import PhotoImage from './Section/PhotoImage';
 import { Row, Col, Button } from 'reactstrap';
@@ -6,7 +7,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { PHOTO_DELETE_REQUEST, PHOTO_DERAIL_REQUEST } from '../../redux/types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt, faCommentDots, faMouse } from '@fortawesome/free-solid-svg-icons';
-
 
 const DetailPhotoPage = (props) => {
     const dispatch = useDispatch();
@@ -30,6 +30,7 @@ const DetailPhotoPage = (props) => {
             payload: {
                 id: props.match.params.id,
                 token: localStorage.getItem('token'),
+                continents: detailphoto.continents
             },
         });
     };
@@ -38,12 +39,8 @@ const DetailPhotoPage = (props) => {
         <Col className="mt-3">
             <Row md={{ size: 5, offset: 1 }} id="topborder">
                 <h5>포토 상세 보기</h5>
-                {writerId === userId && (
-                    <Button className="btn-danger" onClick={onDeleteClick}>
-                        삭제
-                    </Button>
-                )}
             </Row>
+
             <Row>
                 <Col>
                     <FontAwesomeIcon icon={faPencilAlt} />
@@ -57,6 +54,22 @@ const DetailPhotoPage = (props) => {
                     <FontAwesomeIcon icon={faMouse} />
                     &nbsp;
                     <span>{detailphoto.views}</span>
+                </Col>
+            </Row>
+            <Row>
+            <Col md={{offset:10}}>
+                    {writerId === userId && (
+                        <Button className="btn-danger" onClick={onDeleteClick}>
+                            삭제
+                        </Button>
+                    )}
+                </Col>
+                <Col>
+                    {writerId === userId && (
+                        <Link to={'/editphoto/' + detailphoto._id}>
+                            <Button className="btn-danger">편집</Button>
+                        </Link>
+                    )}
                 </Col>
             </Row>
 

@@ -54,7 +54,7 @@ const Profile = (props) => {
         <Fragment>
             <Helmet title={`Profile | ${userName}님의 프로필`} />
             <Col sm="12" md={{ size: 6, offset: 2 }}>
-                <Card>
+                <Card style={{borderRadius: '25px'}}>
                     <CardHeader>
                         <strong>회원정보 수정</strong>
                     </CardHeader>
