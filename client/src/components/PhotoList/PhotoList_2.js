@@ -94,7 +94,7 @@ const PhotoList_2 = () => {
             {/* Cards */}
             <Row>
                 {photodata &&
-                    photodata.reverse().map((photo, index) => (
+                    photodata.map((photo, index) => (
                         <Col md={{ size: 4 }} className="mb-3 mt-3" key={index}>
                             <Link to={`/photo/${photo._id}`}>
                                 <Card inverse>

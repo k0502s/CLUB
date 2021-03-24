@@ -95,7 +95,7 @@ router.get('/photos', async (req, res) => {
             console.log(data);
             res.send({
                 totalItems: data.totalDocs,
-                photodata: data.docs,
+                photodata: data.docs.reverse(),
                 totalPages: data.totalPages,
                 currentPage: data.page - 1,
             });
