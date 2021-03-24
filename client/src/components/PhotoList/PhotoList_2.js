@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faMouse } from '@fortawesome/free-solid-svg-icons';
 import { Card, CardTitle, CardText, CardImg, CardImgOverlay, Row, Col, Button, InputGroup, InputGroupAddon, Input, Label } from 'reactstrap';
 
-const PhotoList = () => {
+const PhotoList_2 = () => {
     const dispatch = useDispatch();
     const [searchTitle, setSearchTitle] = useState([]);
 
@@ -21,6 +21,7 @@ const PhotoList = () => {
     const getRequestParams = (searchTitle, page, pageSize) => {
         let params = {};
 
+
         if (searchTitle) {
             params.title = searchTitle;
         }
@@ -32,6 +33,8 @@ const PhotoList = () => {
         if (pageSize) {
             params.size = pageSize;
         }
+
+        params.continents = 2
 
         return params;
     };
@@ -61,19 +64,21 @@ const PhotoList = () => {
         setSearchTitle(searchTitle);
     };
 
+    
+
     return (
         <Fragment>
             <Row md={{ size: 5, offset: 1 }} id="topborder">
-                <h5>작품 갤러리</h5>
+                <h5>인물 갤러리</h5>
                 <Link to="/addphoto">
-                    <Button>글쓰기</Button>
+                    <Button>포토 올리기</Button>
                 </Link>
             </Row>
 
             <Row>
                 <Col>
                     <span style={{ fontWeight: 'bold' }}>HOME</span> <FontAwesomeIcon icon={faArrowRight} /> 포토 갤러리 <FontAwesomeIcon icon={faArrowRight} />{' '}
-                    <span style={{ fontWeight: 'bolder' }}>작품 갤러리</span>
+                    <span style={{ fontWeight: 'bolder' }}>인물 갤러리</span>
                 </Col>
 
                 <Col md={{ size: 5, offset: 1 }}>
@@ -89,7 +94,7 @@ const PhotoList = () => {
             {/* Cards */}
             <Row>
                 {photodata &&
-                    photodata.map((photo, index) => (
+                    photodata.reverse().map((photo, index) => (
                         <Col md={{ size: 4 }} className="mb-3 mt-3" key={index}>
                             <Link to={`/photo/${photo._id}`}>
                                 <Card inverse>
@@ -128,4 +133,4 @@ const PhotoList = () => {
     );
 };
 
-export default PhotoList;
+export default PhotoList_2;

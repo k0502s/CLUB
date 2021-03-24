@@ -1,13 +1,13 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import Pagination from '@material-ui/lab/Pagination';
+import { useSelector, useDispatch } from 'react-redux';
+import { PHOTO_LIST_REQUEST } from '../../redux/types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faMouse } from '@fortawesome/free-solid-svg-icons';
-import { useSelector, useDispatch } from 'react-redux';
-import { BESTPHOTO_LIST_REQUEST } from '../../redux/types';
 import { Card, CardTitle, CardText, CardImg, CardImgOverlay, Row, Col, Button, InputGroup, InputGroupAddon, Input, Label } from 'reactstrap';
 
-const BestPhotoList = () => {
+const PhotoList_1 = () => {
     const dispatch = useDispatch();
     const [searchTitle, setSearchTitle] = useState([]);
 
@@ -15,7 +15,7 @@ const BestPhotoList = () => {
 
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(9);
-    const { bestphotodata, totalPages } = useSelector((state) => state.photo);
+    const { photodata, totalPages } = useSelector((state) => state.photo);
     const pageSizes = [9, 15];
 
     const getRequestParams = (searchTitle, page, pageSize) => {
@@ -33,6 +33,8 @@ const BestPhotoList = () => {
             params.size = pageSize;
         }
 
+        params.continents = 1
+
         return params;
     };
 
@@ -40,7 +42,7 @@ const BestPhotoList = () => {
         const params = getRequestParams(searchTitle, page, pageSize);
 
         dispatch({
-            type: BESTPHOTO_LIST_REQUEST,
+            type: PHOTO_LIST_REQUEST,
             payload: { params },
         });
     };
@@ -64,14 +66,16 @@ const BestPhotoList = () => {
     return (
         <Fragment>
             <Row md={{ size: 5, offset: 1 }} id="topborder">
-                <h5>베스트 갤러리</h5>
-                <h6>갤러리에 등록된 사진 중 조회수가 10 이상인 작품을 전시합니다!</h6>
+                <h5>풍경 갤러리</h5>
+                <Link to="/addphoto">
+                    <Button>포토 올리기</Button>
+                </Link>
             </Row>
 
             <Row>
                 <Col>
-                    <span style={{ fontWeight: 'bold' }}>HOME</span>
-                    <FontAwesomeIcon icon={faArrowRight} /> 포토 갤러리 <FontAwesomeIcon icon={faArrowRight} /> <span style={{ fontWeight: 'bolder' }}>베스트 갤러리</span>
+                    <span style={{ fontWeight: 'bold' }}>HOME</span> <FontAwesomeIcon icon={faArrowRight} /> 포토 갤러리 <FontAwesomeIcon icon={faArrowRight} />{' '}
+                    <span style={{ fontWeight: 'bolder' }}>풍경 갤러리</span>
                 </Col>
 
                 <Col md={{ size: 5, offset: 1 }}>
@@ -86,8 +90,8 @@ const BestPhotoList = () => {
 
             {/* Cards */}
             <Row>
-                {bestphotodata &&
-                    bestphotodata.reverse().map((photo, index) => (
+                {photodata &&
+                    photodata.reverse().map((photo, index) => (
                         <Col md={{ size: 4 }} className="mb-3 mt-3" key={index}>
                             <Link to={`/photo/${photo._id}`}>
                                 <Card inverse>
@@ -96,12 +100,12 @@ const BestPhotoList = () => {
                                         <CardTitle tag="h5">{photo.title}</CardTitle>
                                         <CardText>{photo.description}</CardText>
                                         <CardText>
+                                            <small className="text-muted">{photo.date}</small>
+                                        </CardText>
+                                        <CardText>
                                             {' '}
                                             <FontAwesomeIcon icon={faMouse} />
                                             &nbsp;{photo.views}
-                                        </CardText>
-                                        <CardText>
-                                            <small className="text-muted">{photo.date}</small>
                                         </CardText>
                                     </CardImgOverlay>
                                 </Card>
@@ -126,4 +130,4 @@ const BestPhotoList = () => {
     );
 };
 
-export default BestPhotoList;
+export default PhotoList_1;
