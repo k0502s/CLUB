@@ -6,14 +6,12 @@ import config from '../../config/index.js';
 import auth from '../../middleware/auth.js';
 const { JWT_SECRET } = config;
 
-// Model
+
 import User from '../../models/user.js';
 
 const router = express.Router();
 
-// @routes     GET api/user
-// @desc       Get all user
-// @access     public
+
 
 router.get('/', async (req, res) => {
     try {
@@ -26,19 +24,17 @@ router.get('/', async (req, res) => {
     }
 });
 
-// @routes     POST api/user
-// @desc       Register  user
-// @access     public
+
 
 router.post('/', (req, res) => {
     console.log(req.body);
     const { name, email, password, camera, sex} = req.body;
 
-    // Simple validation
+    
     if (!name || !email || !password || !camera || sex === 0 ) {
         return res.status(400).json({ fail_msg: '모든 정보를 입력해주세요' });
     }
-    // Check for existing user
+   
     User.findOne({ email }).then((user) => {
         if (user) return res.status(400).json({ fail_msg: '이미 가입된 유저가 존재합니다' });
         const newUser = new User({
@@ -73,9 +69,7 @@ router.post('/', (req, res) => {
     });
 });
 
-// @route    POST   api/user/:username/profile
-// @desc     POST   Edit Password
-// @access   Private
+
 
 router.post('/:userName/profile', auth, async (req, res) => {
     try {

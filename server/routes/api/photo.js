@@ -40,38 +40,16 @@ router.post('/image', uploadS3.single('file'), function (req, res, next) {
     res.json({ success: true, filePath: req.file.location, fileName: req.file.originalname });
 });
 
-// var storage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//       cb(null, 'uploads/')
-//     },
-//     filename: function (req, file, cb) {
-//       cb(null, `${Date.now()}_${file.originalname}`)
-//     }
-//   })
-
-//   var upload = multer({ storage: storage }).single("file")
-
-// router.post('/image', (req, res) => {
-
-//     //가져온 이미지를 저장을 해주면 된다.
-//     upload(req, res, err => {
-//         if(err){
-//             return req.json({success: false, err})
-//         }
-//         return res.json({success: true, filePath:res.req.file.path , fileName:res.req.file.filename})
-//     })
-
-// })
-
 router.post('/', async (req, res) => {
     try {
-        //받아온 정보들을 DB에 넣어준다.
+        
         const photo = new Photo(req.body);
 
         await photo.save(() => {
             res.status(200).json({ success: true, id: photo._id });
         });
     } catch (e) {
+        console.log(e);
         res.status(400).json({ success: false, err });
     }
 });
@@ -101,7 +79,8 @@ router.get('/photos', async (req, res) => {
             });
         });
     } catch (e) {
-        console.error(e);
+        console.log(e);
+        return res.status(400).send(err);
     }
 });
 
@@ -122,7 +101,8 @@ router.get('/bestphotos', async (req, res) => {
             });
         });
     } catch (e) {
-        console.error(e);
+        console.log(e);
+        return res.status(400).send(err);
     }
 });
 
@@ -134,13 +114,14 @@ router.get('/photo_by_id', async (req, res) => {
         photodetail.save();
         res.json(photodetail);
     } catch (e) {
-        console.error(e);
+        console.log(e);
+        return res.status(400).send(err);
     }
 });
 
 router.delete('/:id', auth, async (req, res) => {
     try {
-        console.log(req.params)
+        console.log(req.params);
         await Photo.deleteMany({ _id: req.params.id });
         // await Comment.deleteMany({ post: req.params.id });
         // await User.findByIdAndUpdate(req.user.id, {
@@ -149,9 +130,10 @@ router.delete('/:id', auth, async (req, res) => {
         //     comments: { post_id: req.params.id },
         //   },
         // });
-        return res.json({ success: true});
+        return res.json({ success: true });
     } catch (e) {
-        console.error(e);
+        console.log(e);
+        return res.status(400).send(err);
     }
 });
 
@@ -160,7 +142,8 @@ router.get('/:id/edit', async (req, res) => {
         const photo = await Photo.findById(req.params.id).populate('writer', 'name');
         res.json(photo);
     } catch (e) {
-        console.error(e);
+        console.log(e);
+        return res.status(400).send(err);
     }
 });
 
@@ -171,6 +154,7 @@ router.post('/:id/edit', async (req, res) => {
         res.json({ id: id });
     } catch (e) {
         console.log(e);
+        return res.status(400).send(err);
     }
 });
 
