@@ -95,12 +95,12 @@ const PhotoList_1 = () => {
                         <Col md={{ size: 4 }} className="mb-3 mt-3" key={index}>
                             <Link to={`/photo/${photo._id}`}>
                                 <Card inverse>
-                                    <CardImg width="100%" src={photo.images[0]} alt="Card image cap" id="photoimg" />
+                                    <CardImg width="100%" src={photo.images[0]} alt="Card image cap" id="photoimg"/>
                                     <CardImgOverlay>
                                         <CardTitle tag="h5">{photo.title}</CardTitle>
                                         <CardText>{photo.description}</CardText>
                                         <CardText>
-                                            <small className="text-muted">{photo.date}</small>
+                                            <small className="text-muted">{photo.date} </small>
                                         </CardText>
                                         <CardText>
                                             {' '}

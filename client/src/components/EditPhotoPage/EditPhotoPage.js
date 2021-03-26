@@ -59,9 +59,7 @@ const AddPhotoPage = (props) => {
         const titleinput = document.myform.title.value;
         const descriptioninput = document.myform.description.value;
         const genresinput = document.myform.genres.value;
-        // if(name==="" || camera==="" || age==="" || sex===""){
-        //     return alert("빈 칸에 정보를 입력해야 합니다.")
-        // }
+  
         if (titleinput === '') {
             return alert('제목 정보를 입력해야 합니다.');
         }
@@ -71,7 +69,7 @@ const AddPhotoPage = (props) => {
         if (genresinput === '') {
             return alert('장르 정보를 입력해야 합니다.');
         }
-        if (Images === []) {
+        if ([...Images] === '') {
             return alert('사진을 입력해야 합니다.');
         }
 
@@ -122,7 +120,7 @@ const AddPhotoPage = (props) => {
                         <Input onChange={onChange} type="textarea" defaultValue={detailphoto.description} name="description" />
                         <br />
                         <Label>장르</Label>
-                        <Input onChange={onChange} defaultValue={detailphoto.genres} name="continent" type="select">
+                        <Input onChange={onChange} defaultValue={detailphoto.genres} name="genres" type="select">
                             <option value="">장르를 선택해주세요</option>
                             {Genres.map((item) => (
                                 <option key={item.key} value={item.key}>

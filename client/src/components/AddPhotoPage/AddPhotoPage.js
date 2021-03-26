@@ -39,9 +39,7 @@ const AddPhotoPage = (props) => {
         const titleinput = document.myform.title.value;
         const descriptioninput = document.myform.description.value;
         const genresinput = document.myform.genres.value;
-        // if(name==="" || camera==="" || age==="" || sex===""){
-        //     return alert("빈 칸에 정보를 입력해야 합니다.")
-        // }
+
         if (titleinput === '') {
             return alert('제목 정보를 입력해야 합니다.');
         }
@@ -51,7 +49,7 @@ const AddPhotoPage = (props) => {
         if (genresinput === '') {
             return alert('장르 정보를 입력해야 합니다.');
         }
-        if (Images === []) {
+        if ([...Images] === '') {
             return alert('사진을 입력해야 합니다.');
         }
 
