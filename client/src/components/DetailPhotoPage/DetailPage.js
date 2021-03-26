@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PhotoInfo from './Section/PhotoInfo';
 import PhotoImage from './Section/PhotoImage';
+import LikeDislike from './Section/LikeDislike';
 import { Row, Col, Button } from 'reactstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { PHOTO_DELETE_REQUEST, PHOTO_DERAIL_REQUEST } from '../../redux/types';
@@ -75,6 +76,9 @@ const DetailPhotoPage = (props) => {
 
             <Row className="mt-3">
                 <PhotoImage />
+            </Row>
+            <Row>
+            <LikeDislike photo userId={userId} photoId={props.match.params.id}/>
             </Row>
 
             <Row className="mt-5 mb-5">
