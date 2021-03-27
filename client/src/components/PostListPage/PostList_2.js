@@ -1,13 +1,14 @@
 import React, { useEffect, useState, Fragment } from 'react';
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import Pagination from '@material-ui/lab/Pagination';
-import { useSelector, useDispatch } from 'react-redux';
-import { PHOTO_LIST_REQUEST } from '../../redux/types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faMouse } from '@fortawesome/free-solid-svg-icons';
-import { Card, CardTitle, CardText, CardImg, CardImgOverlay, Row, Col, Button, InputGroup, InputGroupAddon, Input, Label } from 'reactstrap';
+import { useSelector, useDispatch } from 'react-redux';
+import { POSTS_LIST_REQUEST } from '../../redux/types';
+import { Card, CardTitle, CardText, CardImg, CardImgOverlay, Row, Col, Button, InputGroup, InputGroupAddon, Input, Label, Table } from 'reactstrap';
 
-const PhotoList_1 = () => {
+const PostList_2 = () => {
     const dispatch = useDispatch();
     const [searchTitle, setSearchTitle] = useState([]);
 
@@ -15,7 +16,7 @@ const PhotoList_1 = () => {
 
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(9);
-    const { photodata, totalPages } = useSelector((state) => state.photo);
+    const { postdata, totalPages } = useSelector((state) => state.post);
     const pageSizes = [9, 15];
 
     const getRequestParams = (searchTitle, page, pageSize) => {
@@ -33,7 +34,7 @@ const PhotoList_1 = () => {
             params.size = pageSize;
         }
 
-        params.genres = 1
+        params.category = 2;
 
         return params;
     };
@@ -42,7 +43,7 @@ const PhotoList_1 = () => {
         const params = getRequestParams(searchTitle, page, pageSize);
 
         dispatch({
-            type: PHOTO_LIST_REQUEST,
+            type: POSTS_LIST_REQUEST,
             payload: { params },
         });
     };
@@ -65,17 +66,16 @@ const PhotoList_1 = () => {
 
     return (
         <Fragment>
+            <Helmet title={`모임 후기`} />
             <Row md={{ size: 5, offset: 1 }} id="topborder">
-                <h5>풍경 갤러리</h5>
-                <Link to="/addphoto">
-                    <Button>포토 올리기</Button>
-                </Link>
+                <h5>모임 후기</h5>
+                <h6>출사 및 모임에 참가하신 회원분들의 후기를 남기는 곳입니다!</h6>
             </Row>
 
             <Row>
                 <Col>
-                    <span style={{ fontWeight: 'bold' }}>HOME</span> <FontAwesomeIcon icon={faArrowRight} /> 포토 갤러리 <FontAwesomeIcon icon={faArrowRight} />{' '}
-                    <span style={{ fontWeight: 'bolder' }}>풍경 갤러리</span>
+                    <span style={{ fontWeight: 'bold' }}>HOME</span>
+                    <FontAwesomeIcon icon={faArrowRight} /> 커뮤니티 <FontAwesomeIcon icon={faArrowRight} /> <span style={{ fontWeight: 'bolder' }}>가입 인사</span>
                 </Col>
 
                 <Col md={{ size: 5, offset: 1 }}>
@@ -84,34 +84,42 @@ const PhotoList_1 = () => {
                         <InputGroupAddon>
                             <Button onClick={retrieveTutorials}>Search</Button>
                         </InputGroupAddon>
+                        <Link to="/addpost">
+                            <Button className="ml-3">글쓰기</Button>
+                        </Link>
                     </InputGroup>
                 </Col>
             </Row>
 
             {/* Cards */}
             <Row>
-                {photodata &&
-                    photodata.map((photo, index) => (
-                        <Col md={{ size: 4 }} className="mb-3 mt-3" key={index}>
-                            <Link to={`/photo/${photo._id}`}>
-                                <Card inverse>
-                                    <CardImg width="100%" src={photo.images[0]} alt="Card image cap" id="photoimg"/>
-                                    <CardImgOverlay>
-                                        <CardTitle tag="h5">{photo.title}</CardTitle>
-                                        <CardText>{photo.description}</CardText>
-                                        <CardText>
-                                            <small className="text-muted">{photo.date} </small>
-                                        </CardText>
-                                        <CardText>
-                                            {' '}
-                                            <FontAwesomeIcon icon={faMouse} />
-                                            &nbsp;{photo.views}
-                                        </CardText>
-                                    </CardImgOverlay>
-                                </Card>
-                            </Link>
-                        </Col>
-                    ))}
+                <Table hover>
+                    <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th style={{ textAlign: 'center' }}>제목</th>
+                            <th style={{ textAlign: 'center' }}>글쓴이</th>
+                            <th style={{ textAlign: 'center' }}>조회수</th>
+                            <th style={{ textAlign: 'center' }}>날짜</th>
+                        </tr>
+                    </thead>
+                    {postdata &&
+                        postdata.map((post, index) => (
+                            <tbody>
+                                <tr>
+                                    <th scope="row" style={{ width: '10%', fontWeight: 'lighter' }}>
+                                        {post.numberId}
+                                    </th>
+                                    <Link to={`/post/${post._id}`}>
+                                        <td style={{ width: '45%', color: 'black', fontWeight: 'bold', fontSize: 'large' }}>{post.title}</td>
+                                    </Link>
+                                    <td style={{ width: '15%', textAlign: 'center' }}>{post.writerName}</td>
+                                    <td style={{ width: '15%', textAlign: 'center' }}>{post.views}</td>
+                                    <td style={{ width: '15%', textAlign: 'center' }}>{post.date}</td>
+                                </tr>
+                            </tbody>
+                        ))}
+                </Table>
             </Row>
             <Col md={{ offset: 10 }} className="mt-3">
                 <Label>Page</Label>
@@ -130,4 +138,4 @@ const PhotoList_1 = () => {
     );
 };
 
-export default PhotoList_1;
+export default PostList_2;

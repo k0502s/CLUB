@@ -1,4 +1,5 @@
 import React, { useEffect, useState, Fragment } from 'react';
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import Pagination from '@material-ui/lab/Pagination';
 import { useSelector, useDispatch } from 'react-redux';
@@ -65,11 +66,10 @@ const PhotoList_4 = () => {
 
     return (
         <Fragment>
+            <Helmet title={`습작 갤러리`} />
             <Row md={{ size: 5, offset: 1 }} id="topborder">
                 <h5>습작 갤러리</h5>
-                <Link to="/addphoto">
-                    <Button>포토 올리기</Button>
-                </Link>
+                <h6>자유로운 주제로 자신만의 습작 사진을 올리는 갤러리입니다!</h6>
             </Row>
 
             <Row>
@@ -84,6 +84,9 @@ const PhotoList_4 = () => {
                         <InputGroupAddon>
                             <Button onClick={retrieveTutorials}>Search</Button>
                         </InputGroupAddon>
+                        <Link to="/addphoto">
+                            <Button className="ml-3">포토 올리기</Button>
+                        </Link>
                     </InputGroup>
                 </Col>
             </Row>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState, Fragment } from 'react';
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import Pagination from '@material-ui/lab/Pagination';
 import { useSelector, useDispatch } from 'react-redux';
@@ -7,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faMouse } from '@fortawesome/free-solid-svg-icons';
 import { Card, CardTitle, CardText, CardImg, CardImgOverlay, Row, Col, Button, InputGroup, InputGroupAddon, Input, Label } from 'reactstrap';
 
-const PhotoList_3 = () => {
+const PhotoList_1 = () => {
     const dispatch = useDispatch();
     const [searchTitle, setSearchTitle] = useState([]);
 
@@ -33,7 +34,7 @@ const PhotoList_3 = () => {
             params.size = pageSize;
         }
 
-        params.genres = 3;
+        params.genres = 1;
 
         return params;
     };
@@ -65,17 +66,16 @@ const PhotoList_3 = () => {
 
     return (
         <Fragment>
+            <Helmet title={`풍경 갤러리`} />
             <Row md={{ size: 5, offset: 1 }} id="topborder">
-                <h5>접사 갤러리</h5>
-                <Link to="/addphoto">
-                    <Button>포토 올리기</Button>
-                </Link>
+                <h5>풍경 갤러리</h5>
+                <h6>풍경, 자연, 야경사진을 올리는 갤러리입니다!</h6>
             </Row>
 
             <Row>
                 <Col>
                     <span style={{ fontWeight: 'bold' }}>HOME</span> <FontAwesomeIcon icon={faArrowRight} /> 포토 갤러리 <FontAwesomeIcon icon={faArrowRight} />{' '}
-                    <span style={{ fontWeight: 'bolder' }}>접사 갤러리</span>
+                    <span style={{ fontWeight: 'bolder' }}>풍경 갤러리</span>
                 </Col>
 
                 <Col md={{ size: 5, offset: 1 }}>
@@ -84,6 +84,9 @@ const PhotoList_3 = () => {
                         <InputGroupAddon>
                             <Button onClick={retrieveTutorials}>Search</Button>
                         </InputGroupAddon>
+                        <Link to="/addphoto">
+                            <Button className="ml-3">포토 올리기</Button>
+                        </Link>
                     </InputGroup>
                 </Col>
             </Row>
@@ -100,7 +103,7 @@ const PhotoList_3 = () => {
                                         <CardTitle tag="h5">{photo.title}</CardTitle>
                                         <CardText>{photo.description}</CardText>
                                         <CardText>
-                                            <small className="text-muted">{photo.date}</small>
+                                            <small className="text-muted">{photo.date} </small>
                                         </CardText>
                                         <CardText>
                                             {' '}
@@ -130,4 +133,4 @@ const PhotoList_3 = () => {
     );
 };
 
-export default PhotoList_3;
+export default PhotoList_1;
