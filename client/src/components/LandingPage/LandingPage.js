@@ -1,11 +1,14 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { Row, Col } from 'reactstrap';
-import sidenav from '../Nav/SideNav'
-// import Chat from '../Chat/Chat'
+import sidenav from '../Nav/SideNav';
 
 const LandingPage = () => {
     return (
-    <div>홈</div>)
+        <div>
+            <Helmet title={`HOME`} />홈
+        </div>
+    );
 };
 
 export default LandingPage;

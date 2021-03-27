@@ -35,7 +35,7 @@ const AppNavbar = () => {
                                 </DropdownToggle>
                                 <DropdownMenu right>
                                     <Link to="/bestphotolist">
-                                        <DropdownItem>베스트 갤러리</DropdownItem>
+                                        <DropdownItem>인기 갤러리</DropdownItem>
                                     </Link>
                                     <DropdownItem divider />
                                     <Link to="/photolist_1">
@@ -60,9 +60,13 @@ const AppNavbar = () => {
                                     커뮤니티
                                 </DropdownToggle>
                                 <DropdownMenu right>
-                                    <DropdownItem>가입 인사</DropdownItem>
+                                    <Link to="/postlist_1">
+                                        <DropdownItem>가입 인사</DropdownItem>
+                                    </Link>
                                     <DropdownItem divider />
-                                    <DropdownItem>모임 후기</DropdownItem>
+                                    <Link to="/postlist_2">
+                                        <DropdownItem>모임 후기</DropdownItem>
+                                    </Link>
                                 </DropdownMenu>
                             </UncontrolledDropdown>
                             <UncontrolledDropdown nav inNavbar>
@@ -79,7 +83,7 @@ const AppNavbar = () => {
                             </UncontrolledDropdown>
                         </Nav>
                         <Link to="/">
-                        <NavLink className="text-white">TEST</NavLink>
+                            <NavLink className="text-white">TEST</NavLink>
                         </Link>
                     </Collapse>
                 </Navbar>

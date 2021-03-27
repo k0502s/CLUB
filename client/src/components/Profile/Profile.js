@@ -14,7 +14,7 @@ const Profile = (props) => {
         rePassword: '',
         email: '',
         name: '',
-        camera: ''
+        camera: '',
     });
     const dispatch = useDispatch();
     const onChange = (e) => {
@@ -38,7 +38,7 @@ const Profile = (props) => {
             userName,
             email,
             name,
-            camera
+            camera,
         };
 
         dispatch({
@@ -52,9 +52,9 @@ const Profile = (props) => {
 
     return (
         <Fragment>
-            <Helmet title={`Profile | ${userName}님의 프로필`} />
+            <Helmet title={`Profile | ${userName}님의 프로필 수정`} />
             <Col sm="12" md={{ size: 6, offset: 2 }}>
-                <Card style={{borderRadius: '25px'}}>
+                <Card style={{ borderRadius: '25px' }}>
                     <CardHeader>
                         <strong>회원정보 수정</strong>
                     </CardHeader>

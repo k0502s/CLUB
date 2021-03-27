@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 import { Button, Form, Input, Label, Card, CardTitle, CardText, Row, Col, CardHeader, CardBody } from 'reactstrap';
 import FileUpload from '../utils/Fileupload';
 import { useDispatch, useSelector } from 'react-redux';
@@ -59,7 +60,7 @@ const AddPhotoPage = (props) => {
         const titleinput = document.myform.title.value;
         const descriptioninput = document.myform.description.value;
         const genresinput = document.myform.genres.value;
-  
+
         if (titleinput === '') {
             return alert('제목 정보를 입력해야 합니다.');
         }
@@ -94,6 +95,7 @@ const AddPhotoPage = (props) => {
 
     return (
         <Col>
+            <Helmet title={`포토 편집`} />
             <Card style={{ borderRadius: '25px', marginBottom: '20px' }}>
                 <CardHeader>
                     <strong>포토 추가하기</strong>
@@ -103,7 +105,7 @@ const AddPhotoPage = (props) => {
                     <CardText>1. 이미지 파일 사이즈는 100 * 1024 * 1024의 제한을 두고 있습니다.</CardText>
                     <CardText>2. 추가로 한 장 이상의 이미지 파일을 업로드 할 수 있습니다.</CardText>
                     <CardText>
-                        <FileUpload refreshFunction={updateImages} removefile={removefile}/>
+                        <FileUpload refreshFunction={updateImages} removefile={removefile} />
                     </CardText>
                 </Card>
                 <CardBody>

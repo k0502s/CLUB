@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 import { Button, Form, Input, Label, Card, CardTitle, CardText, Row, Col, CardHeader, CardBody } from 'reactstrap';
 import FileUpload from '../utils/Fileupload';
 import { useDispatch, useSelector } from 'react-redux';
@@ -73,7 +74,9 @@ const AddPhotoPage = (props) => {
     };
 
     return (
+        
         <Col>
+        <Helmet title={'포토 추가'} />
             <Card style={{ borderRadius: '25px', marginBottom: '20px' }}>
                 <CardHeader>
                     <strong>포토 추가하기</strong>

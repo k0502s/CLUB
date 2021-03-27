@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import PhotoInfo from './Section/PhotoInfo';
 import PhotoImage from './Section/PhotoImage';
@@ -8,6 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { PHOTO_DELETE_REQUEST, PHOTO_DERAIL_REQUEST } from '../../redux/types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt, faCommentDots, faMouse } from '@fortawesome/free-solid-svg-icons';
+import * as S from './DetailPhotoPage';
 
 const DetailPhotoPage = (props) => {
     const dispatch = useDispatch();
@@ -37,7 +39,8 @@ const DetailPhotoPage = (props) => {
     };
 
     return (
-        <Col className="mt-3">
+        <S.Grid>
+            <Helmet title={`Photo | ${detailphoto.title}`} />
             <Row md={{ size: 5, offset: 1 }} id="topborder">
                 <h5>포토 상세 보기</h5>
             </Row>
@@ -84,7 +87,7 @@ const DetailPhotoPage = (props) => {
             <Row className="mt-5 mb-5">
                 <PhotoInfo id={props.match.params.id} />
             </Row>
-        </Col>
+        </S.Grid>
     );
 };
 
