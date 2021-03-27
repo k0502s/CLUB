@@ -67,10 +67,12 @@ const photoReducer = (state = initialState, action) => {
                 photodata: action.payload.photodata,
                 totalPages: action.payload.totalPages,
                 currentPage: action.payload.currentPage,
+                detailphoto: '',
             };
         case PHOTO_LIST_FAILURE:
             return {
                 ...state,
+                isLoading: false,
                 errorMsg: 'error',
                 totalItems: '',
                 photodata: '',
@@ -91,10 +93,12 @@ const photoReducer = (state = initialState, action) => {
                 bestphotodata: action.payload.bestphotodata,
                 totalPages: action.payload.totalPages,
                 currentPage: action.payload.currentPage,
+                detailphoto: '',
             };
         case BESTPHOTO_LIST_FAILURE:
             return {
                 ...state,
+                isLoading: false,
                 errorMsg: 'error',
                 totalItems: '',
                 bestphotodata: '',
@@ -118,6 +122,7 @@ const photoReducer = (state = initialState, action) => {
         case PHOTO_DERAIL_FAILURE:
             return {
                 ...state,
+                isLoading: false,
                 errorMsg: 'error',
                 detailphoto: '',
                 writerName: '',
@@ -132,10 +137,12 @@ const photoReducer = (state = initialState, action) => {
         case PHOTO_EDIT_UPLOADING_SUCCESS:
             return {
                 ...state,
+                detailphoto: '',
             };
         case PHOTO_EDIT_UPLOADING_FAILURE:
             return {
                 ...state,
+                isLoading: false,
                 errorMsg: 'error',
             };
         case PHOTO_EDIT_LOADING_REQUEST:
@@ -148,11 +155,13 @@ const photoReducer = (state = initialState, action) => {
             return {
                 ...state,
                 detailphoto: action.payload,
-                detailimages: action.payload.images
+                detailimages: action.payload.images,
+                detailphoto: '',
             };
         case PHOTO_EDIT_LOADING_FAILURE:
             return {
                 ...state,
+                isLoading: false,
                 errorMsg: 'error',
                 detailphoto: '',
                 detailimages:''
