@@ -91,7 +91,7 @@ const AddPostPage = () => {
     };
 
     return (
-        <div>
+        <Col md={{ size: 6, offset: 3 }} className='mt-4'>
             <Helmet title={'글쓰기'} />
             {isAuthenticated ? (
                 <Card style={{ borderRadius: '25px', marginBottom: '20px' }}>
@@ -139,7 +139,7 @@ const AddPostPage = () => {
                     <Progress animated color="info" value={100} />
                 </Col>
             )}
-        </div>
+        </Col>
     );
 };
 

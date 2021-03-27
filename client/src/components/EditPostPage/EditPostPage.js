@@ -99,7 +99,7 @@ const EditPostPage = () => {
     };
 
     return (
-        <div>
+        <Col md={{ size: 6, offset: 3 }} className='mt-4'>
             <Helmet title={`글 수정`} />
             {isAuthenticated ? (
                 <Card style={{ borderRadius: '25px', marginBottom: '20px' }}>
@@ -155,7 +155,7 @@ const EditPostPage = () => {
                     <Progress animated color="info" value={100} />
                 </Col>
             )}
-        </div>
+        </Col>
     );
 };
 

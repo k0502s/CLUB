@@ -1,4 +1,7 @@
 import React, { Fragment } from 'react';
+import Footer from '../Footer/Footer';
+import Header from '../Header/Header';
+import AppNavbar from '../Nav/AppNavbar';
 import SideNav from '../Nav/SideNav';
 import Profile from '../Profile/Profile';
 import Chat from '../Chat/Chat';
@@ -25,12 +28,9 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 const MyRouter = () => {
     return (
         <Fragment>
-            <Row>
-                <Col md={{ size: 3 }} xs={{ size: 10, offset: 1 }} sm={{ size: 10, offset: 1 }}>
-                    <SideNav />
-                </Col>
-                <Col md={7} className="mt-3">
-                    <Container id="main-body">
+            <Header />
+            <AppNavbar />
+                    <div id="main-body">
                         <Switch>
                             <Route exact path="/" component={LandingPage} />
                             <Route exact path="/addphoto" component={AddPhotoPage} />
@@ -51,10 +51,9 @@ const MyRouter = () => {
                             <ProfileProtectedRoute exact path="/user/:userName/profile" component={Profile} />
                             <Redirect from="*" to="/" />
                         </Switch>
-                    </Container>
-                </Col>
-            </Row>
+                    </div>
             <ChatButton />
+            <Footer />
         </Fragment>
     );
 };

@@ -94,7 +94,7 @@ const AddPhotoPage = (props) => {
     };
 
     return (
-        <Col>
+        <Col md={{ size: 6, offset: 3 }} className='mt-4'>
             <Helmet title={`포토 편집`} />
             <Card style={{ borderRadius: '25px', marginBottom: '20px' }}>
                 <CardHeader>

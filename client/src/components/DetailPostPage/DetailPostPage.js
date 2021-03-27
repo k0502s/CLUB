@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { POST_DETAIL_LOADING_REQUEST, POST_DELETE_REQUEST, USER_LOADING_REQUEST } from '../../redux/types';
 import { Button, Row, Col, Container } from 'reactstrap';
+import SideNav from '../Nav/SideNav';
 import { Link } from 'react-router-dom';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import { GrowingSpinner } from '../../components/spinner/Spinner';
@@ -83,9 +84,7 @@ const DetailPostPage = (req) => {
                         return (
                             <Fragment>
                                 <div className="font-weight-bold text-big">
-                                    <span className="mr-3">
-                                        {/* <Button color="info">{postDetail.category.categoryName}</Button> */}
-                                    </span>
+                                    <span className="mr-3">{/* <Button color="info">{postDetail.category.categoryName}</Button> */}</span>
                                     {postDetail.title}
                                 </div>
                                 <div className="align-self-end">{postDetail.writer.name}</div>
@@ -107,7 +106,7 @@ const DetailPostPage = (req) => {
                         &nbsp;&nbsp;
                         <FontAwesomeIcon icon={faMouse} />
                         <span>{postDetail.views}</span>
-                   </Col>
+                    </Col>
                     <Row className="mb-3">
                         <CKEditor
                             editor={BalloonEditor} //ckeditor로 편집한 글도 ckditor 기능을 이용해 보여주어햐한다.
@@ -118,21 +117,21 @@ const DetailPostPage = (req) => {
                     </Row>
                     <Row>
                         {/* <Container className="mb-3 border border-blue rounded"> */}
-                            {/* Array.isArray()메서드는 인자가 Array인지 판별 */}
-                            {/* {Array.isArray(comments)
+                        {/* Array.isArray()메서드는 인자가 Array인지 판별 */}
+                        {/* {Array.isArray(comments)
                                 ? comments.map(({ contents, creator, date, _id, creatorName }) => (
                                       <div key={_id}>
                                           <Row className="justify-content-between p-2">
                                               <div className="font-weight-bold">{creatorName ? creatorName : creator}</div>
                                               <div className="text-small">
                                                   <span className="font-weight-bold"> */}
-                                                      {/* //.split(" ")은 한 칸 나누기 위함 */}
-                                                      {/* {date.split(' ')[0]} */}
-                                                  {/* </span>
+                        {/* //.split(" ")은 한 칸 나누기 위함 */}
+                        {/* {date.split(' ')[0]} */}
+                        {/* </span>
                                                   <span className="font-weight-light">
                                                       {' '} */}
-                                                      {/* split으로 쪼개고 난 두 번째 이기에 [1]이다 */}
-                                                      {/* {date.split(' ')[1]}
+                        {/* split으로 쪼개고 난 두 번째 이기에 [1]이다 */}
+                        {/* {date.split(' ')[1]}
                                                   </span>
                                               </div>
                                           </Row>
@@ -141,9 +140,9 @@ const DetailPostPage = (req) => {
                                           </Row>
                                           <hr />
                                       </div> */}
-                                {/*    ))
+                        {/*    ))
                                  : '로그인을 해주세요.'} */}
-                            {/* <Comments id={req.match.params.id} userId={userId} userName={userName} />
+                        {/* <Comments id={req.match.params.id} userId={userId} userName={userName} />
                         </Container> */}
                     </Row>
                 </Fragment>
@@ -154,10 +153,15 @@ const DetailPostPage = (req) => {
     );
 
     return (
-        <div>
+        <Row>
+            <Col md={{ size: 3 }} xs={{ size: 10, offset: 1 }} sm={{ size: 10, offset: 1 }}>
+                <SideNav />
+            </Col>
             <Helmet title={`Post | ${title}`} />
-            {loading === true ? GrowingSpinner : Body}
-        </div>
+            <Col md={7} className="mt-3">
+                {loading === true ? GrowingSpinner : Body}
+            </Col>
+        </Row>
     );
 };
 

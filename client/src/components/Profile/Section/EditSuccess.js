@@ -4,7 +4,7 @@ import { Card, Button, CardTitle, CardText, Row, Col, Alert } from 'reactstrap';
 
 const EditSuccess = () => {
     return (
-        <Col sm={{ size: 6, offset: 2 }} style={{ marginTop: '80px' }}>
+        <Col sm={{ size: 4, offset: 4 }} style={{ marginTop: '80px' }}>
             <Helmet title={`회원 정보 수정 완료.`} />
             <Card body>
                 <CardTitle tag="h5">회원 정보 수정</CardTitle>

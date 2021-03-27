@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import PhotoInfo from './Section/PhotoInfo';
 import PhotoImage from './Section/PhotoImage';
 import LikeDislike from './Section/LikeDislike';
+import SideNav from '../Nav/SideNav';
 import { Row, Col, Button } from 'reactstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { PHOTO_DELETE_REQUEST, PHOTO_DERAIL_REQUEST } from '../../redux/types';
@@ -39,7 +40,11 @@ const DetailPhotoPage = (props) => {
     };
 
     return (
-        <S.Grid>
+        <Row>
+            <Col md={{ size: 3 }} xs={{ size: 10, offset: 1 }} sm={{ size: 10, offset: 1 }}>
+                    <SideNav />
+                </Col>
+            <Col md={7} className="mt-3"> <S.Grid>
             <Helmet title={`Photo | ${detailphoto.title}`} />
             <Row md={{ size: 5, offset: 1 }} id="topborder">
                 <h5>포토 상세 보기</h5>
@@ -87,7 +92,9 @@ const DetailPhotoPage = (props) => {
             <Row className="mt-5 mb-5">
                 <PhotoInfo id={props.match.params.id} />
             </Row>
-        </S.Grid>
+        </S.Grid></Col>
+        </Row>
+       
     );
 };
 

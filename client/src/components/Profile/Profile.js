@@ -51,50 +51,48 @@ const Profile = (props) => {
     };
 
     return (
-        <Fragment>
+        <Col md={{ size: 4, offset: 4 }} className='mt-4'>
             <Helmet title={`Profile | ${userName}님의 프로필 수정`} />
-            <Col sm="12" md={{ size: 6, offset: 2 }}>
-                <Card style={{ borderRadius: '25px' }}>
-                    <CardHeader>
-                        <strong>회원정보 수정</strong>
-                    </CardHeader>
-                    <CardBody>
-                        <Form onSubmit={onSubmit}>
-                            <FormGroup>
-                                <Label for="title">새로운 닉네임</Label>
-                                <Input type="text" name="name" id="name" className="form-control" onChange={onChange} />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label for="title">새로운 카메라</Label>
-                                <Input type="text" name="camera" id="camera" className="form-control" onChange={onChange} />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label for="title">새로운 이메일</Label>
-                                <Input type="text" name="email" id="email" className="form-control" onChange={onChange} />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label for="title">기존 비밀번호</Label>
-                                <Input type="password" name="previousPassword" id="previousPassword" className="form-control mb-2" onChange={onChange} />
-                                {previousMatchMsg ? <Alert color="danger">{previousMatchMsg}</Alert> : ''}
-                            </FormGroup>
-                            <FormGroup>
-                                <Label for="title">새로운 비밀번호</Label>
-                                <Input type="password" name="password" id="password" className="form-control" onChange={onChange} />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label for="title">비밀번호 확인</Label>
-                                <Input type="password" name="rePassword" id="rePassword" className="form-control mb-2" onChange={onChange} />
-                                {errorMsg ? <Alert color="danger">{errorMsg}</Alert> : ''}
-                            </FormGroup>
-                            <Button color="dark" block className="mt-2 offset-md-9 col-md-3 ">
-                                제출하기
-                            </Button>
-                            {successMsg ? <Alert color="success">{successMsg}</Alert> : ''}
-                        </Form>
-                    </CardBody>
-                </Card>
-            </Col>
-        </Fragment>
+            <Card style={{ borderRadius: '25px' }}>
+                <CardHeader>
+                    <strong>회원정보 수정</strong>
+                </CardHeader>
+                <CardBody>
+                    <Form onSubmit={onSubmit}>
+                        <FormGroup>
+                            <Label for="title">새로운 닉네임</Label>
+                            <Input type="text" name="name" id="name" className="form-control" onChange={onChange} />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="title">새로운 카메라</Label>
+                            <Input type="text" name="camera" id="camera" className="form-control" onChange={onChange} />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="title">새로운 이메일</Label>
+                            <Input type="text" name="email" id="email" className="form-control" onChange={onChange} />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="title">기존 비밀번호</Label>
+                            <Input type="password" name="previousPassword" id="previousPassword" className="form-control mb-2" onChange={onChange} />
+                            {previousMatchMsg ? <Alert color="danger">{previousMatchMsg}</Alert> : ''}
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="title">새로운 비밀번호</Label>
+                            <Input type="password" name="password" id="password" className="form-control" onChange={onChange} />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="title">비밀번호 확인</Label>
+                            <Input type="password" name="rePassword" id="rePassword" className="form-control mb-2" onChange={onChange} />
+                            {errorMsg ? <Alert color="danger">{errorMsg}</Alert> : ''}
+                        </FormGroup>
+                        <Button color="dark" block className="mt-2 offset-md-9 col-md-3 ">
+                            제출하기
+                        </Button>
+                        {successMsg ? <Alert color="success">{successMsg}</Alert> : ''}
+                    </Form>
+                </CardBody>
+            </Card>
+        </Col>
     );
 };
 
