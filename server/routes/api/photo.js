@@ -97,7 +97,7 @@ router.get('/bestphotos', async (req, res) => {
             console.log(data);
             res.send({
                 totalItems: data.totalDocs,
-                bestphotodata: data.docs,
+                bestphotodata: data.docs.reverse(),
                 totalPages: data.totalPages,
                 currentPage: data.page - 1,
             });

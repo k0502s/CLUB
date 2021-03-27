@@ -17,7 +17,6 @@ import multerS3 from 'multer-s3';
 import path from 'path';
 import AWS from 'aws-sdk';
 import dotenv from 'dotenv';
-import { isNullOrUndefined } from 'util';
 dotenv.config();
 
 const s3 = new AWS.S3({
@@ -56,18 +55,48 @@ router.post('/image', uploadS3.array('upload', 5), async (req, res, next) => {
 //  @route    GET api/post
 //  @desc     More Loading Posts
 //  @access   public
-router.get('/skip/:skip', async (req, res) => {
+// router.get('/skip/:skip', async (req, res) => {
+//     try {
+//         const postCount = await Post.countDocuments();
+//         const postFindResult = await Post.find().skip(Number(req.params.skip)).limit(6).sort({ date: -1 });
+//         // const categoryFindResult = await Category.find();
+
+//         const result = { postFindResult, categoryFindResult, postCount };
+
+//         res.json(result);
+//     } catch (e) {
+//         console.log(e);
+//         res.json({ msg: '더 이상 포스트가 없습니다' });
+//     }
+// });
+
+const getPagination = (page, size) => {
+    const limit = size ? +size : 8;
+    const offset = page ? page * limit : 0;
+
+    return { limit, offset };
+};
+
+router.get('/posts', async (req, res) => {
     try {
-        const postCount = await Post.countDocuments();
-        const postFindResult = await Post.find().skip(Number(req.params.skip)).limit(6).sort({ date: -1 });
-        // const categoryFindResult = await Category.find();
+        const { page, size, title, category } = req.query;
 
-        const result = { postFindResult, categoryFindResult, postCount };
+        var condition = title ? { title: { $regex: new RegExp(title), $options: 'i' }, category: `${category}` } : { category: `${category}` };
 
-        res.json(result);
+        const { limit, offset } = getPagination(page, size);
+
+        await Post.paginate(condition, { offset, limit }).then((data) => {
+            console.log(data);
+            res.send({
+                totalItems: data.totalDocs,
+                postdata: data.docs.reverse(),
+                totalPages: data.totalPages,
+                currentPage: data.page - 1,
+            });
+        });
     } catch (e) {
         console.log(e);
-        res.json({ msg: '더 이상 포스트가 없습니다' });
+        return res.status(400).send(err);
     }
 });
 
@@ -78,50 +107,23 @@ router.get('/skip/:skip', async (req, res) => {
 //Post 새로 생성하기
 router.post('/', auth, uploadS3.none(), async (req, res, next) => {
     try {
-        console.log(req, 'req');
-        const { title, contents, fileUrl, writer, category } = req.body;
+        console.log(req.user, 'req.user');
+        const { title, contents, fileUrl, category, userName } = req.body;
         const newPost = await Post.create({
-            title, 
-            contents, 
+            title,
+            contents,
             fileUrl,
             writer: req.user.id,
+            writerName: userName,
+            category,
             date: moment().format('YYYY-MM-DD hh:mm'),
-        }); 
+        });
+        await User.findByIdAndUpdate(req.user.id, {
+            $push: {
+                posts: newPost._id,
+            },
+        });
 
-        // const findResult = await Category.findOne({
-        //     categoryName: category,
-        // });
-
-        // console.log(findResult, 'findResult');
-
-        // if (isNullOrUndefined(findResult)) {
-        //     const newCategory = await Category.create({
-        //         categoryName: category,
-        //     });
-        //     await Post.findByIdAndUpdate(newPost._id, {
-        //         $push: { category: newCategory._id },
-        //     });
-        //     await Category.findByIdAndUpdate(newCategory._id, {
-        //         $push: { posts: newPost._id },
-        //     });
-            await User.findByIdAndUpdate(req.user.id, {
-                $push: {
-                    posts: newPost._id,
-                },
-            });
-        // } else {
-        //     await Category.findByIdAndUpdate(findResult._id, {
-        //         $push: { posts: newPost._id },
-        //     });
-        //     await Post.findByIdAndUpdate(newPost._id, {
-        //         category: findResult._id,
-        //     });
-        //     await User.findByIdAndUpdate(req.user.id, {
-        //         $push: {
-        //             posts: newPost._id,
-        //         },
-        //     });
-        // }
         return res.redirect(`/api/post/${newPost._id}`);
     } catch (e) {
         console.log(e);
@@ -134,7 +136,7 @@ router.post('/', auth, uploadS3.none(), async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
     try {
-        const post = await Post.findById(req.params.id).populate({ path: 'writer', select: 'name' }).populate({ path: 'category', select: 'categoryName' });
+        const post = await Post.findById(req.params.id).populate({ path: 'writer', select: 'name' });
         post.views += 1;
         post.save();
         console.log(post);
@@ -209,11 +211,7 @@ router.delete('/:id', auth, async (req, res) => {
             comments: { post_id: req.params.id },
         },
     });
-    // const CategoryUpdateResult = await Category.findOneAndUpdate({ posts: req.params.id }, { $pull: { posts: req.params.id } }, { new: true });
 
-    // if (CategoryUpdateResult.posts.length === 0) {
-    //     await Category.deleteMany({ _id: CategoryUpdateResult });
-    // }
     return res.json({ success: true });
 });
 
@@ -232,7 +230,7 @@ router.get('/:id/edit', auth, async (req, res, next) => {
 router.post('/:id/edit', auth, async (req, res, next) => {
     console.log(req, 'api/post/:id/edit');
     const {
-        body: { title, contents, fileUrl, id },
+        body: { title, contents, fileUrl, category, id },
     } = req;
 
     try {
@@ -242,6 +240,7 @@ router.post('/:id/edit', auth, async (req, res, next) => {
                 title,
                 contents,
                 fileUrl,
+                category,
                 date: moment().format('YYYY-MM-DD hh:mm'),
             },
             { new: true } //몽고DB 업데이트 조건
@@ -253,24 +252,5 @@ router.post('/:id/edit', auth, async (req, res, next) => {
         next(e);
     }
 });
-
-// router.get('/category/:categoryName', async (req, res, next) => {
-//     try {
-//         const result = await Category.findOne(
-//             {
-//                 categoryName: {
-//                     $regex: req.params.categoryName,
-//                     $options: 'i',
-//                 },
-//             },
-//             'posts'
-//         ).populate({ path: 'posts' });
-//         console.log(result, 'Category Find result');
-//         res.send(result);
-//     } catch (e) {
-//         console.log(e);
-//         next(e);
-//     }
-// });
 
 export default router;
