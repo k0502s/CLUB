@@ -77,7 +77,7 @@ const AddPhotoPage = (props) => {
         const { title, description, genres } = form;
 
         const body = {
-            id: detailphoto._id,
+            id: props.match.params.id,
             title: title,
             description: description,
             images: Images,

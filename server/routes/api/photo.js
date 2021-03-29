@@ -2,7 +2,6 @@ import express from 'express';
 import multer from 'multer';
 import moment from 'moment';
 
-
 import Photo from '../../models/photo.js';
 import User from '../../models/user.js';
 import auth from '../../middleware/auth.js';
@@ -44,7 +43,6 @@ router.post('/image', uploadS3.single('file'), function (req, res, next) {
 
 router.post('/', async (req, res) => {
     try {
-        
         const photo = new Photo(req.body);
 
         await photo.save(() => {
@@ -151,9 +149,10 @@ router.get('/:id/edit', async (req, res) => {
 
 router.post('/:id/edit', async (req, res) => {
     try {
-        const id = req.params.id;
-        await Photo.findByIdAndUpdate(id, req.body, { new: true });
-        res.json({ id: id });
+        console.log(req.body.id, 'ID');
+
+        await Photo.findByIdAndUpdate(req.body.id, req.body, { new: true });
+        res.json({ id: req.body.id });
     } catch (e) {
         console.log(e);
         return res.status(400).send(err);
