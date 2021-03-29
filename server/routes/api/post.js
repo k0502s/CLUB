@@ -198,6 +198,18 @@ router.post('/:id/comments', async (req, res, next) => {
     }
 });
 
+router.post('/comment/edit', async (req, res, next) => {
+    try {
+        const editcomment = await Comment.findByIdAndUpdate(req.body.commentId, {
+            contents: req.body.contents,
+        });
+        res.json(editcomment);
+    } catch (e) {
+        console.log(e);
+        next(e);
+    }
+});
+
 // @route    Delete api/post/:id
 // @desc     Delete a Post
 // @access   Private
@@ -227,30 +239,28 @@ router.get('/:id/edit', auth, async (req, res, next) => {
     }
 });
 
-router.post('/:id/edit', auth, async (req, res, next) => {
-    console.log(req, 'api/post/:id/edit');
+router.post("/:id/edit", auth, async (req, res, next) => {
+    console.log(req, "api/post/:id/edit");
     const {
-        body: { title, contents, fileUrl, category, id },
+      body: { title, contents, fileUrl, id },
     } = req;
-
+  
     try {
-        const modified_post = await Post.findByIdAndUpdate(
-            id,
-            {
-                title,
-                contents,
-                fileUrl,
-                category,
-                date: moment().format('YYYY-MM-DD hh:mm'),
-            },
-            { new: true } //몽고DB 업데이트 조건
-        );
-        console.log(modified_post, 'edit modified');
-        res.redirect(`/api/post/${modified_post.id}`);
+      const modified_post = await Post.findByIdAndUpdate(
+        id,
+        {
+          title,
+          contents,
+          fileUrl,
+          date: moment().format("YYYY-MM-DD hh:mm"),
+        },
+        { new: true } //몽고DB 업데이트 조건
+      );
+      res.json({id: id});
     } catch (e) {
-        console.log(e);
-        next(e);
+      console.log(e);
+      next(e);
     }
-});
+  });
 
 export default router;
