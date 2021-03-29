@@ -1,15 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { Button, Input, Row, Col, Form } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { COMMENT_DELETE_REQUEST, COMMENT_EDIT_UPLOADING_REQUEST, COMMENT_LOADING_REQUEST } from '../../../redux/types'
+import { COMMENT_DELETE_REQUEST, COMMENT_EDIT_UPLOADING_REQUEST, COMMENT_LOADING_REQUEST } from '../../../redux/types';
 
-const CommentList = ({ id, comments, commentId}) => {
+const CommentList = ({ id, comments, commentId }) => {
     const dispatch = useDispatch();
     const [OpenReply, setOpenReply] = useState(false);
     const [CommentValue, setCommentValue] = useState({ contents: '' });
     const { userId } = useSelector((state) => state.auth);
 
-    
     const onClickReplyOpen = () => {
         setOpenReply(!OpenReply);
     };
@@ -17,12 +16,12 @@ const CommentList = ({ id, comments, commentId}) => {
         const body = {
             commentId,
             postId: id,
-            userId
-        }
+            userId,
+        };
         dispatch({
             type: COMMENT_DELETE_REQUEST,
-            payload: body
-        })
+            payload: body,
+        });
         dispatch({
             type: COMMENT_LOADING_REQUEST,
             payload: id,
@@ -35,7 +34,6 @@ const CommentList = ({ id, comments, commentId}) => {
             [e.target.name]: e.target.value,
         });
     };
-    
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -46,19 +44,18 @@ const CommentList = ({ id, comments, commentId}) => {
         };
         dispatch({
             type: COMMENT_EDIT_UPLOADING_REQUEST,
-            payload: body
-        })
+            payload: body,
+        });
         dispatch({
             type: COMMENT_LOADING_REQUEST,
             payload: id,
         });
         resetValue.current.value = '';
         setCommentValue('');
-        setOpenReply(false); 
+        setOpenReply(false);
     };
 
     const resetValue = useRef(null);
-
 
     return (
         <div>
@@ -76,13 +73,9 @@ const CommentList = ({ id, comments, commentId}) => {
                             {comments.date.split(' ')[1]}
                         </span>
                         <Col>
-                            <span onClick={onClickReplyOpen}>
-                                수정
-                            </span>
-                            {' | '}
-                            <span onClick={onClickDelete}>
-                                삭제
-                            </span>
+                            {userId === comments.writer && <span onClick={onClickReplyOpen}>수정{' | '}</span>}
+                            
+                            {userId === comments.writer && <span onClick={onClickDelete}>삭제</span>}
                         </Col>
                     </div>
                 </Row>
@@ -93,7 +86,9 @@ const CommentList = ({ id, comments, commentId}) => {
                     <Form style={{ display: 'flex' }} onSubmit={onSubmit}>
                         <Input innerRef={resetValue} type="textarea" style={{ width: '100%', borderRadius: '5px' }} onChange={onChange} name="contents" defaultValue={comments.contents} />
                         <br />
-                        <Button color="primary" className="col-md-2 ">수정하기</Button>
+                        <Button color="primary" className="col-md-2 ">
+                            수정하기
+                        </Button>
                     </Form>
                 )}
                 <hr />
