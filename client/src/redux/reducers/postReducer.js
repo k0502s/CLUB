@@ -125,9 +125,6 @@ const postReducer = (state = initialState, action) => {
                 posts: action.payload,
                 isAuthenticated: true,
                 loading: false,
-                postDetail: '',
-                writerId: '',
-                title: '',
             };
         case POST_EDIT_UPLOADING_FAILURE:
             return {

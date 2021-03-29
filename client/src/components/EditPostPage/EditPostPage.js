@@ -8,18 +8,12 @@ import { editorConfiguration } from '../../components/editor/EditorConfig';
 import Myinit from '../../components/editor/UploadAdapter';
 import { POST_EDIT_UPLOADING_REQUEST } from '../../redux/types';
 
-const Category = [
-    { key: 1, value: '가입 인사' },
-    { key: 2, value: '모임 후기' },
-];
-
 const EditPostPage = () => {
     const { isAuthenticated } = useSelector((state) => state.auth);
     const [form, setValues] = useState({
         title: '',
         contents: '',
         fileurl: '',
-        category: '',
     });
     const { postDetail } = useSelector((state) => state.post);
     const dispatch = useDispatch();
@@ -88,10 +82,10 @@ const EditPostPage = () => {
 
     const onSubmit = async (e) => {
         await e.preventDefault();
-        const { title, contents, fileUrl, category } = form;
+        const { title, contents, fileUrl } = form;
         const token = localStorage.getItem('token');
         const id = postDetail._id;
-        const body = { title, contents, fileUrl, category, token, id };
+        const body = { title, contents, fileUrl, token, id };
         dispatch({
             type: POST_EDIT_UPLOADING_REQUEST,
             payload: body,
@@ -99,7 +93,7 @@ const EditPostPage = () => {
     };
 
     return (
-        <Col md={{ size: 6, offset: 3 }} className='mt-4'>
+        <Col md={{ size: 6, offset: 3 }} className="mt-4">
             <Helmet title={`글 수정`} />
             {isAuthenticated ? (
                 <Card style={{ borderRadius: '25px', marginBottom: '20px' }}>
@@ -122,17 +116,6 @@ const EditPostPage = () => {
                                     className="form-control"
                                     onChange={onChange}
                                 />
-                            </FormGroup>
-                            <FormGroup className="mb-3">
-                                <Label for="category">카테고리</Label>
-                                <Input onChange={onChange} defaultValue={form.category} name="category" type="select">
-                                    <option value="">카테고리를 선택해주세요</option>
-                                    {Category.map((item) => (
-                                        <option key={item.key} value={item.key}>
-                                            {item.value}
-                                        </option>
-                                    ))}
-                                </Input>
                             </FormGroup>
                             <FormGroup className="mb-3">
                                 <Label for="content">Content</Label>

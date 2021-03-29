@@ -1,9 +1,10 @@
 import React, { useEffect, Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet';
-import { POST_DETAIL_LOADING_REQUEST, POST_DELETE_REQUEST, USER_LOADING_REQUEST } from '../../redux/types';
+import { POST_DETAIL_LOADING_REQUEST, POST_DELETE_REQUEST, COMMENT_LOADING_REQUEST } from '../../redux/types';
 import { Button, Row, Col, Container } from 'reactstrap';
 import SideNav from '../Nav/SideNav';
+import CommentList from './Section/CommentList'
 import { Link } from 'react-router-dom';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import { GrowingSpinner } from '../../components/spinner/Spinner';
@@ -11,13 +12,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt, faCommentDots, faMouse } from '@fortawesome/free-solid-svg-icons';
 import BalloonEditor from '@ckeditor/ckeditor5-editor-balloon/src/ballooneditor';
 import { editorConfiguration } from '../../components/editor/EditorConfig';
-// import Comments from './Section/Comments';
+import Comments from './Section/Comments';
 
 const DetailPostPage = (req) => {
     const dispatch = useDispatch();
     const { postDetail, writerId, title, loading } = useSelector((state) => state.post);
     const { userId, userName } = useSelector((state) => state.auth);
-    // const { comments } = useSelector((state) => state.comment);
+    const { comments } = useSelector((state) => state.comment);
 
     console.log(req);
     useEffect(() => {
@@ -25,9 +26,12 @@ const DetailPostPage = (req) => {
             type: POST_DETAIL_LOADING_REQUEST,
             payload: req.match.params.id,
         });
+    }, [dispatch, req.match.params.id]);
+
+    useEffect(() => {
         dispatch({
-            type: USER_LOADING_REQUEST,
-            payload: localStorage.getItem('token'),
+            type: COMMENT_LOADING_REQUEST,
+            payload: req.match.params.id,
         });
     }, [dispatch, req.match.params.id]);
 
@@ -116,34 +120,9 @@ const DetailPostPage = (req) => {
                         />
                     </Row>
                     <Row>
-                        {/* <Container className="mb-3 border border-blue rounded"> */}
-                        {/* Array.isArray()메서드는 인자가 Array인지 판별 */}
-                        {/* {Array.isArray(comments)
-                                ? comments.map(({ contents, creator, date, _id, creatorName }) => (
-                                      <div key={_id}>
-                                          <Row className="justify-content-between p-2">
-                                              <div className="font-weight-bold">{creatorName ? creatorName : creator}</div>
-                                              <div className="text-small">
-                                                  <span className="font-weight-bold"> */}
-                        {/* //.split(" ")은 한 칸 나누기 위함 */}
-                        {/* {date.split(' ')[0]} */}
-                        {/* </span>
-                                                  <span className="font-weight-light">
-                                                      {' '} */}
-                        {/* split으로 쪼개고 난 두 번째 이기에 [1]이다 */}
-                        {/* {date.split(' ')[1]}
-                                                  </span>
-                                              </div>
-                                          </Row>
-                                          <Row className="p-2">
-                                              <div>{contents}</div>
-                                          </Row>
-                                          <hr />
-                                      </div> */}
-                        {/*    ))
-                                 : '로그인을 해주세요.'} */}
-                        {/* <Comments id={req.match.params.id} userId={userId} userName={userName} />
-                        </Container> */}
+                        <Container className="mb-3 border border-blue rounded">
+                            <Comments id={req.match.params.id} userId={userId} userName={userName} comments={comments} commentId={comments._id}/>
+                        </Container>
                     </Row>
                 </Fragment>
             ) : (

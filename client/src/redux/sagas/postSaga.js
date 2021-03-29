@@ -189,6 +189,7 @@ function* watchPostEditLoad() {
 
 // Post Edit UpLoad
 const PostEditUploadAPI = (payload) => {
+    console.log(payload, 'editpost');
     const config = {
         headers: {
             'Content-Type': 'application/json',
@@ -210,7 +211,7 @@ function* PostEditUpload(action) {
             type: POST_EDIT_UPLOADING_SUCCESS,
             payload: result.data,
         });
-        yield put(push(`/post/${result.data._id}`));
+        yield put(push(`/post/${result.data.id}`));
     } catch (e) {
         yield put({
             type: POST_EDIT_UPLOADING_FAILURE,
@@ -223,16 +224,6 @@ function* watchPostEditUpload() {
     yield takeEvery(POST_EDIT_UPLOADING_REQUEST, PostEditUpload);
 }
 
-
-
-
 export default function* postSaga() {
-    yield all([
-        fork(watchLoadPosts),
-        fork(watchuploadPosts),
-        fork(watchloadPostDetail),
-        fork(watchDeletePost),
-        fork(watchPostEditLoad),
-        fork(watchPostEditUpload),
-    ]);
+    yield all([fork(watchLoadPosts), fork(watchuploadPosts), fork(watchloadPostDetail), fork(watchDeletePost), fork(watchPostEditLoad), fork(watchPostEditUpload)]);
 }

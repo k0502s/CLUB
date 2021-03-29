@@ -5,6 +5,7 @@ import chatReducer from './chatReducer';
 import photoReducer from './photoReducer';
 import likeReducer from './likeReducer';
 import postReducer from "./postReducer";
+import commentReducer from "./commentReducer";
 
 const createRootReducer = (history) =>
     combineReducers({
@@ -14,6 +15,7 @@ const createRootReducer = (history) =>
         photo: photoReducer,
         like: likeReducer,
         post: postReducer,
+        comment: commentReducer,
     });
 
 export default createRootReducer;
