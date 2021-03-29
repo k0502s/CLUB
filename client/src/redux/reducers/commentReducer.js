@@ -8,6 +8,9 @@ import {
     COMMENT_EDIT_UPLOADING_REQUEST,
     COMMENT_EDIT_UPLOADING_SUCCESS,
     COMMENT_EDIT_UPLOADING_FAILURE,
+    COMMENT_DELETE_REQUEST,
+    COMMENT_DELETE_SUCCESS,
+    COMMENT_DELETE_FAILURE
   } from "../types";
   
   const initialState = {
@@ -69,6 +72,21 @@ import {
               ...state,
               loading: false,
             };
+            case COMMENT_DELETE_REQUEST:
+              return {
+                ...state,
+                loading: true,
+              };
+            case COMMENT_DELETE_SUCCESS:
+              return {
+                ...state,
+                loading: false,
+              };
+            case COMMENT_DELETE_FAILURE:
+              return {
+                ...state,
+                loading: false,
+              };
         default:
           return state;
       }

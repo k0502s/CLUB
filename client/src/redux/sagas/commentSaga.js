@@ -10,6 +10,9 @@ import {
     COMMENT_EDIT_UPLOADING_REQUEST,
     COMMENT_EDIT_UPLOADING_SUCCESS,
     COMMENT_EDIT_UPLOADING_FAILURE,
+    COMMENT_DELETE_REQUEST,
+    COMMENT_DELETE_SUCCESS,
+    COMMENT_DELETE_FAILURE
 } from '../types';
 import { push } from 'connected-react-router';
 
@@ -102,6 +105,49 @@ function* watchEditComments() {
     yield takeEvery(COMMENT_EDIT_UPLOADING_REQUEST, editComments);
 }
 
+
+// Delete Comment
+
+const deleteCommentsAPI = (payload) => {
+    console.log(payload, 'delete data');
+    // const config = {
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //     },
+    // };
+    // const token = payload.token;
+
+    // if (token) {
+    //     config.headers['x-auth-token'] = token;
+    // }
+    return axios.post('/api/post/comment/delete', payload);
+};
+
+function* deleteComments(action) {
+    try {
+        console.log(action);
+        const result = yield call(deleteCommentsAPI, action.payload);
+        console.log(result, 'delete');
+        yield put({
+            type: COMMENT_DELETE_SUCCESS,
+            payload: result.data,
+        });
+    } catch (e) {
+        console.log(e);
+        yield put({
+            type: COMMENT_DELETE_FAILURE,
+            payload: e,
+        });
+        yield push('/');
+    }
+}
+
+function* watchDeleteComments() {
+    yield takeEvery(COMMENT_DELETE_REQUEST, deleteComments);
+}
+
+
+
 export default function* commentSaga() {
-    yield all([fork(watchLoadComments), fork(watchUpLoadComments), fork(watchEditComments)]);
+    yield all([fork(watchLoadComments), fork(watchUpLoadComments), fork(watchEditComments), fork(watchDeleteComments)]);
 }

@@ -198,6 +198,30 @@ router.post('/:id/comments', async (req, res, next) => {
     }
 });
 
+router.post('/comment/delete', async (req, res) => {
+    try {
+        console.log(req.body, 'delete')
+        await Comment.deleteMany({ _id: req.body.commentId });
+        await Post.findByIdAndUpdate(req.body.postId, {
+            $pull: {
+                comments: req.body.commentId,
+            },
+        });
+        await User.findByIdAndUpdate(req.body.userId, {
+            $pull: {
+                comments: {
+                    post_id: req.body.postId,
+                    comment_id: req.body.commentId,
+                },
+            },
+        });
+        return res.json({ success: true });
+    } catch (e) {
+        console.log(e);
+        next(e);
+    }
+});
+
 router.post('/comment/edit', async (req, res, next) => {
     try {
         const editcomment = await Comment.findByIdAndUpdate(req.body.commentId, {

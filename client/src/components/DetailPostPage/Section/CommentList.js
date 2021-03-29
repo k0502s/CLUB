@@ -1,27 +1,32 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Button, Input, Row, Col, Form } from 'reactstrap';
-import { useDispatch } from 'react-redux';
-import { COMMENT_EDIT_UPLOADING_REQUEST, COMMENT_LOADING_REQUEST } from '../../../redux/types'
+import { useDispatch, useSelector } from 'react-redux';
+import { COMMENT_DELETE_REQUEST, COMMENT_EDIT_UPLOADING_REQUEST, COMMENT_LOADING_REQUEST } from '../../../redux/types'
 
 const CommentList = ({ id, comments, commentId}) => {
     const dispatch = useDispatch();
     const [OpenReply, setOpenReply] = useState(false);
     const [CommentValue, setCommentValue] = useState({ contents: '' });
-
-
-    // useEffect(() => {
-    //     dispatch({
-    //         type: COMMENT_LOADING_REQUEST,
-    //         payload: id,
-    //     });
-    // }, [dispatch, id]);
+    const { userId } = useSelector((state) => state.auth);
 
     
     const onClickReplyOpen = () => {
         setOpenReply(!OpenReply);
     };
     const onClickDelete = () => {
-        
+        const body = {
+            commentId,
+            postId: id,
+            userId
+        }
+        dispatch({
+            type: COMMENT_DELETE_REQUEST,
+            payload: body
+        })
+        dispatch({
+            type: COMMENT_LOADING_REQUEST,
+            payload: id,
+        });
     };
 
     const onChange = (e) => {
@@ -48,8 +53,8 @@ const CommentList = ({ id, comments, commentId}) => {
             payload: id,
         });
         resetValue.current.value = '';
-        setCommentValue(''); //댓글 전송 후 다시 빈칸 초기화
-        setOpenReply(false); // 댓글 전송 후 댓글창 닫아지기
+        setCommentValue('');
+        setOpenReply(false); 
     };
 
     const resetValue = useRef(null);
