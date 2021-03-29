@@ -110,14 +110,17 @@ const PostList_2 = () => {
                         </thead>
                         {postdata &&
                             postdata.map((post, index) => (
-                                <tbody>
+                                <tbody key={index}>
                                     <tr>
                                         <th scope="row" style={{ width: '10%', fontWeight: 'lighter' }}>
                                             {post.numberId}
                                         </th>
-                                        <Link to={`/post/${post._id}`}>
-                                            <td style={{ width: '45%', color: 'black', fontWeight: 'bold', fontSize: 'large' }}>{post.title}</td>
-                                        </Link>
+                                        <td style={{ width: '45%', color: 'black', fontWeight: 'bold', fontSize: 'large' }}>
+                                            <Link to={`/post/${post._id}`} style={{ color: 'inherit' }}>
+                                                {post.title}
+                                            </Link>
+                                        </td>
+
                                         <td style={{ width: '15%', textAlign: 'center' }}>{post.writerName}</td>
                                         <td style={{ width: '15%', textAlign: 'center' }}>{post.views}</td>
                                         <td style={{ width: '15%', textAlign: 'center' }}>{post.date}</td>
