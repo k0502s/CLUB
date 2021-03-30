@@ -11,6 +11,9 @@ import {
     BESTPHOTO_LIST_REQUEST,
     BESTPHOTO_LIST_SUCCESS,
     BESTPHOTO_LIST_FAILURE,
+    BESTPHOTO_IMAGES_REQUEST,
+    BESTPHOTO_IMAGES_SUCCESS,
+    BESTPHOTO_IMAGES_FAILURE,
     PHOTO_DERAIL_REQUEST,
     PHOTO_DERAIL_SUCCESS,
     PHOTO_DERAIL_FAILURE,
@@ -111,6 +114,34 @@ function* watchBestPhotoList() {
     yield takeEvery(BESTPHOTO_LIST_REQUEST, bestphotoList);
 }
 
+// best Images get
+
+const bestimagesAPI = (photoData) => {
+    console.log(photoData, 'photoData');
+
+    return axios.get('api/photo/bestimages', photoData);
+};
+
+function* bestImages(action) {
+    try {
+        const result = yield call(bestimagesAPI, action.payload);
+        console.log(result);
+        yield put({
+            type: BESTPHOTO_IMAGES_SUCCESS,
+            payload: result.data,
+        });
+    } catch (e) {
+        yield put({
+            type: BESTPHOTO_IMAGES_FAILURE,
+            payload: e.response,
+        });
+    }
+}
+
+function* watchBestImages() {
+    yield takeEvery(BESTPHOTO_IMAGES_REQUEST, bestImages);
+}
+
 // photo Detail
 
 const photodetailAPI = (id) => {
@@ -180,7 +211,7 @@ function* watchPhotoDelete() {
     yield takeEvery(PHOTO_DELETE_REQUEST, photoDelete);
 }
 
-// Post Edit Load
+// Photo Edit Load
 
 const photoEditLoadAPI = (id) => {
     console.log(id, 'editloading');
@@ -238,5 +269,14 @@ function* watchPhotoUpdate() {
 }
 
 export default function* photoSaga() {
-    yield all([fork(watchphotoUpload), fork(watchPhotoList), fork(watchBestPhotoList), fork(watchPhotoDetail), fork(watchPhotoDelete), fork(watchPhotoEditLoad), fork(watchPhotoUpdate)]);
+    yield all([
+        fork(watchphotoUpload),
+        fork(watchPhotoList),
+        fork(watchBestPhotoList),
+        fork(watchPhotoDetail),
+        fork(watchPhotoDelete),
+        fork(watchPhotoEditLoad),
+        fork(watchPhotoUpdate),
+        fork(watchBestImages),
+    ]);
 }

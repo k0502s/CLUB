@@ -8,6 +8,9 @@ import {
     BESTPHOTO_LIST_REQUEST,
     BESTPHOTO_LIST_SUCCESS,
     BESTPHOTO_LIST_FAILURE,
+    BESTPHOTO_IMAGES_REQUEST,
+    BESTPHOTO_IMAGES_SUCCESS,
+    BESTPHOTO_IMAGES_FAILURE,
     PHOTO_DERAIL_REQUEST,
     PHOTO_DERAIL_SUCCESS,
     PHOTO_DERAIL_FAILURE,
@@ -28,8 +31,9 @@ const initialState = {
     totalPages: '',
     currentPage: '',
     bestphotodata: '',
+    bestimages:'',
     detailphoto: '',
-    detailimages:'',
+    detailimages: '',
     writerName: '',
     writerId: '',
 };
@@ -80,6 +84,24 @@ const photoReducer = (state = initialState, action) => {
                 currentPage: '',
             };
 
+        case BESTPHOTO_IMAGES_REQUEST:
+            return {
+                ...state,
+                errorMsg: '',
+                isLoading: true,
+            };
+        case BESTPHOTO_IMAGES_SUCCESS:
+            return {
+                ...state,
+                bestimages: action.payload
+            };
+        case BESTPHOTO_IMAGES_FAILURE:
+            return {
+                ...state,
+                isLoading: false,
+                errorMsg: 'error',
+                bestimages: ''
+            };
         case BESTPHOTO_LIST_REQUEST:
             return {
                 ...state,
@@ -164,7 +186,7 @@ const photoReducer = (state = initialState, action) => {
                 isLoading: false,
                 errorMsg: 'error',
                 detailphoto: '',
-                detailimages:''
+                detailimages: '',
             };
 
         default:

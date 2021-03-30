@@ -119,6 +119,17 @@ router.get('/photo_by_id', async (req, res) => {
     }
 });
 
+router.get('/bestimages', async (req, res) => {
+    try {
+        const bestphotoes = await Photo.find({views: { $gte: 10 }})
+        console.log(bestphotoes, 'best');
+        res.json(bestphotoes);
+    } catch (e) {
+        console.log(e);
+        return res.status(400).send(err);
+    }
+});
+
 router.delete('/:id', auth, async (req, res) => {
     try {
         console.log(req.params);
