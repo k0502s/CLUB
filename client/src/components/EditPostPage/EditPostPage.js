@@ -82,6 +82,12 @@ const EditPostPage = () => {
 
     const onSubmit = async (e) => {
         await e.preventDefault();
+
+        const titleinput = document.myform.title.value;
+        if (titleinput === '') {
+            return alert('제목 정보를 입력해야 합니다.');
+        }
+
         const { title, contents, fileUrl } = form;
         const token = localStorage.getItem('token');
         const id = postDetail._id;
@@ -105,7 +111,7 @@ const EditPostPage = () => {
                         <CardText>1. 이미지 파일 사이즈는 100 * 1024 * 1024의 제한을 두고 있습니다.</CardText>
                     </Card>
                     <CardBody>
-                        <Form onSubmit={onSubmit}>
+                        <Form onSubmit={onSubmit} name="myform">
                             <FormGroup className="mb-3">
                                 <Label for="title">Title</Label>
                                 <Input
