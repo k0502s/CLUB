@@ -118,7 +118,9 @@ const PostList_1 = () => {
                                         </th>
 
                                         <td style={{ width: '45%', color: 'black', fontWeight: 'bold', fontSize: 'large' }}>
-                                            <Link to={`/post/${post._id}`} style={{color:'inherit'}}>{post.title}</Link>
+                                            <Link to={`/post/${post._id}`} style={{ color: 'inherit' }}>
+                                                {post.title}{' '}<span style={{ fontWeight: 'lighter' }}>[{post.comments.length}]</span>
+                                            </Link>
                                         </td>
 
                                         <td style={{ width: '15%', textAlign: 'center' }}>{post.writerName}</td>

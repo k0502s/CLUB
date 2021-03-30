@@ -108,7 +108,7 @@ const PhotoList_3 = () => {
                                             <CardTitle tag="h5">{photo.title}</CardTitle>
                                             <CardText>{photo.description}</CardText>
                                             <CardText>
-                                                <small className="text-muted">{photo.date}</small>
+                                                <small>{photo.date}</small>
                                             </CardText>
                                             <CardText>
                                                 {' '}

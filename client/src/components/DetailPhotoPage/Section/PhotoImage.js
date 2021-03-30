@@ -23,7 +23,7 @@ const PhotoImage = () => {
 
     return (
         <div>
-            <ImageGallery  showBullets='true' items={Images} />
+            <ImageGallery showBullets="true" items={Images} />
         </div>
     );
 };

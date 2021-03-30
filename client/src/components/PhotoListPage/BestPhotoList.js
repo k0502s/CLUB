@@ -111,7 +111,7 @@ const BestPhotoList = () => {
                                                 &nbsp;{photo.views}
                                             </CardText>
                                             <CardText>
-                                                <small className="text-muted">{photo.date}</small>
+                                                <small>{photo.date}</small>
                                             </CardText>
                                         </CardImgOverlay>
                                     </Card>

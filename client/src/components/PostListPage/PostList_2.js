@@ -80,7 +80,7 @@ const PostList_2 = () => {
                 <Row>
                     <Col>
                         <span style={{ fontWeight: 'bold' }}>HOME</span>
-                        <FontAwesomeIcon icon={faArrowRight} /> 커뮤니티 <FontAwesomeIcon icon={faArrowRight} /> <span style={{ fontWeight: 'bolder' }}>가입 인사</span>
+                        <FontAwesomeIcon icon={faArrowRight} /> 커뮤니티 <FontAwesomeIcon icon={faArrowRight} /> <span style={{ fontWeight: 'bolder' }}>모임 후기</span>
                     </Col>
 
                     <Col md={{ size: 5, offset: 1 }}>
@@ -117,7 +117,7 @@ const PostList_2 = () => {
                                         </th>
                                         <td style={{ width: '45%', color: 'black', fontWeight: 'bold', fontSize: 'large' }}>
                                             <Link to={`/post/${post._id}`} style={{ color: 'inherit' }}>
-                                                {post.title}
+                                                {post.title}{' '}<span style={{ fontWeight: 'lighter' }}>[{post.comments.length}]</span>
                                             </Link>
                                         </td>
 
