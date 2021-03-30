@@ -1,12 +1,13 @@
 import React, { useState, useRef, useEffect, Fragment } from 'react';
 import CommentList from './CommentList';
 import { useDispatch } from 'react-redux';
-import { COMMENT_UPLOADING_REQUEST, COMMENT_LOADING_REQUEST } from '../../../redux/types';
-import { Form, FormGroup, Input, Button, Row } from 'reactstrap';
+import { COMMENT_UPLOADING_REQUEST } from '../../../redux/types';
+import { Form, FormGroup, Input, Button, Row, Label } from 'reactstrap';
 
-const Comments = ({ id, userName, userId, comments }) => {
+const Comments = ({ id, userName, userId, commentList }) => {
     const dispatch = useDispatch();
     const [CommentValue, setCommentValue] = useState({ contents: '' });
+  
 
     const onSubmit = async (e) => {
         console.log(userName);
@@ -19,6 +20,7 @@ const Comments = ({ id, userName, userId, comments }) => {
             id,
             userId,
             userName,
+            reply: false,
         };
 
         console.log(body);
@@ -41,21 +43,20 @@ const Comments = ({ id, userName, userId, comments }) => {
 
     return (
         <>
-            {Array.isArray(comments)
-                ? comments.map((comments, index) => (
+            {Array.isArray(commentList)
+                ? commentList.map((comments, index) => (
                       <Fragment key={index}>
-                          <CommentList comments={comments} commentId={comments._id} id={id}/>
+                          <CommentList comments={comments} commentId={comments._id} id={id} userName={userName} />
                       </Fragment>
                   ))
                 : '댓글을 작성하려면 로그인이 필요합니다.'}
             <Form onSubmit={onSubmit}>
                 <FormGroup>
                     <Row className="p-2">
-                        <div className="font-weight-bold m-1">댓글 작성</div>
-                        <div className="my-1" />
+                        <Label className="font-weight-bold m-2">댓글 작성</Label>
                         <Input innerRef={resetValue} type="textarea" name="contents" id="contents" onChange={onChange} placeholder="댓글을 작성해주세요." />
                         <Button color="primary" block className="mt-2 offset-md-10 col-md-2 ">
-                            보내기
+                            등록
                         </Button>
                     </Row>
                 </FormGroup>

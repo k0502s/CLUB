@@ -2,7 +2,6 @@ import express from 'express';
 
 //Model
 import Post from '../../models/post.js';
-// import Category from '../../models/category.js';
 import Comment from '../../models/comment.js';
 import User from '../../models/user.js';
 
@@ -52,23 +51,6 @@ router.post('/image', uploadS3.array('upload', 5), async (req, res, next) => {
     }
 });
 
-//  @route    GET api/post
-//  @desc     More Loading Posts
-//  @access   public
-// router.get('/skip/:skip', async (req, res) => {
-//     try {
-//         const postCount = await Post.countDocuments();
-//         const postFindResult = await Post.find().skip(Number(req.params.skip)).limit(6).sort({ date: -1 });
-//         // const categoryFindResult = await Category.find();
-
-//         const result = { postFindResult, categoryFindResult, postCount };
-
-//         res.json(result);
-//     } catch (e) {
-//         console.log(e);
-//         res.json({ msg: '더 이상 포스트가 없습니다' });
-//     }
-// });
 
 const getPagination = (page, size) => {
     const limit = size ? +size : 8;
@@ -166,6 +148,7 @@ router.get('/:id/comments', async (req, res) => {
     }
 });
 
+
 router.post('/:id/comments', async (req, res, next) => {
     console.log(req, 'comments');
     const newComment = await Comment.create({
@@ -173,6 +156,7 @@ router.post('/:id/comments', async (req, res, next) => {
         writer: req.body.userId,
         writerName: req.body.userName,
         post: req.body.id,
+        responseTo: req.body.responseTo,
         date: moment().format('YYYY-MM-DD hh:mm:ss'),
     });
     console.log(newComment, 'newComment');
@@ -197,6 +181,7 @@ router.post('/:id/comments', async (req, res, next) => {
         next(e);
     }
 });
+
 
 router.post('/comment/delete', async (req, res) => {
     try {
@@ -226,7 +211,8 @@ router.post('/comment/edit', async (req, res, next) => {
     try {
         const editcomment = await Comment.findByIdAndUpdate(req.body.commentId, {
             contents: req.body.contents,
-        });
+       });
+       console.log(editcomment)
         res.json(editcomment);
     } catch (e) {
         console.log(e);

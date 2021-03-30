@@ -12,7 +12,7 @@ import {
     COMMENT_EDIT_UPLOADING_FAILURE,
     COMMENT_DELETE_REQUEST,
     COMMENT_DELETE_SUCCESS,
-    COMMENT_DELETE_FAILURE
+    COMMENT_DELETE_FAILURE,
 } from '../types';
 import { push } from 'connected-react-router';
 
@@ -45,6 +45,7 @@ function* watchLoadComments() {
     yield takeEvery(COMMENT_LOADING_REQUEST, loadComments);
 }
 
+
 // UpLoad Comment
 
 const uploadCommentsAPI = (payload) => {
@@ -75,6 +76,8 @@ function* watchUpLoadComments() {
     yield takeEvery(COMMENT_UPLOADING_REQUEST, uploadComments);
 }
 
+
+
 // Edit Comment
 
 const editCommentsAPI = (payload) => {
@@ -104,7 +107,6 @@ function* editComments(action) {
 function* watchEditComments() {
     yield takeEvery(COMMENT_EDIT_UPLOADING_REQUEST, editComments);
 }
-
 
 // Delete Comment
 
@@ -146,8 +148,8 @@ function* watchDeleteComments() {
     yield takeEvery(COMMENT_DELETE_REQUEST, deleteComments);
 }
 
-
-
 export default function* commentSaga() {
-    yield all([fork(watchLoadComments), fork(watchUpLoadComments), fork(watchEditComments), fork(watchDeleteComments)]);
+    yield all([fork(watchLoadComments), fork(watchUpLoadComments), fork(watchEditComments), fork(watchDeleteComments), 
+  
+    ]);
 }

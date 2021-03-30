@@ -1,17 +1,26 @@
 import React, { useState, useRef } from 'react';
 import { Button, Input, Row, Col, Form } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { COMMENT_DELETE_REQUEST, COMMENT_EDIT_UPLOADING_REQUEST, COMMENT_LOADING_REQUEST } from '../../../redux/types';
+import { COMMENT_DELETE_REQUEST, COMMENT_EDIT_UPLOADING_REQUEST, COMMENT_LOADING_REQUEST, COMMENT_UPLOADING_REQUEST } from '../../../redux/types';
 
-const CommentList = ({ id, comments, commentId }) => {
+const CommentList = ({ id, comments, commentId, userName }) => {
     const dispatch = useDispatch();
-    const [OpenReply, setOpenReply] = useState(false);
+    const [OpenEdit, setOpenEdit] = useState(false);
     const [CommentValue, setCommentValue] = useState({ contents: '' });
     const { userId } = useSelector((state) => state.auth);
 
-    const onClickReplyOpen = () => {
-        setOpenReply(!OpenReply);
+
+    const onClickOpenEdit = () => {
+        setOpenEdit(!OpenEdit);
     };
+
+    const onChange = (e) => {
+        setCommentValue({
+            ...CommentValue,
+            [e.target.name]: e.target.value,
+        });
+    };
+
     const onClickDelete = () => {
         const body = {
             commentId,
@@ -28,14 +37,7 @@ const CommentList = ({ id, comments, commentId }) => {
         });
     };
 
-    const onChange = (e) => {
-        setCommentValue({
-            ...CommentValue,
-            [e.target.name]: e.target.value,
-        });
-    };
-
-    const onSubmit = (e) => {
+    const onSubmitEdit = (e) => {
         e.preventDefault();
         const { contents } = CommentValue;
         const body = {
@@ -52,7 +54,7 @@ const CommentList = ({ id, comments, commentId }) => {
         });
         resetValue.current.value = '';
         setCommentValue('');
-        setOpenReply(false);
+        setOpenEdit(false);
     };
 
     const resetValue = useRef(null);
@@ -64,7 +66,6 @@ const CommentList = ({ id, comments, commentId }) => {
                     <div className="font-weight-bold">{comments.writerName ? comments.writerName : comments.writer}</div>
                     <div className="text-small">
                         <span className="font-weight-bold">
-                            {/* .split(" ")은 한 칸 나누기 위함 */}
                             {comments.date.split(' ')[0]}
                         </span>
                         <span className="font-weight-light">
@@ -73,8 +74,8 @@ const CommentList = ({ id, comments, commentId }) => {
                             {comments.date.split(' ')[1]}
                         </span>
                         <Col>
-                            {userId === comments.writer && <span onClick={onClickReplyOpen}>수정{' | '}</span>}
-                            
+                            {userId === comments.writer && <span onClick={onClickOpenEdit}>수정{' | '}</span>}
+
                             {userId === comments.writer && <span onClick={onClickDelete}>삭제</span>}
                         </Col>
                     </div>
@@ -82,8 +83,8 @@ const CommentList = ({ id, comments, commentId }) => {
                 <Row className="p-2">
                     <div>{comments.contents}</div>
                 </Row>
-                {OpenReply && (
-                    <Form style={{ display: 'flex' }} onSubmit={onSubmit}>
+                {OpenEdit && (
+                    <Form style={{ display: 'flex' }} onSubmit={onSubmitEdit}>
                         <Input innerRef={resetValue} type="textarea" style={{ width: '100%', borderRadius: '5px' }} onChange={onChange} name="contents" defaultValue={comments.contents} />
                         <br />
                         <Button color="primary" className="col-md-2 ">
