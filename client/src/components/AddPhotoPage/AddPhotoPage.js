@@ -50,7 +50,7 @@ const AddPhotoPage = (props) => {
         if (genresinput === '') {
             return alert('장르 정보를 입력해야 합니다.');
         }
-        if ([...Images] === '') {
+        if (Images.length === 0) {
             return alert('사진을 입력해야 합니다.');
         }
 
