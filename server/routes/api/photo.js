@@ -91,11 +91,11 @@ router.get('/bestphotos', async (req, res) => {
 
         const { limit, offset } = getPagination(page, size);
 
-        await Photo.paginate(condition, { offset, limit }).then((data) => {
+        await Photo.paginate(condition, { offset, limit, sort: { createdAt: -1 } }).then((data) => {
             console.log(data);
             res.send({
                 totalItems: data.totalDocs,
-                bestphotodata: data.docs.reverse(),
+                bestphotodata: data.docs,
                 totalPages: data.totalPages,
                 currentPage: data.page - 1,
             });
