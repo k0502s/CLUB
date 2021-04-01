@@ -55,14 +55,14 @@ const Login = () => {
             {localMsg ? <Alert color="danger">{localMsg}</Alert> : null}
             <Form onSubmit={onSubmit}>
                 <FormGroup>
-                    <Label style={{ marginLeft: '1.5rem' }} for="email">
+                    <Label for="email" style={{ marginLeft: '1.5rem' }}>
                         Email
                     </Label>
-                    <Input style={{ width: '80%', marginLeft: '1.5rem' }} type="email" name="email" id="email" placeholder="Email" onChange={onChange} />
-                    <Label style={{ marginTop: '0.5rem', marginLeft: '1.5rem' }} for="password">
+                    <Input type="email" name="email" id="email" placeholder="Email" onChange={onChange} style={{ width: '80%', marginLeft: '1.5rem' }} />
+                    <Label for="password" style={{ marginTop: '0.5rem', marginLeft: '1.5rem' }}>
                         Password
                     </Label>
-                    <Input style={{ width: '80%', marginLeft: '1.5rem' }} type="password" name="password" id="password" placeholder="Password" onChange={onChange} />
+                    <Input type="password" name="password" id="password" placeholder="Password" onChange={onChange} style={{ width: '80%', marginLeft: '1.5rem' }} />
                     <Col>
                         <Button className="mt-4" block id="btn">
                             LOGIN

@@ -118,7 +118,7 @@ const AddPostPage = () => {
                             </FormGroup>
                             <FormGroup className="mb-3">
                                 <Label for="category">카테고리</Label>
-                                <Input onChange={onChange} value={form.category} name="category" type="select">
+                                <Input type="select"  name="category" onChange={onChange} value={form.category}>
                                     <option value="">카테고리를 선택해주세요</option>
                                     {Category.map((item) => (
                                         <option key={item.key} value={item.key}>

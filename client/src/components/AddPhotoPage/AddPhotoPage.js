@@ -96,14 +96,14 @@ const AddPhotoPage = (props) => {
                         ))}
                     </Col>
                     <Form onSubmit={submitHandler} name="myform">
-                        <Label>제목</Label>
-                        <Input onChange={onChange} value={form.CardTitle} name="title" />
+                        <Label for="title">제목</Label>
+                        <Input type="text" name="title" onChange={onChange} value={form.CardTitle} />
                         <br />
-                        <Label>설명</Label>
-                        <Input onChange={onChange} type="textarea" value={form.description} name="description" />
+                        <Label for="content">설명</Label>
+                        <Input type="text"  name="description" onChange={onChange} type="textarea" value={form.description} />
                         <br />
-                        <Label>장르</Label>
-                        <Input onChange={onChange} value={form.genre} name="genres" type="select">
+                        <Label for="genres">장르</Label>
+                        <Input type="select" name="genres" onChange={onChange} value={form.genre}>
                             <option value="">장르를 선택해주세요</option>
                             {Genres.map((item) => (
                                 <option key={item.key} value={item.key}>
