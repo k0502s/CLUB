@@ -1,0 +1,146 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AddPhotoPage /> matches snapshot 1`] = `
+<div>
+  <div
+    class="mt-4 col-md-6 offset-md-3"
+  >
+    <div
+      class="card"
+      style="border-radius: 25px; margin-bottom: 20px;"
+    >
+      <div
+        class="card-header"
+      >
+        <strong>
+          포토 추가하기
+        </strong>
+      </div>
+      <div
+        class="card card-body"
+      >
+        <h5
+          class="card-title"
+        >
+          ※ 이미지 파일 업로드 참고 사항
+        </h5>
+        <p
+          class="card-text"
+        >
+          1. 이미지 파일 사이즈는 100 * 1024 * 1024의 제한을 두고 있습니다.
+        </p>
+        <p
+          class="card-text"
+        >
+          2. 추가로 한 장 이상의 이미지 파일을 업로드 할 수 있습니다.
+        </p>
+        <p
+          class="card-text"
+        >
+          <section>
+            <button
+              class="mr-2 btn btn-secondary"
+              tabindex="0"
+              type="button"
+            >
+              <input
+                autocomplete="off"
+                multiple=""
+                style="display: none;"
+                tabindex="-1"
+                type="file"
+              />
+              업로드
+            </button>
+            <button
+              class="btn-danger btn btn-secondary"
+              type="button"
+            >
+              파일 제거
+            </button>
+          </section>
+        </p>
+      </div>
+      <div
+        class="card-body"
+      >
+        <div
+          class="offset-md-4"
+          style="display: flex; width: 350px; height: 240px; overflow: scroll;"
+        />
+        <form
+          class=""
+          name="myform"
+        >
+          <label
+            class=""
+            for="title"
+          >
+            제목
+          </label>
+          <input
+            class="form-control"
+            name="title"
+            type="text"
+            value=""
+          />
+          <br />
+          <label
+            class=""
+            for="content"
+          >
+            설명
+          </label>
+          <textarea
+            class="form-control"
+            name="description"
+          />
+          <br />
+          <label
+            class=""
+            for="genres"
+          >
+            장르
+          </label>
+          <select
+            class="form-control"
+            name="genres"
+          >
+            <option
+              value=""
+            >
+              장르를 선택해주세요
+            </option>
+            <option
+              value="1"
+            >
+              풍경
+            </option>
+            <option
+              value="2"
+            >
+              인물
+            </option>
+            <option
+              value="3"
+            >
+              접사
+            </option>
+            <option
+              value="4"
+            >
+              습작
+            </option>
+          </select>
+          <button
+            class="col-md-2 offset-md-10 mt-5 btn btn-secondary"
+            type="button"
+          >
+            확인
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;

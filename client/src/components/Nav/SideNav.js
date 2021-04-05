@@ -1,5 +1,5 @@
 import React from 'react';
-import Login from '../auth/Login';
+import Login from '../Auth/Login';
 import { Card, Button, CardHeader, CardFooter, CardBody, CardTitle, CardText, Col, Row } from 'reactstrap';
 
 const SideNav = () => {

@@ -93,6 +93,7 @@ const photoReducer = (state = initialState, action) => {
         case BESTPHOTO_IMAGES_SUCCESS:
             return {
                 ...state,
+                isLoading: false,
                 bestimages: action.payload
             };
         case BESTPHOTO_IMAGES_FAILURE:

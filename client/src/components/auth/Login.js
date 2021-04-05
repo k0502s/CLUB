@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useCallback, useEffect } from 'react';
-import Register from '../auth/Register';
+import Register from './Register';
 import { Link } from 'react-router-dom';
 import { Alert, Form, FormGroup, Label, Input, Button, NavLink, Col, CardTitle, CardSubtitle } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
