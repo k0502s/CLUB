@@ -506,7 +506,7 @@ describe('redux saga test', () => {
             .silentRun();
     });
 
-    it('포토 편집 성공 => ', () => {
+    it('포토 편집 업로드 성공 => ', () => {
         const data = true;
         return expectSaga(watchPhotoUpdate)
             .withReducer(photoReducer)
@@ -520,7 +520,7 @@ describe('redux saga test', () => {
             })
             .silentRun();
     });
-    it('포토 편집 실패 => ', () => {
+    it('포토 편집 업로드 실패 => ', () => {
         const data = true;
         const error = new Error('Whoops');
         return expectSaga(watchPhotoUpdate)
