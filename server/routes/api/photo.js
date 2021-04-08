@@ -5,12 +5,9 @@ import moment from 'moment';
 import Photo from '../../models/photo.js';
 import User from '../../models/user.js';
 import auth from '../../middleware/auth.js';
+import comment from '../../models/comment.js';
 
 const router = express.Router();
-
-//=================================
-//             Photo
-//=================================
 
 import multerS3 from 'multer-s3';
 import path from 'path';
@@ -80,7 +77,7 @@ router.get('/photos', async (req, res) => {
         });
     } catch (e) {
         console.log(e);
-        return res.status(400).send(err);
+        res.status(400).json({ success: false });
     }
 });
 
@@ -102,7 +99,7 @@ router.get('/bestphotos', async (req, res) => {
         });
     } catch (e) {
         console.log(e);
-        return res.status(400).send(err);
+        res.status(400).json({ success: false });
     }
 });
 
@@ -115,7 +112,7 @@ router.get('/photo_by_id', async (req, res) => {
         res.json(photodetail);
     } catch (e) {
         console.log(e);
-        return res.status(400).send(err);
+        res.status(400).json({ success: false });
     }
 });
 
@@ -126,7 +123,7 @@ router.get('/bestimages', async (req, res) => {
         res.json(bestphotoes);
     } catch (e) {
         console.log(e);
-        return res.status(400).send(err);
+        res.status(400).json({ success: false });
     }
 });
 
@@ -134,17 +131,17 @@ router.delete('/:id', auth, async (req, res) => {
     try {
         console.log(req.params);
         await Photo.deleteMany({ _id: req.params.id });
-        // await Comment.deleteMany({ post: req.params.id });
-        // await User.findByIdAndUpdate(req.user.id, {
-        //   $pull: {
-        //     posts: req.params.id,
-        //     comments: { post_id: req.params.id },
-        //   },
-        // });
+        await Comment.deleteMany({ post: req.params.id });
+        await User.findByIdAndUpdate(req.user.id, {
+          $pull: {
+            posts: req.params.id,
+            comments: { post_id: req.params.id },
+          },
+        });
         return res.json({ success: true });
     } catch (e) {
         console.log(e);
-        return res.status(400).send(err);
+        res.status(400).json({ success: false });
     }
 });
 
@@ -154,7 +151,7 @@ router.get('/:id/edit', async (req, res) => {
         res.json(photo);
     } catch (e) {
         console.log(e);
-        return res.status(400).send(err);
+        res.status(400).json({ success: false });
     }
 });
 
@@ -163,10 +160,10 @@ router.post('/:id/edit', async (req, res) => {
         console.log(req.body.id, 'ID');
 
         await Photo.findByIdAndUpdate(req.body.id, req.body, { new: true });
-        res.json({ id: req.body.id });
+        res.json({ id: req.body.id, success: true });
     } catch (e) {
         console.log(e);
-        return res.status(400).send(err);
+        res.status(400).json({ success: false });
     }
 });
 

@@ -9,6 +9,5 @@ export default {
     dialogFlowSessionID: 'bot-text',
     dialogFlowSessionLanguageCode: 'ko',
     googleClientEmail: 'chat-bot-test@chat-307806.iam.gserviceaccount.com',
-    googlePrivateKey:
-    process.env.GOOGLE_PRIVATE_KEY,
+    googlePrivateKey: process.env.GOOGLE_PRIVATE_KEY,
 };

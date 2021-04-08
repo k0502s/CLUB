@@ -6,12 +6,9 @@ import config from '../../config/index.js';
 import auth from '../../middleware/auth.js';
 const { JWT_SECRET } = config;
 
-
 import User from '../../models/user.js';
 
 const router = express.Router();
-
-
 
 router.get('/', async (req, res) => {
     try {
@@ -20,21 +17,18 @@ router.get('/', async (req, res) => {
         res.status(200).json(users);
     } catch (e) {
         console.log(e);
-        res.status(400).json({ msg: e.message });
+        res.status(400).json({ success: false });
     }
 });
 
-
-
 router.post('/', (req, res) => {
     console.log(req.body);
-    const { name, email, password, camera, sex} = req.body;
+    const { name, email, password, camera, sex } = req.body;
 
-    
-    if (!name || !email || !password || !camera || sex === 0 ) {
+    if (!name || !email || !password || !camera || sex === 0) {
         return res.status(400).json({ fail_msg: '모든 정보를 입력해주세요' });
     }
-   
+
     User.findOne({ email }).then((user) => {
         if (user) return res.status(400).json({ fail_msg: '이미 가입된 유저가 존재합니다' });
         const newUser = new User({
@@ -42,7 +36,7 @@ router.post('/', (req, res) => {
             email,
             password,
             camera,
-            sex
+            sex,
         });
 
         bcrypt.genSalt(10, (err, salt) => {
@@ -59,7 +53,7 @@ router.post('/', (req, res) => {
                                 name: user.name,
                                 email: user.email,
                                 camera: user.camera,
-                                sex: user.sex
+                                sex: user.sex,
                             },
                         });
                     });
@@ -68,8 +62,6 @@ router.post('/', (req, res) => {
         });
     });
 });
-
-
 
 router.post('/:userName/profile', auth, async (req, res) => {
     try {
@@ -117,6 +109,7 @@ router.post('/:userName/profile', auth, async (req, res) => {
         });
     } catch (e) {
         console.log(e);
+        res.status(400).json({ success: false });
     }
 });
 

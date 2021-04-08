@@ -15,7 +15,7 @@ router.post('/getLikes', async (req, res) => {
         res.status(200).json({ success: true, likes });
     } catch (e) {
         console.log(e);
-        return res.status(400).send(err);
+        res.status(400).json({ success: false });
     }
 });
 
@@ -31,7 +31,7 @@ router.post('/getDislikes', async (req, res) => {
         res.status(200).json({ success: true, dislikes });
     } catch (e) {
         console.log(e);
-        return res.status(400).send(err);
+        res.status(400).json({ success: false });
     }
 });
 

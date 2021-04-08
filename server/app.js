@@ -5,7 +5,7 @@ import hpp from 'hpp';
 import helmet from 'helmet';
 import cors from 'cors';
 
-//Routes
+
 import userRoutes from './routes/api/user.js';
 import authRoutes from './routes/api/auth.js';
 import chatbotRoutes from './routes/api/chatbot.js';
