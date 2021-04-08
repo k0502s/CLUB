@@ -31,7 +31,7 @@ const initialState = {
     totalPages: '',
     currentPage: '',
     bestphotodata: '',
-    bestimages:'',
+    bestimages: '',
     detailphoto: '',
     detailimages: '',
     writerName: '',
@@ -50,12 +50,14 @@ const photoReducer = (state = initialState, action) => {
             return {
                 ...state,
                 success: action.payload.success,
+                isLoading: false,
             };
         case PHOTO_UPLOADING_FAILURE:
             return {
                 ...state,
                 errorMsg: 'error',
                 success: action.payload.success,
+                isLoading: false,
             };
 
         case PHOTO_LIST_REQUEST:
@@ -72,6 +74,7 @@ const photoReducer = (state = initialState, action) => {
                 totalPages: action.payload.totalPages,
                 currentPage: action.payload.currentPage,
                 detailphoto: '',
+                isLoading: false,
             };
         case PHOTO_LIST_FAILURE:
             return {
@@ -94,14 +97,14 @@ const photoReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                bestimages: action.payload
+                bestimages: action.payload,
             };
         case BESTPHOTO_IMAGES_FAILURE:
             return {
                 ...state,
                 isLoading: false,
                 errorMsg: 'error',
-                bestimages: ''
+                bestimages: '',
             };
         case BESTPHOTO_LIST_REQUEST:
             return {
@@ -117,6 +120,7 @@ const photoReducer = (state = initialState, action) => {
                 totalPages: action.payload.totalPages,
                 currentPage: action.payload.currentPage,
                 detailphoto: '',
+                isLoading: false,
             };
         case BESTPHOTO_LIST_FAILURE:
             return {
@@ -141,6 +145,7 @@ const photoReducer = (state = initialState, action) => {
                 detailphoto: action.payload,
                 writerName: action.payload.writer.name,
                 writerId: action.payload.writer._id,
+                isLoading: false,
             };
         case PHOTO_DERAIL_FAILURE:
             return {
@@ -161,6 +166,7 @@ const photoReducer = (state = initialState, action) => {
             return {
                 ...state,
                 detailphoto: '',
+                isLoading: false,
             };
         case PHOTO_EDIT_UPLOADING_FAILURE:
             return {
@@ -179,7 +185,7 @@ const photoReducer = (state = initialState, action) => {
                 ...state,
                 detailphoto: action.payload,
                 detailimages: action.payload.images,
-                detailphoto: '',
+                isLoading: false,
             };
         case PHOTO_EDIT_LOADING_FAILURE:
             return {

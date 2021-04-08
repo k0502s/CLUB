@@ -197,6 +197,7 @@ function* photoDelete(action) {
         console.log(result);
         yield put({
             type: PHOTO_DELETE_SUCCESS,
+            payload: result.data,
         });
         yield put(push(`/photolist_${genres}`));
     } catch (e) {

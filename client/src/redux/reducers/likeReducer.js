@@ -20,10 +20,10 @@ import {
 } from '../types';
 
 const initialState = {
-    likes: '',
-    dislikes: '',
-    // uplike: '',
-    // unlike: '',
+    // likes: '',
+    // dislikes: '',
+    uplike: '',
+    unlike: '',
     updislike: '',
     undislike: '',
 };

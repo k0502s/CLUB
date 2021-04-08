@@ -104,7 +104,6 @@ const postReducer = (state = initialState, action) => {
                 ...state,
                 postDetail: action.payload,
                 loading: false,
-                postDetail: '',
                 writerId: '',
                 title: '',
             };
