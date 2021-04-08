@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import loadUser from "./components/auth/loadUser";
+import loadUser from "./components/Authentication/loadUser";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/custom.scss';
 loadUser();
