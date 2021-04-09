@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import Pagination from '@material-ui/lab/Pagination';
 import SideNav from '../../Nav/SideNav';
+import LocationDisplay from '../../../utils/LocationDisplay';
 import { useSelector, useDispatch } from 'react-redux';
 import { PHOTO_LIST_REQUEST } from '../../../redux/types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -85,11 +86,11 @@ const PhotoList_1 = () => {
 
                     <Col md={{ size: 5, offset: 1 }}>
                         <InputGroup className="mb-3">
-                            <Input type="text" className="form-control" placeholder="제목 + 내용" value={searchTitle} onChange={onChangeSearchTitle} />
+                            <Input type="text" className="form-control" placeholder="제목 + 내용" value={searchTitle} onChange={onChangeSearchTitle} data-testid='input-search'/>
                             <InputGroupAddon>
-                                <Button onClick={retrieveTutorials}>Search</Button>
+                                <Button onClick={retrieveTutorials} data-testid='search-btn'>Search</Button>
                             </InputGroupAddon>
-                            <Link to="/addphoto">
+                            <Link to="/addphoto" data-testid='photo-add'>
                                 <Button className="ml-3">포토 올리기</Button>
                             </Link>
                         </InputGroup>
@@ -101,16 +102,16 @@ const PhotoList_1 = () => {
                     {photodata &&
                         photodata.map((photo, index) => (
                             <Col md={{ size: 4 }} className="mb-3 mt-3" key={index}>
-                                <Link to={`/photo/${photo._id}`}>
+                                <Link to={`/photo/${photo._id}`} data-testid='photo-detail'>
                                     <Card inverse>
-                                        <CardImg width="100%" src={photo.images[0]} alt="Card image cap" id="photoimg" />
+                                        <CardImg width="100%" src={photo.images[0]} alt="Card image cap" id="photoimg" data-testid='photo-image'/>
                                         <CardImgOverlay>
-                                            <CardTitle tag="h5">{photo.title}</CardTitle>
-                                            <CardText>{photo.description}</CardText>
+                                            <CardTitle tag="h5" data-testid='photo-title'>{photo.title}</CardTitle>
+                                            <CardText data-testid='photo-description'>{photo.description}</CardText>
                                             <CardText>
-                                                <small>{photo.date} </small>
+                                                <small data-testid='photo-date'>{photo.date} </small>
                                             </CardText>
-                                            <CardText>
+                                            <CardText data-testid='photo-views'>
                                                 {' '}
                                                 <FontAwesomeIcon icon={faMouse} />
                                                 &nbsp;{photo.views}
@@ -135,6 +136,7 @@ const PhotoList_1 = () => {
                     <Pagination className="my-5" color="primary" count={totalPages} page={page} siblingCount={1} boundaryCount={1} shape="rounded" onChange={handlePageChange} />
                 </Col>
             </Col>
+            <LocationDisplay />
         </Row>
     );
 };
