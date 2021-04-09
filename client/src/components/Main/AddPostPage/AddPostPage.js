@@ -114,14 +114,14 @@ const AddPostPage = () => {
                         <Form onSubmit={onSubmit} name="myform">
                             <FormGroup className="mb-3">
                                 <Label for="title">제목</Label>
-                                <Input type="text" name="title" id="title" className="form-control" onChange={onChange} />
+                                <Input type="text" name="title" id="title" className="form-control" onChange={onChange} data-testid='add-title'/>
                             </FormGroup>
                             <FormGroup className="mb-3">
                                 <Label for="category">카테고리</Label>
                                 <Input type="select"  name="category" onChange={onChange} value={form.category}>
                                     <option value="">카테고리를 선택해주세요</option>
                                     {Category.map((item) => (
-                                        <option key={item.key} value={item.key}>
+                                        <option key={item.key} value={item.key} data-testid='select-option'>
                                             {item.value}
                                         </option>
                                     ))}
@@ -135,7 +135,7 @@ const AddPostPage = () => {
                                     onInit={Myinit}
                                     onBlur={getDataFromCKEditor} //onBlur가 onChange, onClike 보다 렉이 덜 발생한다.
                                 />
-                                <Button color="success" block className="mt-3 col-md-2 offset-md-10 mb-3">
+                                <Button color="success" block className="mt-3 col-md-2 offset-md-10 mb-3" data-testid='add-submit'>
                                     제출하기
                                 </Button>
                             </FormGroup>
