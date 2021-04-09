@@ -30,7 +30,7 @@ const PostSchema = new mongoose.Schema({
     },
     fileUrl: {
         type: String,
-        default: 'https://source.unsplash.com/random/301x201',
+        default: '',
     },
     category: {
         type: Number,

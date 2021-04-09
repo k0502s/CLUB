@@ -61,7 +61,7 @@ router.get('/posts', async (req, res) => {
 
         const { limit, offset } = getPagination(page, size);
 
-        await Post.paginate(condition, { offset, limit, sort: { date: -1 } }).then((data) => {
+        await Post.paginate(condition, { offset, limit, sort: { numberId: -1 } }).then((data) => {
             console.log(data);
             res.send({
                 totalItems: data.totalDocs,

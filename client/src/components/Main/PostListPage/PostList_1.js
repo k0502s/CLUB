@@ -5,7 +5,7 @@ import Pagination from '@material-ui/lab/Pagination';
 import SideNav from '../../Nav/SideNav';
 import LocationDisplay from '../../../utils/LocationDisplay';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight, faMouse } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faMouse, faImage } from '@fortawesome/free-solid-svg-icons';
 import { useSelector, useDispatch } from 'react-redux';
 import { POSTS_LIST_REQUEST } from '../../../redux/types';
 import { Card, CardTitle, CardText, CardImg, CardImgOverlay, Row, Col, Button, InputGroup, InputGroupAddon, Input, Label, Table } from 'reactstrap';
@@ -116,19 +116,29 @@ const PostList_1 = () => {
                             postdata.map((post, index) => (
                                 <tbody key={index}>
                                     <tr>
-                                        <th scope="row" style={{ width: '10%', fontWeight: 'lighter' }} data-testid='post-number'>
+                                        <th scope="row" style={{ width: '10%', fontWeight: 'lighter' }} data-testid="post-number">
                                             {post.numberId}
                                         </th>
 
                                         <td style={{ width: '45%', color: 'black', fontWeight: 'bold', fontSize: 'large' }}>
                                             <Link to={`/post/${post._id}`} style={{ color: 'inherit' }} data-testid="post-detail">
-                                                {post.title} <span style={{ fontWeight: 'lighter' }} data-testid='post-comments'>[{post.comments.length}]</span>
+                                                {post.title}{' '}
+                                                <span style={{ fontWeight: 'lighter' }} data-testid="post-comments">
+                                                    [{post.comments.length}]
+                                                </span>{' '}
+                                                <span>{post.fileUrl != '' ? <FontAwesomeIcon icon={faImage} /> : ''}</span>
                                             </Link>
                                         </td>
 
-                                        <td style={{ width: '15%', textAlign: 'center' }} data-testid='post-name'>{post.writerName}</td>
-                                        <td style={{ width: '15%', textAlign: 'center' }} data-testid='post-views'>{post.views}</td>
-                                        <td style={{ width: '15%', textAlign: 'center' }} data-testid='post-date'>{post.date}</td>
+                                        <td style={{ width: '15%', textAlign: 'center' }} data-testid="post-name">
+                                            {post.writerName}
+                                        </td>
+                                        <td style={{ width: '15%', textAlign: 'center' }} data-testid="post-views">
+                                            {post.views}
+                                        </td>
+                                        <td style={{ width: '15%', textAlign: 'center' }} data-testid="post-date">
+                                            {post.date}
+                                        </td>
                                     </tr>
                                 </tbody>
                             ))}
