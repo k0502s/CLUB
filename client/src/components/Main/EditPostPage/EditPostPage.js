@@ -113,7 +113,7 @@ const EditPostPage = () => {
                     <CardBody>
                         <Form onSubmit={onSubmit} name="myform">
                             <FormGroup className="mb-3">
-                                <Label for="title">Title</Label>
+                                <Label for="title" data-testid='edit-title'>Title</Label>
                                 <Input
                                     defaultValue={postDetail.title} //초기값 설정
                                     type="text"
@@ -132,7 +132,7 @@ const EditPostPage = () => {
                                     onInit={Myinit}
                                     onBlur={getDataFromCKEditor} //onBlur가 onChange, onClike 보다 렉이 덜 발생한다.
                                 />
-                                <Button color="success" block className="mt-3 col-md-2 offset-md-10 mb-3">
+                                <Button color="success" block className="mt-3 col-md-2 offset-md-10 mb-3" data-testid='edit-submit'>
                                     제출하기
                                 </Button>
                             </FormGroup>
