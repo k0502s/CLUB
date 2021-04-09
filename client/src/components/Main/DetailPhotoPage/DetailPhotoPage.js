@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import PhotoInfo from './Section/PhotoInfo';
 import PhotoImage from './Section/PhotoImage';
 import LikeDislike from './Section/LikeDislike';
+import LocationDisplay from '../../../utils/LocationDisplay'
 import SideNav from '../../Nav/SideNav';
 import { Row, Col, Button } from 'reactstrap';
 import { useSelector, useDispatch } from 'react-redux';
@@ -45,7 +46,7 @@ const DetailPhotoPage = (props) => {
                     <SideNav />
                 </Col>
             <Col md={7} className="mt-3"> <S.Grid>
-            <Helmet title={`Photo | ${detailphoto.title}`} />
+            <Helmet title={`Photo | ${detailphoto.title}`}/>
             <Row md={{ size: 5, offset: 1 }} id="topborder">
                 <h5>포토 상세 보기</h5>
             </Row>
@@ -54,7 +55,7 @@ const DetailPhotoPage = (props) => {
                 <Col>
                     <FontAwesomeIcon icon={faPencilAlt} />
                     &nbsp;
-                    <span>{detailphoto.date}</span>
+                    <span data-testid='span-date'>{detailphoto.date}</span>
                     &nbsp;&nbsp;
                     {/* <FontAwesomeIcon icon={faCommentDots}/>
                   &nbsp;
@@ -62,7 +63,7 @@ const DetailPhotoPage = (props) => {
                     &nbsp;&nbsp;
                     <FontAwesomeIcon icon={faMouse} />
                     &nbsp;
-                    <span>{detailphoto.views}</span>
+                    <span data-testid='span-views'>{detailphoto.views}</span>
                 </Col>
             </Row>
             <Row>
@@ -75,7 +76,7 @@ const DetailPhotoPage = (props) => {
                 </Col>
                 <Col>
                     {writerId === userId && (
-                        <Link to={'/editphoto/' + detailphoto._id}>
+                        <Link to={'/editphoto/' + detailphoto._id} data-testid='photo-edit'>
                             <Button className="btn-danger">편집</Button>
                         </Link>
                     )}
@@ -93,6 +94,7 @@ const DetailPhotoPage = (props) => {
                 <PhotoInfo id={props.match.params.id} />
             </Row>
         </S.Grid></Col>
+        <LocationDisplay />
         </Row>
        
     );
