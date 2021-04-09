@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet';
 import { POST_DETAIL_LOADING_REQUEST, POST_DELETE_REQUEST, COMMENT_LOADING_REQUEST } from '../../../redux/types';
 import { Button, Row, Col, Container } from 'reactstrap';
 import SideNav from '../../Nav/SideNav';
+import LocationDisplay from '../../../utils/LocationDisplay';
 import Comments from './Section/Comments';
 import { Link } from 'react-router-dom';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
@@ -51,8 +52,12 @@ const DetailPostPage = (req) => {
                     if (postDetail && postDetail.writer) {
                         return (
                             <Fragment>
-                                <div className="font-weight-bold text-big">{postDetail.title}</div>
-                                <div className="align-self-end">{postDetail.writer.name}</div>
+                                <div className="font-weight-bold text-big" data-testid="post-title">
+                                    {postDetail.title}
+                                </div>
+                                <div className="align-self-end" data-testid="post-name">
+                                    {postDetail.writer.name}
+                                </div>
                             </Fragment>
                         );
                     }
@@ -64,20 +69,20 @@ const DetailPostPage = (req) => {
                         <Col>
                             <FontAwesomeIcon icon={faPencilAlt} />
                             &nbsp;
-                            <span>{postDetail.date}</span>
+                            <span data-testid="post-date">{postDetail.date}</span>
                             &nbsp;&nbsp;
                             <FontAwesomeIcon icon={faCommentDots} />
                             &nbsp;
-                            <span>{postDetail.comments.length}</span>
+                            <span data-testid="post-comments">{postDetail.comments.length}</span>
                             &nbsp;&nbsp;
                             <FontAwesomeIcon icon={faMouse} />
-                            <span>{postDetail.views}</span>
+                            <span data-testid="post-views">{postDetail.views}</span>
                         </Col>
                     </Row>
                     <Row>
                         <Col md={{ offset: 10 }}>
                             {writerId === userId && (
-                                <Link to={`/editpost/${req.match.params.id}`}>
+                                <Link to={`/editpost/${req.match.params.id}`} data-testid="post-edit">
                                     <Button className="btn-danger">글 수정</Button>
                                 </Link>
                             )}
@@ -119,6 +124,7 @@ const DetailPostPage = (req) => {
             <Col md={7} className="mt-3">
                 {loading === true ? GrowingSpinner : Body}
             </Col>
+            <LocationDisplay />
         </Row>
     );
 };
