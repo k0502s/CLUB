@@ -54,8 +54,8 @@ const Comments = ({ id, userName, userId, commentList }) => {
                 <FormGroup>
                     <Row className="p-2">
                         <Label className="font-weight-bold m-2">댓글 작성</Label>
-                        <Input innerRef={resetValue} type="textarea" name="contents" id="contents" onChange={onChange} placeholder="댓글을 작성해주세요." />
-                        <Button color="primary" block className="mt-2 offset-md-10 col-md-2 ">
+                        <Input innerRef={resetValue} type="textarea" name="contents" id="contents" value={CommentValue.contents} onChange={onChange} placeholder="댓글을 작성해주세요." data-testid='add-comment'/>
+                        <Button color="primary" block className="mt-2 offset-md-10 col-md-2 " data-testid='comment-submit'>
                             등록
                         </Button>
                     </Row>

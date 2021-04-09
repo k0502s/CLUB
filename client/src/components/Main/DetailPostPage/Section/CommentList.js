@@ -63,31 +63,31 @@ const CommentList = ({ id, comments, commentId, userName }) => {
         <div>
             <div>
                 <Row className="justify-content-between p-2">
-                    <div className="font-weight-bold">{comments.writerName ? comments.writerName : comments.writer}</div>
+                    <div className="font-weight-bold" data-testid='comment-name'>{comments.writerName ? comments.writerName : comments.writer}</div>
                     <div className="text-small">
-                        <span className="font-weight-bold">
+                        <span className="font-weight-bold" data-testid='comment-date_1'>
                             {comments.date.split(' ')[0]}
                         </span>
-                        <span className="font-weight-light">
+                        <span className="font-weight-light" data-testid='comment-date_2'>
                             {' '}
                             {/* split으로 쪼개고 난 두 번째 이기에 [1]이다 */}
                             {comments.date.split(' ')[1]}
                         </span>
                         <Col>
-                            {userId === comments.writer && <span onClick={onClickOpenEdit}>수정{' | '}</span>}
+                            {userId === comments.writer && <span onClick={onClickOpenEdit} data-testid='comment-edit-btn'>수정{' | '}</span>}
 
-                            {userId === comments.writer && <span onClick={onClickDelete}>삭제</span>}
+                            {userId === comments.writer && <span onClick={onClickDelete} data-testid='comment-delete-btn'>삭제</span>}
                         </Col>
                     </div>
                 </Row>
                 <Row className="p-2">
-                    <div>{comments.contents}</div>
+                    <div data-testid='comment-content'>{comments.contents}</div>
                 </Row>
                 {OpenEdit && (
                     <Form style={{ display: 'flex' }} onSubmit={onSubmitEdit}>
-                        <Input innerRef={resetValue} type="textarea" style={{ width: '100%', borderRadius: '5px' }} onChange={onChange} name="contents" defaultValue={comments.contents} />
+                        <Input innerRef={resetValue} type="textarea" style={{ width: '100%', borderRadius: '5px' }} onChange={onChange} name="contents" defaultValue={comments.contents} data-testid='edit-comment'/>
                         <br />
-                        <Button color="primary" className="col-md-2 ">
+                        <Button color="primary" className="col-md-2 " data-testid='edit-comment-submit'>
                             수정하기
                         </Button>
                     </Form>
