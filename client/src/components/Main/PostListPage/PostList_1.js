@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import Pagination from '@material-ui/lab/Pagination';
 import SideNav from '../../Nav/SideNav';
+import LocationDisplay from '../../../utils/LocationDisplay';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faMouse } from '@fortawesome/free-solid-svg-icons';
 import { useSelector, useDispatch } from 'react-redux';
@@ -85,11 +86,13 @@ const PostList_1 = () => {
 
                     <Col md={{ size: 5, offset: 1 }}>
                         <InputGroup className="mb-3">
-                            <Input type="text" className="form-control" placeholder="제목 + 내용" value={searchTitle} onChange={onChangeSearchTitle} />
+                            <Input type="text" className="form-control" placeholder="제목 + 내용" value={searchTitle} onChange={onChangeSearchTitle} data-testid="input-search" />
                             <InputGroupAddon>
-                                <Button onClick={retrieveTutorials}>Search</Button>
+                                <Button onClick={retrieveTutorials} data-testid="search-btn">
+                                    Search
+                                </Button>
                             </InputGroupAddon>
-                            <Link to="/addpost">
+                            <Link to="/addpost" data-testid="post-add">
                                 <Button className="ml-3">글쓰기</Button>
                             </Link>
                         </InputGroup>
@@ -113,19 +116,19 @@ const PostList_1 = () => {
                             postdata.map((post, index) => (
                                 <tbody key={index}>
                                     <tr>
-                                        <th scope="row" style={{ width: '10%', fontWeight: 'lighter' }}>
+                                        <th scope="row" style={{ width: '10%', fontWeight: 'lighter' }} data-testid='post-number'>
                                             {post.numberId}
                                         </th>
 
                                         <td style={{ width: '45%', color: 'black', fontWeight: 'bold', fontSize: 'large' }}>
-                                            <Link to={`/post/${post._id}`} style={{ color: 'inherit' }}>
-                                                {post.title}{' '}<span style={{ fontWeight: 'lighter' }}>[{post.comments.length}]</span>
+                                            <Link to={`/post/${post._id}`} style={{ color: 'inherit' }} data-testid="post-detail">
+                                                {post.title} <span style={{ fontWeight: 'lighter' }} data-testid='post-comments'>[{post.comments.length}]</span>
                                             </Link>
                                         </td>
 
-                                        <td style={{ width: '15%', textAlign: 'center' }}>{post.writerName}</td>
-                                        <td style={{ width: '15%', textAlign: 'center' }}>{post.views}</td>
-                                        <td style={{ width: '15%', textAlign: 'center' }}>{post.date}</td>
+                                        <td style={{ width: '15%', textAlign: 'center' }} data-testid='post-name'>{post.writerName}</td>
+                                        <td style={{ width: '15%', textAlign: 'center' }} data-testid='post-views'>{post.views}</td>
+                                        <td style={{ width: '15%', textAlign: 'center' }} data-testid='post-date'>{post.date}</td>
                                     </tr>
                                 </tbody>
                             ))}
@@ -145,6 +148,7 @@ const PostList_1 = () => {
                     <Pagination className="my-5" color="primary" count={totalPages} page={page} siblingCount={1} boundaryCount={1} shape="rounded" onChange={handlePageChange} />
                 </Col>
             </Col>
+            <LocationDisplay />
         </Row>
     );
 };
