@@ -94,7 +94,7 @@ const AddPhotoPage = (props) => {
     };
 
     return (
-        <Col md={{ size: 6, offset: 3 }} className='mt-4'>
+        <Col md={{ size: 6, offset: 3 }} className="mt-4">
             <Helmet title={`포토 편집`} />
             <Card style={{ borderRadius: '25px', marginBottom: '20px' }}>
                 <CardHeader>
@@ -111,26 +111,28 @@ const AddPhotoPage = (props) => {
                 <CardBody>
                     <Col md={{ offset: 4 }} style={{ display: 'flex', width: '350px', height: '240px', overflow: 'scroll' }}>
                         {Images.map((image, index) => (
-                            <img key={index} style={{ minWidth: '300px', width: '300px', height: '240px' }} src={`${image}`} />
+                            <img key={index} style={{ minWidth: '300px', width: '300px', height: '240px' }} src={`${image}`} data-testid="edit-image" />
                         ))}
                     </Col>
                     <Form onSubmit={submitHandler} name="myform">
                         <Label>제목</Label>
-                        <Input onChange={onChange} defaultValue={detailphoto.title} name="title" />
+                        <Input onChange={onChange} defaultValue={detailphoto.title} name="title" data-testid="edit-title" />
                         <br />
                         <Label>설명</Label>
-                        <Input onChange={onChange} type="textarea" defaultValue={detailphoto.description} name="description" />
+                        <Input onChange={onChange} type="textarea" defaultValue={detailphoto.description} name="description" data-testid="edit-description" />
                         <br />
                         <Label>장르</Label>
                         <Input onChange={onChange} defaultValue={detailphoto.genres} name="genres" type="select">
-                            <option value="">장르를 선택해주세요</option>
+                            <option value="">
+                                장르를 선택해주세요
+                            </option>
                             {Genres.map((item) => (
-                                <option key={item.key} value={item.key}>
+                                <option key={item.key} value={item.key} data-testid="select-option">
                                     {item.value}
                                 </option>
                             ))}
                         </Input>
-                        <Button className="col-md-2 offset-md-10 mt-5" onClick={submitHandler}>
+                        <Button className="col-md-2 offset-md-10 mt-5" onClick={submitHandler} data-testid="edit-submit">
                             확인
                         </Button>
                     </Form>
