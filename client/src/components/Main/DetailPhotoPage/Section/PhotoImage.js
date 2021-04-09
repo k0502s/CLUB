@@ -22,9 +22,9 @@ const PhotoImage = () => {
     }, [detailphoto]);
 
     return (
-        <div>
-            <ImageGallery showBullets="true" items={Images} />
-        </div>
+        <>
+            <ImageGallery showBullets="true" items={Images}/>
+        </>
     );
 };
 

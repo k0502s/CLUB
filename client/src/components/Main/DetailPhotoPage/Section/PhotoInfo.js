@@ -2,7 +2,7 @@ import React from 'react';
 import { Table, Row, Col } from 'reactstrap';
 import { useSelector } from 'react-redux';
 
-const PhotoInfo = (props) => {
+const PhotoInfo = () => {
     const { detailphoto, writerName } = useSelector((state) => state.photo);
 
     return (
@@ -18,9 +18,9 @@ const PhotoInfo = (props) => {
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{writerName}</td>
-                            <td>{detailphoto.title}</td>
-                            <td>{detailphoto.views}</td>
+                            <td data-testid='info-name'>{writerName}</td>
+                            <td data-testid='info-title'>{detailphoto.title}</td>
+                            <td data-testid='info-views'>{detailphoto.views}</td>
                         </tr>
                     </tbody>
                 </Table>
@@ -34,7 +34,7 @@ const PhotoInfo = (props) => {
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{detailphoto.description}</td>
+                            <td data-testid='info-description'>{detailphoto.description}</td>
                         </tr>
                     </tbody>
                 </Table>
