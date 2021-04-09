@@ -21,7 +21,7 @@ const AddPhotoPage = (props) => {
     const [Images, setImages] = useState([]);
     const dispatch = useDispatch();
 
-    // const { user } = useSelector((state) => state.auth);
+    const { user } = useSelector((state) => state.auth);
 
     const onChange = (e) => {
         setValues({
@@ -57,7 +57,7 @@ const AddPhotoPage = (props) => {
         const { title, description, genres } = form;
 
         const body = {
-            // writer: user._id,
+            writer: user._id,
             title: title,
             description: description,
             images: Images,
@@ -96,21 +96,21 @@ const AddPhotoPage = (props) => {
                     </Col>
                     <Form onSubmit={submitHandler} name="myform">
                         <Label for="title">제목</Label>
-                        <Input type="text" name="title" onChange={onChange} value={form.CardTitle} />
+                        <Input type="text" name="title" onChange={onChange} value={form.title} data-testid='add-title'/>
                         <br />
                         <Label for="content">설명</Label>
-                        <Input type="text" name="description" onChange={onChange} type="textarea" value={form.description} />
+                        <Input type="textarea" name="description" onChange={onChange} value={form.description} data-testid='add-description'/>
                         <br />
                         <Label for="genres">장르</Label>
                         <Input type="select" name="genres" onChange={onChange} value={form.genre}>
                             <option value="">장르를 선택해주세요</option>
                             {Genres.map((item) => (
-                                <option key={item.key} value={item.key}>
+                                <option key={item.key} value={item.key} data-testid="select-option">
                                     {item.value}
                                 </option>
                             ))}
                         </Input>
-                        <Button className="col-md-2 offset-md-10 mt-5" onClick={submitHandler}>
+                        <Button className="col-md-2 offset-md-10 mt-5" onClick={submitHandler} data-testid='add-submit'>
                             확인
                         </Button>
                     </Form>
