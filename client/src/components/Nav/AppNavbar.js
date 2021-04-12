@@ -3,11 +3,11 @@ import { Navbar, Container, NavbarToggler, Collapse, Nav, NavItem, Form, Button,
 import { useSelector, useDispatch } from 'react-redux';
 import { LOGOUT_REQUEST } from '../../redux/types';
 import { Link } from 'react-router-dom';
+import LocationDisplay from '../../utils/LocationDisplay'
 
 const AppNavbar = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const { isAuthenticated, user, userRole } = useSelector((state) => state.auth);
-    console.log(userRole, 'UserRole');
+    const { user } = useSelector((state) => state.auth);
 
     const dispatch = useDispatch();
 
@@ -25,7 +25,7 @@ const AppNavbar = () => {
                     <Collapse isOpen={isOpen} navbar>
                         <Nav className="mr-auto ml-5" navbar>
                             <NavItem>
-                                <Link to="/">
+                                <Link to="/" data-testid='nav-home'>
                                     <NavLink className="text-white">HOME</NavLink>
                                 </Link>
                             </NavItem>
@@ -34,23 +34,23 @@ const AppNavbar = () => {
                                     포토 갤러리
                                 </DropdownToggle>
                                 <DropdownMenu right>
-                                    <Link to="/bestphotolist">
+                                    <Link to="/bestphotolist" data-testid='nav-bestlist'>
                                         <DropdownItem>인기 갤러리</DropdownItem>
                                     </Link>
                                     <DropdownItem divider />
-                                    <Link to="/photolist_1">
+                                    <Link to="/photolist_1" data-testid='nav-photolist1'>
                                         <DropdownItem>풍경 갤러리</DropdownItem>
                                     </Link>
                                     <DropdownItem divider />
-                                    <Link to="/photolist_2">
+                                    <Link to="/photolist_2" data-testid='nav-photolist2'>
                                         <DropdownItem>인물 갤러리</DropdownItem>
                                     </Link>
                                     <DropdownItem divider />
-                                    <Link to="/photolist_3">
+                                    <Link to="/photolist_3" data-testid='nav-photolist3'>
                                         <DropdownItem>접사 갤러리</DropdownItem>
                                     </Link>
                                     <DropdownItem divider />
-                                    <Link to="/photolist_4">
+                                    <Link to="/photolist_4" data-testid='nav-photolist4'>
                                         <DropdownItem>습작 갤러리</DropdownItem>
                                     </Link>
                                 </DropdownMenu>
@@ -60,11 +60,11 @@ const AppNavbar = () => {
                                     커뮤니티
                                 </DropdownToggle>
                                 <DropdownMenu right>
-                                    <Link to="/postlist_1">
+                                    <Link to="/postlist_1" data-testid='nav-postlist1'>
                                         <DropdownItem>가입 인사</DropdownItem>
                                     </Link>
                                     <DropdownItem divider />
-                                    <Link to="/postlist_2">
+                                    <Link to="/postlist_2" data-testid='nav-postlist2'>
                                         <DropdownItem>모임 후기</DropdownItem>
                                     </Link>
                                 </DropdownMenu>
@@ -88,6 +88,7 @@ const AppNavbar = () => {
                     </Collapse>
                 </Navbar>
             </Col>
+            <LocationDisplay />
         </Fragment>
     );
 };
