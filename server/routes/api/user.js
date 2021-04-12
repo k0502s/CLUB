@@ -26,11 +26,11 @@ router.post('/', (req, res) => {
     const { name, email, password, camera, sex } = req.body;
 
     if (!name || !email || !password || !camera || sex === 0) {
-        return res.status(400).json({ fail_msg: '모든 정보를 입력해주세요' });
+        return res.status(400).json({ fail_msg: '모든 정보를 입력해주세요.' });
     }
 
     User.findOne({ email }).then((user) => {
-        if (user) return res.status(400).json({ fail_msg: '이미 가입된 유저가 존재합니다' });
+        if (user) return res.status(400).json({ fail_msg: '이미 가입된 유저가 존재합니다.' });
         const newUser = new User({
             name,
             email,
@@ -44,7 +44,7 @@ router.post('/', (req, res) => {
                 if (err) throw err;
                 newUser.password = hash;
                 newUser.save().then((user) => {
-                    jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: 3600 }, (err, token) => {
+                    jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: '6h' }, (err, token) => {
                         if (err) throw err;
                         res.json({
                             token,
@@ -87,7 +87,7 @@ router.post('/:userName/profile', auth, async (req, res) => {
         bcrypt.compare(previousPassword, result.password).then((isMatch) => {
             if (!isMatch) {
                 return res.status(400).json({
-                    match_msg: '기존 비밀번호와 일치하지 않습니다',
+                    match_msg: '기존 비밀번호와 일치하지 않습니다.',
                 });
             } else {
                 if (password === rePassword) {
@@ -101,9 +101,9 @@ router.post('/:userName/profile', auth, async (req, res) => {
                             result.save();
                         });
                     });
-                    res.status(200).json({ success: '비밀번호 업데이트에 성공했습니다' });
+                    res.status(200).json({ success: '비밀번호 업데이트에 성공했습니다.' });
                 } else {
-                    res.status(400).json({ fail_msg: '새로운 비밀번호가 일치하지 않습니다' });
+                    res.status(400).json({ fail_msg: '새로운 비밀번호가 일치하지 않습니다.' });
                 }
             }
         });
