@@ -65,6 +65,8 @@ const photoReducer = (state = initialState, action) => {
                 ...state,
                 errorMsg: '',
                 isLoading: true,
+                photodata:'',
+                bestphotodata:''
             };
         case PHOTO_LIST_SUCCESS:
             return {
@@ -111,6 +113,8 @@ const photoReducer = (state = initialState, action) => {
                 ...state,
                 errorMsg: '',
                 isLoading: true,
+                photodata:'',
+                bestphotodata:''
             };
         case BESTPHOTO_LIST_SUCCESS:
             return {
@@ -138,6 +142,8 @@ const photoReducer = (state = initialState, action) => {
                 ...state,
                 errorMsg: '',
                 isLoading: true,
+                photodata:'',
+                bestphotodata:''
             };
         case PHOTO_DERAIL_SUCCESS:
             return {
@@ -179,6 +185,8 @@ const photoReducer = (state = initialState, action) => {
                 ...state,
                 errorMsg: '',
                 isLoading: true,
+                photodata:'',
+                bestphotodata:''
             };
         case PHOTO_EDIT_LOADING_SUCCESS:
             return {

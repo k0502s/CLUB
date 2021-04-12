@@ -34,6 +34,7 @@ const postReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: true,
+                postdata: ''
             };
         case POSTS_LIST_SUCCESS:
             return {
@@ -79,6 +80,7 @@ const postReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: true,
+                postdata: ''
             };
         case POST_DETAIL_LOADING_SUCCESS:
             return {
@@ -93,11 +95,13 @@ const postReducer = (state = initialState, action) => {
                 ...state,
                 error: action.payload,
                 loading: false,
+                postdata: ''
             };
         case POST_EDIT_LOADING_REQUEST:
             return {
                 ...state,
                 loading: true,
+                postdata: ''
             };
         case POST_EDIT_LOADING_SUCCESS:
             return {
