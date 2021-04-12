@@ -12,16 +12,16 @@ const Message = (props) => {
         					</div>
         					<div class="chat-body">
         						<div class="chat-message">
-        							<h5>{props.who}</h5>
-        							<p>{props.text}</p>
+        							<h5 data-testid='chat-who'>{props.who}</h5>
+        							<p data-testid='chat-text'>{props.text}</p>
         						</div>
         					</div>
         				</li> ) : (
         				<li class="out">
         					<div class="chat-body">
         						<div class="chat-message">
-        							<h5>{props.who}</h5>
-        							<p>{props.text}</p>
+        							<h5 data-testid='chat-who-me'>{props.who}</h5>
+        							<p data-testid='chat-text-me'>{props.text}</p>
         						</div>
         					</div>
         				</li>) }

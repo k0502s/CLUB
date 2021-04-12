@@ -158,9 +158,10 @@ const Chat = () => {
                         onChange={messageHanlder}
                         value={Mes}
                         type="text"
+                        data-testid='chat-message'
                     />
                     <InputGroupAddon addonType="append">
-                        <Button color="secondary" onClick={MesHanlder}>
+                        <Button color="secondary" onClick={MesHanlder} data-testid='chat-btn'>
                             보내기
                         </Button>
                     </InputGroupAddon>
