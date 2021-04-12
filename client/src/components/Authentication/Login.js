@@ -58,13 +58,13 @@ const Login = () => {
                     <Label for="email" style={{ marginLeft: '1.5rem' }}>
                         Email
                     </Label>
-                    <Input type="email" name="email" id="email" placeholder="Email" onChange={onChange} style={{ width: '80%', marginLeft: '1.5rem' }} />
+                    <Input type="email" name="email" id="email" placeholder="Email" onChange={onChange} style={{ width: '80%', marginLeft: '1.5rem' }} value={form.email} data-testid='login-email'/>
                     <Label for="password" style={{ marginTop: '0.5rem', marginLeft: '1.5rem' }}>
                         Password
                     </Label>
-                    <Input type="password" name="password" id="password" placeholder="Password" onChange={onChange} style={{ width: '80%', marginLeft: '1.5rem' }} />
+                    <Input type="password" name="password" id="password" placeholder="Password" onChange={onChange} style={{ width: '80%', marginLeft: '1.5rem' }} value={form.password} data-testid='login-password'/>
                     <Col>
-                        <Button className="mt-4" block id="btn">
+                        <Button className="mt-4" block id="btn" data-testid='login-button'>
                             LOGIN
                         </Button>
                     </Col>
