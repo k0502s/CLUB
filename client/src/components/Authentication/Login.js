@@ -3,6 +3,7 @@ import Register from './Register';
 import { Link } from 'react-router-dom';
 import { Alert, Form, FormGroup, Label, Input, Button, NavLink, Col, CardTitle, CardSubtitle } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import * as S from './Authentication.style';
 import { LOGIN_REQUEST, LOGOUT_REQUEST } from '../../redux/types';
 
 const Login = () => {
@@ -55,18 +56,14 @@ const Login = () => {
             {localMsg ? <Alert color="danger">{localMsg}</Alert> : null}
             <Form onSubmit={onSubmit}>
                 <FormGroup>
-                    <Label for="email" style={{ marginLeft: '1.5rem' }}>
-                        Email
-                    </Label>
-                    <Input type="email" name="email" id="email" placeholder="Email" onChange={onChange} style={{ width: '80%', marginLeft: '1.5rem' }} value={form.email} data-testid='login-email'/>
-                    <Label for="password" style={{ marginTop: '0.5rem', marginLeft: '1.5rem' }}>
-                        Password
-                    </Label>
-                    <Input type="password" name="password" id="password" placeholder="Password" onChange={onChange} style={{ width: '80%', marginLeft: '1.5rem' }} value={form.password} data-testid='login-password'/>
+                    <S.label for="email">Email</S.label>
+                    <S.input type="email" name="email" id="email" placeholder="Email" onChange={onChange} value={form.email} data-testid="login-email" />
+                    <S.label for="password">Password</S.label>
+                    <S.input type="password" name="password" id="password" placeholder="Password" onChange={onChange} value={form.password} data-testid="login-password" />
                     <Col>
-                        <Button className="mt-4" block id="btn" data-testid='login-button'>
+                        <S.button block margin={'20px'} data-testid="login-button">
                             LOGIN
-                        </Button>
+                        </S.button>
                     </Col>
                 </FormGroup>
             </Form>
@@ -78,29 +75,25 @@ const Login = () => {
 
     const authLink = (
         <Fragment>
-            <Form className="col mt-2">
+            <S.form>
                 {user && user.name ? (
                     <Fragment>
-                        <CardTitle tag="h5" style={{ textAlign: 'center' }}>
-                            안녕하세요.
-                        </CardTitle>
-                        <CardSubtitle tag="h6" className="mb-2 text-muted" style={{ textAlign: 'center', textDecoration: 'underline', textDecorationThickness: '2.22px' }}>
+                        <S.cardtitle tag="h5">안녕하세요.</S.cardtitle>
+                        <S.cardsubtitle tag="h6" className="text-muted">
                             {user ? `${user.name} 님.` : ''}
-                        </CardSubtitle>
+                        </S.cardsubtitle>
                     </Fragment>
                 ) : (
                     <NavLink>
                         <strong>No User</strong>
                     </NavLink>
                 )}
-            </Form>
+            </S.form>
             <Form>
                 <Col>
                     {user && user.name ? (
                         <Link to={`/user/${user.name}/profile`}>
-                            <Button className="mt-4" block id="btn">
-                                PROFILE EDIT
-                            </Button>
+                            <S.button block>PROFILE EDIT</S.button>
                         </Link>
                     ) : (
                         <NavLink>
@@ -109,11 +102,9 @@ const Login = () => {
                     )}
                 </Col>
                 <Col>
-                    <Link onClick={onLogout} to="/">
-                        <Button className="mt-3" block id="btn">
-                            LOGOUT
-                        </Button>
-                    </Link>
+                    <S.button onClick={onLogout} block margin={'12px'}>
+                        LOGOUT
+                    </S.button>
                 </Col>
             </Form>
         </Fragment>

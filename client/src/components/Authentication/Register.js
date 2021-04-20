@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { CLEAR_ERROR_REQUEST, REGISTER_REQUEST } from '../../redux/types';
+import * as S from './Authentication.style';
 import { NavLink, Modal, ModalHeader, ModalBody, Alert, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
 const Sexes = [
@@ -59,34 +60,34 @@ const RegisterModal = () => {
     };
     return (
         <div>
-            <Button onClick={handleToggle} block id="btn" data-testid='register-modal'>
+            <S.button onClick={handleToggle} block data-testid='register-modal'>
                 REGISTER
-            </Button>
+            </S.button>
             <Modal isOpen={modal} toggle={handleToggle}>
                 <ModalHeader toggle={handleToggle}>회원 가입</ModalHeader>
                 <ModalBody>
                     {localMsg ? <Alert color="danger">{localMsg}</Alert> : null}
                     <Form onSubmit={onSubmit}>
                         <FormGroup>
-                            <Label for="name">Name</Label>
+                            <S.Rlabel for="name">Name</S.Rlabel>
                             <Input type="text" name="name" id="name" placeholder="Name" onChange={onChange} value={form.name} data-testid='register-name'/>
-                            <Label for="email">Email</Label>
+                            <S.Rlabel for="email">Email</S.Rlabel>
                             <Input type="email" name="email" id="email" placeholder="Email" onChange={onChange} value={form.email} data-testid='register-email'/>
-                            <Label for="password">Password</Label>
+                            <S.Rlabel for="password">Password</S.Rlabel>
                             <Input type="password" name="password" id="password" placeholder="Password" onChange={onChange} value={form.password} data-testid='register-password'/>
-                            <Label for="camera">Camera</Label>
+                            <S.Rlabel for="camera">Camera</S.Rlabel>
                             <Input type="text" name="camera" id="camera" placeholder="Camera" onChange={onChange} value={form.camera} data-testid='register-camera'/>
-                            <Input onChange={sexChangeHandler} value={Sex} name="sex" style={{ marginTop: 30, marginBottom: 30 }} type="select" id="exampleSelect">
+                            <S.Rinput onChange={sexChangeHandler} value={Sex} name="sex" type="select" id="exampleSelect">
                                 <option value="">성별을 선택해주세요</option>
                                 {Sexes.map((item) => (
                                     <option key={item.key} value={item.key} data-testid="select-option">
                                         {item.value}
                                     </option>
                                 ))}
-                            </Input>
-                            <Button className="mt-2" block id="btn" data-testid="register-btn">
+                            </S.Rinput>
+                            <S.button block data-testid="register-btn">
                                 가입하기
-                            </Button>
+                            </S.button>
                         </FormGroup>
                     </Form>
                 </ModalBody>
