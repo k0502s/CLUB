@@ -5,8 +5,8 @@ import Pagination from '@material-ui/lab/Pagination';
 import SideNav from '../../Nav/SideNav';
 import { useSelector, useDispatch } from 'react-redux';
 import { PHOTO_LIST_REQUEST } from '../../../redux/types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight, faMouse } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faArrowRight, faMouse } from '@fortawesome/free-solid-svg-icons';
 import { Card, CardTitle, CardText, CardImg, CardImgOverlay, Row, Col, Button, InputGroup, InputGroupAddon, Input, Label } from 'reactstrap';
 
 const PhotoList_4 = () => {
@@ -79,7 +79,8 @@ const PhotoList_4 = () => {
 
                 <Row>
                     <Col>
-                        <span style={{ fontWeight: 'bold' }}>HOME</span> <FontAwesomeIcon icon={faArrowRight} /> 포토 갤러리 <FontAwesomeIcon icon={faArrowRight} />{' '}
+                        <span style={{ fontWeight: 'bold' }}>HOME</span>
+                         {/* <FontAwesomeIcon icon={faArrowRight} /> 포토 갤러리 <FontAwesomeIcon icon={faArrowRight} />{' '} */}
                         <span style={{ fontWeight: 'bolder' }}>습작 갤러리</span>
                     </Col>
 
@@ -112,7 +113,7 @@ const PhotoList_4 = () => {
                                             </CardText>
                                             <CardText>
                                                 {' '}
-                                                <FontAwesomeIcon icon={faMouse} />
+                                                {/* <FontAwesomeIcon icon={faMouse} /> */}
                                                 &nbsp;{photo.views}
                                             </CardText>
                                         </CardImgOverlay>

@@ -9,8 +9,8 @@ import Comments from './Section/Comments';
 import { Link } from 'react-router-dom';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import { GrowingSpinner } from '../../../components/Loader/Loader';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPencilAlt, faCommentDots, faMouse } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faPencilAlt, faCommentDots, faMouse } from '@fortawesome/free-solid-svg-icons';
 import BalloonEditor from '@ckeditor/ckeditor5-editor-balloon/src/ballooneditor';
 import { editorConfiguration } from '../../Editor/EditorConfig';
 
@@ -67,15 +67,15 @@ const DetailPostPage = (req) => {
                 <>
                     <Row>
                         <Col>
-                            <FontAwesomeIcon icon={faPencilAlt} />
+                            {/* <FontAwesomeIcon icon={faPencilAlt} /> */}
                             &nbsp;
                             <span data-testid="post-date">{postDetail.date}</span>
                             &nbsp;&nbsp;
-                            <FontAwesomeIcon icon={faCommentDots} />
+                            {/* <FontAwesomeIcon icon={faCommentDots} /> */}
                             &nbsp;
                             <span data-testid="post-comments">{postDetail.comments.length}</span>
                             &nbsp;&nbsp;
-                            <FontAwesomeIcon icon={faMouse} />
+                            {/* <FontAwesomeIcon icon={faMouse} /> */}
                             <span data-testid="post-views">{postDetail.views}</span>
                         </Col>
                     </Row>

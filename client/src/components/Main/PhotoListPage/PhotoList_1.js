@@ -6,8 +6,8 @@ import SideNav from '../../Nav/SideNav';
 import LocationDisplay from '../../../utils/LocationDisplay';
 import { useSelector, useDispatch } from 'react-redux';
 import { PHOTO_LIST_REQUEST } from '../../../redux/types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight, faMouse } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faArrowRight, faMouse } from '@fortawesome/free-solid-svg-icons';
 import { Card, CardTitle, CardText, CardImg, CardImgOverlay, Row, Col, Button, InputGroup, InputGroupAddon, Input, Label } from 'reactstrap';
 
 const PhotoList_1 = () => {
@@ -80,7 +80,8 @@ const PhotoList_1 = () => {
 
                 <Row>
                     <Col>
-                        <span style={{ fontWeight: 'bold' }}>HOME</span> <FontAwesomeIcon icon={faArrowRight} /> 포토 갤러리 <FontAwesomeIcon icon={faArrowRight} />{' '}
+                        <span style={{ fontWeight: 'bold' }}>HOME</span> 
+                        {/* <FontAwesomeIcon icon={faArrowRight} /> 포토 갤러리 <FontAwesomeIcon icon={faArrowRight} />{' '} */}
                         <span style={{ fontWeight: 'bolder' }}>풍경 갤러리</span>
                     </Col>
 
@@ -113,7 +114,7 @@ const PhotoList_1 = () => {
                                             </CardText>
                                             <CardText data-testid='photo-views'>
                                                 {' '}
-                                                <FontAwesomeIcon icon={faMouse} />
+                                                {/* <FontAwesomeIcon icon={faMouse} /> */}
                                                 &nbsp;{photo.views}
                                             </CardText>
                                         </CardImgOverlay>

@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import Pagination from '@material-ui/lab/Pagination';
 import SideNav from '../../Nav/SideNav';
 import LocationDisplay from '../../../utils/LocationDisplay';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight, faMouse, faImage } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faArrowRight, faMouse, faImage } from '@fortawesome/free-solid-svg-icons';
 import { useSelector, useDispatch } from 'react-redux';
 import { POSTS_LIST_REQUEST } from '../../../redux/types';
 import { Card, CardTitle, CardText, CardImg, CardImgOverlay, Row, Col, Button, InputGroup, InputGroupAddon, Input, Label, Table } from 'reactstrap';
@@ -81,7 +81,7 @@ const PostList_1 = () => {
                 <Row>
                     <Col>
                         <span style={{ fontWeight: 'bold' }}>HOME</span>
-                        <FontAwesomeIcon icon={faArrowRight} /> 커뮤니티 <FontAwesomeIcon icon={faArrowRight} /> <span style={{ fontWeight: 'bolder' }}>가입 인사</span>
+                        {/* <FontAwesomeIcon icon={faArrowRight} /> 커뮤니티 <FontAwesomeIcon icon={faArrowRight} /> <span style={{ fontWeight: 'bolder' }}>가입 인사</span> */}
                     </Col>
 
                     <Col md={{ size: 5, offset: 1 }}>
@@ -126,7 +126,7 @@ const PostList_1 = () => {
                                                 <span style={{ fontWeight: 'lighter' }} data-testid="post-comments">
                                                     [{post.comments.length}]
                                                 </span>{' '}
-                                                <span>{post.fileUrl != '' ? <FontAwesomeIcon icon={faImage} /> : ''}</span>
+                                                {/* <span>{post.fileUrl != '' ? <FontAwesomeIcon icon={faImage} /> : ''}</span> */}
                                             </Link>
                                         </td>
 

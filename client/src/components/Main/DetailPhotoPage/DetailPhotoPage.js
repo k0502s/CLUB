@@ -9,8 +9,8 @@ import SideNav from '../../Nav/SideNav';
 import { Row, Col, Button } from 'reactstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { PHOTO_DELETE_REQUEST, PHOTO_DERAIL_REQUEST } from '../../../redux/types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPencilAlt, faCommentDots, faMouse } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faPencilAlt, faCommentDots, faMouse } from '@fortawesome/free-solid-svg-icons';
 import * as S from './DetailPhotoPage.style';
 
 const DetailPhotoPage = (props) => {
@@ -53,7 +53,7 @@ const DetailPhotoPage = (props) => {
 
             <Row>
                 <Col>
-                    <FontAwesomeIcon icon={faPencilAlt} />
+                    {/* <FontAwesomeIcon icon={faPencilAlt} /> */}
                     &nbsp;
                     <span data-testid='span-date'>{detailphoto.date}</span>
                     &nbsp;&nbsp;
@@ -61,7 +61,7 @@ const DetailPhotoPage = (props) => {
                   &nbsp;
                   <span>{detailphoto.comments.length}</span> */}
                     &nbsp;&nbsp;
-                    <FontAwesomeIcon icon={faMouse} />
+                    {/* <FontAwesomeIcon icon={faMouse} /> */}
                     &nbsp;
                     <span data-testid='span-views'>{detailphoto.views}</span>
                 </Col>

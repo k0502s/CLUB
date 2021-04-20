@@ -3,8 +3,8 @@ import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import Pagination from '@material-ui/lab/Pagination';
 import SideNav from '../../Nav/SideNav';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight, faMouse, faImage } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faArrowRight, faMouse, faImage } from '@fortawesome/free-solid-svg-icons';
 import { useSelector, useDispatch } from 'react-redux';
 import { POSTS_LIST_REQUEST } from '../../../redux/types';
 import { Card, CardTitle, CardText, CardImg, CardImgOverlay, Row, Col, Button, InputGroup, InputGroupAddon, Input, Label, Table } from 'reactstrap';
@@ -80,7 +80,7 @@ const PostList_2 = () => {
                 <Row>
                     <Col>
                         <span style={{ fontWeight: 'bold' }}>HOME</span>
-                        <FontAwesomeIcon icon={faArrowRight} /> 커뮤니티 <FontAwesomeIcon icon={faArrowRight} /> <span style={{ fontWeight: 'bolder' }}>모임 후기</span>
+                        {/* <FontAwesomeIcon icon={faArrowRight} /> 커뮤니티 <FontAwesomeIcon icon={faArrowRight} /> <span style={{ fontWeight: 'bolder' }}>모임 후기</span> */}
                     </Col>
 
                     <Col md={{ size: 5, offset: 1 }}>
@@ -118,7 +118,7 @@ const PostList_2 = () => {
                                         <td style={{ width: '45%', color: 'black', fontWeight: 'bold', fontSize: 'large' }}>
                                             <Link to={`/post/${post._id}`} style={{ color: 'inherit' }}>
                                                 {post.title} <span style={{ fontWeight: 'lighter' }}>[{post.comments.length}]</span>{' '}
-                                                <span>{post.fileUrl != '' ? <FontAwesomeIcon icon={faImage} /> : ''}</span>
+                                                {/* <span>{post.fileUrl != '' ? <FontAwesomeIcon icon={faImage} /> : ''}</span> */}
                                             </Link>
                                         </td>
 
