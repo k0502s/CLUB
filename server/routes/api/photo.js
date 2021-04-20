@@ -62,7 +62,7 @@ router.get('/photos', async (req, res) => {
     try {
         const { page, size, title, genres } = req.query;
 
-        var condition = title ? { title: { $regex: new RegExp(title), $options: 'i' }, genres: `${genres}` } : { genres: `${genres}` };
+        var condition = title ? { title: { $regex: new RegExp(title), $options: 'i' }, genres: `${genres}` } : genres ? { genres: `${genres}`} : {} ;
 
         const { limit, offset } = getPagination(page, size);
 
