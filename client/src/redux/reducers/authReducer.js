@@ -27,6 +27,7 @@ const initialState = {
     userId: '',
     userName: '',
     userRole: '',
+    userDate: '',
     errorMsg: '',
     errorMsg1: '',
     successMsg: '',
@@ -133,6 +134,7 @@ const authReducer = (state = initialState, action) => {
                 userId: action.payload._id,
                 userName: action.payload.name,
                 userRole: action.payload.role,
+                userDate: action.payload.register_date,
             };
         case USER_LOADING_FAILURE:
             return {

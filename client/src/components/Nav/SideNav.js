@@ -1,7 +1,7 @@
 import React from 'react';
 import Login from '../Authentication/Login';
 import * as S from './Nav.style'
-import { Card, Button, CardHeader, CardFooter, CardBody, CardTitle, CardText, Col, Row } from 'reactstrap';
+import { CardBody } from 'reactstrap';
 
 const SideNav = () => {
     return (

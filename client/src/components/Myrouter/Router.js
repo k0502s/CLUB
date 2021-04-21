@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import AppNavbar from '../Nav/AppNavbar';
+import ProfileEdit from '../Profile/Section/ProfileEdit';
 import Profile from '../Profile/Profile';
 import Chat from '../Chat/Chat';
 import ChatButton from '../Chat/Section/ChatButton';
@@ -46,7 +47,8 @@ const MyRouter = () => {
                     <Route exact path="/post/:id" component={DetailPostPage} />
                     <Route exact path="/chat" component={Chat} />
                     <Route exact path="/editsuccess" component={EditSuccess} />
-                    <ProfileProtectedRouter exact path="/user/:userName/profile" component={Profile} />
+                    <Route exact path="/profile" component={Profile} />
+                    <ProfileProtectedRouter exact path="/user/:userName/profile" component={ProfileEdit} />
                     <Redirect from="*" to="/" />
                 </Switch>
             </div>

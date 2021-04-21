@@ -92,8 +92,8 @@ const Login = () => {
             <Form>
                 <Col>
                     {user && user.name ? (
-                        <Link to={`/user/${user.name}/profile`}>
-                            <S.button block>PROFILE EDIT</S.button>
+                        <Link to={`/profile`}>
+                            <S.button block>PROFILE</S.button>
                         </Link>
                     ) : (
                         <NavLink>

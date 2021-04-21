@@ -72,18 +72,6 @@ router.post('/:userName/profile', auth, async (req, res) => {
         //  const user = User.findOne({ email })
         //     if (user)
         //       return res.status(400).json({ msg: "이미 가입된 유저가 존재합니다" });
-
-        //   if(!user) {
-        //     await User.findByIdAndUpdate(
-        //       userId,
-        //       {
-        //         name,
-        //         email,
-        //       },
-        //       { new: true } //몽고DB 업데이트 조건
-        //     );
-        //   }
-
         bcrypt.compare(previousPassword, result.password).then((isMatch) => {
             if (!isMatch) {
                 return res.status(400).json({
