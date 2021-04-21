@@ -31,12 +31,10 @@ const cardheader = styled(CardHeader)`
         color: gray;
     }
 `;
-
 const map = styled.div`
     width: 50vw;
     height: 20vw;
 `;
-
 const cardfooter = styled(CardFooter)`
     color: gray;
     text-align: center;
@@ -59,7 +57,6 @@ const mapIcon = styled(BsMap)`
     margin-top: 1px;
     font-size: larger;
 `;
-
 const td = styled.td`
     width: 50%;
     color: ${(props) => props.color};

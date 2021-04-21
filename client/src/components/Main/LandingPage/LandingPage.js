@@ -60,7 +60,7 @@ const LandingPage = () => {
                     <S.cardbody>
                         <PhotoImage />
                     </S.cardbody>
-                    <S.cardfooter>동호회 회원분들이 직접 찍은 사진 작품들입니다!</S.cardfooter>
+                    <S.cardfooter>동호회 회원분들이 직접 찍은 사진 작품들입니다. 더 감상을 원하시면 사진을 클릭하세요! </S.cardfooter>
                 </S.card>
             </S.col>
             <S.col>

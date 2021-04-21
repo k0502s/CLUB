@@ -1,8 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-/* @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
-@import '~react-image-gallery/styles/scss/image-gallery.scss'; */
 body {
     width: 100%;
     height: 100%;
