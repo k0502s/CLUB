@@ -1,12 +1,12 @@
 import React from 'react';
-import { Row, Col } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import logo from './images/로고.png';
 import * as S from './Header.style'
 
 const Header = () => {
     return (
         <S.wrapper>
-            <S.logo src={logo}/>
+            <Link to={'/'}><S.logo src={logo}/></Link>
         </S.wrapper>
     );
 };
