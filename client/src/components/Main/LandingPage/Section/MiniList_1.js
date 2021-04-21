@@ -10,7 +10,7 @@ const MiniList = () => {
     const Postdata = postdata.slice(0, 5);
     return (
         <>
-            <S.card margintop={'20px'}>
+            <S.card margintop={'30px'}>
                 <S.cardheader>
                     <p>
                         <S.helloIcon />

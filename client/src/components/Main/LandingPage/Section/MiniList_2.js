@@ -10,7 +10,7 @@ const MiniList_2 = () => {
     const Photodata = photodata.slice(0, 5);
     return (
         <>
-            <S.card margintop={'20px'} marginbottom={'20px'}>
+            <S.card margintop={'40px'} marginbottom={'20px'}>
             <S.cardheader>
                     <p>
                     <S.photoIcon />
