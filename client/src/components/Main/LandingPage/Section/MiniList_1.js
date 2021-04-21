@@ -11,10 +11,14 @@ const MiniList = () => {
     return (
         <>
             <S.card margintop={'20px'}>
-                <CardHeader>
-                    <S.helloIcon />
-                    가입 인사
-                </CardHeader>
+                <S.cardheader>
+                    <p>
+                        <S.helloIcon />
+                        가입 인사
+                        <span><Link to={'/postlist_1'}>더보기 +</Link></span>
+                    </p>
+                    <small>새로 오신 분들 인사해주세요!</small>
+                </S.cardheader>
                 <Table hover>
                     {postdata &&
                         Postdata.map((post, index) => (
@@ -22,11 +26,7 @@ const MiniList = () => {
                                 <tr>
                                     <S.td width={'50%'} color={'black'}>
                                         <Link to={`/post/${post._id}`} style={{ color: 'inherit' }} data-testid="post-detail">
-                                            {post.title}{' '}
-                                            <span data-testid="post-comments">
-                                                [{post.comments.length}]
-                                            </span>{' '}
-                                            <span>{post.fileUrl != '' ? <BsImageFill /> : ''}</span>
+                                            {post.title} <span data-testid="post-comments">[{post.comments.length}]</span> <span>{post.fileUrl != '' ? <BsImageFill /> : ''}</span>
                                         </Link>
                                     </S.td>
                                     <S.td width={'50%'} text={'center'} color={'gray'} data-testid="post-date">

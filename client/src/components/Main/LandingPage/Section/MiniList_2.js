@@ -11,10 +11,14 @@ const MiniList_2 = () => {
     return (
         <>
             <S.card margintop={'20px'} marginbottom={'20px'}>
-                <CardHeader>
+            <S.cardheader>
+                    <p>
                     <S.photoIcon />
-                    최신 포토
-                </CardHeader>
+                        최신 포토
+                        <span><Link to={'/bestphotolist'}>더보기 +</Link></span>
+                    </p>
+                    <small>회원분들의 사진 작품들응 감상해보세요!</small>
+                </S.cardheader>
                 <Table hover>
                     {photodata &&
                         Photodata.map((photo, index) => (
