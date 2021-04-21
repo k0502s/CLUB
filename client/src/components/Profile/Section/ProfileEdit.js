@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { CLEAR_ERROR_REQUEST, PASSWORD_EDIT_UPLOADING_REQUEST } from '../../../redux/types';
 import Helmet from 'react-helmet';
+import * as S from '../Profile.style'
 import { Col, Card, CardHeader, CardBody, Form, FormGroup, Label, Input, Alert, Button } from 'reactstrap';
 
 const ProfileEdit = (props) => {
@@ -85,9 +86,9 @@ const ProfileEdit = (props) => {
                             <Input type="password" name="rePassword" id="rePassword" className="form-control mb-2" value={form.rePassword} onChange={onChange} data-testid='profile-rePassword'/>
                             {errorMsg ? <Alert color="danger" data-testid='profile-alert_2'>{errorMsg}</Alert> : ''}
                         </FormGroup>
-                        <Button color="dark" block className="mt-2 offset-md-9 col-md-3 " data-testid='profile-btn'>
+                        <S.button color={'#54C5A0'} width={'200px'} justify={'center'} display={'flex'} data-testid='profile-btn'>
                             제출하기
-                        </Button>
+                        </S.button>
                         {/* {successMsg ? <Alert color="success">{successMsg}</Alert> : ''} */}
                     </Form>
                 </CardBody>

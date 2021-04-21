@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Card, Form, FormGroup, Label, Input, Button, NavLink, Col, CardTitle, CardBody } from 'reactstrap';
+import { Card, Label, Button, Alert, Col, CardBody } from 'reactstrap';
 
 const label = styled(Label)`
     margin-top: 15px;
@@ -7,6 +7,10 @@ const label = styled(Label)`
    & span {
        color: gray;
    }
+`;
+const alert = styled(Alert)`
+   color: #fff;
+   background-color: #333;
 `;
 const card = styled(Card)`
     margin-top: 50px;
@@ -36,4 +40,4 @@ const title = styled.div`
     font-size: 50px;
 `;
 
-export { card, cardbody, title, button, label };
+export { card, cardbody, title, button, label, alert };
