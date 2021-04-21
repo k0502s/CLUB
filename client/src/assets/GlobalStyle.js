@@ -1,15 +1,17 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-
+/* @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+@import '~react-image-gallery/styles/scss/image-gallery.scss'; */
 body {
     width: 100%;
     height: 100%;
-    // background: url('../assets/img/fkyhynowp-4-jakob-owens.jpg') no-repeat;
     background-color: #4c443c;
     background-size: cover;
     margin: 0;
     padding: 0;
+    font-size: large;
+    font-family: 'Do Hyeon', sans-serif;
 }
 *, *:before, *:after {
     outline: none;
@@ -87,7 +89,9 @@ textarea {
 }
 
 //slide image
-
+.image-gallery-slide {
+    object-fit: cover;
+}
 .image-gallery-slide img {
     width: 100%;
     height: 55vh;
@@ -95,7 +99,7 @@ textarea {
         height: 250px;
     }
     @media only screen and (min-width:768px) and (max-width:1024px) {
-        height: 250px;
+        height: 230px;
     }
 }
 .fullscreen .image-gallery-image {
@@ -104,11 +108,11 @@ textarea {
 }
 
 .image-gallery-fullscreen-button {
-  right: 150px;
+  right: 100px;
 }
 
 .image-gallery-play-button {
-  left: 150px;
+  left: 100px;
 }
 
 ///////////////

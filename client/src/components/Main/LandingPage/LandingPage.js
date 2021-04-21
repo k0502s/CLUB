@@ -8,8 +8,8 @@ import MiniList2 from './Section/MiniList_2';
 import Map from './Section/map/Map';
 import * as S from './LandingPage.style';
 import { useSelector, useDispatch } from 'react-redux';
-import { BESTPHOTO_IMAGES_REQUEST, POSTS_LIST_REQUEST, PHOTO_LIST_REQUEST } from '../../../redux/types';
-import {  Row, Col } from 'reactstrap';
+import { BESTPHOTO_IMAGES_REQUEST, POSTS_LIST_REQUEST, PHOTO_LIST_REQUEST, USER_LOADING_REQUEST } from '../../../redux/types';
+import { Row, Col, CardBody } from 'reactstrap';
 
 const LandingPage = () => {
     const { isLoading } = useSelector((state) => state.photo);
@@ -25,6 +25,7 @@ const LandingPage = () => {
 
         return params;
     };
+
     useEffect(() => {
         const params = getRequestParams(1);
         dispatch({
@@ -33,6 +34,10 @@ const LandingPage = () => {
         dispatch({
             type: POSTS_LIST_REQUEST,
             payload: { params },
+        });
+        dispatch({
+            type: USER_LOADING_REQUEST,
+            payload: localStorage.getItem('token'),
         });
     }, []);
     useEffect(() => {
@@ -45,29 +50,29 @@ const LandingPage = () => {
 
     const body = (
         <>
-            <Col>
+            <S.col>
                 <S.card marginbottom={'20px'}>
                     <S.cardheader>
                         <S.trophyIcon />
                         동호회 인기 갤러리 작품
                         <small>조회수가 높은 작품들을 기준으로 선정하고 있습니다!</small>
                     </S.cardheader>
-                    <PhotoImage />
+                    <S.cardbody>
+                        <PhotoImage />
+                    </S.cardbody>
                     <S.cardfooter>동호회 회원분들이 직접 찍은 사진 작품들입니다!</S.cardfooter>
                 </S.card>
-            </Col>
-            <Row>
-                <S.col>
-                    <S.card marginbottom={'60px'} margintop={'20px'}>
-                        <S.cardheader>
-                            <S.mapIcon />
-                            다음 모임 장소
-                            <small>다음 모임을 가질 장소를 지도로 알려드립니다!</small>
-                        </S.cardheader>
-                        <Map />
-                    </S.card>
-                </S.col>
-            </Row>
+            </S.col>
+            <S.col>
+                <S.card marginbottom={'60px'} margintop={'20px'}>
+                    <S.cardheader>
+                        <S.mapIcon />
+                        다음 모임 장소
+                        <small>다음 모임을 가질 장소를 지도로 알려드립니다!</small>
+                    </S.cardheader>
+                    <Map />
+                </S.card>
+            </S.col>
         </>
     );
     const sideBody = (
@@ -87,9 +92,9 @@ const LandingPage = () => {
                 {isLoading === true ? '' : sideBody}
             </Col>
             <Helmet title={`HOME`} />
-            <Col md={7} className="mt-4">
+            <S.col md={7} className="mt-4">
                 {isLoading === true ? GrowingSpinner : body}
-            </Col>
+            </S.col>
         </Row>
     );
 };

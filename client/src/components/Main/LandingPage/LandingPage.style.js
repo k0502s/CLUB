@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { BsFillPeopleFill, BsCamera, BsMap } from 'react-icons/bs';
 import { FaTrophy } from 'react-icons/fa';
-import { Navbar, Nav, Button, Label, Input, Form, Col, Card, CardTitle, CardFooter, CardHeader, CardSubtitle } from 'reactstrap';
+import { Col, Card, CardFooter, CardHeader, CardBody } from 'reactstrap';
 
 const col = styled(Col)`
-   margin: 0 20px 0 20px;
+    padding: 0 10px 0 15px;
 `;
 const card = styled(Card)`
     margin-top: ${(props) => props.margintop};
@@ -12,6 +12,9 @@ const card = styled(Card)`
     width: ${(props) => props.width};
     /* border-radius: 3%; */
     background-color: #f4fcfb;
+`;
+const cardbody = styled(CardBody)`
+    padding: 0;
 `;
 const cardheader = styled(CardHeader)`
     & p {
@@ -63,5 +66,14 @@ const td = styled.td`
     text-align: ${(props) => props.text};
     text-align: ${(props) => props.text};
 `;
+const wrap = styled.div`
+    .each-slide > div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-size: cover;
+        height: 400px;
+    }
+`;
 
-export { col, card, cardfooter, cardheader, td, helloIcon, photoIcon, trophyIcon, map, mapIcon };
+export { col, card, cardbody, cardfooter, cardheader, td, helloIcon, photoIcon, trophyIcon, map, mapIcon, wrap };
