@@ -1,16 +1,15 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
+
 body {
     width: 100%;
     height: 100%;
     // background: url('../assets/img/fkyhynowp-4-jakob-owens.jpg') no-repeat;
     background-color: #4c443c;
     background-size: cover;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 0;
-    margin-right: 0;
+    margin: 0;
+    padding: 0;
 }
 *, *:before, *:after {
     outline: none;
@@ -42,7 +41,7 @@ body {
 }
 
 #main-body {
-    min-height: 90vh;
+    min-height: 150vh;
 }
 
 .card-img-top {
@@ -95,11 +94,24 @@ textarea {
     @media only screen and (max-width: 767px) {
         height: 250px;
     }
+    @media only screen and (min-width:768px) and (max-width:1024px) {
+        height: 250px;
+    }
 }
 .fullscreen .image-gallery-image {
     width: 100%;
     height: 100%;
 }
+
+.image-gallery-fullscreen-button {
+  right: 150px;
+}
+
+.image-gallery-play-button {
+  left: 150px;
+}
+
+///////////////
 
 `;
 
