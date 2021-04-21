@@ -1,15 +1,16 @@
 import React from 'react';
 import Login from '../Authentication/Login';
+import * as S from './Nav.style'
 import { Card, Button, CardHeader, CardFooter, CardBody, CardTitle, CardText, Col, Row } from 'reactstrap';
 
 const SideNav = () => {
     return (
-        <Card id="sidenav" className="mt-3">
+        <S.card>
             <CardBody>
                 <Login />
             </CardBody>
-            <CardFooter style={{ color: 'gray', textAlign: 'center' }}>즐겁게 사진을 찍고 싶은분은 누구든지 환영입니다!</CardFooter>
-        </Card>
+            <S.cardfooter>즐겁게 사진을 찍고 싶은분은 누구든지 환영입니다!</S.cardfooter>
+        </S.card>
     );
 };
 
