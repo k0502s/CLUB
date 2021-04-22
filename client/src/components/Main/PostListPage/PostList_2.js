@@ -112,19 +112,19 @@ const PostList_2 = () => {
                             postdata.map((post, index) => (
                                 <tbody key={index}>
                                     <tr>
-                                        <th scope="row" style={{ width: '10%', fontWeight: 'lighter' }}>
+                                        <th scope="row" style={{ width: '5%', fontWeight: 'lighter' }}>
                                             {post.numberId}
                                         </th>
-                                        <td style={{ width: '45%', color: 'black', fontWeight: 'bold', fontSize: 'large' }}>
+                                        <td style={{ width: '35%', color: 'black', fontWeight: 'bold', fontSize: 'large' }}>
                                             <Link to={`/post/${post._id}`} style={{ color: 'inherit' }}>
                                                 {post.title} <span style={{ fontWeight: 'lighter' }}>[{post.comments.length}]</span>{' '}
                                                 {/* <span>{post.fileUrl != '' ? <FontAwesomeIcon icon={faImage} /> : ''}</span> */}
                                             </Link>
                                         </td>
 
-                                        <td style={{ width: '15%', textAlign: 'center' }}>{post.writerName}</td>
+                                        <td style={{ width: '20%', textAlign: 'center' }}>{post.writerName}</td>
                                         <td style={{ width: '15%', textAlign: 'center' }}>{post.views}</td>
-                                        <td style={{ width: '15%', textAlign: 'center' }}>{post.date}</td>
+                                        <td style={{ width: '25%', textAlign: 'center' }}>{post.date}</td>
                                     </tr>
                                 </tbody>
                             ))}

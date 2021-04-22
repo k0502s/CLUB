@@ -23,16 +23,16 @@ const MiniList = () => {
                     {postdata &&
                         Postdata.map((post, index) => (
                             <tbody key={index}>
-                                <tr>
-                                    <S.td width={'50%'} color={'black'}>
+                                <S.tr>
+                                    <S.td width={'70%'} color={'black'}>
                                         <Link to={`/post/${post._id}`} style={{ color: 'inherit' }} data-testid="post-detail">
                                             {post.title} <span data-testid="post-comments">[{post.comments.length}]</span> <span>{post.fileUrl != '' ? <BsImageFill /> : ''}</span>
                                         </Link>
                                     </S.td>
-                                    <S.td width={'50%'} text={'center'} color={'gray'} data-testid="post-date">
-                                        <small>{post.date}</small>
+                                    <S.td width={'30%'} text={'center'} color={'gray'} data-testid="post-date">
+                                        <small>{post.date.substring(0, 10)}</small>
                                     </S.td>
-                                </tr>
+                                </S.tr>
                             </tbody>
                         ))}
                 </Table>

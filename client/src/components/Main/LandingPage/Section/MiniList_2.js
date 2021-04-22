@@ -23,16 +23,16 @@ const MiniList_2 = () => {
                     {photodata &&
                         Photodata.map((photo, index) => (
                             <tbody key={index}>
-                                <tr>
-                                    <S.td width={'50%'} color={'black'}>
+                                <S.tr>
+                                    <S.td width={'70%'} color={'black'}>
                                         <Link to={`/photo/${photo._id}`} style={{ color: 'inherit' }} data-testid="photo-detail">
                                             {photo.title} <span>{photo.fileUrl != '' ? <BsImageFill /> : ''}</span>
                                         </Link>
                                     </S.td>
-                                    <S.td width={'50%'} text={'center'} color={'gray'} data-testid="photo-date">
-                                        <small>{photo.date}</small>
+                                    <S.td width={'30%'} text={'center'} color={'gray'} data-testid="photo-date">
+                                        <small>{photo.date.substring(0, 10)}</small>
                                     </S.td>
-                                </tr>
+                                </S.tr>
                             </tbody>
                         ))}
                 </Table>

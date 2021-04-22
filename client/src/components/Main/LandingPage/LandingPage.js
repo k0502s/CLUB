@@ -87,7 +87,7 @@ const LandingPage = () => {
     );
     return (
         <Row>
-            <Col style={{ padding: '0' }} md={{ size: 3 }} xs={{ size: 10, offset: 1 }} sm={{ size: 10, offset: 1 }}>
+            <Col md={{ size: 3 }} xs={{ size: 10, offset: 1 }} sm={{ size: 10, offset: 1 }}>
                 <SideNav />
                 {isLoading === true ? '' : sideBody}
             </Col>

@@ -61,7 +61,12 @@ const td = styled.td`
     width: 50%;
     color: ${(props) => props.color};
     text-align: ${(props) => props.text};
-    text-align: ${(props) => props.text};
+    font-size: small;
+`;
+const tr = styled.tr`
+    & td {
+        padding: 2px 5px 6px 30px;
+    }
 `;
 const wrap = styled.div`
     .each-slide > div {
@@ -70,7 +75,8 @@ const wrap = styled.div`
         justify-content: center;
         background-size: cover;
         height: 400px;
+
     }
 `;
 
-export { col, card, cardbody, cardfooter, cardheader, td, helloIcon, photoIcon, trophyIcon, map, mapIcon, wrap };
+export { col, card, cardbody, cardfooter, cardheader, td,tr, helloIcon, photoIcon, trophyIcon, map, mapIcon, wrap };
