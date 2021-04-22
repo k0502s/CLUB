@@ -24,7 +24,7 @@ body {
   }
 
 #main-footer {
-    background: #343a40;
+    background: #333;
     color: #ffff;
 }
 
@@ -48,6 +48,9 @@ body {
     width: 100%;
     height: 20rem;
     object-fit: cover;
+}
+div.col {
+    padding: 0;
 }
 
 //CKEditor setting

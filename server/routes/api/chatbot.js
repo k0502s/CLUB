@@ -24,9 +24,7 @@ router.post('/textQuery', async (req, res) => {
             },
         },
     };
-
     const responses = await sessionClient.detectIntent(request);
-    console.log('Detected intent');
     const result = responses[0].queryResult;
     console.log(`  Query: ${result.queryText}`);
     console.log(`  Response: ${result.fulfillmentText}`);

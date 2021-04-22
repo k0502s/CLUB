@@ -2,21 +2,19 @@ import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from './Section/Message';
+import * as S from './Chat.style';
 import { CHAT_REQUEST } from '../../redux/types';
 import { Input, InputGroupAddon, Button, InputGroup, Row, Col, CardBody, Card } from 'reactstrap';
 
-
-const Chat = () => {
+const Chat = ({ reset }) => {
     const dispatch = useDispatch();
     const messagesFromRedux = useSelector((state) => state.message.messages);
     const [Mes, setMes] = useState('');
 
     useEffect(() => {
-        eventQuery('qu1');
-    }, []);
-
+        eventQuery(reset);
+    }, [reset]);
     const textQuery = async (text) => {
-       
         let conversation = {
             who: 'user',
             content: {
@@ -30,13 +28,10 @@ const Chat = () => {
             payload: conversation,
         });
 
-        // console.log('text I sent', conversation)
-
         const textQueryVariables = {
             text: text,
         };
         try {
-           
             const response = await Axios.post('/api/chatbot/textQuery', textQueryVariables);
 
             for (let content of response.data.fulfillmentMessages) {
@@ -66,12 +61,10 @@ const Chat = () => {
     };
 
     const eventQuery = async (event) => {
-        
         const eventQueryVariables = {
             event: event,
         };
         try {
-            
             const response = await Axios.post('/api/chatbot/eventQuery', eventQueryVariables);
             for (let content of response.data.fulfillmentMessages) {
                 let conversation = {
@@ -100,8 +93,6 @@ const Chat = () => {
     };
 
     const messageHanlder = (e) => {
-        
-
         setMes(e.target.value);
     };
 
@@ -113,19 +104,12 @@ const Chat = () => {
         setMes('');
     };
 
-
-
     const renderOneMessage = (message, i) => {
         console.log('message', message);
 
-        
-
-        
         if (message.content && message.content.text && message.content.text.text) {
             return <Message key={i} who={message.who} text={message.content.text.text} />;
         }
-
-       
     };
 
     const renderMessage = (returnedMessages) => {
@@ -138,34 +122,28 @@ const Chat = () => {
         }
     };
 
+    const Enter = (e) => {
+        if (e.key === 'Enter') {
+            MesHanlder(e);
+        }
+    };
+
     return (
-        <Col >
+        <Col>
             <Col>
-                <Card style={{ height: 460, overflow: 'auto', border: '1px'}}>
+                <S.card>
                     <CardBody>{renderMessage(messagesFromRedux)} </CardBody>
-                </Card>
+                </S.card>
             </Col>
             <Row>
-                <InputGroup>
-                    <Input
-                        style={{
-                            margin: 0,
-                            height: 50,
-                            padding: '5px',
-                            fontSize: '1rem',
-                        }}
-                        placeholder="전달할 메세지를 입력해주세요..."
-                        onChange={messageHanlder}
-                        value={Mes}
-                        type="text"
-                        data-testid='chat-message'
-                    />
+                <S.inputGroup>
+                    <S.input placeholder="전달할 메세지를 입력해주세요..." onChange={messageHanlder} onKeyPress={Enter} value={Mes} type="text" data-testid="chat-message" />
                     <InputGroupAddon addonType="append">
-                        <Button color="secondary" onClick={MesHanlder} data-testid='chat-btn'>
+                        <S.Sendbutton onClick={MesHanlder} data-testid="chat-btn">
                             보내기
-                        </Button>
+                        </S.Sendbutton>
                     </InputGroupAddon>
-                </InputGroup>
+                </S.inputGroup>
             </Row>
         </Col>
     );
