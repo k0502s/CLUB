@@ -11,11 +11,13 @@ const MiniList_2 = () => {
     return (
         <>
             <S.card margintop={'40px'} marginbottom={'20px'}>
-            <S.cardheader>
+                <S.cardheader>
                     <p>
-                    <S.photoIcon />
+                        <S.photoIcon />
                         최신 포토
-                        <span><Link to={'/bestphotolist'}>더보기 +</Link></span>
+                        <span>
+                            <Link to={'/bestphotolist'}>더보기 +</Link>
+                        </span>
                     </p>
                     <small>회원분들의 사진 작품들응 감상해보세요!</small>
                 </S.cardheader>
@@ -24,7 +26,8 @@ const MiniList_2 = () => {
                         Photodata.map((photo, index) => (
                             <tbody key={index}>
                                 <S.tr>
-                                    <S.td width={'70%'} color={'black'}>
+                                    <S.td width={'5%'}>●</S.td>
+                                    <S.td width={'65%'} color={'black'}>
                                         <Link to={`/photo/${photo._id}`} style={{ color: 'inherit' }} data-testid="photo-detail">
                                             {photo.title} <span>{photo.fileUrl != '' ? <BsImageFill /> : ''}</span>
                                         </Link>

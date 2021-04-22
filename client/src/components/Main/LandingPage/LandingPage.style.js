@@ -1,7 +1,9 @@
 import styled from 'styled-components';
-import { BsFillPeopleFill, BsCamera, BsMap } from 'react-icons/bs';
+import { BsFillPeopleFill, BsCamera, BsMap, BsFillCircleFill } from 'react-icons/bs';
 import { FaTrophy } from 'react-icons/fa';
 import { Col, Card, CardFooter, CardHeader, CardBody } from 'reactstrap';
+
+// Landing Home CSS
 
 const col = styled(Col)`
     padding: 0 10px 0 15px;
@@ -10,34 +12,64 @@ const card = styled(Card)`
     margin-top: ${(props) => props.margintop};
     margin-bottom: ${(props) => props.marginbottom};
     width: ${(props) => props.width};
-    /* border-radius: 3%; */
+    border: 1px;
+    border-radius: 10px;
     background-color: #f4fcfb;
 `;
 const cardbody = styled(CardBody)`
     padding: 0;
 `;
 const cardheader = styled(CardHeader)`
+    color: #fff;
+    background-color: #1c685e;
     & p {
         margin: 0;
     }
     & p > span {
         font-size: 14px;
-        color: gray;
+        color: #eee;
         float: right;
         margin-top: 5px;
     }
     & small {
         display: block;
-        color: gray;
+        color: #333;
     }
 `;
-const map = styled.div`
-    width: 50vw;
-    height: 20vw;
+const td = styled.td`
+    width: ${(props) => props.width};
+    color: ${(props) => props.color};
+    text-align: ${(props) => props.text};
+    font-size: small;
+`;
+const tr = styled.tr`
+    & td {
+        padding: 4px 5px 6px 8px;
+    }
+`;
+const wrap = styled.div`
+    .each-slide > div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-size: cover;
+        height: 400px;
+    }
 `;
 const cardfooter = styled(CardFooter)`
     color: gray;
     text-align: center;
+`;
+
+const map = styled.div`
+    width: 50vw;
+    height: 20vw;
+`;
+
+// Icon CSS
+
+const circleIcon = styled(BsFillCircleFill)`
+    padding: 0;
 `;
 const helloIcon = styled(BsFillPeopleFill)`
     margin-right: 6px;
@@ -57,26 +89,5 @@ const mapIcon = styled(BsMap)`
     margin-top: 1px;
     font-size: larger;
 `;
-const td = styled.td`
-    width: 50%;
-    color: ${(props) => props.color};
-    text-align: ${(props) => props.text};
-    font-size: small;
-`;
-const tr = styled.tr`
-    & td {
-        padding: 2px 5px 6px 30px;
-    }
-`;
-const wrap = styled.div`
-    .each-slide > div {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-size: cover;
-        height: 400px;
 
-    }
-`;
-
-export { col, card, cardbody, cardfooter, cardheader, td,tr, helloIcon, photoIcon, trophyIcon, map, mapIcon, wrap };
+export { col, card, cardbody, cardfooter, cardheader, td, tr, helloIcon, photoIcon, trophyIcon, map, mapIcon, wrap, circleIcon };

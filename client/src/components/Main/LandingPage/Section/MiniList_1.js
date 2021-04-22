@@ -15,7 +15,9 @@ const MiniList = () => {
                     <p>
                         <S.helloIcon />
                         가입 인사
-                        <span><Link to={'/postlist_1'}>더보기 +</Link></span>
+                        <span>
+                            <Link to={'/postlist_1'}>더보기 +</Link>
+                        </span>
                     </p>
                     <small>새로 오신 분들 인사해주세요!</small>
                 </S.cardheader>
@@ -24,6 +26,7 @@ const MiniList = () => {
                         Postdata.map((post, index) => (
                             <tbody key={index}>
                                 <S.tr>
+                                    <S.td width={'5%'}>●</S.td>
                                     <S.td width={'70%'} color={'black'}>
                                         <Link to={`/post/${post._id}`} style={{ color: 'inherit' }} data-testid="post-detail">
                                             {post.title} <span data-testid="post-comments">[{post.comments.length}]</span> <span>{post.fileUrl != '' ? <BsImageFill /> : ''}</span>
