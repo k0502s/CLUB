@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Form, Input, Col, Row } from 'reactstrap';
+import * as S from './Fileupload.style'
 import Dropzone from 'react-dropzone';
 import Axios from 'axios';
 
@@ -33,13 +33,13 @@ function FileUpload(props) {
         <Dropzone onDrop={dropHandler} multiple>
             {({ getRootProps, getInputProps }) => (
                 <section>
-                    <Button className='mr-2' {...getRootProps()}>
+                    <S.button color={'#333'} margin={'0 10px 0 0'} {...getRootProps()}>
                         <input {...getInputProps()} />
                         업로드
-                    </Button>
-                    <Button className="btn-danger" onClick={() => props.removefile()}>
+                    </S.button>
+                    <S.button color={'#F05232'} onClick={() => props.removefile()}>
                         파일 제거
-                    </Button>
+                    </S.button>
                 </section>
             )}
         </Dropzone>

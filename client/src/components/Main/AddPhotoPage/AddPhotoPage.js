@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { Button, Form, Input, Label, Card, CardTitle, CardText, Row, Col, CardHeader, CardBody } from 'reactstrap';
-import FileUpload from '../../../utils/Fileupload';
+import FileUpload from '../../../utils/Fileupload/Fileupload';
+import * as S from './AddPhotoPage.style';
 import { useDispatch, useSelector } from 'react-redux';
 import { PHOTO_UPLOADING_REQUEST } from '../../../redux/types';
 
@@ -74,9 +75,9 @@ const AddPhotoPage = (props) => {
     };
 
     return (
-        <Col md={{ size: 6, offset: 3 }} className="mt-4">
+        <Col md={{ size: 6, offset: 3 }}>
             <Helmet title={'포토 추가'} />
-            <Card style={{ borderRadius: '25px', marginBottom: '20px' }}>
+            <S.card>
                 <CardHeader>
                     <strong>포토 추가하기</strong>
                 </CardHeader>
@@ -89,17 +90,17 @@ const AddPhotoPage = (props) => {
                     </CardText>
                 </Card>
                 <CardBody>
-                    <Col md={{ offset: 4 }} style={{ display: 'flex', width: '350px', height: '240px', overflow: 'scroll' }}>
+                    <S.profileWarp md={{ offset: 4 }}>
                         {Images.map((image, index) => (
-                            <img key={index} style={{ minWidth: '300px', width: '300px', height: '240px' }} src={`${image}`} />
+                            <img key={index} src={`${image}`} />
                         ))}
-                    </Col>
+                    </S.profileWarp>
                     <Form onSubmit={submitHandler} name="myform">
                         <Label for="title">제목</Label>
-                        <Input type="text" name="title" onChange={onChange} value={form.title} data-testid='add-title'/>
+                        <Input type="text" name="title" onChange={onChange} value={form.title} data-testid="add-title" />
                         <br />
                         <Label for="content">설명</Label>
-                        <Input type="textarea" name="description" onChange={onChange} value={form.description} data-testid='add-description'/>
+                        <Input type="textarea" name="description" onChange={onChange} value={form.description} data-testid="add-description" />
                         <br />
                         <Label for="genres">장르</Label>
                         <Input type="select" name="genres" onChange={onChange} value={form.genre}>
@@ -110,12 +111,14 @@ const AddPhotoPage = (props) => {
                                 </option>
                             ))}
                         </Input>
-                        <Button className="col-md-2 offset-md-10 mt-5" onClick={submitHandler} data-testid='add-submit'>
-                            확인
-                        </Button>
+                        <S.buttomWrap>
+                            <S.button color={'#54C5A0'} margin={'30px 0 0 0'} width={'100px'} onClick={submitHandler} data-testid="add-submit">
+                                확인
+                            </S.button>
+                        </S.buttomWrap>
                     </Form>
                 </CardBody>
-            </Card>
+            </S.card>
         </Col>
     );
 };

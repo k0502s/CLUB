@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { Button, Form, Input, Label, Card, CardTitle, CardText, Row, Col, CardHeader, CardBody } from 'reactstrap';
-import FileUpload from '../../../utils/Fileupload';
+import FileUpload from '../../../utils/Fileupload/Fileupload';
+import * as S from './EditPhotoPage.style';
 import { useDispatch, useSelector } from 'react-redux';
 import { PHOTO_EDIT_LOADING_REQUEST, PHOTO_EDIT_UPLOADING_REQUEST } from '../../../redux/types';
 
@@ -94,11 +95,11 @@ const AddPhotoPage = (props) => {
     };
 
     return (
-        <Col md={{ size: 6, offset: 3 }} className="mt-4">
-            <Helmet title={`포토 편집`} />
-            <Card style={{ borderRadius: '25px', marginBottom: '20px' }}>
+        <Col md={{ size: 6, offset: 3 }}>
+            <Helmet title={`포토 수정`} />
+            <S.card>
                 <CardHeader>
-                    <strong>포토 추가하기</strong>
+                    <strong>포토 수정하기</strong>
                 </CardHeader>
                 <Card body>
                     <CardTitle tag="h5">※ 이미지 파일 업로드 참고 사항</CardTitle>
@@ -109,11 +110,11 @@ const AddPhotoPage = (props) => {
                     </CardText>
                 </Card>
                 <CardBody>
-                    <Col md={{ offset: 4 }} style={{ display: 'flex', width: '350px', height: '240px', overflow: 'scroll' }}>
+                    <S.profileWarp md={{ offset: 4 }}>
                         {Images.map((image, index) => (
-                            <img key={index} style={{ minWidth: '300px', width: '300px', height: '240px' }} src={`${image}`} data-testid="edit-image" />
+                            <img key={index} src={`${image}`} data-testid="edit-image" />
                         ))}
-                    </Col>
+                    </S.profileWarp>
                     <Form onSubmit={submitHandler} name="myform">
                         <Label>제목</Label>
                         <Input onChange={onChange} defaultValue={detailphoto.title} name="title" data-testid="edit-title" />
@@ -123,21 +124,21 @@ const AddPhotoPage = (props) => {
                         <br />
                         <Label>장르</Label>
                         <Input onChange={onChange} defaultValue={detailphoto.genres} name="genres" type="select">
-                            <option value="">
-                                장르를 선택해주세요
-                            </option>
+                            <option value="">장르를 선택해주세요</option>
                             {Genres.map((item) => (
                                 <option key={item.key} value={item.key} data-testid="select-option">
                                     {item.value}
                                 </option>
                             ))}
                         </Input>
-                        <Button className="col-md-2 offset-md-10 mt-5" onClick={submitHandler} data-testid="edit-submit">
-                            확인
-                        </Button>
+                        <S.buttomWrap>
+                            <S.button color={'#54C5A0'} margin={'30px 0 0 0'} width={'100px'} onClick={submitHandler} data-testid="edit-submit">
+                                확인
+                            </S.button>
+                        </S.buttomWrap>
                     </Form>
                 </CardBody>
-            </Card>
+            </S.card>
         </Col>
     );
 };
