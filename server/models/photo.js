@@ -16,6 +16,9 @@ const PhotoSchema = new mongoose.Schema(
         description: {
             type: String,
         },
+        camera: {
+            type: String,
+        },
         images: {
             type: Array,
             default: "https://jinseokproject1.s3.ap-northeast-2.amazonaws.com/upload/%EC%A0%9C%EB%AA%A9%20%EC%97%86%EC%9D%8C1616574043207.png",

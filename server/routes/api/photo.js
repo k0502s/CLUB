@@ -131,7 +131,6 @@ router.delete('/:id', auth, async (req, res) => {
     try {
         console.log(req.params);
         await Photo.deleteMany({ _id: req.params.id });
-        await Comment.deleteMany({ post: req.params.id });
         await User.findByIdAndUpdate(req.user.id, {
           $pull: {
             posts: req.params.id,

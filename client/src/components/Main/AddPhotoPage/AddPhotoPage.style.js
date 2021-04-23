@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Col, Button, Card } from 'reactstrap';
-import { BsTextLeft } from 'react-icons/bs';
 
 const card = styled(Card)`
     border-radius: 25px;

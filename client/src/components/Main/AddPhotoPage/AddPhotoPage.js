@@ -59,6 +59,7 @@ const AddPhotoPage = (props) => {
 
         const body = {
             writer: user._id,
+            camera: user.camera,
             title: title,
             description: description,
             images: Images,
