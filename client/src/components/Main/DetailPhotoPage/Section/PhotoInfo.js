@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Row, Col } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import { useSelector } from 'react-redux';
 import * as S from '../DetailPhotoPage.style';
 

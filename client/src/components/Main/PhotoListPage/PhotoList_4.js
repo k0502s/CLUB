@@ -75,7 +75,7 @@ const PhotoList_4 = () => {
         <>
             <Row>
                 <Helmet title={`습작 갤러리`} />
-                <Col md={{ size: 10, offset: 1 }} className="mt-3">
+                <Col md={{ size: 10, offset: 1 }}>
                     <S.topborder md={{ size: 5, offset: 1 }}>
                         <h5>습작 갤러리</h5>
                         <h6>자유로운 주제로 자신만의 습작 사진을 올리는 갤러리입니다!</h6>

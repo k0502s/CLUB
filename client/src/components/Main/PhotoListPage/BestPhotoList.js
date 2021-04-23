@@ -74,7 +74,7 @@ const BestPhotoList = () => {
         <>
             <Row>
                 <Helmet title={`인기 갤러리`} />
-                <Col md={{ size: 10, offset: 1 }} className="mt-3">
+                <Col md={{ size: 10, offset: 1 }}>
                     <S.topborder md={{ size: 5, offset: 1 }}>
                         <h5>인기 갤러리</h5>
                         <h6>카테고리 장르 갤러리에 등록된 모든 사진 중 조회수가 10 이상인 작품을 전시하는 곳입니다!</h6>

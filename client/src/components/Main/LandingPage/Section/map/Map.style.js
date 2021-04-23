@@ -1,7 +1,4 @@
 import styled from 'styled-components';
-import { BsFillPeopleFill, BsCamera, BsMap } from 'react-icons/bs';
-import { FaTrophy } from 'react-icons/fa';
-import { Navbar, Nav, Button, Label, Input, Form, Col, Card, CardTitle, CardFooter, CardHeader, CardSubtitle } from 'reactstrap';
 
 const mapwrap = styled.div`
     position: relative;

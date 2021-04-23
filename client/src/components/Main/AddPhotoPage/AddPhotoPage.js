@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { Button, Form, Input, Label, Card, CardTitle, CardText, Row, Col, CardHeader, CardBody } from 'reactstrap';
+import { Form, Input, Label, Card, CardTitle, CardText, Col, CardHeader, CardBody } from 'reactstrap';
 import FileUpload from '../../../utils/Fileupload/Fileupload';
 import * as S from './AddPhotoPage.style';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,7 +13,7 @@ const Genres = [
     { key: 4, value: '습작' },
 ];
 
-const AddPhotoPage = (props) => {
+const AddPhotoPage = () => {
     const [form, setValues] = useState({
         title: '',
         description: '',

@@ -51,6 +51,7 @@ const col = styled(Col)`
 const topborder = styled(Row)`
     padding: 20px;
     margin-bottom: 15px;
+    margin-top: 20px;
     display: flex;
     justify-content: space-between;
     border: 1px;

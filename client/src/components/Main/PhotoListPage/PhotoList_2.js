@@ -75,7 +75,7 @@ const PhotoList_2 = () => {
         <>
             <Row>
                 <Helmet title={`인물 갤러리`} />
-                <Col md={{ size: 10, offset: 1 }} className="mt-3">
+                <Col md={{ size: 10, offset: 1 }}>
                     <S.topborder md={{ size: 5, offset: 1 }}>
                         <h5>인물 갤러리</h5>
                         <h6>인물, 모델 사진을 올리는 갤러리입니다!</h6>

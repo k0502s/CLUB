@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { CardFooter } from 'reactstrap';
 import * as S from './Map.style';
 
 /*global kakao */
