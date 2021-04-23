@@ -44,6 +44,9 @@ const topborder = styled(Row)`
     border-bottom: 10px solid #1c685e;
     background-color: #333;
     color: #fff;
+    @media only screen and (max-width: 767px) {
+        margin: 20px 5px 15px 5px;
+    }
 `;
 const inputGroup = styled(InputGroup)`
     padding: 10px 5px;

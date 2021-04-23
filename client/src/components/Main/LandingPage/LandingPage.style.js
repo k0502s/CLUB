@@ -15,6 +15,10 @@ const card = styled(Card)`
     border: 1px;
     border-radius: 10px;
     background-color: #f4fcfb;
+    @media only screen and (max-width: 767px) {
+        margin-left: 12px;
+        margin-right: 12px;
+    }
 `;
 const cardbody = styled(CardBody)`
     padding: 0;

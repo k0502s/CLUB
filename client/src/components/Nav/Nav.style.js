@@ -53,6 +53,10 @@ const card = styled(Card)`
     border-radius: 12%;
     background-color: #f4fcfb;
     margin-top: 20px;
+    @media only screen and (max-width: 767px) {
+        margin-left: 12px;
+        margin-right: 12px;
+    }
 `;
 
 export { navbar, nav, sysytemIcon, card, cardfooter };

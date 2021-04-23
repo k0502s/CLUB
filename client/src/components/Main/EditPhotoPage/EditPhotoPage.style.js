@@ -7,7 +7,7 @@ const card = styled(Card)`
     margin-bottom: 0px;
     margin: 30px;
 `;
-const buttomWrap = styled.div`
+const buttonWrap = styled.div`
     display: flex;
     justify-content: flex-end;
 `;
@@ -34,4 +34,4 @@ const profileWarp = styled(Col)`
     }
 `;
 
-export { card, profileWarp, button, buttomWrap };
+export { card, profileWarp, button, buttonWrap };

@@ -6,6 +6,17 @@ const listIcon = styled(BsTextLeft)`
     margin-right: 7px;
 `;
 
+const Img = styled.img`
+    width: 300px;
+    margin: 30px auto;
+    @media only screen and (min-width: 768px) and (max-width: 1024px) {
+        display: none;
+    }
+    @media only screen and (max-width: 767px) {
+        display: none;
+    }
+`;
+
 const topborder = styled(Row)`
     padding: 11px;
     margin-bottom: 15px;
@@ -15,11 +26,23 @@ const topborder = styled(Row)`
     border-bottom: 4px solid #1c685e;
     background-color: #333;
     color: #fff;
+    @media only screen and (max-width: 767px) {
+        margin: 0 0 15px 0;
+    }
+`;
+const infoWrap = styled(Col)`
+
+    @media only screen and (max-width: 767px) {
+        margin: 0 7px 15px 7px;
+    }
 `;
 const postWrap = styled(Col)`
     margin-bottom: 30px;
     border-left: 4px solid #333;
     border-right: 4px solid #333;
+    @media only screen and (max-width: 767px) {
+        margin: 0 7px 15px 7px;
+    }
 `;
 const buttonWrap = styled(Row)`
     display: flex;
@@ -34,6 +57,9 @@ const commentWrap = styled(Container)`
             color: #f05232;
         }
     }
+    @media only screen and (max-width: 767px) {
+        margin: 0 7px 15px 7px;
+    }
 `;
 
 const button = styled(Button)`
@@ -47,4 +73,4 @@ const button = styled(Button)`
     }
 `;
 
-export { topborder, button, listIcon, buttonWrap, postWrap, commentWrap };
+export { topborder, button, listIcon, buttonWrap, postWrap, commentWrap, infoWrap, Img };

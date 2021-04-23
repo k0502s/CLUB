@@ -131,11 +131,11 @@ const AddPhotoPage = (props) => {
                                 </option>
                             ))}
                         </Input>
-                        <S.buttomWrap>
+                        <S.buttonWrap>
                             <S.button color={'#54C5A0'} margin={'30px 0 0 0'} width={'100px'} onClick={submitHandler} data-testid="edit-submit">
                                 확인
                             </S.button>
-                        </S.buttomWrap>
+                        </S.buttonWrap>
                     </Form>
                 </CardBody>
             </S.card>

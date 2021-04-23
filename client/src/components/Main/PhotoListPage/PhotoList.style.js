@@ -42,6 +42,10 @@ const card = styled(Card)`
             display: block;
         }
     }
+    @media only screen and (max-width: 767px) {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 `;
 const bottomline = styled(Col)`
     margin: 120px 0 30px 0;
@@ -58,6 +62,9 @@ const topborder = styled(Row)`
     border-bottom: 10px solid #1c685e;
     background-color: #333;
     color: #fff;
+    @media only screen and (max-width: 767px) {
+        margin: 20px 5px 15px 5px;
+    }
 `;
 
 export { inputGroup, button, warp, card, bottomline, topborder };

@@ -7,8 +7,9 @@ import SideNav from '../../Nav/SideNav';
 import * as S from './DetailPostPage.style';
 import LocationDisplay from '../../../utils/LocationDisplay';
 import { BsPen, BsFillEyeFill, BsPersonFill, BsFillChatDotsFill } from 'react-icons/bs';
-import Comments from './Section/Comments';
+import Comments from './Section/Comment/Comments';
 import { Link } from 'react-router-dom';
+import photographerImg from '../../../assets/img/사진작가2.png';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import { Loader } from '../../../components/Loader/Loader';
 import BalloonEditor from '@ckeditor/ckeditor5-editor-balloon/src/ballooneditor';
@@ -59,7 +60,7 @@ const DetailPostPage = (req) => {
             {postDetail && postDetail.comments ? (
                 <>
                     <Row>
-                        <Col>
+                        <S.infoWrap>
                             <BsPersonFill />
                             &nbsp;
                             <span data-testid="post-name">{postDetail.writer.name}</span>
@@ -75,7 +76,7 @@ const DetailPostPage = (req) => {
                             <BsFillEyeFill />
                             &nbsp;
                             <span data-testid="post-views">{postDetail.views}</span>
-                        </Col>
+                        </S.infoWrap>
                     </Row>
                     <S.buttonWrap>
                         {writerId === userId && (
@@ -112,6 +113,7 @@ const DetailPostPage = (req) => {
         <Row>
             <Col md={{ size: 3, offset: 1 }}>
                 <SideNav />
+                <S.Img src={photographerImg} />
             </Col>
             <Helmet title={`Post | ${title}`} />
             <S.postWrap md={7} className="mt-3">
