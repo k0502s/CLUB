@@ -1,14 +1,17 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import Pagination from '@material-ui/lab/Pagination';
 import SideNav from '../../Nav/SideNav';
+import MobileList from './Section/MobileList';
+import { Loader } from '../../Loader/Loader';
+import photographerImg from '../../../assets/img/사진작가1.png';
 import LocationDisplay from '../../../utils/LocationDisplay';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faArrowRight, faMouse, faImage } from '@fortawesome/free-solid-svg-icons';
+import * as S from './PostList.style';
+import { BsChevronRight, BsImageFill } from 'react-icons/bs';
 import { useSelector, useDispatch } from 'react-redux';
 import { POSTS_LIST_REQUEST } from '../../../redux/types';
-import { Card, CardTitle, CardText, CardImg, CardImgOverlay, Row, Col, Button, InputGroup, InputGroupAddon, Input, Label, Table } from 'reactstrap';
+import { Row, Col, InputGroupAddon, Input, Label, Table } from 'reactstrap';
 
 const PostList_1 = () => {
     const dispatch = useDispatch();
@@ -18,7 +21,7 @@ const PostList_1 = () => {
 
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(9);
-    const { postdata, totalPages } = useSelector((state) => state.post);
+    const { postdata, totalPages, isLoading } = useSelector((state) => state.post);
     const pageSizes = [9, 15];
 
     const getRequestParams = (searchTitle, page, pageSize) => {
@@ -41,7 +44,7 @@ const PostList_1 = () => {
         return params;
     };
 
-    const retrieveTutorials = () => {
+    const retrieve = () => {
         const params = getRequestParams(searchTitle, page, pageSize);
 
         dispatch({
@@ -50,7 +53,7 @@ const PostList_1 = () => {
         });
     };
 
-    useEffect(retrieveTutorials, [page, pageSize]);
+    useEffect(retrieve, [page, pageSize]);
 
     const handlePageChange = (event, value) => {
         setPage(value);
@@ -66,101 +69,128 @@ const PostList_1 = () => {
         setSearchTitle(searchTitle);
     };
 
-    return (
-        <Row>
-            <Col md={{ size: 3 }} xs={{ size: 10, offset: 1 }} sm={{ size: 10, offset: 1 }}>
-                <SideNav />
-            </Col>
-            <Helmet title={`가입 인사`} />
-            <Col md={7} className="mt-3">
-                <Row md={{ size: 5, offset: 1 }} id="topborder">
-                    <h5>가입 인사</h5>
-                    <h6>새롭게 동호회에 가입하신 신입 화원분들은 여기서 인사해주세요!</h6>
-                </Row>
+    const Enter = (e) => {
+        if (e.key === 'Enter') {
+            retrieve(e);
+        }
+    };
 
-                <Row>
+    const Body = (
+        <>
+            <Row>
+                <Col md={{ size: 3, offset: 1 }}>
+                    <SideNav />
+                    <S.Img src={photographerImg} />
+                </Col>
+                <Helmet title={`가입 인사`} />
+                <Col md={{ size: 7 }}>
+                    <S.topborder md={{ size: 5, offset: 1 }}>
+                        <h5>가입 인사</h5>
+                        <h6>새롭게 동호회에 가입하신 신입 화원분들은 여기서 인사해주세요!</h6>
+                    </S.topborder>
+
+                    <S.warp>
+                        <Col>
+                            <strong>HOME </strong>
+                            <BsChevronRight />
+                            커뮤니티
+                            <BsChevronRight />
+                            <strong>가입 인사</strong>
+                        </Col>
+
+                        <Col md={{ size: 5, offset: 1 }}>
+                            <S.inputGroup>
+                                <Input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="제목을 입력해주세요..."
+                                    value={searchTitle}
+                                    onKeyPress={Enter}
+                                    onChange={onChangeSearchTitle}
+                                    data-testid="input-search"
+                                />
+                                <InputGroupAddon>
+                                    <S.button color={'#333'} onClick={retrieve} data-testid="search-btn">
+                                        검색
+                                    </S.button>
+                                </InputGroupAddon>
+                                <S.button margin={'12px'} color={'#72b29c'}>
+                                    <Link to="/addpost" data-testid="post-add">
+                                        글쓰기
+                                    </Link>
+                                </S.button>
+                            </S.inputGroup>
+                        </Col>
+                    </S.warp>
                     <Col>
-                        <span style={{ fontWeight: 'bold' }}>HOME</span>
-                        {/* <FontAwesomeIcon icon={faArrowRight} /> 커뮤니티 <FontAwesomeIcon icon={faArrowRight} /> <span style={{ fontWeight: 'bolder' }}>가입 인사</span> */}
-                    </Col>
-
-                    <Col md={{ size: 5, offset: 1 }}>
-                        <InputGroup className="mb-3">
-                            <Input type="text" className="form-control" placeholder="제목 + 내용" value={searchTitle} onChange={onChangeSearchTitle} data-testid="input-search" />
-                            <InputGroupAddon>
-                                <Button onClick={retrieveTutorials} data-testid="search-btn">
-                                    Search
-                                </Button>
-                            </InputGroupAddon>
-                            <Link to="/addpost" data-testid="post-add">
-                                <Button className="ml-3">글쓰기</Button>
-                            </Link>
-                        </InputGroup>
-                    </Col>
-                </Row>
-
-                {/* Cards */}
-                <Row>
-                    <Table hover>
-                        <thead>
-                            <tr>
-                                <th>번호</th>
-                                <th style={{ textAlign: 'center' }}>제목</th>
-                                <th style={{ textAlign: 'center' }}>글쓴이</th>
-                                <th style={{ textAlign: 'center' }}>조회수</th>
-                                <th style={{ textAlign: 'center' }}>날짜</th>
-                            </tr>
-                        </thead>
-
-                        {postdata &&
-                            postdata.map((post, index) => (
-                                <tbody key={index}>
+                        <S.Ddevice>
+                            <Table hover>
+                                <S.thead>
                                     <tr>
-                                        <th scope="row" style={{ width: '5%', fontWeight: 'lighter' }} data-testid="post-number">
-                                            {post.numberId}
-                                        </th>
-
-                                        <td style={{ width: '35%', color: 'black', fontWeight: 'bold', fontSize: 'large' }}>
-                                            <Link to={`/post/${post._id}`} style={{ color: 'inherit' }} data-testid="post-detail">
-                                                {post.title}{' '}
-                                                <span style={{ fontWeight: 'lighter' }} data-testid="post-comments">
-                                                    [{post.comments.length}]
-                                                </span>{' '}
-                                                {/* <span>{post.fileUrl != '' ? <FontAwesomeIcon icon={faImage} /> : ''}</span> */}
-                                            </Link>
-                                        </td>
-
-                                        <td style={{ width: '20%', textAlign: 'center' }} data-testid="post-name">
-                                            {post.writerName}
-                                        </td>
-                                        <td style={{ width: '15%', textAlign: 'center' }} data-testid="post-views">
-                                            {post.views}
-                                        </td>
-                                        <td style={{ width: '25%', textAlign: 'center' }} data-testid="post-date">
-                                            {post.date}
-                                        </td>
+                                        <S.th>번호</S.th>
+                                        <S.th align={'center'}>제목</S.th>
+                                        <S.th align={'center'}>글쓴이</S.th>
+                                        <S.th align={'center'}>조회수</S.th>
+                                        <S.th align={'center'}>날짜</S.th>
                                     </tr>
-                                </tbody>
+                                </S.thead>
+                                {postdata &&
+                                    postdata.map((post, index) => (
+                                        <tbody key={index}>
+                                            <tr>
+                                                <S.th scope="row" width={'7%'} weight={'lighter'} data-testid="post-number">
+                                                    {post.numberId}
+                                                </S.th>
+
+                                                <S.td width={'33%'} color={'black'} weight={'bold'} size={'large'}>
+                                                    <Link to={`/post/${post._id}`} style={{ color: 'black' }} data-testid="post-detail">
+                                                        {post.title}{' '}
+                                                        <span weight={'lighter'} data-testid="post-comments">
+                                                            [{post.comments.length}]
+                                                        </span>{' '}
+                                                        <span>{post.fileUrl != '' ? <BsImageFill /> : ''}</span>
+                                                    </Link>
+                                                </S.td>
+
+                                                <S.td width={'20%'} align={'center'} data-testid="post-name">
+                                                    {post.writerName}
+                                                </S.td>
+                                                <S.td width={'15%'} align={'center'} data-testid="post-views">
+                                                    {post.views}
+                                                </S.td>
+                                                <S.td width={'25%'} align={'center'} data-testid="post-date">
+                                                    {post.date}
+                                                </S.td>
+                                            </tr>
+                                        </tbody>
+                                    ))}
+                            </Table>
+                        </S.Ddevice>
+                        <S.Mdevice>
+                            <MobileList />
+                        </S.Mdevice>
+                    </Col>
+                    <S.bottomline></S.bottomline>
+                    <Col md={{ offset: 10 }} className="mt-3">
+                        <Label className="p-2">Page</Label>
+                        <Input type="select" name="page" onChange={handlePageSizeChange} value={pageSize}>
+                            {pageSizes.map((size) => (
+                                <option key={size} value={size}>
+                                    {size}
+                                </option>
                             ))}
-                    </Table>
-                </Row>
-                <Col md={{ offset: 10 }} className="mt-3">
-                    <Label>Page</Label>
-                    <Input type="select" name="page" onChange={handlePageSizeChange} value={pageSize}>
-                        {pageSizes.map((size) => (
-                            <option key={size} value={size}>
-                                {size}
-                            </option>
-                        ))}
-                    </Input>
+                        </Input>
+                    </Col>
+                    <Col md={{ offset: 5 }} xs={{ offset: 4 }} className="mt-3 mb-5 pl-2">
+                        <Pagination variant="outlined" count={totalPages} page={page} siblingCount={1} boundaryCount={1} shape="rounded" onChange={handlePageChange} />
+                    </Col>
                 </Col>
-                <Col md={{ offset: 5 }} xs={{ offset: 4 }}>
-                    <Pagination className="my-5" color="primary" count={totalPages} page={page} siblingCount={1} boundaryCount={1} shape="rounded" onChange={handlePageChange} />
-                </Col>
-            </Col>
-            <LocationDisplay />
-        </Row>
+                <LocationDisplay />
+            </Row>
+        </>
     );
+
+    return <>{isLoading === true ? Loader : Body}</>;
 };
 
 export default PostList_1;
