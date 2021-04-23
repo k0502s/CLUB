@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import SideNav from '../../Nav/SideNav';
 import PhotoImage from './Section/PhotoImage';
-import { GrowingSpinner } from '../../Loader/Loader';
+import { Loader } from '../../Loader/Loader';
 import MiniList1 from './Section/MiniList_1';
 import MiniList2 from './Section/MiniList_2';
 import Map from './Section/map/Map';
@@ -93,7 +93,7 @@ const LandingPage = () => {
             </Col>
             <Helmet title={`HOME`} />
             <S.col md={7} className="mt-4">
-                {isLoading === true ? GrowingSpinner : body}
+                {isLoading === true ? Loader : body}
             </S.col>
         </Row>
     );

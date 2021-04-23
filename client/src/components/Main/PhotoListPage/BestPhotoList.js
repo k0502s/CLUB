@@ -2,9 +2,9 @@ import React, { useEffect, useState, Fragment } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import Pagination from '@material-ui/lab/Pagination';
-import SideNav from '../../Nav/SideNav';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faArrowRight, faMouse } from '@fortawesome/free-solid-svg-icons';
+import * as S from './PhotoList.style';
+import { Loader } from '../../Loader/Loader';
+import { BsChevronRight, BsFillEyeFill } from 'react-icons/bs';
 import { useSelector, useDispatch } from 'react-redux';
 import { BESTPHOTO_LIST_REQUEST } from '../../../redux/types';
 import { Card, CardTitle, CardText, CardImg, CardImgOverlay, Row, Col, Button, InputGroup, InputGroupAddon, Input, Label } from 'reactstrap';
@@ -17,7 +17,7 @@ const BestPhotoList = () => {
 
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(9);
-    const { bestphotodata, totalPages } = useSelector((state) => state.photo);
+    const { bestphotodata, totalPages, isLoading } = useSelector((state) => state.photo);
     const pageSizes = [9, 15];
 
     const getRequestParams = (searchTitle, page, pageSize) => {
@@ -38,7 +38,7 @@ const BestPhotoList = () => {
         return params;
     };
 
-    const retrieveTutorials = () => {
+    const retrieve = () => {
         const params = getRequestParams(searchTitle, page, pageSize);
 
         dispatch({
@@ -47,7 +47,7 @@ const BestPhotoList = () => {
         });
     };
 
-    useEffect(retrieveTutorials, [page, pageSize]);
+    useEffect(retrieve, [page, pageSize]);
 
     const handlePageChange = (event, value) => {
         setPage(value);
@@ -59,82 +59,101 @@ const BestPhotoList = () => {
     };
 
     const onChangeSearchTitle = (e) => {
+        e.preventDefault();
         const searchTitle = e.target.value;
         setSearchTitle(searchTitle);
     };
 
-    return (
-        <Row>
-            <Col md={{ size: 3 }} xs={{ size: 10, offset: 1 }} sm={{ size: 10, offset: 1 }}>
-                <SideNav />
-            </Col>
-            <Helmet title={`인기 갤러리`} />
-            <Col md={7} className="mt-3">
-                <Row md={{ size: 5, offset: 1 }} id="topborder">
-                    <h5>인기 갤러리</h5>
-                    <h6>카테고리 장르 갤러리에 등록된 모든 사진 중 조회수가 10 이상인 작품을 전시하는 곳입니다!</h6>
-                </Row>
+    const Enter = (e) => {
+        if (e.key === 'Enter') {
+            retrieve(e);
+        }
+    };
 
-                <Row>
-                    <Col>
-                        <span style={{ fontWeight: 'bold' }}>HOME</span>
-                        {/* <FontAwesomeIcon icon={faArrowRight} /> 포토 갤러리 <FontAwesomeIcon icon={faArrowRight} /> <span style={{ fontWeight: 'bolder' }}>베스트 갤러리</span> */}
-                    </Col>
+    const Body = (
+        <>
+            <Row>
+                <Helmet title={`인기 갤러리`} />
+                <Col md={{ size: 10, offset: 1 }} className="mt-3">
+                    <S.topborder md={{ size: 5, offset: 1 }}>
+                        <h5>인기 갤러리</h5>
+                        <h6>카테고리 장르 갤러리에 등록된 모든 사진 중 조회수가 10 이상인 작품을 전시하는 곳입니다!</h6>
+                    </S.topborder>
+                    <S.warp>
+                        <Col>
+                            <strong>HOME </strong>
+                            <BsChevronRight />
+                            포토 갤러리
+                            <BsChevronRight /> <strong>인기 갤러리</strong>
+                        </Col>
 
-                    <Col md={{ size: 5, offset: 1 }}>
-                        <InputGroup className="mb-3">
-                            <Input type="text" className="form-control" placeholder="제목 + 내용" value={searchTitle} onChange={onChangeSearchTitle} />
-                            <InputGroupAddon>
-                                <Button onClick={retrieveTutorials}>Search</Button>
-                            </InputGroupAddon>
-                            <Link to="/addphoto">
-                                <Button className="ml-3">포토 올리기</Button>
-                            </Link>
-                        </InputGroup>
-                    </Col>
-                </Row>
-
-                {/* Cards */}
-                <Row>
-                    {bestphotodata &&
-                        bestphotodata.map((photo, index) => (
-                            <Col md={{ size: 4 }} className="mb-3 mt-3" key={index}>
-                                <Link to={`/photo/${photo._id}`}>
-                                    <Card inverse>
-                                        <CardImg width="100%" src={photo.images[0]} alt="Card image cap" id="photoimg" />
-                                        <CardImgOverlay>
-                                            <CardTitle tag="h5">{photo.title}</CardTitle>
-                                            <CardText>{photo.description}</CardText>
-                                            <CardText>
-                                                {' '}
-                                                {/* <FontAwesomeIcon icon={faMouse} /> */}
-                                                &nbsp;{photo.views}
-                                            </CardText>
-                                            <CardText>
-                                                <small>{photo.date}</small>
-                                            </CardText>
-                                        </CardImgOverlay>
-                                    </Card>
+                        <Col md={{ size: 5, offset: 1 }}>
+                            <S.inputGroup>
+                                <Input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="제목을 입력해주세요..."
+                                    value={searchTitle}
+                                    onKeyPress={Enter}
+                                    onChange={onChangeSearchTitle}
+                                    data-testid="input-search"
+                                />
+                                <InputGroupAddon>
+                                    <S.button color={'#333'} onClick={retrieve} data-testid="search-btn">
+                                        검색
+                                    </S.button>
+                                </InputGroupAddon>
+                                <Link to="/addphoto" data-testid="photo-add">
+                                    <S.button margin={'12px'} color={'#72b29c'}>
+                                        포토 올리기
+                                    </S.button>
                                 </Link>
-                            </Col>
-                        ))}
-                </Row>
-                <Col md={{ offset: 10 }} className="mt-3">
-                    <Label>Page</Label>
-                    <Input type="select" name="page" onChange={handlePageSizeChange} value={pageSize}>
-                        {pageSizes.map((size) => (
-                            <option key={size} value={size}>
-                                {size}
-                            </option>
-                        ))}
-                    </Input>
+                            </S.inputGroup>
+                        </Col>
+                    </S.warp>
+                    <Row>
+                        {bestphotodata &&
+                            bestphotodata.map((photo, index) => (
+                                <Col md={{ size: 4 }} key={index}>
+                                    <Link to={`/photo/${photo._id}`}>
+                                        <S.card inverse>
+                                            <CardImg width="100%" src={photo.images[0]} alt="Card image cap" id="photoimg" />
+                                            <CardImgOverlay>
+                                                <CardTitle tag="h5">{photo.title}</CardTitle>
+                                                <CardText>{photo.description}</CardText>
+                                                <CardText>
+                                                    <BsFillEyeFill />
+                                                    &nbsp;{photo.views}
+                                                </CardText>
+                                                <CardText>
+                                                    <small>{photo.date}</small>
+                                                </CardText>
+                                            </CardImgOverlay>
+                                        </S.card>
+                                    </Link>
+                                </Col>
+                            ))}
+                    </Row>
+                    <S.col></S.col>
+                    <Col md={{ offset: 10 }} className="mt-3">
+                        <Label>Page</Label>
+                        <Input type="select" name="page" onChange={handlePageSizeChange} value={pageSize}>
+                            {pageSizes.map((size) => (
+                                <option key={size} value={size}>
+                                    {size}
+                                </option>
+                            ))}
+                        </Input>
+                    </Col>
+                    <Col md={{ offset: 5 }} xs={{ offset: 4 }} className="mt-3 mb-5">
+                        <Pagination variant="outlined" count={totalPages} page={page} siblingCount={1} boundaryCount={1} shape="rounded" onChange={handlePageChange} />
+                    </Col>
                 </Col>
-                <Col md={{ offset: 5 }} xs={{ offset: 4 }}>
-                    <Pagination className="my-5" color="primary" count={totalPages} page={page} siblingCount={1} boundaryCount={1} shape="rounded" onChange={handlePageChange} />
-                </Col>
-            </Col>
-        </Row>
+            </Row>
+        </>
     );
+
+    return <>{isLoading === true ? Loader : Body}</>;
 };
 
 export default BestPhotoList;

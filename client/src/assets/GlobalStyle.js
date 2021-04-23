@@ -41,7 +41,7 @@ body {
 }
 
 #main-body {
-    min-height: 150vh;
+    min-height: 130vh;
 }
 
 .card-img-top {
@@ -90,7 +90,7 @@ textarea {
 }
 
 //slide image
-.image-gallery-slide {
+/* .image-gallery-slide {
     object-fit: cover;
 }
 .image-gallery-slide img {
@@ -106,14 +106,14 @@ textarea {
 .fullscreen .image-gallery-image {
     width: 100%;
     height: 100%;
-}
+}*/
 
 .image-gallery-fullscreen-button {
-  right: 100px;
+  right: 150px;
 }
 
 .image-gallery-play-button {
-  left: 100px;
+  left: 150px;
 }
 
 ///////////////

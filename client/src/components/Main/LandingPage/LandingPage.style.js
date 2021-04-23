@@ -21,7 +21,7 @@ const cardbody = styled(CardBody)`
 `;
 const cardheader = styled(CardHeader)`
     color: #fff;
-    background-color: #1c685e;
+    background-color: #333;
     & p {
         margin: 0;
     }
@@ -33,7 +33,7 @@ const cardheader = styled(CardHeader)`
     }
     & small {
         display: block;
-        color: #333;
+        color: lightgray;
     }
 `;
 const td = styled.td`
