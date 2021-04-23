@@ -1,10 +1,12 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { POST_DETAIL_LOADING_REQUEST, POST_DELETE_REQUEST, COMMENT_LOADING_REQUEST } from '../../../redux/types';
-import { Button, Row, Col, Container } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import SideNav from '../../Nav/SideNav';
+import * as S from './DetailPostPage.style';
 import LocationDisplay from '../../../utils/LocationDisplay';
+import { BsPen, BsFillEyeFill, BsPersonFill, BsFillChatDotsFill } from 'react-icons/bs';
 import Comments from './Section/Comments';
 import { Link } from 'react-router-dom';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
@@ -45,66 +47,59 @@ const DetailPostPage = (req) => {
 
     const Body = (
         <>
-            <Row className="border-bottom border-top border-primary p-3 mb-3 d-flex justify-content-between">
-                {(() => {
-                    if (postDetail && postDetail.writer) {
-                        return (
-                            <Fragment>
-                                <div className="font-weight-bold text-big" data-testid="post-title">
-                                    {postDetail.title}
-                                </div>
-                                <div className="align-self-end" data-testid="post-name">
-                                    {postDetail.writer.name}
-                                </div>
-                            </Fragment>
-                        );
-                    }
-                })()}
-            </Row>
+            <S.topborder md={{ size: 5, offset: 1 }}>
+                <h5 data-testid="post-title">{postDetail.title}</h5>
+                <Link to={`/postlist_${postDetail.category}`}>
+                    <S.button color={'#72b29c'}>
+                        <S.listIcon />
+                        목록
+                    </S.button>
+                </Link>
+            </S.topborder>
             {postDetail && postDetail.comments ? (
                 <>
                     <Row>
                         <Col>
-                            {/* <FontAwesomeIcon icon={faPencilAlt} /> */}
+                            <BsPersonFill />
+                            &nbsp;
+                            <span data-testid="post-name">{postDetail.writer.name}</span>
+                            &nbsp;&nbsp;&nbsp;
+                            <BsPen />
                             &nbsp;
                             <span data-testid="post-date">{postDetail.date}</span>
-                            &nbsp;&nbsp;
-                            {/* <FontAwesomeIcon icon={faCommentDots} /> */}
+                            &nbsp;&nbsp;&nbsp;
+                            <BsFillChatDotsFill />
                             &nbsp;
                             <span data-testid="post-comments">{postDetail.comments.length}</span>
-                            &nbsp;&nbsp;
-                            {/* <FontAwesomeIcon icon={faMouse} /> */}
+                            &nbsp;&nbsp;&nbsp;
+                            <BsFillEyeFill />
+                            &nbsp;
                             <span data-testid="post-views">{postDetail.views}</span>
                         </Col>
                     </Row>
+                    <S.buttonWrap>
+                        {writerId === userId && (
+                            <S.button color={'#F05232'} width={'70px'} margin={'0 20px 0 0'} onClick={onDeleteClick}>
+                                삭제
+                            </S.button>
+                        )}
+                        {writerId === userId && (
+                            <Link to={`/editpost/${req.match.params.id}`} data-testid="post-edit">
+                                <S.button color={'#8bc34a'} width={'70px'}>
+                                    글 수정
+                                </S.button>
+                            </Link>
+                        )}
+                    </S.buttonWrap>
                     <Row>
-                        <Col md={{ offset: 10 }}>
-                            {writerId === userId && (
-                                <Link to={`/editpost/${req.match.params.id}`} data-testid="post-edit">
-                                    <Button className="btn-danger">글 수정</Button>
-                                </Link>
-                            )}
-                        </Col>
-                        <Col>
-                            {writerId === userId && (
-                                <Button className="btn-danger" onClick={onDeleteClick}>
-                                    삭제
-                                </Button>
-                            )}
-                        </Col>
-                    </Row>
-                    <Row className="mb-3">
-                        <CKEditor
-                            editor={BalloonEditor} //ckeditor로 편집한 글도 ckditor 기능을 이용해 보여주어햐한다.
-                            data={postDetail.contents}
-                            config={editorConfiguration}
-                            disabled="true" //보여주는 editor 글을 수정하지 못하도록 한다.
-                        />
+                        <CKEditor editor={BalloonEditor} data={postDetail.contents} config={editorConfiguration} disabled="true" />
                     </Row>
                     <Row>
-                        <Container className="mb-3 border border-blue rounded">
+                        <S.commentWrap>
+                            <p>총 <span>{postDetail.comments.length}</span> 개의 댓글이 있습니다.</p>
+                            <hr />
                             <Comments id={req.match.params.id} userId={userId} userName={userName} commentList={comments} commentId={comments._id} />
-                        </Container>
+                        </S.commentWrap>
                     </Row>
                 </>
             ) : (
@@ -115,13 +110,13 @@ const DetailPostPage = (req) => {
 
     return (
         <Row>
-            <Col md={{ size: 3 }} xs={{ size: 10, offset: 1 }} sm={{ size: 10, offset: 1 }}>
+            <Col md={{ size: 3, offset: 1 }}>
                 <SideNav />
             </Col>
             <Helmet title={`Post | ${title}`} />
-            <Col md={7} className="mt-3">
+            <S.postWrap md={7} className="mt-3">
                 {loading === true ? Loader : Body}
-            </Col>
+            </S.postWrap>
             <LocationDisplay />
         </Row>
     );
