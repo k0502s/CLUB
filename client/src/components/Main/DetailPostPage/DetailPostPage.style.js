@@ -37,6 +37,7 @@ const infoWrap = styled(Col)`
     }
 `;
 const postWrap = styled(Col)`
+    margin-top: 20px;
     margin-bottom: 30px;
     border-left: 4px solid #333;
     border-right: 4px solid #333;

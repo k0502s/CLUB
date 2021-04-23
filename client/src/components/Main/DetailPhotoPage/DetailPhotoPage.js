@@ -46,7 +46,7 @@ const DetailPhotoPage = (props) => {
                     <S.col>
                         <Helmet title={`Photo | ${detailphoto.title}`} />
                         <S.topborder md={{ size: 5, offset: 1 }}>
-                            <h5>포토 상세 보기</h5>
+                            <h5>{detailphoto.title}</h5>
                             <Link to={`/photolist_${detailphoto.genres}`}>
                                 <S.button color={'#72b29c'}>
                                     <S.listIcon />
@@ -56,11 +56,10 @@ const DetailPhotoPage = (props) => {
                         </S.topborder>
                         <Row>
                             <Col>
-                                <p>
-                                    <BsPersonFill />
-                                    &nbsp;
-                                    {writerName}
-                                </p>
+                                <BsPersonFill />
+                                &nbsp;
+                                <span>{writerName}</span>
+                                &nbsp;&nbsp;&nbsp;
                                 <BsPen />
                                 &nbsp;
                                 <span data-testid="span-date">{detailphoto.date}</span>
