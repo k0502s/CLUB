@@ -37,13 +37,13 @@ const card = styled(Card)`
     }
 
     &:hover div.card-img-overlay {
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: rgba(0, 0, 0, 0.7);
         & p.card-text {
             display: block;
         }
     }
 `;
-const col = styled(Col)`
+const bottomline = styled(Col)`
     margin: 120px 0 30px 0;
     border-bottom: 3px solid lightslategray;
 `;
@@ -60,4 +60,4 @@ const topborder = styled(Row)`
     color: #fff;
 `;
 
-export { inputGroup, button, warp, card, col, topborder };
+export { inputGroup, button, warp, card, bottomline, topborder };

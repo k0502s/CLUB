@@ -135,7 +135,7 @@ const PhotoList_3 = () => {
                                 </Col>
                             ))}
                     </Row>
-                    <S.col></S.col>
+                    <S.bottomline></S.bottomline>
                     <Col md={{ offset: 10 }} className="mt-3">
                         <Label>Page</Label>
                         <Input type="select" name="page" onChange={handlePageSizeChange} value={pageSize}>
@@ -146,7 +146,7 @@ const PhotoList_3 = () => {
                             ))}
                         </Input>
                     </Col>
-                    <Col md={{ offset: 5 }} xs={{ offset: 4 }} className="mt-3 mb-5">
+                    <Col md={{ offset: 5 }} xs={{ offset: 4 }} className="mt-3 mb-5 pl-2">
                         <Pagination variant="outlined" count={totalPages} page={page} siblingCount={1} boundaryCount={1} shape="rounded" onChange={handlePageChange} />
                     </Col>
                 </Col>

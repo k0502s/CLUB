@@ -134,7 +134,7 @@ const BestPhotoList = () => {
                                 </Col>
                             ))}
                     </Row>
-                    <S.col></S.col>
+                    <S.bottomline></S.bottomline>
                     <Col md={{ offset: 10 }} className="mt-3">
                         <Label>Page</Label>
                         <Input type="select" name="page" onChange={handlePageSizeChange} value={pageSize}>
