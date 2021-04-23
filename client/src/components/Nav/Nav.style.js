@@ -12,7 +12,6 @@ const cardfooter = styled(CardFooter)`
 `;
 const navbar = styled(Navbar)`
     box-shadow: 0 6px 10px 0 rgb(55, 54, 54);
-    /* background-color: rgba(2, 2, 2, 0.392); */
     border-radius: 27px;
     background-color: #1c685e;
     & .dropdown-menu.dropdown-menu-right.show {
@@ -39,6 +38,9 @@ const nav = styled(Nav)`
         margin-left: 60px;
     }
     @media only screen and (max-width: 767px) {
+    }
+    @media only screen and (min-width: 768px) and (max-width: 1025px) {
+        margin-left: -50px;
     }
 `;
 const card = styled(Card)`
