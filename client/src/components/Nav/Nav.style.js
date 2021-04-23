@@ -11,8 +11,9 @@ const cardfooter = styled(CardFooter)`
     text-align: center;
 `;
 const navbar = styled(Navbar)`
+    margin: 0 60px;
     box-shadow: 0 6px 10px 0 rgb(55, 54, 54);
-    border-radius: 27px;
+    border-radius: 10px;
     background-color: #1c685e;
     & .dropdown-menu.dropdown-menu-right.show {
         background-color: #333;
@@ -28,6 +29,9 @@ const navbar = styled(Navbar)`
                 border-radius: 8%;
             }
         }
+    }
+    @media only screen and (max-width: 767px) {
+        margin: 0 5px;
     }
 `;
 const nav = styled(Nav)`

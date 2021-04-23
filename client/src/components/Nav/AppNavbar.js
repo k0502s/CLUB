@@ -1,7 +1,6 @@
-import React, { Fragment, useState, useCallback, useEffect } from 'react';
-import { Navbar, Container, NavbarToggler, Collapse, Nav, NavItem, Form, Button, Col, NavLink, DropdownItem, DropdownToggle, UncontrolledDropdown, DropdownMenu, NavbarText } from 'reactstrap';
+import React, { Fragment, useState, useEffect } from 'react';
+import { NavbarToggler, Collapse, NavItem, Col, NavLink, DropdownItem, DropdownToggle, UncontrolledDropdown, DropdownMenu, NavbarText } from 'reactstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { LOGOUT_REQUEST } from '../../redux/types';
 import { Link } from 'react-router-dom';
 import * as S from './Nav.style';
 import LocationDisplay from '../../utils/LocationDisplay';
@@ -20,7 +19,7 @@ const AppNavbar = () => {
 
     return (
         <Fragment>
-            <Col md={{ size: 10, offset: 1 }} sm={12}>
+            <Col>
                 <S.navbar dark expand="lg" className="sticky-top">
                     <NavbarToggler onClick={toggle} style={{ borderRadius: 100 }} />
                     <Collapse isOpen={isOpen} navbar>
