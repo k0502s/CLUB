@@ -8,7 +8,13 @@ const mapwrap = styled.div`
     overflow: hidden;
     width: 100%;
     height: 350px;
-
+    & div#map {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+        border-radius: 0 0 20px 20px;
+    }
     & .custom_typecontrol {
         position: absolute;
         top: 10px;

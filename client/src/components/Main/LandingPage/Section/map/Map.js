@@ -1,30 +1,43 @@
 import React, { useEffect, useState } from 'react';
+import { CardFooter } from 'reactstrap';
 import * as S from './Map.style';
 
 /*global kakao */
 
 const Map = () => {
     const [M, setM] = useState();
+    // const [Marker1, setMarker1] = useState({m1: ''});
+    // const [Marker2, setMarker2] = useState({m2: ''});
     useEffect(() => {
         Maps();
     }, []);
+    // const onChange1 = (e) => {
+    //     setMarker1({
+    //         ...Marker1,
+    //         [e.target.name]: e.target.value,
+    //     });
+    // };
+    // const onChange2 = (e) => {
+    //     setMarker2({
+    //         ...Marker2,
+    //         [e.target.name]: e.target.value,
+    //     });
+    // };
     const Maps = () => {
         let container = document.getElementById('map');
         let options = {
             center: new kakao.maps.LatLng(37.624915253753194, 127.15122688059974),
             level: 3,
         };
-   
+
         const map = new kakao.maps.Map(container, options);
 
-    
         let markerPosition = new kakao.maps.LatLng(37.624915253753194, 127.15122688059974);
 
-       
         let marker = new kakao.maps.Marker({
             position: markerPosition,
         });
-        
+
         marker.setMap(map);
         setM(map);
 
@@ -37,7 +50,6 @@ const Map = () => {
             position: iwPosition,
             content: iwContent,
         });
-
 
         infowindow.open(map, marker);
     };
@@ -56,35 +68,39 @@ const Map = () => {
         }
     };
 
-
     const zoomIn = () => {
         M.setLevel(M.getLevel() - 1);
     };
-
 
     const zoomOut = () => {
         M.setLevel(M.getLevel() + 1);
     };
     return (
-        <S.mapwrap>
-            <div id="map" style={{ width: '100%', height: '100%', position: 'relative', overflow: 'hidden' }}></div>
-            <div class="custom_typecontrol">
-                <span id="btnRoadmap" class="selected_btn" onClick={() => setMapType('roadmap')}>
-                    지도
-                </span>
-                <span id="btnSkyview" class="btn" onClick={() => setMapType('skyview')}>
-                    스카이뷰
-                </span>
-            </div>
-            <div class="custom_zoomcontrol">
-                <span onClick={zoomIn}>
-                    <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_plus.png" alt="확대"></img>
-                </span>
-                <span onClick={zoomOut}>
-                    <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_minus.png" alt="축소" />
-                </span>
-            </div>
-        </S.mapwrap>
+        <>
+            <S.mapwrap>
+                <div id="map"></div>
+                <div class="custom_typecontrol">
+                    <span id="btnRoadmap" class="selected_btn" onClick={() => setMapType('roadmap')}>
+                        지도
+                    </span>
+                    <span id="btnSkyview" class="btn" onClick={() => setMapType('skyview')}>
+                        스카이뷰
+                    </span>
+                </div>
+                <div class="custom_zoomcontrol">
+                    <span onClick={zoomIn}>
+                        <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_plus.png" alt="확대" />
+                    </span>
+                    <span onClick={zoomOut}>
+                        <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_minus.png" alt="축소" />
+                    </span>
+                </div>
+            </S.mapwrap>
+            {/* <CardFooter>
+                <Input type="text" name="m1" id="name" className="form-control" value={Marker1.m1} onChange={onChange1}/>
+                <Input type="text" name="m2" id="name" className="form-control" value={Marker2.m2} onChange={onChange2} />
+            </CardFooter> */}
+        </>
     );
 };
 
