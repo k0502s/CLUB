@@ -91,7 +91,7 @@ const LandingPage = () => {
                 <SideNav />
                 {isLoading === true ? '' : sideBody}
             </Col>
-            <Helmet title={`HOME`} />
+            <Helmet title={`사진 동호회`} />
             <S.col md={7} className="mt-4">
                 {isLoading === true ? Loader : body}
             </S.col>

@@ -11,13 +11,15 @@ const cardfooter = styled(CardFooter)`
     text-align: center;
 `;
 const navbar = styled(Navbar)`
-    margin: 0 60px;
     box-shadow: 0 6px 10px 0 rgb(55, 54, 54);
-    border-radius: 10px;
     background-color: #1c685e;
+    padding: 10px 50px;
+    & .navbar-brand {
+        display: none;
+    }
     & .dropdown-menu.dropdown-menu-right.show {
         background-color: #333;
-        border-radius: 8%;
+        border: 8%;
         left: -14px;
         & .dropdown-item {
             text-align: center;
@@ -26,22 +28,39 @@ const navbar = styled(Navbar)`
                 border: 1px;
                 background-color: #fff;
                 color: #333;
-                border-radius: 8%;
             }
         }
     }
+    @media only screen and (min-width: 768px) and (max-width: 1025px) {
+        & .navbar-brand {
+            display: none;
+        }
+    }
     @media only screen and (max-width: 767px) {
-        margin: 0 5px;
+        border-radius: 0;
+        margin: 0;
+        padding: 0;
+        & .navbar-brand {
+            display: block;
+            margin: 0 auto;
+            padding: 0;
+        }
+        & img {
+            width: 119px;
+            margin-right: 60px;
+            padding: 6px 0 0 2px;
+        }
     }
 `;
 const nav = styled(Nav)`
     margin-right: auto;
-    margin-left: 40px;
+    margin-left: 100px;
 
     & li {
         margin-left: 60px;
     }
     @media only screen and (max-width: 767px) {
+        margin-left: 0;
     }
     @media only screen and (min-width: 768px) and (max-width: 1025px) {
         margin-left: -50px;

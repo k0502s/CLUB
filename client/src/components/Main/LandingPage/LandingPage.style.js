@@ -13,7 +13,7 @@ const card = styled(Card)`
     margin-bottom: ${(props) => props.marginbottom};
     width: ${(props) => props.width};
     border: 1px;
-    border-radius: 10px;
+    border-radius:  0 0 10px 10px;
     background-color: #f4fcfb;
     @media only screen and (max-width: 767px) {
         margin-left: 12px;
@@ -26,6 +26,7 @@ const cardbody = styled(CardBody)`
 const cardheader = styled(CardHeader)`
     color: #fff;
     background-color: #333;
+    border: 1px;
     & p {
         margin: 0;
     }
