@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Axios from 'axios';
 import { Row, Col } from 'reactstrap';
 import * as S from '../DetailPhotoPage.style';
@@ -14,7 +14,7 @@ function LikeDislikes({ photoId, userId }) {
     const [DislikeAction, setDislikeAction] = useState(null);
     let variable = {};
     variable = { photoId, userId };
-
+    const { uplike, unlike } = useSelector((state) => state.like);
     useEffect(() => {
         Axios.post('/api/like/getLikes', variable).then((response) => {
             console.log('getLikes', response.data);
@@ -54,10 +54,10 @@ function LikeDislikes({ photoId, userId }) {
                 type: LIKE_UP_REQUEST,
                 payload: variable,
             });
-
+            if(uplike) {
             setLikes(Likes + 1);
             setLikeAction('liked');
-
+            }
             if (DislikeAction !== null) {
                 setDislikeAction(null);
                 setDislikes(Dislikes - 1);
@@ -67,9 +67,10 @@ function LikeDislikes({ photoId, userId }) {
                 type: LIKE_UN_REQUEST,
                 payload: variable,
             });
-
+            if(unlike){
             setLikes(Likes - 1);
             setLikeAction(null);
+            }
         }
     };
 
