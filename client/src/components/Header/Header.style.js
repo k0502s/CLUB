@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const wrapper = styled.div`
     text-align: center;
-    background-color: #f4fcfb;
+    background-color: #72b29c;
 `;
 const logo = styled.img`
     width: 200px;

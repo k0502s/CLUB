@@ -118,7 +118,7 @@ router.get('/photo_by_id', async (req, res) => {
 
 router.get('/bestimages', async (req, res) => {
     try {
-        const bestphotoes = await Photo.find({views: { $gte: 10 }})
+        const bestphotoes = await Photo.find({views: { $gte: 10 }}).populate({ path: 'writer', select: 'name' })
         console.log(bestphotoes, 'best');
         res.json(bestphotoes);
     } catch (e) {

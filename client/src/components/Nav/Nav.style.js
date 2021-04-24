@@ -37,6 +37,10 @@ const navbar = styled(Navbar)`
         }
     }
     @media only screen and (max-width: 767px) {
+        position: fixed;
+        width: 100%;
+        box-shadow: none;
+        background-color: #72b29c;
         border-radius: 0;
         margin: 0;
         padding: 0;
@@ -50,6 +54,18 @@ const navbar = styled(Navbar)`
             margin-right: 60px;
             padding: 6px 0 0 2px;
         }
+    }
+`;
+const SubNavBar = styled.div`
+    position: fixed;
+    width: 100%;
+    display: none;
+    margin-top: 60px;
+    height: 30px;
+    z-index: 1;
+    background-color: #1c685e;
+    @media only screen and (max-width: 767px) {
+        display: block;
     }
 `;
 const nav = styled(Nav)`
@@ -73,9 +89,10 @@ const card = styled(Card)`
     background-color: #f4fcfb;
     margin-top: 20px;
     @media only screen and (max-width: 767px) {
+        display: none;
         margin-left: 12px;
         margin-right: 12px;
     }
 `;
 
-export { navbar, nav, sysytemIcon, card, cardfooter };
+export { navbar, nav, sysytemIcon, card, cardfooter, SubNavBar };

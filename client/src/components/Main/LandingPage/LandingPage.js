@@ -50,8 +50,8 @@ const LandingPage = () => {
 
     const body = (
         <>
-            <S.col>
-                <S.card marginbottom={'20px'}>
+            <S.HomeWrap marginbottom={'20px'} Mdisplay={'none'}>
+                <S.card>
                     <S.cardheader>
                         <S.trophyIcon />
                         동호회 인기 갤러리 작품
@@ -62,9 +62,9 @@ const LandingPage = () => {
                     </S.cardbody>
                     <S.cardfooter>동호회 회원분들이 직접 찍은 사진 작품들입니다. 더 감상을 원하시면 사진을 클릭하세요! </S.cardfooter>
                 </S.card>
-            </S.col>
-            <S.col>
-                <S.card marginbottom={'60px'} margintop={'20px'}>
+            </S.HomeWrap>
+            <S.HomeWrap marginbottom={'60px'} Mmarginbottom={'60px'} Mmargintop={'20px'}>
+                <S.card>
                     <S.cardheader>
                         <S.mapIcon />
                         다음 모임 장소
@@ -72,29 +72,32 @@ const LandingPage = () => {
                     </S.cardheader>
                     <Map />
                 </S.card>
-            </S.col>
+            </S.HomeWrap>
         </>
     );
     const sideBody = (
         <>
-            <Col>
+            <S.HomeWrap display={'none'} Mdisplay={'block'}>
+                <PhotoImage />
+            </S.HomeWrap>
+            <S.HomeWrap margintop={'40px'}>
                 <MiniList1 />
-            </Col>
-            <Col>
+            </S.HomeWrap>
+            <S.HomeWrap margintop={'40px'}>
                 <MiniList2 />
-            </Col>
+            </S.HomeWrap>
         </>
     );
     return (
         <Row>
-            <Col md={{ size: 3, offset: 1 }}>
+            <S.HomeWrap md={{ size: 3, offset: 1 }} Mmargintop={'90px'}>
                 <SideNav />
                 {isLoading === true ? '' : sideBody}
-            </Col>
+            </S.HomeWrap>
             <Helmet title={`사진 동호회`} />
-            <S.col md={7} className="mt-4">
+            <S.HomeWrap md={7} margintop={'20px'}>
                 {isLoading === true ? Loader : body}
-            </S.col>
+            </S.HomeWrap>
         </Row>
     );
 };

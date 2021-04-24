@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import * as S from '../LandingPage.style';
 import { Slide } from 'react-slideshow-image';
 import { useSelector } from 'react-redux';
+import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 
 const PhotoImage = () => {
     const [Images, setImages] = useState([]);
@@ -12,17 +13,17 @@ const PhotoImage = () => {
         transitionDuration: 500,
         infinite: true,
         prevArrow: (
-            <div style={{ width: '30px', marginRight: '-30px' }}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="#fff">
+            <div style={{ width: '30px', marginRight: '-30px', color:'#fff', fontSize:'80px', fontWeight: 'bold'}}>
+                <BsChevronCompactLeft>
                     <path d="M242 180.6v-138L0 256l242 213.4V331.2h270V180.6z" />
-                </svg>
+                </BsChevronCompactLeft>
             </div>
         ),
         nextArrow: (
-            <div style={{ width: '30px', marginLeft: '-30px' }}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="#fff">
+            <div style={{ width: '30px', marginLeft: '-30px', color:'#fff', fontSize:'80px', fontWeight: 'bold' }}>
+                <BsChevronCompactRight>
                     <path d="M512 256L270 42.6v138.2H0v150.6h270v138z" />
-                </svg>
+                </BsChevronCompactRight>
             </div>
         ),
     };
@@ -36,6 +37,8 @@ const PhotoImage = () => {
                 original: `${item.images[0]}`,
                 thumbnail: `${item.images[0]}`,
                 link: `${item._id}`,
+                title: `${item.title}`,
+                writer: `${item.writer.name}`,
             });
         });
         setImages(images);
@@ -43,17 +46,32 @@ const PhotoImage = () => {
 
     return (
         <>
-            <S.wrap>
+            <S.ImgWrap Mheight={'280px'}>
                 <Slide easing="ease" {...properties}>
                     {Images.map((images, index) => (
                         <Link to={`photo/${images.link}`}>
                             <div className="each-slide" index={index}>
-                                <div style={{ backgroundImage: `url(${images.original})` }}></div>
+                                <div style={{ backgroundImage: `url(${images.original})` }}>
+                                    <span>
+                                        <div>
+                                            <small>
+                                                제목: {images.title} &nbsp;| &nbsp; By {images.writer}
+                                            </small>
+                                        </div>
+                                    </span>
+                                    <span>
+                                        <div>
+                                            <p>
+                                                <S.trophyIcon /> 동호회 인기 갤러리 작품
+                                            </p>
+                                        </div>
+                                    </span>
+                                </div>
                             </div>
                         </Link>
                     ))}
                 </Slide>
-            </S.wrap>
+            </S.ImgWrap>
         </>
     );
 };

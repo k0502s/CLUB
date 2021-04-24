@@ -94,6 +94,7 @@ const AppNavbar = () => {
                 </Collapse>
                 <LocationDisplay />
             </S.navbar>
+            <S.SubNavBar></S.SubNavBar>
         </>
     );
 };
