@@ -10,6 +10,7 @@ body {
     padding: 0;
     font-size: large;
     font-family: 'Do Hyeon', sans-serif;
+    overflow-x: hidden;
 }
 *, *:before, *:after {
     outline: none;
@@ -26,18 +27,6 @@ body {
 #main-footer {
     background: #333;
     color: #ffff;
-}
-
-#page-logo {
-    width: 65x;
-    height: 65px;
-    margin-bottom: 20px;
-    margin-top: 30px;
-}
-
-#page-logo-text {
-    margin-top: 50px;
-    margin-left: 6px;
 }
 
 #main-body {
@@ -76,7 +65,6 @@ div.col {
 html {
     width: 100vw;
     overflow-x: hidden;
-    overflow-y: scroll;
 }
 
 textarea {
