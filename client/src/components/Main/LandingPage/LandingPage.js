@@ -50,55 +50,53 @@ const LandingPage = () => {
 
     const body = (
         <>
-            <S.HomeWrap marginbottom={'20px'} Mdisplay={'none'}>
-                <S.card>
-                    <S.cardheader>
-                        <S.trophyIcon />
-                        동호회 인기 갤러리 작품
-                        <small>조회수가 높은 작품들을 기준으로 선정하고 있습니다!</small>
-                    </S.cardheader>
-                    <S.cardbody>
+            <Row>
+                <S.HomeWrap md={{ size: 3, offset: 1 }}>
+                    <SideNav />
+                    <S.HomeWrap display={'none'} Mdisplay={'block'} Mmargintop={'-10px'}>
                         <PhotoImage />
-                    </S.cardbody>
-                    <S.cardfooter>동호회 회원분들이 직접 찍은 사진 작품들입니다. 더 감상을 원하시면 사진을 클릭하세요! </S.cardfooter>
-                </S.card>
-            </S.HomeWrap>
-            <S.HomeWrap marginbottom={'60px'} Mmarginbottom={'60px'} Mmargintop={'20px'}>
-                <S.card>
-                    <S.cardheader>
-                        <S.mapIcon />
-                        다음 모임 장소
-                        <small>다음 모임을 가질 장소를 지도로 알려드립니다!</small>
-                    </S.cardheader>
-                    <Map />
-                </S.card>
-            </S.HomeWrap>
+                    </S.HomeWrap>
+                    <S.HomeWrap margintop={'40px'}>
+                        <MiniList1 />
+                    </S.HomeWrap>
+                    <S.HomeWrap margintop={'40px'}>
+                        <MiniList2 />
+                    </S.HomeWrap>
+                </S.HomeWrap>
+                <S.HomeWrap md={7} margintop={'20px'}>
+                    <S.HomeWrap marginbottom={'20px'} Mdisplay={'none'}>
+                        <S.card>
+                            <S.cardheader>
+                                <S.trophyIcon />
+                                동호회 인기 갤러리 작품
+                                <small>조회수가 높은 작품들을 기준으로 선정하고 있습니다!</small>
+                            </S.cardheader>
+                            <S.cardbody>
+                                <PhotoImage />
+                            </S.cardbody>
+                            <S.cardfooter>동호회 회원분들이 직접 찍은 사진 작품들입니다. 더 감상을 원하시면 사진을 클릭하세요! </S.cardfooter>
+                        </S.card>
+                    </S.HomeWrap>
+                    <S.HomeWrap marginbottom={'60px'} Mmarginbottom={'60px'} Mmargintop={'20px'}>
+                        <S.card>
+                            <S.cardheader>
+                                <S.mapIcon />
+                                다음 모임 장소
+                                <small>다음 모임을 가질 장소를 지도로 알려드립니다!</small>
+                            </S.cardheader>
+                            <Map />
+                        </S.card>
+                    </S.HomeWrap>
+                </S.HomeWrap>
+            </Row>
         </>
     );
-    const sideBody = (
-        <>
-            <S.HomeWrap display={'none'} Mdisplay={'block'}>
-                <PhotoImage />
-            </S.HomeWrap>
-            <S.HomeWrap margintop={'40px'}>
-                <MiniList1 />
-            </S.HomeWrap>
-            <S.HomeWrap margintop={'40px'}>
-                <MiniList2 />
-            </S.HomeWrap>
-        </>
-    );
+    const sideBody = <></>;
     return (
-        <Row>
-            <S.HomeWrap md={{ size: 3, offset: 1 }} Mmargintop={'90px'}>
-                <SideNav />
-                {isLoading === true ? '' : sideBody}
-            </S.HomeWrap>
+        <>
             <Helmet title={`사진 동호회`} />
-            <S.HomeWrap md={7} margintop={'20px'}>
-                {isLoading === true ? Loader : body}
-            </S.HomeWrap>
-        </Row>
+            {isLoading === true ? Loader : body}
+        </>
     );
 };
 
