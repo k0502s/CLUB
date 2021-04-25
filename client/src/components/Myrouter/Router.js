@@ -4,7 +4,6 @@ import Header from '../Header/Header';
 import AppNavbar from '../Nav/AppNavbar';
 import ProfileEdit from '../Profile/Section/ProfileEdit';
 import Profile from '../Profile/Profile';
-import Chat from '../Chat/Chat';
 import ChatButton from '../Chat/Section/ChatButton';
 import LandingPage from '../Main/LandingPage/LandingPage';
 import EditSuccess from '../Profile/Section/EditSuccess';
@@ -21,7 +20,7 @@ import DetailPhotoPage from '../Main/DetailPhotoPage/DetailPhotoPage';
 import DetailPostPage from '../Main/DetailPostPage/DetailPostPage';
 import EditPhotoPage from '../Main/EditPhotoPage/EditPhotoPage';
 import EditPostPage from '../Main/EditPostPage/EditPostPage';
-import { ProfileProtectedRouter } from './ProtectedRouter/ProtectedRouter';
+import Auth from './ProtectRouter/ProtectRouter';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 const MyRouter = () => {
@@ -32,10 +31,10 @@ const MyRouter = () => {
             <div id="main-body">
                 <Switch>
                     <Route exact path="/" component={LandingPage} />
-                    <Route exact path="/addphoto" component={AddPhotoPage} />
-                    <Route exact path="/addpost" component={AddPostPage} />
-                    <Route exact path="/editphoto/:id" component={EditPhotoPage} />
-                    <Route exact path="/editpost/:id" component={EditPostPage} />
+                    <Route exact path="/addphoto" component={Auth(AddPhotoPage, true)} />
+                    <Route exact path="/addpost" component={Auth(AddPostPage, true)} />
+                    <Route exact path="/editphoto/:id" component={Auth(EditPhotoPage, true)} />
+                    <Route exact path="/editpost/:id" component={Auth(EditPostPage, true)} />
                     <Route exact path="/photolist_1" component={PhotoList_1} />
                     <Route exact path="/photolist_2" component={PhotoList_2} />
                     <Route exact path="/photolist_3" component={PhotoList_3} />
@@ -43,13 +42,11 @@ const MyRouter = () => {
                     <Route exact path="/bestphotolist" component={BestPhotoList} />
                     <Route exact path="/postlist_1" component={PostList_1} />
                     <Route exact path="/postlist_2" component={PostList_2} />
-                    <Route exact path="/photo/:id" component={DetailPhotoPage} />
-                    <Route exact path="/post/:id" component={DetailPostPage} />
-                    <Route exact path="/chat" component={Chat} />
+                    <Route exact path="/photo/:id" component={Auth(DetailPhotoPage, true)} />
+                    <Route exact path="/post/:id" component={Auth(DetailPostPage, true)} />
                     <Route exact path="/editsuccess" component={EditSuccess} />
-                    <Route exact path="/profile" component={Profile} />
-                    <ProfileProtectedRouter exact path="/user/:userName/profile" component={ProfileEdit} />
-                    <Redirect from="*" to="/" />
+                    <Route exact path="/profile" component={Auth(Profile, true)} />
+                    <Route exact path="/user/:userName/profile" component={Auth(ProfileEdit, true)} />
                 </Switch>
             </div>
             <ChatButton />
