@@ -98,6 +98,7 @@ const DetailPostPage = (req) => {
                                     </Link>
                                 )}
                             </S.buttonWrap>
+                            <hr />
                             <Row>
                                 <CKEditor editor={BalloonEditor} data={postDetail.contents} config={editorConfiguration} disabled="true" />
                             </Row>
