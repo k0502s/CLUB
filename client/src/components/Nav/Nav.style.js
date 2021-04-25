@@ -1,8 +1,20 @@
 import styled from 'styled-components';
-import { BsGearFill } from 'react-icons/bs';
+import { BsGearFill, BsFillLockFill, BsFillUnlockFill, BsPeopleCircle } from 'react-icons/bs';
 import { Navbar, Nav, CardFooter, Card } from 'reactstrap';
 
-const sysytemIcon = styled(BsGearFill)`
+const SysytemIcon = styled(BsGearFill)`
+    margin: 0 5px 3px 0;
+    font-size: 15px;
+`;
+const LogoutIcon = styled(BsFillUnlockFill)`
+    margin: 0 5px 3px 0;
+    font-size: 15px;
+`;
+const LoginIcon = styled(BsFillLockFill)`
+    margin: 0 5px 3px 0;
+    font-size: 15px;
+`;
+const ProfileIcon = styled(BsPeopleCircle)`
     margin: 0 5px 3px 0;
     font-size: 15px;
 `;
@@ -60,7 +72,7 @@ const SubNavBar = styled.div`
     position: fixed;
     width: 100%;
     display: none;
-    margin-top: 60px;
+    margin-top: -40px;
     height: 30px;
     z-index: 1;
     background-color: #1c685e;
@@ -82,6 +94,12 @@ const nav = styled(Nav)`
         margin-left: -50px;
     }
 `;
+const NavWrap = styled.div`
+    display: none;
+    @media only screen and (max-width: 767px) {
+        display: block;
+    }
+`;
 const card = styled(Card)`
     box-shadow: 0 6px 10px 0 rgb(55, 54, 54);
     font-size: large;
@@ -95,4 +113,4 @@ const card = styled(Card)`
     }
 `;
 
-export { navbar, nav, sysytemIcon, card, cardfooter, SubNavBar };
+export { navbar, nav, SysytemIcon, LoginIcon, LogoutIcon, ProfileIcon, card, cardfooter, SubNavBar, NavWrap };

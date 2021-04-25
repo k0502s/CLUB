@@ -1,22 +1,65 @@
-import React, { useState, useEffect } from 'react';
-import { NavbarToggler, Collapse, NavItem, Col, Row, NavLink, DropdownItem, DropdownToggle, UncontrolledDropdown, DropdownMenu, NavbarBrand } from 'reactstrap';
+import React, { useState, useEffect, useCallback } from 'react';
+import { NavbarToggler, Collapse, NavItem, Col, Row, NavLink, DropdownItem, DropdownToggle, UncontrolledDropdown, DropdownMenu, NavbarBrand, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Login from '../Authentication/Login';
 import * as S from './Nav.style';
 import logo from '../../assets/img/로고.png';
 import LocationDisplay from '../../utils/LocationDisplay';
+import { CLEAR_ERROR_REQUEST, LOGOUT_REQUEST } from '../../redux/types';
 
 const AppNavbar = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const { user } = useSelector((state) => state.auth);
+    const [modal, setModal] = useState(false);
+    const { user, isAuthenticated } = useSelector((state) => state.auth);
 
     const dispatch = useDispatch();
+    const onLogout = useCallback(() => {
+        dispatch({
+            type: LOGOUT_REQUEST,
+        });
+    }, [dispatch]);
 
     useEffect(() => {
         setIsOpen(false);
     }, [user]);
 
     const toggle = () => setIsOpen(!isOpen);
+    const handleToggle = () => {
+        dispatch({
+            type: CLEAR_ERROR_REQUEST,
+        });
+        setModal(!modal);
+    };
+    const authLink = (
+        <>
+            <NavLink onClick={onLogout} className="text-white">
+                <S.LogoutIcon />
+                Logout
+            </NavLink>
+            <Link to="/profile">
+                <NavLink className="text-white">
+                    <S.ProfileIcon />
+                    Profile
+                </NavLink>
+            </Link>
+        </>
+    );
+
+    const guestLink = (
+        <>
+            <NavLink className="text-white" onClick={handleToggle}>
+                <S.LoginIcon />
+                Login
+            </NavLink>
+            <Modal isOpen={modal} toggle={handleToggle}>
+                <ModalHeader toggle={handleToggle}>Login</ModalHeader>
+                <ModalBody>
+                    <Login />
+                </ModalBody>
+            </Modal>
+        </>
+    );
 
     return (
         <>
@@ -85,9 +128,10 @@ const AppNavbar = () => {
                             </DropdownMenu>
                         </UncontrolledDropdown>
                     </S.nav>
+                    <S.NavWrap>{isAuthenticated ? authLink : guestLink}</S.NavWrap>
                     <Link to="/">
                         <NavLink className="text-white">
-                            <S.sysytemIcon />
+                            <S.SysytemIcon />
                             ADMIN
                         </NavLink>
                     </Link>

@@ -31,6 +31,9 @@ body {
 
 #main-body {
     min-height: 130vh;
+    @media only screen and (max-width: 767px) {
+    margin-top: 100px;
+}
 }
 
 .card-img-top {
