@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import { useSelector, useDispatch } from 'react-redux';
 import { Form, FormGroup, Label, Input, Button, Col, Progress, Card, CardTitle, CardText, CardHeader, CardBody } from 'reactstrap';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
+import * as S from './EditPostPage.style';
 import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
 import { editorConfiguration } from '../../Editor/EditorConfig';
 import Myinit from '../../Editor/UploadAdapter';
@@ -99,51 +100,49 @@ const EditPostPage = () => {
     };
 
     return (
-        <Col md={{ size: 6, offset: 3 }} className="mt-4">
+        <Col md={{ size: 6, offset: 3 }}>
             <Helmet title={`글 수정`} />
-            {isAuthenticated ? (
-                <Card style={{ borderRadius: '25px', marginBottom: '20px' }}>
-                    <CardHeader>
-                        <strong>글쓰기</strong>
-                    </CardHeader>
-                    <Card body>
-                        <CardTitle tag="h5">※ 이미지 파일 업로드 참고 사항</CardTitle>
-                        <CardText>1. 이미지 파일 사이즈는 100 * 1024 * 1024의 제한을 두고 있습니다.</CardText>
-                    </Card>
-                    <CardBody>
-                        <Form onSubmit={onSubmit} name="myform">
-                            <FormGroup className="mb-3">
-                                <Label for="title" data-testid='edit-title'>Title</Label>
-                                <Input
-                                    defaultValue={postDetail.title} //초기값 설정
-                                    type="text"
-                                    name="title"
-                                    id="title"
-                                    className="form-control"
-                                    onChange={onChange}
-                                />
-                            </FormGroup>
-                            <FormGroup className="mb-3">
-                                <Label for="content">Content</Label>
-                                <CKEditor
-                                    data={postDetail.contents}
-                                    editor={ClassicEditor}
-                                    config={editorConfiguration}
-                                    onInit={Myinit}
-                                    onBlur={getDataFromCKEditor} //onBlur가 onChange, onClike 보다 렉이 덜 발생한다.
-                                />
-                                <Button color="success" block className="mt-3 col-md-2 offset-md-10 mb-3" data-testid='edit-submit'>
-                                    제출하기
-                                </Button>
-                            </FormGroup>
-                        </Form>
-                    </CardBody>
+            <S.EditCard>
+                <CardHeader>
+                    <strong>글쓰기</strong>
+                </CardHeader>
+                <Card body>
+                    <CardTitle tag="h5">※ 이미지 파일 업로드 참고 사항</CardTitle>
+                    <CardText>1. 이미지 파일 사이즈는 100 * 1024 * 1024의 제한을 두고 있습니다.</CardText>
                 </Card>
-            ) : (
-                <Col width={50} className="p-5 m-5">
-                    <Progress animated color="info" value={100} />
-                </Col>
-            )}
+                <CardBody>
+                    <Form onSubmit={onSubmit} name="myform">
+                        <FormGroup className="mb-3">
+                            <Label for="title" data-testid="edit-title">
+                                Title
+                            </Label>
+                            <Input
+                                defaultValue={postDetail.title}
+                                type="text"
+                                name="title"
+                                id="title"
+                                className="form-control"
+                                onChange={onChange}
+                            />
+                        </FormGroup>
+                        <FormGroup className="mb-3">
+                            <Label for="content">Content</Label>
+                            <CKEditor
+                                data={postDetail.contents}
+                                editor={ClassicEditor}
+                                config={editorConfiguration}
+                                onInit={Myinit}
+                                onBlur={getDataFromCKEditor}
+                            />
+                            <S.BtnWrap>
+                                <S.EditBtn color={'#54C5A0'} margin={'30px 0 0 0'} width={'100px'} data-testid="edit-submit">
+                                    확인
+                                </S.EditBtn>
+                            </S.BtnWrap>
+                        </FormGroup>
+                    </Form>
+                </CardBody>
+            </S.EditCard>
         </Col>
     );
 };
