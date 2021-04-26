@@ -75,6 +75,11 @@ const AppNavbar = () => {
                                 <NavLink className="text-white">HOME</NavLink>
                             </Link>
                         </NavItem>
+                        <NavItem>
+                            <Link to="/about" data-testid="nav-home">
+                                <NavLink className="text-white">CLUB ABOUT</NavLink>
+                            </Link>
+                        </NavItem>
                         <UncontrolledDropdown nav inNavbar>
                             <DropdownToggle nav caret className="text-white">
                                 PHOTO GALLERY
@@ -115,20 +120,9 @@ const AppNavbar = () => {
                                 </Link>
                             </DropdownMenu>
                         </UncontrolledDropdown>
-                        <UncontrolledDropdown nav inNavbar>
-                            <DropdownToggle nav caret className="text-white">
-                                CLUB ABOUT
-                            </DropdownToggle>
-                            <DropdownMenu right>
-                                <DropdownItem>동호회 소개</DropdownItem>
-                                <DropdownItem divider />
-                                <DropdownItem>동호회 규칙</DropdownItem>
-                                <DropdownItem divider />
-                                <DropdownItem>동호회 연혁</DropdownItem>
-                            </DropdownMenu>
-                        </UncontrolledDropdown>
                     </S.nav>
-                    <S.NavWrap>{isAuthenticated ? authLink : guestLink}</S.NavWrap>
+                    <S.NavWrap>{isAuthenticated ? authLink : ''}</S.NavWrap>
+                    <S.NavWrap>{isAuthenticated ? '' : guestLink}</S.NavWrap>
                     <Link to="/">
                         <NavLink className="text-white">
                             <S.SysytemIcon />

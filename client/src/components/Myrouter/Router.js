@@ -20,6 +20,7 @@ import DetailPhotoPage from '../Main/DetailPhotoPage/DetailPhotoPage';
 import DetailPostPage from '../Main/DetailPostPage/DetailPostPage';
 import EditPhotoPage from '../Main/EditPhotoPage/EditPhotoPage';
 import EditPostPage from '../Main/EditPostPage/EditPostPage';
+import AboutPage from '../Main/AboutPage/AboutPage'
 import Auth from './ProtectRouter/ProtectRouter';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
@@ -31,6 +32,7 @@ const MyRouter = () => {
             <div id="main-body">
                 <Switch>
                     <Route exact path="/" component={LandingPage} />
+                    <Route exact path="/about" component={AboutPage} />
                     <Route exact path="/addphoto" component={Auth(AddPhotoPage, true)} />
                     <Route exact path="/addpost" component={Auth(AddPostPage, true)} />
                     <Route exact path="/editphoto/:id" component={Auth(EditPhotoPage, true)} />
