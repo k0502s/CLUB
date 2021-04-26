@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import * as S from '../Chat.style';
-import { ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText } from 'reactstrap';
+import ChatProfileImg from '../../../assets/img/chatProfile.png'
 
 const Message = (props) => {
     const { user } = useSelector((state) => state.auth);
@@ -10,7 +10,7 @@ const Message = (props) => {
             {props.who === 'bot' ? (
                 <li class="in">
                     <div class="chat-img">
-                        <img alt="Avtar" src="https://bootdey.com/img/Content/avatar/avatar1.png" />
+                        <img alt="Avtar" src={ChatProfileImg} />
                     </div>
                     <div class="chat-body">
                         <div class="chat-message">
