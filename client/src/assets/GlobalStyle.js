@@ -24,18 +24,12 @@ body {
       transition: all 0.3s;
   }
 
-#main-footer {
-    background: #333;
-    color: #ffff;
-}
-
 #main-body {
     min-height: 130vh;
     @media only screen and (max-width: 767px) {
     margin-top: 100px;
 }
 }
-
 .card-img-top {
     width: 100%;
     height: 20rem;
@@ -44,6 +38,7 @@ body {
 div.col {
     padding: 0;
 }
+
 
 //CKEditor setting
 
@@ -81,23 +76,6 @@ textarea {
 }
 
 //slide image
-/* .image-gallery-slide {
-    object-fit: cover;
-}
-.image-gallery-slide img {
-    width: 100%;
-    height: 55vh;
-    @media only screen and (max-width: 767px) {
-        height: 250px;
-    }
-    @media only screen and (min-width:768px) and (max-width:1024px) {
-        height: 230px;
-    }
-}
-.fullscreen .image-gallery-image {
-    width: 100%;
-    height: 100%;
-}*/
 
 .image-gallery-fullscreen-button {
   right: 150px;
@@ -106,8 +84,6 @@ textarea {
 .image-gallery-play-button {
   left: 150px;
 }
-
-///////////////
 
 `;
 
