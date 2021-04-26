@@ -74,6 +74,7 @@ const chatbutton = styled.button`
     right: 30px;
     bottom: 30px;
     border: 1px;
+    z-index: 99;
 
     &:hover {
         box-shadow: 0 6px 14px 0 #666;
