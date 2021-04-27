@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import * as S from './Profile.style';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Card, Form, FormGroup, Label, Input, Button, NavLink, Col, Row, CardTitle, CardHeader, CardBody, CardFooter } from 'reactstrap';
+import { NavLink, Col, Row, CardHeader, CardFooter } from 'reactstrap';
 import { USER_LOADING_REQUEST } from '../../redux/types';
+import * as S from './Profile.style';
 
 const Profile = () => {
     const sex = {
@@ -22,13 +22,13 @@ const Profile = () => {
     return (
         <>
             <Col md={{ size: 6, offset: 3 }}>
-                <S.card>
+                <S.ProfileCard>
                     <CardHeader>
                         {user && user.name ? (
                             <Link to={`/user/${user.name}/profile`}>
-                                <S.button block color={'#99ce8f'} width={'80%'}>
+                                <S.ProfileBtn block color={'#99ce8f'} width={'80%'}>
                                     PROFILE EDIT
-                                </S.button>
+                                </S.ProfileBtn>
                             </Link>
                         ) : (
                             <NavLink>
@@ -37,50 +37,50 @@ const Profile = () => {
                         )}
                     </CardHeader>
                     <Col>
-                        <S.title>회원 정보</S.title>
+                        <S.Title>회원 정보</S.Title>
                     </Col>
-                    <S.cardbody>
+                    <S.ProfileCardbody>
                         <Row>
                             <Col>
                                 <Row>
-                                    <S.label for="name">
+                                    <S.ProfileLabel for="name">
                                         이름: <span>{user.name}</span>
-                                    </S.label>
+                                    </S.ProfileLabel>
                                 </Row>
                                 <Row>
-                                    <S.label for="email">
+                                    <S.ProfileLabel for="email">
                                         이메일: <span>{user.email}</span>
-                                    </S.label>
+                                    </S.ProfileLabel>
                                 </Row>
                                 <Row>
-                                    <S.label for="sex">
+                                    <S.ProfileLabel for="sex">
                                         성별:<span> {sex[user.sex]}</span>
-                                    </S.label>
+                                    </S.ProfileLabel>
                                 </Row>
                                 <Row>
-                                    <S.label for="camera">
+                                    <S.ProfileLabel for="camera">
                                         보유 카메라: <span>{user.camera}</span>
-                                    </S.label>
+                                    </S.ProfileLabel>
                                 </Row>
                                 <Row>
-                                    <S.label for="role">
+                                    <S.ProfileLabel for="role">
                                         권한: <span>{user.role}</span>
-                                    </S.label>
+                                    </S.ProfileLabel>
                                 </Row>
                                 <Row>
-                                    <S.label for="registerday">
+                                    <S.ProfileLabel for="registerday">
                                         회원가입 날짜: <span>{userDate.substring(0, 10)}</span>
-                                    </S.label>
+                                    </S.ProfileLabel>
                                 </Row>
                             </Col>
                         </Row>
-                    </S.cardbody>
+                    </S.ProfileCardbody>
                     <CardFooter>
-                        <S.button color={'#333'} width={'200px'} justify={'center'} display={'flex'}>
+                        <S.ProfileBtn color={'#333'} width={'200px'} justify={'center'} display={'flex'}>
                             <Link to={'/'}>돌아가기</Link>
-                        </S.button>
+                        </S.ProfileBtn>
                     </CardFooter>
-                </S.card>
+                </S.ProfileCard>
             </Col>
         </>
     );

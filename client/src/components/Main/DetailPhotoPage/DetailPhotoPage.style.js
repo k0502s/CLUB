@@ -2,15 +2,18 @@ import styled from 'styled-components';
 import { Row, Col, Button, Table } from 'reactstrap';
 import { BsTextLeft } from 'react-icons/bs';
 
-// photo detail main page CSS
+// Icon CSS
 
-const listIcon = styled(BsTextLeft)`
+const ListIcon = styled(BsTextLeft)`
     margin-right: 7px;
 `;
-const col = styled(Col)`
-    margin-top: 7px;
+
+// Photo Detail Page CSS
+
+const DetailWrap = styled(Col)`
+    margin-top: 30px;
 `;
-const topborder = styled(Row)`
+const Topborder = styled(Row)`
     padding: 20px;
     margin-bottom: 15px;
     display: flex;
@@ -19,23 +22,16 @@ const topborder = styled(Row)`
     border-bottom: 10px solid #1c685e;
     background-color: #333;
     color: #fff;
+    @media only screen and (max-width: 767px) {
+        margin: 0 10px 15px 10px;
+    }
 `;
-const buttonWarp = styled(Row)`
+const BtnWrap = styled(Row)`
     display: flex;
     justify-content: flex-end;
     margin: 10px 10px 40px 0;
 `;
-const imaageWrap = styled(Row)`
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-`;
-const infoWrap = styled(Row)`
-    display: flex;
-    justify-content: center;
-    margin: 30px 40px;
-`;
-const button = styled(Button)`
+const Btn = styled(Button)`
     background-color: ${(props) => props.color};
     margin: ${(props) => props.margin};
     width: ${(props) => props.width};
@@ -45,10 +41,34 @@ const button = styled(Button)`
         background-color: lightslategray;
     }
 `;
+const ImageWrap = styled(Row)`
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+`;
+const InfoWrap = styled(Row)`
+    display: flex;
+    justify-content: center;
+    margin: 30px 40px;
+`;
+
+// Photo Info list CSS
+
+const InfoTable = styled(Table)`
+    background-color: #333;
+    color: #fff;
+    & tr th {
+        border-top: #333;
+    }
+
+    & th {
+        width: 30%;
+    }
+`;
 
 //like dislike Icon CSS
 
-const likebox = styled.div`
+const Likebox = styled.div`
     display: flex;
     justify-content: center;
     margin-top: 30px;
@@ -84,18 +104,4 @@ const likebox = styled.div`
     }
 `;
 
-// Photo Info list CSS
-
-const table = styled(Table)`
-    background-color: #333;
-    color: #fff;
-    & tr th {
-        border-top: #333;
-    }
-
-    & th {
-        width: 30%;
-    }
-`;
-
-export { col, topborder, listIcon, buttonWarp, button, likebox, table, imaageWrap, infoWrap };
+export { DetailWrap, Topborder, ListIcon, BtnWrap, Likebox, InfoTable, InfoWrap, ImageWrap, Btn };

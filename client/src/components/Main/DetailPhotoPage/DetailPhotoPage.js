@@ -12,7 +12,7 @@ import { PHOTO_DELETE_REQUEST, PHOTO_DERAIL_REQUEST } from '../../../redux/types
 import { BsPen, BsFillEyeFill, BsPersonFill } from 'react-icons/bs';
 import * as S from './DetailPhotoPage.style';
 
-const DetailPhotoPage = (props) => {
+const DetailPhotoPage = ({ match }) => {
     const dispatch = useDispatch();
     const { detailphoto, writerId, writerName, isLoading } = useSelector((state) => state.photo);
     const { userId } = useSelector((state) => state.auth);
@@ -25,14 +25,14 @@ const DetailPhotoPage = (props) => {
     };
 
     useEffect(() => {
-        getPhotoDate(props.match.params.id);
-    }, [props.match.params.id]);
+        getPhotoDate(match.params.id);
+    }, [match.params.id]);
 
     const onDeleteClick = () => {
         dispatch({
             type: PHOTO_DELETE_REQUEST,
             payload: {
-                id: props.match.params.id,
+                id: match.params.id,
                 token: localStorage.getItem('token'),
                 genres: detailphoto.genres,
             },
@@ -42,18 +42,18 @@ const DetailPhotoPage = (props) => {
     const Body = (
         <>
             <Row>
-                <Col md={{ size: 10, offset: 1 }} className="mt-3">
-                    <S.col>
+                <Col md={{ size: 10, offset: 1 }}>
+                    <S.DetailWrap>
                         <Helmet title={`Photo | ${detailphoto.title}`} />
-                        <S.topborder md={{ size: 5, offset: 1 }}>
+                        <S.Topborder md={{ size: 5, offset: 1 }}>
                             <h5>{detailphoto.title}</h5>
                             <Link to={`/photolist_${detailphoto.genres}`}>
-                                <S.button color={'#72b29c'}>
-                                    <S.listIcon />
+                                <S.Btn color={'#72b29c'}>
+                                    <S.ListIcon />
                                     목록
-                                </S.button>
+                                </S.Btn>
                             </Link>
-                        </S.topborder>
+                        </S.Topborder>
                         <Row>
                             <Col>
                                 <BsPersonFill />
@@ -69,30 +69,30 @@ const DetailPhotoPage = (props) => {
                                 <span data-testid="span-views">{detailphoto.views}</span>
                             </Col>
                         </Row>
-                        <S.buttonWarp>
+                        <S.BtnWrap>
                             {writerId === userId && (
-                                <S.button color={'#F05232'} width={'70px'} margin={'0 20px 0 0'} onClick={onDeleteClick}>
+                                <S.Btn color={'#F05232'} width={'70px'} margin={'0 20px 0 0'} onClick={onDeleteClick}>
                                     삭제
-                                </S.button>
+                                </S.Btn>
                             )}
                             {writerId === userId && (
                                 <Link to={'/editphoto/' + detailphoto._id} data-testid="photo-edit">
-                                    <S.button color={'#8bc34a'} width={'70px'}>
+                                    <S.Btn color={'#8bc34a'} width={'70px'}>
                                         수정
-                                    </S.button>
+                                    </S.Btn>
                                 </Link>
                             )}
-                        </S.buttonWarp>
-                        <S.imaageWrap>
+                        </S.BtnWrap>
+                        <S.ImageWrap>
                             <PhotoImage />
-                        </S.imaageWrap>
+                        </S.ImageWrap>
                         <Row>
-                            <LikeDislike photo userId={userId} photoId={props.match.params.id} />
+                            <LikeDislike photo userId={userId} photoId={match.params.id} />
                         </Row>
-                        <S.infoWrap>
-                            <PhotoInfo id={props.match.params.id} />
-                        </S.infoWrap>
-                    </S.col>
+                        <S.InfoWrap>
+                            <PhotoInfo id={match.params.id} />
+                        </S.InfoWrap>
+                    </S.DetailWrap>
                 </Col>
                 <LocationDisplay />
             </Row>

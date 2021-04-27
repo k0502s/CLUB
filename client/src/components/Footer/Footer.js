@@ -1,6 +1,6 @@
 import React from 'react';
-import * as S from './Footer.style';
 import { Col } from 'reactstrap';
+import * as S from './Footer.style';
 
 const Footer = () => {
     const thisYear = () => {

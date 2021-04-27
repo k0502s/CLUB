@@ -1,40 +1,44 @@
 import styled from 'styled-components';
 import { Col, Row, Button, InputGroup } from 'reactstrap';
 
+
+
+// Post List CSS
+
 const Img = styled.img`
     width: 300px;
     margin: 30px auto;
-    @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    @media only screen and (min-width: 768px) and (max-width: 1023px) {
         display: none;
     }
     @media only screen and (max-width: 767px) {
         display: none;
     }
 `;
-const thead = styled.thead`
+const Thead = styled.thead`
     background-color: #333;
     color: #fff;
     & tr th {
         border-top: #333;
     }
 `;
-const th = styled.th`
+const Th = styled.th`
     width: ${(props) => props.width};
     color: ${(props) => props.color};
     text-align: ${(props) => props.align};
     font-weight: ${(props) => props.weight};
     font-size: ${(props) => props.size};
 `;
-const td = styled.th`
+const Td = styled.th`
     width: ${(props) => props.width};
     color: ${(props) => props.color};
     text-align: ${(props) => props.align};
 `;
-const bottomline = styled(Col)`
+const BottomLine = styled(Col)`
     margin: 120px 0 30px 0;
     border-bottom: 3px solid lightslategray;
 `;
-const topborder = styled(Row)`
+const Topborder = styled(Row)`
     padding: 20px;
     margin-bottom: 15px;
     margin-top: 20px;
@@ -48,21 +52,21 @@ const topborder = styled(Row)`
         margin: 20px 5px 15px 5px;
     }
 `;
-const inputGroup = styled(InputGroup)`
+const PostInputGroup = styled(InputGroup)`
     padding: 10px 5px;
     margin-bottom: 40px;
     @media only screen and (max-width: 767px) {
         padding: 10px 15px;
     }
 `;
-const warp = styled(Row)`
+const PostWrap = styled(Row)`
     @media only screen and (max-width: 767px) {
         & div.col {
             padding: 0 10px 0 30px;
         }
     }
 `;
-const button = styled(Button)`
+const Btn = styled(Button)`
     margin-left: ${(props) => props.margin};
     background-color: ${(props) => props.color};
     color: #fff;
@@ -77,7 +81,7 @@ const button = styled(Button)`
 const Mdevice = styled.div`
     display: none;
     padding: 0 10px;
-    @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    @media only screen and (min-width: 768px) and (max-width: 1023px) {
         display: block;
     }
     @media only screen and (max-width: 767px) {
@@ -86,14 +90,14 @@ const Mdevice = styled.div`
 `;
 const Ddevice = styled.div`
     display: block;
-    @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    @media only screen and (min-width: 768px) and (max-width: 1023px) {
         display: none;
     }
     @media only screen and (max-width: 767px) {
         display: none;
     }
 `;
-const listwrap = styled.div`
+const ListWrap = styled.div`
     color: gray;
     font-size: small;
     font-weight: lighter;
@@ -103,4 +107,4 @@ const listwrap = styled.div`
     }
 `;
 
-export { bottomline, thead, th, td, topborder, button, inputGroup, warp, listwrap, Mdevice, Ddevice, Img };
+export { BottomLine, Thead, Th, Td, Topborder, Btn, PostInputGroup, PostWrap, ListWrap, Mdevice, Ddevice, Img };

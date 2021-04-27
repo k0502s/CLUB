@@ -11,37 +11,37 @@ const MobileList = () => {
     return (
         <>
             <Table hover>
-                <S.thead>
+                <S.Thead>
                     <tr>
-                        <S.th>번호</S.th>
-                        <S.th align={'center'}>목록</S.th>
+                        <S.Th>번호</S.Th>
+                        <S.Th align={'center'}>목록</S.Th>
                     </tr>
-                </S.thead>
+                </S.Thead>
                 {postdata &&
                     postdata.map((post, index) => (
                         <tbody key={index}>
                             <tr>
-                                <S.th scope="row" width={'5%'} weight={'lighter'} data-testid="post-number">
+                                <S.Th scope="row" width={'5%'} weight={'lighter'} data-testid="post-number">
                                     {post.numberId}
-                                </S.th>
+                                </S.Th>
 
-                                <S.td width={'35%'} color={'black'} weight={'bold'} size={'large'}>
+                                <S.Td width={'35%'} color={'black'} weight={'bold'} size={'large'}>
                                     <Link to={`/post/${post._id}`} style={{ color: 'inherit' }} data-testid="post-detail">
                                         {post.title}{' '}
                                         <span style={{ fontWeight: 'lighter' }} data-testid="post-comments">
                                             [{post.comments.length}]
                                         </span>{' '}
                                         <span>{post.fileUrl != '' ? <BsImageFill /> : ''}</span>
-                                        <S.listwrap>
+                                        <S.ListWrap>
                                             <div>
                                                 <span>Date</span> {post.date.substring(0, 10)} | <span>By</span> {post.writerName}
                                             </div>
                                             <div>
                                                 <span>views</span> {post.views}
                                             </div>
-                                        </S.listwrap>
+                                        </S.ListWrap>
                                     </Link>
-                                </S.td>
+                                </S.Td>
                             </tr>
                         </tbody>
                     ))}

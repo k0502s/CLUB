@@ -7,7 +7,7 @@ const QueIcon = styled(RiQuestionnaireLine)`
     margin: 0 0 10px 0px;
     font-size: 43px;
 `;
-const card = styled(Card)`
+const ChatCard = styled(Card)`
     height: 500px;
     overflow: auto;
     border: 1px;
@@ -26,14 +26,14 @@ const Img = styled.img`
     height: 250px;
     margin: 0 0 50px 0;
 `;
-const span = styled.span`
+const Span = styled.span`
     font-size: ${(props) => props.size};
     padding: 5px;
     color: #fff;
     display: block;
     background-color: #333;
 `;
-const button = styled(Button)`
+const ChatBtn = styled(Button)`
     display: ${({ isOpen }) => (isOpen ? 'none' : 'block')};
     border-radius: 20px;
     margin: 0 auto;
@@ -48,7 +48,7 @@ const button = styled(Button)`
 
 // Chat Modal button CSS
 
-const modal = styled(Modal)`
+const ChatModal = styled(Modal)`
     margin-top: 60px;
     & div.modal-header {
         padding: 6px 15px 0px 0;
@@ -56,10 +56,10 @@ const modal = styled(Modal)`
         border: 1px;
     }
 `;
-const wrap = styled.div`
+const ChatWrap = styled.div`
     display: ${({ isOpen }) => (isOpen ? 'block' : 'none')}; ;
 `;
-const chatbutton = styled.button`
+const ModalBtn = styled.button`
     width: 60px;
     height: 60px;
     background-color: #48877f;
@@ -84,11 +84,11 @@ const chatbutton = styled.button`
 
 // Chat Input CSS //
 
-const inputGroup = styled(InputGroup)`
+const ChatInputGroup = styled(InputGroup)`
     width: 94.33%;
     margin: 0 auto;
 `;
-const input = styled(Input)`
+const ChatInput = styled(Input)`
     margin: 0;
     height: 50;
     padding: 5px;
@@ -195,4 +195,4 @@ const Msgwrap = styled.ul`
     }
 `;
 
-export { QueIcon, button, chatbutton, Sendbutton, card, input, wrap, Img, span, inputGroup, modal, Msgwrap };
+export { QueIcon, ModalBtn, ChatBtn, Sendbutton, ChatCard, ChatInput, ChatWrap, Img, Span, ChatInputGroup, ChatModal, Msgwrap };

@@ -4,7 +4,6 @@ import { Helmet } from 'react-helmet';
 import { POST_DETAIL_LOADING_REQUEST, POST_DELETE_REQUEST, COMMENT_LOADING_REQUEST } from '../../../redux/types';
 import { Row, Col } from 'reactstrap';
 import SideNav from '../../Nav/SideNav';
-import * as S from './DetailPostPage.style';
 import LocationDisplay from '../../../utils/LocationDisplay';
 import { BsPen, BsFillEyeFill, BsPersonFill, BsFillChatDotsFill } from 'react-icons/bs';
 import Comments from './Section/Comment/Comments';
@@ -14,6 +13,7 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import { Loader } from '../../../components/Loader/Loader';
 import BalloonEditor from '@ckeditor/ckeditor5-editor-balloon/src/ballooneditor';
 import { editorConfiguration } from '../../Editor/EditorConfig';
+import * as S from './DetailPostPage.style';
 
 const DetailPostPage = (req) => {
     const dispatch = useDispatch();
@@ -21,7 +21,6 @@ const DetailPostPage = (req) => {
     const { userId, userName } = useSelector((state) => state.auth);
     const { comments } = useSelector((state) => state.comment);
 
-    console.log(req);
     useEffect(() => {
         dispatch({
             type: POST_DETAIL_LOADING_REQUEST,
@@ -53,20 +52,20 @@ const DetailPostPage = (req) => {
                     <SideNav />
                     <S.Img src={photographerImg} />
                 </Col>
-                <S.postWrap md={7}>
-                    <S.topborder md={{ size: 5, offset: 1 }}>
+                <S.DetailWrap md={7}>
+                    <S.Topborder md={{ size: 5, offset: 1 }}>
                         <h5 data-testid="post-title">{postDetail.title}</h5>
                         <Link to={`/postlist_${postDetail.category}`}>
-                            <S.button color={'#72b29c'}>
-                                <S.listIcon />
+                            <S.Btn color={'#72b29c'}>
+                                <S.ListIcon />
                                 목록
-                            </S.button>
+                            </S.Btn>
                         </Link>
-                    </S.topborder>
+                    </S.Topborder>
                     {postDetail && postDetail.comments ? (
                         <>
                             <Row>
-                                <S.infoWrap>
+                                <S.InfoWrap>
                                     <BsPersonFill />
                                     &nbsp;
                                     <span data-testid="post-name">{postDetail.writer.name}</span>
@@ -82,41 +81,41 @@ const DetailPostPage = (req) => {
                                     <BsFillEyeFill />
                                     &nbsp;
                                     <span data-testid="post-views">{postDetail.views}</span>
-                                </S.infoWrap>
+                                </S.InfoWrap>
                             </Row>
-                            <S.buttonWrap>
+                            <S.BtnWrap>
                                 {writerId === userId && (
-                                    <S.button color={'#F05232'} width={'70px'} margin={'0 20px 0 0'} onClick={onDeleteClick}>
+                                    <S.Btn color={'#F05232'} width={'70px'} margin={'0 20px 0 0'} onClick={onDeleteClick}>
                                         삭제
-                                    </S.button>
+                                    </S.Btn>
                                 )}
                                 {writerId === userId && (
                                     <Link to={`/editpost/${req.match.params.id}`} data-testid="post-edit">
-                                        <S.button color={'#8bc34a'} width={'70px'}>
+                                        <S.Btn color={'#8bc34a'} width={'70px'}>
                                             글 수정
-                                        </S.button>
+                                        </S.Btn>
                                     </Link>
                                 )}
-                            </S.buttonWrap>
+                            </S.BtnWrap>
                             <hr />
                             <Row>
                                 <CKEditor editor={BalloonEditor} data={postDetail.contents} config={editorConfiguration} disabled="true" />
                             </Row>
                             <Row>
-                                <S.commentWrap>
+                                <S.CommentWrap>
                                     <p>
                                         총 <span>{postDetail.comments.length}</span> 개의 댓글이 있습니다.
                                     </p>
                                     <hr />
                                     <Comments id={req.match.params.id} userId={userId} userName={userName} commentList={comments} commentId={comments._id} />
-                                </S.commentWrap>
+                                </S.CommentWrap>
                                 <LocationDisplay />
                             </Row>
                         </>
                     ) : (
                         ''
                     )}
-                </S.postWrap>
+                </S.DetailWrap>
             </Row>
         </>
     );

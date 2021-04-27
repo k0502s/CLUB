@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const mapwrap = styled.div`
+const MapWrap = styled.div`
     position: relative;
     overflow: hidden;
     width: 100%;
@@ -95,4 +95,4 @@ const mapwrap = styled.div`
         }
 `;
 
-export { mapwrap };
+export { MapWrap };

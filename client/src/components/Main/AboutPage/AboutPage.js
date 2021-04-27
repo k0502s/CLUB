@@ -1,9 +1,9 @@
 import React from 'react';
-import * as S from './AboutPage.style';
 import aboutImg1 from '../../../assets/img/film.jpg';
 import aboutImg2 from '../../../assets/img/camera2.jpg';
 import aboutImg3 from '../../../assets/img/camera3.jpg';
 import aboutImg4 from '../../../assets/img/camera4.jpg';
+import * as S from './AboutPage.style';
 
 const AboutPage = () => {
     return (

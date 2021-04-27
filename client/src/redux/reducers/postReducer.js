@@ -23,7 +23,7 @@ const initialState = {
     totalPages: '',
     currentPage: '',
     postDetail: '',
-    loading: false,
+    isLoading: '',
     error: '',
     writerId: '',
 };
@@ -33,7 +33,7 @@ const postReducer = (state = initialState, action) => {
         case POSTS_LIST_REQUEST:
             return {
                 ...state,
-                loading: true,
+                isLoading: true,
                 postdata: ''
             };
         case POSTS_LIST_SUCCESS:
@@ -46,12 +46,12 @@ const postReducer = (state = initialState, action) => {
                 postDetail: '',
                 writerId: '',
                 title: '',
-                loading: false,
+                isLoading: false,
             };
         case POSTS_LIST_FAILURE:
             return {
                 ...state,
-                loading: false,
+                isLoading: false,
                 totalItems: '',
                 postdata: '',
                 totalPages: '',
@@ -60,12 +60,12 @@ const postReducer = (state = initialState, action) => {
         case POST_UPLOADING_REQUEST:
             return {
                 ...state,
-                loading: true,
+                isLoading: true,
             };
         case POST_UPLOADING_SUCCESS:
             return {
                 ...state,
-                loading: false,
+                isLoading: false,
                 postDetail: '',
                 writerId: '',
                 title: '',
@@ -74,12 +74,12 @@ const postReducer = (state = initialState, action) => {
             return {
                 ...state,
                 error: action.payload,
-                loading: false,
+                isLoading: false,
             };
         case POST_DETAIL_LOADING_REQUEST:
             return {
                 ...state,
-                loading: true,
+                isLoading: true,
                 postdata: ''
             };
         case POST_DETAIL_LOADING_SUCCESS:
@@ -88,26 +88,26 @@ const postReducer = (state = initialState, action) => {
                 postDetail: action.payload,
                 writerId: action.payload.writer._id,
                 title: action.payload.title,
-                loading: false,
+                isLoading: false,
             };
         case POST_DETAIL_LOADING_FAILURE:
             return {
                 ...state,
                 error: action.payload,
-                loading: false,
+                isLoading: false,
                 postdata: ''
             };
         case POST_EDIT_LOADING_REQUEST:
             return {
                 ...state,
-                loading: true,
+                isLoading: true,
                 postdata: ''
             };
         case POST_EDIT_LOADING_SUCCESS:
             return {
                 ...state,
                 postDetail: action.payload,
-                loading: false,
+                isLoading: false,
                 writerId: '',
                 title: '',
             };
@@ -115,25 +115,25 @@ const postReducer = (state = initialState, action) => {
             return {
                 ...state,
                 error: action.payload,
-                loading: false,
+                isLoading: false,
             };
         case POST_EDIT_UPLOADING_REQUEST:
             return {
                 ...state,
-                loading: true,
+                isLoading: true,
             };
         case POST_EDIT_UPLOADING_SUCCESS:
             return {
                 ...state,
                 posts: action.payload,
                 isAuthenticated: true,
-                loading: false,
+                isLoading: false,
             };
         case POST_EDIT_UPLOADING_FAILURE:
             return {
                 ...state,
                 error: action.payload,
-                loading: false,
+                isLoading: false,
             };
         default:
             return state;

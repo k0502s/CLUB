@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Row, Col, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Col, ModalHeader } from 'reactstrap';
 import Chat from '../Chat';
-import * as S from '../Chat.style';
 import chatbotImg from '../../../assets/img/chatbot.png';
 import { CHAT_RESET_REQUEST } from '../../../redux/types';
+import * as S from '../Chat.style';
 
 const ChatButton = () => {
     const [modal, setModal] = useState(false);
@@ -27,31 +27,31 @@ const ChatButton = () => {
 
     return (
         <>
-            <S.chatbutton onClick={toggle} data-testid="chat-modal">
+            <S.ModalBtn onClick={toggle} data-testid="chat-modal">
                 <S.QueIcon />
-            </S.chatbutton>
-            <S.modal isOpen={modal} modalTransition={{ timeout: 700 }} toggle={toggle}>
+            </S.ModalBtn>
+            <S.ChatModal isOpen={modal} modalTransition={{ timeout: 700 }} toggle={toggle}>
                 <ModalHeader toggle={toggle}></ModalHeader>
 
-                <S.card isOpen={start}>
+                <S.ChatCard isOpen={start}>
                     <Col>
-                        <S.span size={'50px'}>안녕하세요.</S.span>
-                        <S.span size={'25px'}>문의 사항이 있으신가요?</S.span>
+                        <S.Span size={'50px'}>안녕하세요.</S.Span>
+                        <S.Span size={'25px'}>문의 사항이 있으신가요?</S.Span>
                     </Col>
                     <Col>
                         <S.Img src={chatbotImg} />
                         <strong>챗봇으로 문의해 보세요!</strong>
                     </Col>
                     <Col>
-                        <S.button onClick={startbutton} isOpen={start}>
+                        <S.ChatBtn onClick={startbutton} isOpen={start}>
                             대화 시작하기
-                        </S.button>
+                        </S.ChatBtn>
                     </Col>
-                </S.card>
-                <S.wrap isOpen={start}>
+                </S.ChatCard>
+                <S.ChatWrap isOpen={start}>
                     <Chat reset={reset} />
-                </S.wrap>
-            </S.modal>
+                </S.ChatWrap>
+            </S.ChatModal>
         </>
     );
 };

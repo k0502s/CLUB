@@ -147,7 +147,7 @@ function* watchBestImages() {
 const photodetailAPI = (id) => {
     console.log(id, 'photoId');
 
-    return axios.get(`/api/photo/photo_by_id?id=${id}`);
+    return axios.get(`/api/photo/getphoto?id=${id}`);
 };
 
 function* photoDetail(action) {

@@ -50,7 +50,7 @@ const AboutWrap = styled.div`
             text-align: right;
         }
     }
-    @media only screen and (max-width: 1024px) {
+    @media only screen and (max-width: 1023px) {
         & ul {
             margin-bottom: 50px;
             & li img {
@@ -88,7 +88,7 @@ const AboutWrap = styled.div`
 
 const SubWrap = styled.div`
     margin: 0 229px;
-    @media only screen and (max-width: 1024px) {
+    @media only screen and (max-width: 1023px) {
         margin: 0 20px;
     }
 `;

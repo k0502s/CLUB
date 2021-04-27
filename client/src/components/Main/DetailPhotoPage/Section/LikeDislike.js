@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Axios from 'axios';
-import { Row, Col } from 'reactstrap';
-import * as S from '../DetailPhotoPage.style';
+import { Col } from 'reactstrap';
 import { AiFillDislike, AiFillLike, AiOutlineDislike, AiOutlineLike } from 'react-icons/ai';
 import { DISLIKE_UN_REQUEST, DISLIKE_UP_REQUEST, LIKE_UN_REQUEST, LIKE_UP_REQUEST } from '../../../../redux/types';
+import * as S from '../DetailPhotoPage.style';
 
 function LikeDislikes({ photoId, userId }) {
     const dispatch = useDispatch();
@@ -54,9 +54,9 @@ function LikeDislikes({ photoId, userId }) {
                 type: LIKE_UP_REQUEST,
                 payload: variable,
             });
-            if(uplike) {
-            setLikes(Likes + 1);
-            setLikeAction('liked');
+            if (uplike) {
+                setLikes(Likes + 1);
+                setLikeAction('liked');
             }
             if (DislikeAction !== null) {
                 setDislikeAction(null);
@@ -67,9 +67,9 @@ function LikeDislikes({ photoId, userId }) {
                 type: LIKE_UN_REQUEST,
                 payload: variable,
             });
-            if(unlike){
-            setLikes(Likes - 1);
-            setLikeAction(null);
+            if (unlike) {
+                setLikes(Likes - 1);
+                setLikeAction(null);
             }
         }
     };
@@ -99,20 +99,16 @@ function LikeDislikes({ photoId, userId }) {
 
     return (
         <Col>
-            <S.likebox>
+            <S.Likebox>
                 <p>
                     {LikeAction === 'liked' ? <AiFillLike onClick={onLike} /> : <AiOutlineLike onClick={onLike} />}
-                    <span data-testid="like-up">
-                        {Likes}
-                    </span>
+                    <span data-testid="like-up">{Likes}</span>
                 </p>
                 <p>
                     {DislikeAction === 'disliked' ? <AiFillDislike onClick={onDisLike} /> : <AiOutlineDislike onClick={onDisLike} />}
-                    <span data-testid="like-down">
-                        {Dislikes}
-                    </span>
+                    <span data-testid="like-down">{Dislikes}</span>
                 </p>
-            </S.likebox>
+            </S.Likebox>
         </Col>
     );
 }

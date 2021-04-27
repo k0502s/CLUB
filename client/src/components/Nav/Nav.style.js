@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { BsGearFill, BsFillLockFill, BsFillUnlockFill, BsPeopleCircle } from 'react-icons/bs';
 import { Navbar, Nav, CardFooter, Card } from 'reactstrap';
 
+// Nav Icon CSS
+
 const SysytemIcon = styled(BsGearFill)`
     margin: 0 5px 3px 0;
     font-size: 15px;
@@ -18,11 +20,29 @@ const ProfileIcon = styled(BsPeopleCircle)`
     margin: 0 5px 3px 0;
     font-size: 15px;
 `;
-const cardfooter = styled(CardFooter)`
+
+// Side Nav CSS
+
+const NavCard = styled(Card)`
+    box-shadow: 0 6px 10px 0 rgb(55, 54, 54);
+    font-size: large;
+    border-radius: 12%;
+    background-color: #f4fcfb;
+    margin-top: 20px;
+    @media only screen and (max-width: 767px) {
+        display: none;
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+`;
+const NavCardfooter = styled(CardFooter)`
     color: gray;
     text-align: center;
 `;
-const navbar = styled(Navbar)`
+
+// AppNav CSS
+
+const NavBar = styled(Navbar)`
     box-shadow: 0 6px 10px 0 rgb(55, 54, 54);
     background-color: #1c685e;
     padding: 10px 50px;
@@ -43,7 +63,7 @@ const navbar = styled(Navbar)`
             }
         }
     }
-    @media only screen and (min-width: 768px) and (max-width: 1025px) {
+    @media only screen and (min-width: 768px) and (max-width: 1023px) {
         & .navbar-brand {
             display: none;
         }
@@ -90,7 +110,7 @@ const nav = styled(Nav)`
     @media only screen and (max-width: 767px) {
         margin-left: 0;
     }
-    @media only screen and (min-width: 768px) and (max-width: 1025px) {
+    @media only screen and (min-width: 768px) and (max-width: 1023px) {
         margin-left: -50px;
     }
 `;
@@ -100,17 +120,5 @@ const NavWrap = styled.div`
         display: block;
     }
 `;
-const card = styled(Card)`
-    box-shadow: 0 6px 10px 0 rgb(55, 54, 54);
-    font-size: large;
-    border-radius: 12%;
-    background-color: #f4fcfb;
-    margin-top: 20px;
-    @media only screen and (max-width: 767px) {
-        display: none;
-        margin-left: 12px;
-        margin-right: 12px;
-    }
-`;
 
-export { navbar, nav, SysytemIcon, LoginIcon, LogoutIcon, ProfileIcon, card, cardfooter, SubNavBar, NavWrap };
+export { NavBar, nav, SysytemIcon, LoginIcon, LogoutIcon, ProfileIcon, NavCard, NavCardfooter, SubNavBar, NavWrap };

@@ -16,7 +16,7 @@ const HomeWrap = styled(Col)`
         display: ${(props) => props.Mdisplay};
     }
 `;
-const card = styled(Card)`
+const HomeCard = styled(Card)`
     width: ${(props) => props.width};
     border: 1px;
     border-radius: 0 0 10px 10px;
@@ -26,10 +26,10 @@ const card = styled(Card)`
         margin-right: 12px;
     }
 `;
-const cardbody = styled(CardBody)`
+const HomeCardbody = styled(CardBody)`
     padding: 0;
 `;
-const cardheader = styled(CardHeader)`
+const HomeCardheader = styled(CardHeader)`
     color: #fff;
     background-color: #333;
     border: 1px;
@@ -47,13 +47,13 @@ const cardheader = styled(CardHeader)`
         color: lightgray;
     }
 `;
-const td = styled.td`
+const Td = styled.td`
     width: ${(props) => props.width};
     color: ${(props) => props.color};
     text-align: ${(props) => props.text};
     font-size: small;
 `;
-const tr = styled.tr`
+const Tr = styled.tr`
     & td {
         padding: 4px 5px 6px 8px;
     }
@@ -111,38 +111,38 @@ const ImgWrap = styled.div`
         }
     }
 `;
-const cardfooter = styled(CardFooter)`
+const HomeCardfooter = styled(CardFooter)`
     color: gray;
     text-align: center;
 `;
 
-const map = styled.div`
+const Map = styled.div`
     width: 50vw;
     height: 20vw;
 `;
 
 // Icon CSS
 
-const circleIcon = styled(BsFillCircleFill)`
+const CircleIcon = styled(BsFillCircleFill)`
     padding: 0;
 `;
-const helloIcon = styled(BsFillPeopleFill)`
+const HelloIcon = styled(BsFillPeopleFill)`
     margin-right: 6px;
     font-size: larger;
 `;
-const trophyIcon = styled(FaTrophy)`
+const TrophyIcon = styled(FaTrophy)`
     margin-right: 6px;
     font-size: larger;
 `;
-const photoIcon = styled(BsCamera)`
+const PhotoIcon = styled(BsCamera)`
     margin-right: 6px;
     margin-top: 1px;
     font-size: larger;
 `;
-const mapIcon = styled(BsMap)`
+const MapIcon = styled(BsMap)`
     margin-right: 8px;
     margin-top: 1px;
     font-size: larger;
 `;
 
-export { HomeWrap, card, cardbody, cardfooter, cardheader, td, tr, helloIcon, photoIcon, trophyIcon, map, mapIcon, ImgWrap, circleIcon };
+export { HomeWrap, HomeCard, HomeCardbody, HomeCardfooter, HomeCardheader, Td, Tr, HelloIcon, PhotoIcon, TrophyIcon, Map, MapIcon, ImgWrap, CircleIcon };

@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 import { Col, Button, Card } from 'reactstrap';
 
-const card = styled(Card)`
+const AddCard = styled(Card)`
     border-radius: 25px;
     margin-bottom: 0px;
     margin-top: 30px;
 `;
-const buttomWrap = styled.div`
+const BtnWrap = styled.div`
     display: flex;
     justify-content: flex-end;
 `;
-const button = styled(Button)`
+const AddBtn = styled(Button)`
     background-color: ${(props) => props.color};
     margin: ${(props) => props.margin};
     width: ${(props) => props.width};
@@ -20,7 +20,7 @@ const button = styled(Button)`
         background-color: lightslategray;
     }
 `;
-const profileWarp = styled(Col)`
+const ProfileWarp = styled(Col)`
     display: flex;
     width: 350px;
     height: 240px;
@@ -33,4 +33,4 @@ const profileWarp = styled(Col)`
     }
 `;
 
-export { card, profileWarp, button, buttomWrap };
+export { AddCard, ProfileWarp, AddBtn, BtnWrap };

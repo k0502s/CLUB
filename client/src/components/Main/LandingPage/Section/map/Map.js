@@ -5,23 +5,11 @@ import * as S from './Map.style';
 
 const Map = () => {
     const [M, setM] = useState();
-    // const [Marker1, setMarker1] = useState({m1: ''});
-    // const [Marker2, setMarker2] = useState({m2: ''});
+
     useEffect(() => {
         Maps();
     }, []);
-    // const onChange1 = (e) => {
-    //     setMarker1({
-    //         ...Marker1,
-    //         [e.target.name]: e.target.value,
-    //     });
-    // };
-    // const onChange2 = (e) => {
-    //     setMarker2({
-    //         ...Marker2,
-    //         [e.target.name]: e.target.value,
-    //     });
-    // };
+
     const Maps = () => {
         let container = document.getElementById('map');
         let options = {
@@ -76,7 +64,7 @@ const Map = () => {
     };
     return (
         <>
-            <S.mapwrap>
+            <S.MapWrap>
                 <div id="map"></div>
                 <div class="custom_typecontrol">
                     <span id="btnRoadmap" class="selected_btn" onClick={() => setMapType('roadmap')}>
@@ -94,11 +82,7 @@ const Map = () => {
                         <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_minus.png" alt="축소" />
                     </span>
                 </div>
-            </S.mapwrap>
-            {/* <CardFooter>
-                <Input type="text" name="m1" id="name" className="form-control" value={Marker1.m1} onChange={onChange1}/>
-                <Input type="text" name="m2" id="name" className="form-control" value={Marker2.m2} onChange={onChange2} />
-            </CardFooter> */}
+            </S.MapWrap>
         </>
     );
 };

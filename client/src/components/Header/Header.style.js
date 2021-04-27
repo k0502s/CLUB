@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-const wrapper = styled.div`
+const Wrap = styled.div`
     text-align: center;
     background-color: #72b29c;
 `;
-const logo = styled.img`
+const Logo = styled.img`
     width: 200px;
     height: 90px;
     margin: 8px 0 1px 0;
@@ -13,4 +13,4 @@ const logo = styled.img`
     }
 `;
 
-export { logo, wrapper };
+export { Logo, Wrap };

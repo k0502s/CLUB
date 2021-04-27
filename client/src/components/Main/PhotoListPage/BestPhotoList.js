@@ -1,13 +1,13 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import Pagination from '@material-ui/lab/Pagination';
-import * as S from './PhotoList.style';
 import { Loader } from '../../Loader/Loader';
 import { BsChevronRight, BsFillEyeFill } from 'react-icons/bs';
 import { useSelector, useDispatch } from 'react-redux';
 import { BESTPHOTO_LIST_REQUEST } from '../../../redux/types';
-import { Card, CardTitle, CardText, CardImg, CardImgOverlay, Row, Col, Button, InputGroup, InputGroupAddon, Input, Label } from 'reactstrap';
+import { CardTitle, CardText, CardImg, CardImgOverlay, Row, Col, InputGroupAddon, Input, Label } from 'reactstrap';
+import * as S from './PhotoList.style';
 
 const BestPhotoList = () => {
     const dispatch = useDispatch();
@@ -75,11 +75,11 @@ const BestPhotoList = () => {
             <Row>
                 <Helmet title={`인기 갤러리`} />
                 <Col md={{ size: 10, offset: 1 }}>
-                    <S.topborder md={{ size: 5, offset: 1 }}>
+                    <S.Topborder md={{ size: 5, offset: 1 }}>
                         <h5>인기 갤러리</h5>
                         <h6>카테고리 장르 갤러리에 등록된 모든 사진 중 조회수가 10 이상인 작품을 전시하는 곳입니다!</h6>
-                    </S.topborder>
-                    <S.warp>
+                    </S.Topborder>
+                    <S.PhotoWrap>
                         <Col>
                             <strong>HOME </strong>
                             <BsChevronRight />
@@ -88,7 +88,7 @@ const BestPhotoList = () => {
                         </Col>
 
                         <Col md={{ size: 5, offset: 1 }}>
-                            <S.inputGroup>
+                            <S.PhotoInputGroup>
                                 <Input
                                     type="text"
                                     className="form-control"
@@ -99,24 +99,24 @@ const BestPhotoList = () => {
                                     data-testid="input-search"
                                 />
                                 <InputGroupAddon>
-                                    <S.button color={'#333'} onClick={retrieve} data-testid="search-btn">
+                                    <S.Btn color={'#333'} onClick={retrieve} data-testid="search-btn">
                                         검색
-                                    </S.button>
+                                    </S.Btn>
                                 </InputGroupAddon>
                                 <Link to="/addphoto" data-testid="photo-add">
-                                    <S.button margin={'12px'} color={'#72b29c'}>
+                                    <S.Btn margin={'12px'} color={'#72b29c'}>
                                         포토 올리기
-                                    </S.button>
+                                    </S.Btn>
                                 </Link>
-                            </S.inputGroup>
+                            </S.PhotoInputGroup>
                         </Col>
-                    </S.warp>
+                    </S.PhotoWrap>
                     <Row>
                         {bestphotodata &&
                             bestphotodata.map((photo, index) => (
                                 <Col md={{ size: 4 }} key={index}>
                                     <Link to={`/photo/${photo._id}`}>
-                                        <S.card inverse>
+                                        <S.PhotoCard inverse>
                                             <CardImg width="100%" src={photo.images[0]} alt="Card image cap" id="photoimg" />
                                             <CardImgOverlay>
                                                 <CardTitle tag="h5">{photo.title}</CardTitle>
@@ -129,12 +129,12 @@ const BestPhotoList = () => {
                                                     <small>{photo.date}</small>
                                                 </CardText>
                                             </CardImgOverlay>
-                                        </S.card>
+                                        </S.PhotoCard>
                                     </Link>
                                 </Col>
                             ))}
                     </Row>
-                    <S.bottomline></S.bottomline>
+                    <S.BottomLine></S.BottomLine>
                     <Col md={{ offset: 10 }} className="mt-3">
                         <Label>Page</Label>
                         <Input type="select" name="page" onChange={handlePageSizeChange} value={pageSize}>

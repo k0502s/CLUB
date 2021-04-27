@@ -1,20 +1,22 @@
 import styled from 'styled-components';
-import { Col, Row, Card, Input, CardFooter, CardHeader, CardBody, Button, InputGroup, Modal } from 'reactstrap';
+import { Col, Row, Card, Button, InputGroup } from 'reactstrap';
 
-const inputGroup = styled(InputGroup)`
+// Photo List Page CSS
+
+const PhotoInputGroup = styled(InputGroup)`
     padding: 10px 0;
     @media only screen and (max-width: 767px) {
         padding: 10px 15px;
     }
 `;
-const warp = styled(Row)`
+const PhotoWrap = styled(Row)`
     @media only screen and (max-width: 767px) {
         & div.col {
             padding: 0 10px 0 30px;
         }
     }
 `;
-const button = styled(Button)`
+const Btn = styled(Button)`
     margin-left: ${(props) => props.margin};
     background-color: ${(props) => props.color};
     color: #fff;
@@ -23,7 +25,7 @@ const button = styled(Button)`
         background-color: lightslategray;
     }
 `;
-const card = styled(Card)`
+const PhotoCard = styled(Card)`
     margin: 30px 0 30px 0;
     & div.card-img-overlay {
         transition: 0.5s;
@@ -47,15 +49,15 @@ const card = styled(Card)`
         margin-right: 10px;
     }
 `;
-const bottomline = styled(Col)`
+const BottomLine = styled(Col)`
     margin: 120px 0 30px 0;
     border-bottom: 3px solid lightslategray;
 `;
 
-const topborder = styled(Row)`
+const Topborder = styled(Row)`
     padding: 20px;
     margin-bottom: 15px;
-    margin-top: 20px;
+    margin-top: 30px;
     display: flex;
     justify-content: space-between;
     border: 1px;
@@ -67,4 +69,4 @@ const topborder = styled(Row)`
     }
 `;
 
-export { inputGroup, button, warp, card, bottomline, topborder };
+export { PhotoInputGroup, Btn, PhotoWrap, PhotoCard, BottomLine, Topborder };

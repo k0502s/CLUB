@@ -1,13 +1,13 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { CLEAR_ERROR_REQUEST, PASSWORD_EDIT_UPLOADING_REQUEST } from '../../../redux/types';
 import Helmet from 'react-helmet';
+import { Col, Card, CardHeader, CardBody, Form, FormGroup, Label, Input, Alert } from 'reactstrap';
 import * as S from '../Profile.style'
-import { Col, Card, CardHeader, CardBody, Form, FormGroup, Label, Input, Alert, Button } from 'reactstrap';
 
-const ProfileEdit = (props) => {
-    const { userId, errorMsg, successMsg, previousMatchMsg, editsuccess } = useSelector((state) => state.auth);
+const ProfileEdit = () => {
+    const { userId, errorMsg, previousMatchMsg } = useSelector((state) => state.auth);
     const { userName } = useParams();
     const [form, setValues] = useState({
         previousPassword: '',
@@ -86,10 +86,9 @@ const ProfileEdit = (props) => {
                             <Input type="password" name="rePassword" id="rePassword" className="form-control mb-2" value={form.rePassword} onChange={onChange} data-testid='profile-rePassword'/>
                             {errorMsg ? <Alert color="danger" data-testid='profile-alert_2'>{errorMsg}</Alert> : ''}
                         </FormGroup>
-                        <S.button color={'#54C5A0'} width={'200px'} justify={'center'} display={'flex'} data-testid='profile-btn'>
+                        <S.ProfileBtn color={'#54C5A0'} width={'200px'} justify={'center'} display={'flex'} data-testid='profile-btn'>
                             제출하기
-                        </S.button>
-                        {/* {successMsg ? <Alert color="success">{successMsg}</Alert> : ''} */}
+                        </S.ProfileBtn>
                     </Form>
                 </CardBody>
             </Card>

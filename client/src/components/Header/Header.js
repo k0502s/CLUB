@@ -5,9 +5,9 @@ import * as S from './Header.style'
 
 const Header = () => {
     return (
-        <S.wrapper>
-            <Link to={'/'}><S.logo src={logo}/></Link>
-        </S.wrapper>
+        <S.Wrap>
+            <Link to={'/'}><S.Logo src={logo}/></Link>
+        </S.Wrap>
     );
 };
 

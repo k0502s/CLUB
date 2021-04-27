@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { CLEAR_ERROR_REQUEST, REGISTER_REQUEST } from '../../redux/types';
+import { Modal, ModalHeader, ModalBody, Alert, Form, FormGroup, Input } from 'reactstrap';
 import * as S from './Authentication.style';
-import { NavLink, Modal, ModalHeader, ModalBody, Alert, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
 const Sexes = [
     { key: 1, value: '남' },
@@ -60,9 +60,9 @@ const RegisterModal = () => {
     };
     return (
         <div>
-            <S.button onClick={handleToggle} block data-testid='register-modal'>
+            <S.Btn onClick={handleToggle} block data-testid='register-modal'>
                 REGISTER
-            </S.button>
+            </S.Btn>
             <Modal isOpen={modal} toggle={handleToggle}>
                 <ModalHeader toggle={handleToggle}>회원 가입</ModalHeader>
                 <ModalBody>
@@ -85,9 +85,9 @@ const RegisterModal = () => {
                                     </option>
                                 ))}
                             </S.Rinput>
-                            <S.button block data-testid="register-btn">
+                            <S.Btn block data-testid="register-btn">
                                 가입하기
-                            </S.button>
+                            </S.Btn>
                         </FormGroup>
                     </Form>
                 </ModalBody>

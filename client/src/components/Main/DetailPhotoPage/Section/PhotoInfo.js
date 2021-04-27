@@ -9,7 +9,7 @@ const PhotoInfo = () => {
     return (
         <Col>
             <Row>
-                <S.table>
+                <S.InfoTable>
                     <thead>
                         <tr>
                             <th>작품 제목</th>
@@ -22,10 +22,10 @@ const PhotoInfo = () => {
                             <td data-testid="info-description">{detailphoto.description}</td>
                         </tr>
                     </tbody>
-                </S.table>
+                </S.InfoTable>
             </Row>
             <Row>
-                <S.table>
+                <S.InfoTable>
                     <thead>
                         <tr>
                             <th>사진가</th>
@@ -40,7 +40,7 @@ const PhotoInfo = () => {
                             <td data-testid="info-views">{detailphoto.views}</td>
                         </tr>
                     </tbody>
-                </S.table>
+                </S.InfoTable>
             </Row>
         </Col>
     );

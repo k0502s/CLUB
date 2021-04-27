@@ -3,10 +3,10 @@ import { NavbarToggler, Collapse, NavItem, Col, Row, NavLink, DropdownItem, Drop
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Login from '../Authentication/Login';
-import * as S from './Nav.style';
 import logo from '../../assets/img/로고.png';
 import LocationDisplay from '../../utils/LocationDisplay';
 import { CLEAR_ERROR_REQUEST, LOGOUT_REQUEST } from '../../redux/types';
+import * as S from './Nav.style';
 
 const AppNavbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -63,7 +63,7 @@ const AppNavbar = () => {
 
     return (
         <>
-            <S.navbar dark expand="lg" className="sticky-top">
+            <S.NavBar dark expand="lg" className="sticky-top">
                 <NavbarToggler onClick={toggle} style={{ border: 'none' }} />
                 <NavbarBrand>
                     <img src={logo} />
@@ -131,7 +131,7 @@ const AppNavbar = () => {
                     </Link>
                 </Collapse>
                 <LocationDisplay />
-            </S.navbar>
+            </S.NavBar>
             <S.SubNavBar></S.SubNavBar>
         </>
     );

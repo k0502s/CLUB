@@ -33,13 +33,13 @@ function FileUpload(props) {
         <Dropzone onDrop={dropHandler} multiple>
             {({ getRootProps, getInputProps }) => (
                 <section>
-                    <S.button color={'#333'} margin={'0 10px 0 0'} {...getRootProps()}>
+                    <S.Btn color={'#333'} margin={'0 10px 0 0'} {...getRootProps()}>
                         <input {...getInputProps()} />
                         업로드
-                    </S.button>
-                    <S.button color={'#F05232'} onClick={() => props.removefile()}>
+                    </S.Btn>
+                    <S.Btn color={'#F05232'} onClick={() => props.removefile()}>
                         파일 제거
-                    </S.button>
+                    </S.Btn>
                 </section>
             )}
         </Dropzone>

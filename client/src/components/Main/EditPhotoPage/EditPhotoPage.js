@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import { Button, Form, Input, Label, Card, CardTitle, CardText, Row, Col, CardHeader, CardBody } from 'reactstrap';
+import { Form, Input, Label, Card, CardTitle, CardText, Col, CardHeader, CardBody } from 'reactstrap';
 import FileUpload from '../../../utils/Fileupload/Fileupload';
-import * as S from './EditPhotoPage.style';
 import { useDispatch, useSelector } from 'react-redux';
 import { PHOTO_EDIT_LOADING_REQUEST, PHOTO_EDIT_UPLOADING_REQUEST } from '../../../redux/types';
+import * as S from './EditPhotoPage.style';
 
 const Genres = [
     { key: 1, value: '풍경' },
@@ -97,7 +97,7 @@ const AddPhotoPage = (props) => {
     return (
         <Col md={{ size: 6, offset: 3 }}>
             <Helmet title={`포토 수정`} />
-            <S.card>
+            <S.EditCard>
                 <CardHeader>
                     <strong>포토 수정하기</strong>
                 </CardHeader>
@@ -110,11 +110,11 @@ const AddPhotoPage = (props) => {
                     </CardText>
                 </Card>
                 <CardBody>
-                    <S.profileWarp md={{ offset: 4 }}>
+                    <S.ProfileWarp md={{ offset: 4 }}>
                         {Images.map((image, index) => (
                             <img key={index} src={`${image}`} data-testid="edit-image" />
                         ))}
-                    </S.profileWarp>
+                    </S.ProfileWarp>
                     <Form onSubmit={submitHandler} name="myform">
                         <Label>제목</Label>
                         <Input onChange={onChange} defaultValue={detailphoto.title} name="title" data-testid="edit-title" />
@@ -131,14 +131,14 @@ const AddPhotoPage = (props) => {
                                 </option>
                             ))}
                         </Input>
-                        <S.buttonWrap>
-                            <S.button color={'#54C5A0'} margin={'30px 0 0 0'} width={'100px'} onClick={submitHandler} data-testid="edit-submit">
+                        <S.BtnWrap>
+                            <S.Btn color={'#54C5A0'} margin={'30px 0 0 0'} width={'100px'} onClick={submitHandler} data-testid="edit-submit">
                                 확인
-                            </S.button>
-                        </S.buttonWrap>
+                            </S.Btn>
+                        </S.BtnWrap>
                     </Form>
                 </CardBody>
-            </S.card>
+            </S.EditCard>
         </Col>
     );
 };

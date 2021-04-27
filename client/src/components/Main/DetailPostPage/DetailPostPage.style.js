@@ -2,14 +2,18 @@ import styled from 'styled-components';
 import { Row, Col, Button, Container } from 'reactstrap';
 import { BsTextLeft } from 'react-icons/bs';
 
-const listIcon = styled(BsTextLeft)`
+// Icon CSS
+
+const ListIcon = styled(BsTextLeft)`
     margin-right: 7px;
 `;
+
+// Post Detail Page CSS
 
 const Img = styled.img`
     width: 300px;
     margin: 30px auto;
-    @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    @media only screen and (min-width: 768px) and (max-width: 1023px) {
         display: none;
     }
     @media only screen and (max-width: 767px) {
@@ -17,7 +21,7 @@ const Img = styled.img`
     }
 `;
 
-const topborder = styled(Row)`
+const Topborder = styled(Row)`
     padding: 11px;
     margin-bottom: 15px;
     display: flex;
@@ -30,13 +34,13 @@ const topborder = styled(Row)`
         margin: 0 0 15px 0;
     }
 `;
-const infoWrap = styled(Col)`
+const InfoWrap = styled(Col)`
 
     @media only screen and (max-width: 767px) {
         margin: 0 7px 15px 7px;
     }
 `;
-const postWrap = styled(Col)`
+const DetailWrap = styled(Col)`
     margin-top: 20px;
     margin-bottom: 30px;
     border-left: 4px solid #333;
@@ -45,12 +49,25 @@ const postWrap = styled(Col)`
         margin: 0 7px 15px 7px;
     }
 `;
-const buttonWrap = styled(Row)`
+const BtnWrap = styled(Row)`
     display: flex;
     justify-content: flex-end;
     margin: 10px 10px 20px 0;
 `;
-const commentWrap = styled(Container)`
+
+const Btn = styled(Button)`
+    background-color: ${(props) => props.color};
+    margin: ${(props) => props.margin};
+    width: ${(props) => props.width};
+    color: #fff;
+    &:hover {
+        color: white;
+        background-color: lightslategray;
+    }
+`;
+
+
+const CommentWrap = styled(Container)`
     border-bottom: 10px solid #333;
     & p {
         font-weight: bold;
@@ -63,15 +80,4 @@ const commentWrap = styled(Container)`
     }
 `;
 
-const button = styled(Button)`
-    background-color: ${(props) => props.color};
-    margin: ${(props) => props.margin};
-    width: ${(props) => props.width};
-    color: #fff;
-    &:hover {
-        color: white;
-        background-color: lightslategray;
-    }
-`;
-
-export { topborder, button, listIcon, buttonWrap, postWrap, commentWrap, infoWrap, Img };
+export { Topborder, Btn, ListIcon, BtnWrap, DetailWrap, CommentWrap, InfoWrap, Img };

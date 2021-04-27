@@ -103,7 +103,7 @@ router.get('/bestphotos', async (req, res) => {
     }
 });
 
-router.get('/photo_by_id', async (req, res) => {
+router.get('/getphoto', async (req, res) => {
     try {
         const photoId = req.query.id;
         const photodetail = await Photo.findById({ _id: photoId }).populate({ path: 'writer', select: 'name' });

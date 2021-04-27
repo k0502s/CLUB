@@ -7,11 +7,11 @@ import MobileList from './Section/MobileList';
 import { Loader } from '../../Loader/Loader';
 import photographerImg from '../../../assets/img/사진작가1.png';
 import LocationDisplay from '../../../utils/LocationDisplay';
-import * as S from './PostList.style';
 import { BsChevronRight, BsImageFill } from 'react-icons/bs';
 import { useSelector, useDispatch } from 'react-redux';
 import { POSTS_LIST_REQUEST } from '../../../redux/types';
 import { Row, Col, InputGroupAddon, Input, Label, Table } from 'reactstrap';
+import * as S from './PostList.style';
 
 const PostList_1 = () => {
     const dispatch = useDispatch();
@@ -84,12 +84,12 @@ const PostList_1 = () => {
                 </Col>
                 <Helmet title={`가입 인사`} />
                 <Col md={{ size: 7 }}>
-                    <S.topborder md={{ size: 5, offset: 1 }}>
+                    <S.Topborder md={{ size: 5, offset: 1 }}>
                         <h5>가입 인사</h5>
                         <h6>새롭게 동호회에 가입하신 신입 화원분들은 여기서 인사해주세요!</h6>
-                    </S.topborder>
+                    </S.Topborder>
 
-                    <S.warp>
+                    <S.PostWrap>
                         <Col>
                             <strong>HOME </strong>
                             <BsChevronRight />
@@ -99,7 +99,7 @@ const PostList_1 = () => {
                         </Col>
 
                         <Col md={{ size: 5, offset: 1 }}>
-                            <S.inputGroup>
+                            <S.PostInputGroup>
                                 <Input
                                     type="text"
                                     className="form-control"
@@ -110,39 +110,39 @@ const PostList_1 = () => {
                                     data-testid="input-search"
                                 />
                                 <InputGroupAddon>
-                                    <S.button color={'#333'} onClick={retrieve} data-testid="search-btn">
+                                    <S.Btn color={'#333'} onClick={retrieve} data-testid="search-btn">
                                         검색
-                                    </S.button>
+                                    </S.Btn>
                                 </InputGroupAddon>
-                                <S.button margin={'12px'} color={'#72b29c'}>
+                                <S.Btn margin={'12px'} color={'#72b29c'}>
                                     <Link to="/addpost" data-testid="post-add">
                                         글쓰기
                                     </Link>
-                                </S.button>
-                            </S.inputGroup>
+                                </S.Btn>
+                            </S.PostInputGroup>
                         </Col>
-                    </S.warp>
+                    </S.PostWrap>
                     <Col>
                         <S.Ddevice>
                             <Table hover>
-                                <S.thead>
+                                <S.Thead>
                                     <tr>
-                                        <S.th>번호</S.th>
-                                        <S.th align={'center'}>제목</S.th>
-                                        <S.th align={'center'}>글쓴이</S.th>
-                                        <S.th align={'center'}>조회수</S.th>
-                                        <S.th align={'center'}>날짜</S.th>
+                                        <S.Th>번호</S.Th>
+                                        <S.Th align={'center'}>제목</S.Th>
+                                        <S.Th align={'center'}>글쓴이</S.Th>
+                                        <S.Th align={'center'}>조회수</S.Th>
+                                        <S.Th align={'center'}>날짜</S.Th>
                                     </tr>
-                                </S.thead>
+                                </S.Thead>
                                 {postdata &&
                                     postdata.map((post, index) => (
                                         <tbody key={index}>
                                             <tr>
-                                                <S.th scope="row" width={'7%'} weight={'lighter'} data-testid="post-number">
+                                                <S.Th scope="row" width={'7%'} weight={'lighter'} data-testid="post-number">
                                                     {post.numberId}
-                                                </S.th>
+                                                </S.Th>
 
-                                                <S.td width={'33%'} color={'black'} weight={'bold'} size={'large'}>
+                                                <S.Td width={'33%'} color={'black'} weight={'bold'} size={'large'}>
                                                     <Link to={`/post/${post._id}`} style={{ color: 'black' }} data-testid="post-detail">
                                                         {post.title}{' '}
                                                         <span weight={'lighter'} data-testid="post-comments">
@@ -150,17 +150,17 @@ const PostList_1 = () => {
                                                         </span>{' '}
                                                         <span>{post.fileUrl != '' ? <BsImageFill /> : ''}</span>
                                                     </Link>
-                                                </S.td>
+                                                </S.Td>
 
-                                                <S.td width={'20%'} align={'center'} data-testid="post-name">
+                                                <S.Td width={'20%'} align={'center'} data-testid="post-name">
                                                     {post.writerName}
-                                                </S.td>
-                                                <S.td width={'15%'} align={'center'} data-testid="post-views">
+                                                </S.Td>
+                                                <S.Td width={'15%'} align={'center'} data-testid="post-views">
                                                     {post.views}
-                                                </S.td>
-                                                <S.td width={'25%'} align={'center'} data-testid="post-date">
+                                                </S.Td>
+                                                <S.Td width={'25%'} align={'center'} data-testid="post-date">
                                                     {post.date}
-                                                </S.td>
+                                                </S.Td>
                                             </tr>
                                         </tbody>
                                     ))}
@@ -170,7 +170,7 @@ const PostList_1 = () => {
                             <MobileList />
                         </S.Mdevice>
                     </Col>
-                    <S.bottomline></S.bottomline>
+                    <S.BottomLine></S.BottomLine>
                     <Col md={{ offset: 10 }} className="mt-3">
                         <Label className="p-2">Page</Label>
                         <Input type="select" name="page" onChange={handlePageSizeChange} value={pageSize}>

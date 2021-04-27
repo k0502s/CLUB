@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { Button, Card } from 'reactstrap';
 
+// Edit Post Page CSS
+
 const BtnWrap = styled.div`
     display: flex;
     justify-content: flex-end;

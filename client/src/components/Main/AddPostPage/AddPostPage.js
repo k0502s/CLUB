@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useSelector, useDispatch } from 'react-redux';
-import { Form, FormGroup, Label, Input, Button, Col, Progress, Card, CardTitle, CardText, CardHeader, CardBody } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Col, Card, CardTitle, CardText, CardHeader, CardBody } from 'reactstrap';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
-import * as S from './AddPostPage.style';
 import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
 import { editorConfiguration } from '../../Editor/EditorConfig';
 import Myinit from '../../Editor/UploadAdapter';
 import { POST_UPLOADING_REQUEST } from '../../../redux/types';
 import dotenv from 'dotenv';
+import * as S from './AddPostPage.style';
 dotenv.config();
 
 const Category = [

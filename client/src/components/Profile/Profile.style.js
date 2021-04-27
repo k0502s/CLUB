@@ -1,25 +1,25 @@
 import styled from 'styled-components';
 import { Card, Label, Button, Alert, Col, CardBody } from 'reactstrap';
 
-const label = styled(Label)`
+const ProfileLabel = styled(Label)`
     margin-top: 15px;
     font-size: larger;
    & span {
        color: gray;
    }
 `;
-const alert = styled(Alert)`
+const ProfileAlert = styled(Alert)`
    color: #fff;
    background-color: #333;
 `;
-const card = styled(Card)`
+const ProfileCard = styled(Card)`
     margin-top: 50px;
     border-radius: 20px;
 `;
-const cardbody = styled(CardBody)`
+const ProfileCardbody = styled(CardBody)`
     padding: 0 50px 10px 50px;
 `;
-const button = styled(Button)`
+const ProfileBtn = styled(Button)`
     margin: 0 auto;
     color: white;
     border: 1px;
@@ -34,10 +34,10 @@ const button = styled(Button)`
         background-color: lightslategray;
     }
 `;
-const title = styled.div`
+const Title = styled.div`
     padding: 20px 0 15px 0;
     text-align: center;
     font-size: 50px;
 `;
 
-export { card, cardbody, title, button, label, alert };
+export { ProfileCard, ProfileCardbody, Title, ProfileBtn, ProfileLabel, ProfileAlert };

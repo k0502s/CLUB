@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from './Section/Message';
-import * as S from './Chat.style';
 import { CHAT_REQUEST } from '../../redux/types';
-import { Input, InputGroupAddon, Button, InputGroup, Row, Col, CardBody, Card } from 'reactstrap';
+import { InputGroupAddon, Row, Col, CardBody } from 'reactstrap';
+import * as S from './Chat.style';
 
 const Chat = ({ reset }) => {
     const dispatch = useDispatch();
@@ -131,19 +131,19 @@ const Chat = ({ reset }) => {
     return (
         <Col>
             <Col>
-                <S.card>
+                <S.ChatCard>
                     <CardBody>{renderMessage(messagesFromRedux)} </CardBody>
-                </S.card>
+                </S.ChatCard>
             </Col>
             <Row>
-                <S.inputGroup>
-                    <S.input placeholder="전달할 메세지를 입력해주세요..." onChange={messageHanlder} onKeyPress={Enter} value={Mes} type="text" data-testid="chat-message" />
+                <S.ChatInputGroup>
+                    <S.ChatInput placeholder="전달할 메세지를 입력해주세요..." onChange={messageHanlder} onKeyPress={Enter} value={Mes} type="text" data-testid="chat-message" />
                     <InputGroupAddon addonType="append">
                         <S.Sendbutton onClick={MesHanlder} data-testid="chat-btn">
                             보내기
                         </S.Sendbutton>
                     </InputGroupAddon>
-                </S.inputGroup>
+                </S.ChatInputGroup>
             </Row>
         </Col>
     );

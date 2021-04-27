@@ -39,6 +39,24 @@ div.col {
     padding: 0;
 }
 
+#drop {
+    -webkit-overflow-scrolling: touch;
+    height: 500px;
+}
+
+#topspan {
+    color: gray;
+    font-weight: bold;
+}
+
+
+/////photo img
+
+#photoimg {
+    max-height: 235px;
+}
+
+
 
 //CKEditor setting
 

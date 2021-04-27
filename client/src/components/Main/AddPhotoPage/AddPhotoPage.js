@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Form, Input, Label, Card, CardTitle, CardText, Col, CardHeader, CardBody } from 'reactstrap';
 import FileUpload from '../../../utils/Fileupload/Fileupload';
-import * as S from './AddPhotoPage.style';
 import { useDispatch, useSelector } from 'react-redux';
 import { PHOTO_UPLOADING_REQUEST } from '../../../redux/types';
+import * as S from './AddPhotoPage.style';
 
 const Genres = [
     { key: 1, value: '풍경' },
@@ -78,7 +78,7 @@ const AddPhotoPage = () => {
     return (
         <Col md={{ size: 6, offset: 3 }}>
             <Helmet title={'포토 추가'} />
-            <S.card>
+            <S.AddCard>
                 <CardHeader>
                     <strong>포토 추가하기</strong>
                 </CardHeader>
@@ -91,11 +91,11 @@ const AddPhotoPage = () => {
                     </CardText>
                 </Card>
                 <CardBody>
-                    <S.profileWarp md={{ offset: 4 }}>
+                    <S.ProfileWarp md={{ offset: 4 }}>
                         {Images.map((image, index) => (
                             <img key={index} src={`${image}`} />
                         ))}
-                    </S.profileWarp>
+                    </S.ProfileWarp>
                     <Form onSubmit={submitHandler} name="myform">
                         <Label for="title">제목</Label>
                         <Input type="text" name="title" onChange={onChange} value={form.title} data-testid="add-title" />
@@ -112,14 +112,14 @@ const AddPhotoPage = () => {
                                 </option>
                             ))}
                         </Input>
-                        <S.buttomWrap>
-                            <S.button color={'#54C5A0'} margin={'30px 0 0 0'} width={'100px'} onClick={submitHandler} data-testid="add-submit">
+                        <S.BtnWrap>
+                            <S.AddBtn color={'#54C5A0'} margin={'30px 0 0 0'} width={'100px'} onClick={submitHandler} data-testid="add-submit">
                                 확인
-                            </S.button>
-                        </S.buttomWrap>
+                            </S.AddBtn>
+                        </S.BtnWrap>
                     </Form>
                 </CardBody>
-            </S.card>
+            </S.AddCard>
         </Col>
     );
 };

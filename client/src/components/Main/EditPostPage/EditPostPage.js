@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { useSelector, useDispatch } from 'react-redux';
-import { Form, FormGroup, Label, Input, Button, Col, Progress, Card, CardTitle, CardText, CardHeader, CardBody } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Col, Card, CardTitle, CardText, CardHeader, CardBody } from 'reactstrap';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
-import * as S from './EditPostPage.style';
 import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
 import { editorConfiguration } from '../../Editor/EditorConfig';
 import Myinit from '../../Editor/UploadAdapter';
 import { POST_EDIT_UPLOADING_REQUEST } from '../../../redux/types';
+import * as S from './EditPostPage.style';
 
 const EditPostPage = () => {
     const { isAuthenticated } = useSelector((state) => state.auth);

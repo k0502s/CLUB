@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Button } from 'reactstrap';
 
-const button = styled(Button)`
+const Btn = styled(Button)`
     background-color: ${(props) => props.color};
     margin: ${(props) => props.margin};
     width: ${(props) => props.width};
@@ -12,4 +12,4 @@ const button = styled(Button)`
     }
 `;
 
-export { button }
+export { Btn }

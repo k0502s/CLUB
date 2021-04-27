@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import * as S from '../Chat.style';
 import ChatProfileImg from '../../../assets/img/chatProfile.png'
+import * as S from '../Chat.style';
 
 const Message = (props) => {
     const { user } = useSelector((state) => state.auth);
