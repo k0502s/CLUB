@@ -155,11 +155,23 @@ router.get('/:id/edit', async (req, res) => {
 });
 
 router.post('/:id/edit', async (req, res) => {
+    const {
+        body: { title, description, images, genres, id },
+    } = req;
     try {
-        console.log(req.body.id, 'ID');
+        console.log(id, 'ID');
 
-        await Photo.findByIdAndUpdate(req.body.id, req.body, { new: true });
-        res.json({ id: req.body.id, success: true });
+        await Photo.findByIdAndUpdate(
+            req.body.id,
+            {
+                title,
+                description,
+                images,
+                genres,
+            },
+            { new: true }
+        );
+        res.json({ id: id, success: true });
     } catch (e) {
         console.log(e);
         res.status(400).json({ success: false });

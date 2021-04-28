@@ -20,7 +20,7 @@ import { push } from 'connected-react-router';
 
 const loadCommentsAPI = (payload) => {
     console.log(payload, 'loadCommentAPI ID');
-    return axios.get(`/api/post/${payload}/comments`);
+    return axios.get(`/api/comment/${payload}/comments`);
 };
 
 function* loadComments(action) {
@@ -50,7 +50,7 @@ function* watchLoadComments() {
 
 const uploadCommentsAPI = (payload) => {
     console.log(payload.id, 'loadCommentAPI ID');
-    return axios.post(`/api/post/${payload.id}/comments`, payload);
+    return axios.post(`/api/comment/${payload.id}/comments`, payload);
 };
 
 function* uploadComments(action) {
@@ -82,7 +82,7 @@ function* watchUpLoadComments() {
 
 const editCommentsAPI = (payload) => {
     console.log(payload, 'edit data');
-    return axios.post('/api/post/comment/edit', payload);
+    return axios.post('/api/comment/comment/edit', payload);
 };
 
 function* editComments(action) {
@@ -122,7 +122,7 @@ const deleteCommentsAPI = (payload) => {
     // if (token) {
     //     config.headers['x-auth-token'] = token;
     // }
-    return axios.post('/api/post/comment/delete', payload);
+    return axios.post('/api/comment/comment/delete', payload);
 };
 
 function* deleteComments(action) {
