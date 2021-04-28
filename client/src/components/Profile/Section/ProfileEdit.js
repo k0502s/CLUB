@@ -52,9 +52,9 @@ const ProfileEdit = () => {
     };
 
     return (
-        <Col md={{ size: 4, offset: 4 }} className='mt-4'>
+        <Col md={{ size: 4, offset: 4 }}>
             <Helmet title={`Profile | ${userName}님의 프로필 수정`} />
-            <Card style={{ borderRadius: '25px' }}>
+            <S.ProfileCard>
                 <CardHeader>
                     <strong>회원정보 수정</strong>
                 </CardHeader>
@@ -91,7 +91,7 @@ const ProfileEdit = () => {
                         </S.ProfileBtn>
                     </Form>
                 </CardBody>
-            </Card>
+            </S.ProfileCard>
         </Col>
     );
 };

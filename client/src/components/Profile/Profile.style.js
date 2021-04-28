@@ -4,16 +4,16 @@ import { Card, Label, Button, Alert, Col, CardBody } from 'reactstrap';
 const ProfileLabel = styled(Label)`
     margin-top: 15px;
     font-size: larger;
-   & span {
-       color: gray;
-   }
+    & span {
+        color: gray;
+    }
 `;
 const ProfileAlert = styled(Alert)`
-   color: #fff;
-   background-color: #333;
+    color: #fff;
+    background-color: #333;
 `;
 const ProfileCard = styled(Card)`
-    margin-top: 50px;
+    margin-top: 80px;
     border-radius: 20px;
 `;
 const ProfileCardbody = styled(CardBody)`
@@ -27,7 +27,7 @@ const ProfileBtn = styled(Button)`
     background-color: ${(props) => props.color};
     margin: ${(props) => props.margin};
     width: ${(props) => props.width};
-    display:${(props) => props.display};;
+    display: ${(props) => props.display};
     justify-content: ${(props) => props.justify};
     &:hover {
         color: white;
