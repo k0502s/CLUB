@@ -76,7 +76,7 @@ const DetailPhotoPage = ({ match }) => {
                                 </S.Btn>
                             )}
                             {writerId === userId && (
-                                <Link to={'/editphoto/' + detailphoto._id} data-testid="photo-edit">
+                                <Link to={`/editphoto/${match.params.id}`} data-testid="photo-edit">
                                     <S.Btn color={'#8bc34a'} width={'70px'}>
                                         수정
                                     </S.Btn>

@@ -149,6 +149,7 @@ const photoReducer = (state = initialState, action) => {
             return {
                 ...state,
                 detailphoto: action.payload,
+                detailimages: action.payload.images,
                 writerName: action.payload.writer.name,
                 writerId: action.payload.writer._id,
                 isLoading: false,

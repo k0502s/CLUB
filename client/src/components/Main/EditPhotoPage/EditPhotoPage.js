@@ -13,7 +13,7 @@ const Genres = [
     { key: 4, value: '습작' },
 ];
 
-const AddPhotoPage = (props) => {
+const AddPhotoPage = () => {
     const [Images, setImages] = useState([]);
     const [form, setValues] = useState({
         title: '',
@@ -24,16 +24,16 @@ const AddPhotoPage = (props) => {
 
     const { detailphoto, detailimages } = useSelector((state) => state.photo);
 
-    const getPhotoDate = (id) => {
-        dispatch({
-            type: PHOTO_EDIT_LOADING_REQUEST,
-            payload: id,
-        });
-    };
+    // const getPhotoDate = (id) => {
+    //     dispatch({
+    //         type: PHOTO_EDIT_LOADING_REQUEST,
+    //         payload: id,
+    //     });
+    // };
 
-    useEffect(() => {
-        getPhotoDate(props.match.params.id);
-    }, [props.match.params.id]);
+    // useEffect(() => {
+    //     getPhotoDate(props.match.params.id);
+    // }, [props.match.params.id]);
 
     useEffect(() => {
         setValues({
@@ -78,7 +78,7 @@ const AddPhotoPage = (props) => {
         const { title, description, genres } = form;
 
         const body = {
-            id: props.match.params.id,
+            id: detailphoto._id,
             title: title,
             description: description,
             images: Images,
@@ -132,7 +132,7 @@ const AddPhotoPage = (props) => {
                             ))}
                         </Input>
                         <S.BtnWrap>
-                            <S.Btn color={'#54C5A0'} margin={'30px 0 0 0'} width={'100px'} onClick={submitHandler} data-testid="edit-submit">
+                            <S.Btn color={'#54C5A0'} margin={'30px 0 0 0'} width={'100px'} data-testid="edit-submit">
                                 확인
                             </S.Btn>
                         </S.BtnWrap>
