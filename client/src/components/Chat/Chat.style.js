@@ -18,13 +18,11 @@ const ChatCard = styled(Card)`
         padding: 0;
         text-align: center;
     }
-    & strong {
-    }
 `;
 const Img = styled.img`
     width: 250px;
     height: 250px;
-    margin: 0 0 50px 0;
+    margin: 0 0 15px 0;
 `;
 const Span = styled.span`
     font-size: ${(props) => props.size};
@@ -49,7 +47,7 @@ const ChatBtn = styled(Button)`
 // Chat Modal button CSS
 
 const ChatModal = styled(Modal)`
-    margin-top: 60px;
+    margin-top: 30px;
     & div.modal-header {
         padding: 6px 15px 0px 0;
         background-color: #1c685e;
@@ -85,7 +83,7 @@ const ModalBtn = styled.button`
 // Chat Input CSS //
 
 const ChatInputGroup = styled(InputGroup)`
-    width: 94.33%;
+    width: 93%;
     margin: 0 auto;
 `;
 const ChatInput = styled(Input)`

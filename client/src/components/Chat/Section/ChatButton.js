@@ -40,7 +40,7 @@ const ChatButton = () => {
                     </Col>
                     <Col>
                         <S.Img src={chatbotImg} />
-                        <strong>챗봇으로 문의해 보세요!</strong>
+                        <p>챗봇으로 문의해 보세요!</p>
                     </Col>
                     <Col>
                         <S.ChatBtn onClick={startbutton} isOpen={start}>
