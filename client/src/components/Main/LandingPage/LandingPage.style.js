@@ -6,7 +6,7 @@ import { Col, Card, CardFooter, CardHeader, CardBody } from 'reactstrap';
 // Landing Home CSS
 
 const HomeWrap = styled(Col)`
-    padding: 0 10px 0 15px;
+    padding: 0 15px 0 15px;
     margin-top: ${(props) => props.margintop};
     margin-bottom: ${(props) => props.marginbottom};
     display: ${(props) => props.display};

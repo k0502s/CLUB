@@ -44,7 +44,7 @@ const Btn = styled(Button)`
 const ImageWrap = styled(Row)`
     display: flex;
     justify-content: center;
-    margin-top: 30px;
+    margin: 30px 9px 0px 9px;
 `;
 const InfoWrap = styled(Row)`
     display: flex;
