@@ -19,7 +19,7 @@ const HomeWrap = styled(Col)`
 const HomeCard = styled(Card)`
     width: ${(props) => props.width};
     border: 1px;
-    border-radius: 0 0 10px 10px;
+    border-radius: 5px 5px 10px 10px;
     background-color: #f4fcfb;
     @media only screen and (max-width: 767px) {
         margin-left: 12px;
@@ -32,7 +32,6 @@ const HomeCardbody = styled(CardBody)`
 const HomeCardheader = styled(CardHeader)`
     color: #fff;
     background-color: #333;
-    border: 1px;
     & p {
         margin: 0;
     }
