@@ -5,7 +5,6 @@ import hpp from 'hpp';
 import helmet from 'helmet';
 import cors from 'cors';
 
-
 import userRoutes from './routes/api/user.js';
 import authRoutes from './routes/api/auth.js';
 import chatbotRoutes from './routes/api/chatbot.js';
@@ -13,6 +12,7 @@ import photoRoutes from './routes/api/photo.js';
 import likeRoutes from './routes/api/like.js';
 import postRoutes from './routes/api/post.js';
 import commentRoutes from './routes/api/comment.js';
+import mapRoutes from './routes/api/map.js';
 
 import morgan from 'morgan';
 
@@ -43,7 +43,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api/chatbot', chatbotRoutes);
 app.use('/api/photo', photoRoutes);
 app.use('/api/like', likeRoutes);
-app.use("/api/post", postRoutes);
-app.use("/api/comment", commentRoutes);
+app.use('/api/post', postRoutes);
+app.use('/api/comment', commentRoutes);
+app.use('/api/map', mapRoutes);
 
 export default app;

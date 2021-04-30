@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Axios from 'axios';
 import * as S from './Map.style';
 
 /*global kakao */
@@ -7,19 +8,27 @@ const Map = () => {
     const [M, setM] = useState();
 
     useEffect(() => {
-        Maps();
+        Axios.get('/api/map/address').then((response) => {
+            if (response.data) {
+                console.log(response.data);
+                Maps(response.data[0]);
+            } else {
+                alert('주소 불러오기 실패.');
+            }
+        });
+        
     }, []);
 
-    const Maps = () => {
+    const Maps = (address) => {
         let container = document.getElementById('map');
         let options = {
-            center: new kakao.maps.LatLng(37.56761676087724, 126.8854657260516),
+            center: new kakao.maps.LatLng(address.Ma, address.La),
             level: 3,
         };
 
         const map = new kakao.maps.Map(container, options);
 
-        let markerPosition = new kakao.maps.LatLng(37.56761676087724, 126.8854657260516);
+        let markerPosition = new kakao.maps.LatLng(address.Ma, address.La);
 
         let marker = new kakao.maps.Marker({
             position: markerPosition,
@@ -29,8 +38,8 @@ const Map = () => {
         setM(map);
 
         let iwContent =
-                '<div style="padding:5px 0 0 40px;">모임 장소! <br><a href="https://map.kakao.com/link/map/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">큰지도 보기</a>',
-            iwPosition = new kakao.maps.LatLng(37.56761676087724, 126.8854657260516); //인포윈도우 표시 위치입니다
+                `<div style="padding:5px 0 0 40px;">모임 장소! <br><a href="https://map.kakao.com/link/map/모임 장소!,${address.Ma},${address.La}" style="color:blue" target="_blank">길찾기</a>`,
+            iwPosition = new kakao.maps.LatLng(address.Ma, address.La); //인포윈도우 표시 위치입니다
 
         // 인포윈도우를 생성합니다
         let infowindow = new kakao.maps.InfoWindow({
