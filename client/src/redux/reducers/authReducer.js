@@ -55,6 +55,7 @@ const authReducer = (state = initialState, action) => {
                 userName: action.payload.user.name,
                 userId: action.payload.user.id,
                 userRole: action.payload.user.role,
+                userDate: action.payload.user.register_date,
                 errorMsg: '',
                 errorMsg1: '',
             };
@@ -103,6 +104,7 @@ const authReducer = (state = initialState, action) => {
                 userName: action.payload.user.name,
                 userId: action.payload.user.id,
                 userRole: action.payload.user.role,
+                userDate: action.payload.user.register_date,
                 errorMsg: '',
                 errorMsg1: '',
             };

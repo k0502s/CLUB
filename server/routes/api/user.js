@@ -54,6 +54,7 @@ router.post('/', (req, res) => {
                                 email: user.email,
                                 camera: user.camera,
                                 sex: user.sex,
+                                register_date: user.register_date,
                             },
                         });
                     });

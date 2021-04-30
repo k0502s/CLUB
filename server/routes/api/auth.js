@@ -34,6 +34,7 @@ router.post('/', (req, res) => {
                         name: user.name,
                         email: user.email,
                         role: user.role,
+                        register_date: user.register_date
                     },
                 });
             });
