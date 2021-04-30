@@ -13,13 +13,13 @@ const Map = () => {
     const Maps = () => {
         let container = document.getElementById('map');
         let options = {
-            center: new kakao.maps.LatLng(37.624915253753194, 127.15122688059974),
+            center: new kakao.maps.LatLng(37.56761676087724, 126.8854657260516),
             level: 3,
         };
 
         const map = new kakao.maps.Map(container, options);
 
-        let markerPosition = new kakao.maps.LatLng(37.624915253753194, 127.15122688059974);
+        let markerPosition = new kakao.maps.LatLng(37.56761676087724, 126.8854657260516);
 
         let marker = new kakao.maps.Marker({
             position: markerPosition,
@@ -30,7 +30,7 @@ const Map = () => {
 
         let iwContent =
                 '<div style="padding:5px 0 0 40px;">모임 장소! <br><a href="https://map.kakao.com/link/map/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">큰지도 보기</a>',
-            iwPosition = new kakao.maps.LatLng(37.624915253753194, 127.15122688059974); //인포윈도우 표시 위치입니다
+            iwPosition = new kakao.maps.LatLng(37.56761676087724, 126.8854657260516); //인포윈도우 표시 위치입니다
 
         // 인포윈도우를 생성합니다
         let infowindow = new kakao.maps.InfoWindow({
