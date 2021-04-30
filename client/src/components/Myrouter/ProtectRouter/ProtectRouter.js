@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 export default function (SpecificComponent, option, adminRoute = null) {
     function AuthenticationCheck(props) {
-        const { isAuthenticated } = useSelector((state) => state.auth);
+        const isAuthenticated = localStorage.getItem('token');
         useEffect(() => {
             if (!isAuthenticated) {
                 if (option) {
@@ -18,7 +18,7 @@ export default function (SpecificComponent, option, adminRoute = null) {
                     }
                 }
             }
-        }, []);
+        }, [isAuthenticated]);
 
         return <SpecificComponent {...props} />;
     }

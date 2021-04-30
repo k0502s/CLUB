@@ -49,6 +49,7 @@ const MyRouter = () => {
                     <Route exact path="/editsuccess" component={EditSuccess} />
                     <Route exact path="/profile" component={Auth(Profile, true)} />
                     <Route exact path="/user/:userName/profile" component={Auth(ProfileEdit, true)} />
+                    <Redirect from="*" to="/" />
                 </Switch>
             </div>
             <ChatButton />
