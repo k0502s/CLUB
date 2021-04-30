@@ -10,13 +10,16 @@ const AboutPage = () => {
         <>
             <S.AboutWrap>
                 <S.SubWrap>
-                    <p>ooo 사진 동호회</p>
+                    <p>Photo in a Heartbeat 사진 동호회</p>
                     <ul>
                         <li>
                             <img src={aboutImg1} />
                         </li>
                         <li>
-                            저희 사진 동호회는 서울 지역을 중심으로 한 "ooo 사진동호회" 입니다.
+                            저희는 서울 지역을 중심으로 한 "Photo in a Heartbeat 사진 동호회" 라는 이름으로 결성한 동호회 모임 입니다.
+                            <br />
+                            <br />
+                            "Photo in a Heartbeat"란 순식간에 심장 고동소리 만큼 빠르게 사진을 찍는다라는 의미로 사진을 찍고 싶은 바람과 간절함을 의미합니다.
                             <br />
                             <br />
                             2021년 5월부터 사진을 좋아하는 몇몇 사람들이 모여, 좋은 동호회로 태동을 준비중입니다. 저희는 사진을
