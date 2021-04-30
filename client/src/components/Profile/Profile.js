@@ -27,7 +27,7 @@ const Profile = () => {
                         {user && user.name ? (
                             <Link to={`/user/${user.name}/profile`}>
                                 <S.ProfileBtn block color={'#99ce8f'} width={'80%'}>
-                                    PROFILE EDIT
+                                    프로필 수정
                                 </S.ProfileBtn>
                             </Link>
                         ) : (
@@ -76,9 +76,11 @@ const Profile = () => {
                         </Row>
                     </S.ProfileCardbody>
                     <CardFooter>
-                        <S.ProfileBtn color={'#333'} width={'200px'} justify={'center'} display={'flex'}>
-                            <Link to={'/'}>돌아가기</Link>
-                        </S.ProfileBtn>
+                        <Link to={'/'}>
+                            <S.ProfileBtn color={'#333'} width={'200px'} justify={'center'} display={'flex'}>
+                                홈으로 돌아가기
+                            </S.ProfileBtn>
+                        </Link>
                     </CardFooter>
                 </S.ProfileCard>
             </Col>
