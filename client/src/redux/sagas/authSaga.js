@@ -31,7 +31,7 @@ const loginUserAPI = (loginData) => {
             'Content-Type': 'application/json',
         },
     };
-    return axios.post('/api/auth', loginData, config);
+    return axios.post('api/auth', loginData, config);
 };
 
 function* loginUser(action) {
@@ -78,7 +78,7 @@ function* watchlogout() {
 const registerUserAPI = (req) => {
     console.log(req, 'req');
 
-    return axios.post('/api/user', req);
+    return axios.post('api/user', req);
 };
 
 function* registerUser(action) {
@@ -133,7 +133,7 @@ const userLoadingAPI = (token) => {
     if (token) {
         config.headers['x-auth-token'] = token;
     }
-    return axios.get('/api/auth/user', config);
+    return axios.get('api/auth/user', config);
 };
 
 function* userLoading(action) {
