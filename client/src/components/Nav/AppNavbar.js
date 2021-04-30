@@ -66,7 +66,9 @@ const AppNavbar = () => {
             <S.NavBar dark expand="lg" className="sticky-top">
                 <NavbarToggler onClick={toggle} style={{ border: 'none' }} />
                 <NavbarBrand>
-                    <img src={logo} />
+                    <Link to={'/'}>
+                        <img src={logo} />
+                    </Link>
                 </NavbarBrand>
                 <Collapse isOpen={isOpen} navbar>
                     <S.nav navbar>
