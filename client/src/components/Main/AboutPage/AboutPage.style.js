@@ -25,7 +25,7 @@ const AboutWrap = styled.div`
             line-height: 28px;
         }
         & li img {
-            max-width: 500px;
+            max-width: 400px;
             object-fit: fill;
             vertical-align: middle;
             font-size: 1em;
