@@ -125,12 +125,10 @@ const AppNavbar = () => {
                     </S.nav>
                     <S.NavWrap>{isAuthenticated ? authLink : ''}</S.NavWrap>
                     <S.NavWrap>{isAuthenticated ? '' : guestLink}</S.NavWrap>
-                    <Link to="/">
-                        <NavLink className="text-white">
-                            <S.SysytemIcon />
-                            ADMIN
-                        </NavLink>
-                    </Link>
+                    <NavLink className="text-white">
+                        <S.SysytemIcon />
+                        <a href="https://damp-shore-15614.herokuapp.com">ADMIN</a>
+                    </NavLink>
                 </Collapse>
                 <LocationDisplay />
             </S.NavBar>
