@@ -1,12 +1,16 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-
-
+import { useSelector, useDispatch } from 'react-redux';
+import { USER_LOADING_REQUEST } from '../../../redux/types';
 
 export default function (SpecificComponent, option, adminRoute = null) {
     function AuthenticationCheck(props) {
-        const isAuthenticated = localStorage.getItem('token');
+        const { isAuthenticated }  = useSelector((state) => state.auth);
+        const dispatch = useDispatch();
         useEffect(() => {
+            dispatch({
+                type: USER_LOADING_REQUEST,
+                payload: localStorage.getItem('token'),
+            })
             if (!isAuthenticated) {
                 if (option) {
                     alert('로그인이 필요합니다!');
