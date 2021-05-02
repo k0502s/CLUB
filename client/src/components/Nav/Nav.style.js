@@ -83,7 +83,7 @@ const NavBar = styled(Navbar)`
         }
         & img {
             width: 119px;
-            margin-right: 60px;
+            margin-right: 50px;
             padding: 6px 0 0 2px;
         }
     }
