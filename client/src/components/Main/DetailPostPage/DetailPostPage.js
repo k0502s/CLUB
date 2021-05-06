@@ -104,7 +104,7 @@ const DetailPostPage = (req) => {
                             <Row>
                                 <S.CommentWrap>
                                     <p>
-                                        총 <span>{postDetail.comments.length}</span> 개의 댓글이 있습니다.
+                                        총 <span>{comments.length}</span> 개의 댓글이 있습니다.
                                     </p>
                                     <hr />
                                     <Comments id={req.match.params.id} userId={userId} userName={userName} commentList={comments} commentId={comments._id} />
