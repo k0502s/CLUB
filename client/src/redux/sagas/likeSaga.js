@@ -21,62 +21,6 @@ import {
     DISLIKE_UN_SUCCESS,
 } from '../types';
 
-// // get likes
-
-// const likegetAPI = (likeData) => {
-//     console.log(likeData, 'likeData');
-
-//     return axios.post('/api/like/getLikes', likeData);
-// };
-
-// function* likeGet(action) {
-//     try {
-//         const result = yield call(likegetAPI, action.payload);
-//         console.log(result);
-//         yield put({
-//             type: LIKE_GET_SUCCESS,
-//             payload: result.data,
-//         });
-//     } catch (e) {
-//         yield put({
-//             type: LIKE_GET_FAILURE,
-//             payload: e.response,
-//         });
-//     }
-// }
-
-// function* watchLikeGet() {
-//     yield takeEvery(LIKE_GET_REQUEST, likeGet);
-// }
-
-// // get dislikes
-
-// const dislikegetAPI = (dislikeData) => {
-//     console.log(dislikeData, 'dislikeData');
-
-//     return axios.post('/api/like/getdisLikes', dislikeData);
-// };
-
-// function* dislikeGet(action) {
-//     try {
-//         const result = yield call(dislikegetAPI, action.payload);
-//         console.log(result);
-//         yield put({
-//             type: DISLIKE_GET_SUCCESS,
-//             payload: result.data,
-//         });
-//     } catch (e) {
-//         yield put({
-//             type: DISLIKE_GET_FAILURE,
-//             payload: e.response,
-//         });
-//     }
-// }
-
-// function* watchDisLikeGet() {
-//     yield takeEvery(DISLIKE_GET_REQUEST, dislikeGet);
-// }
-
 // up like
 
 const likeupAPI = (likeData) => {
@@ -190,11 +134,5 @@ function* watchUndisLike() {
 }
 
 export default function* authSaga() {
-    yield all([
-        // fork(watchLikeGet), fork(watchDisLikeGet),
-        fork(watchLikeUp),
-        fork(watchUnLike),
-        fork(watchDisLikeUp),
-        fork(watchUndisLike),
-    ]);
+    yield all([fork(watchLikeUp), fork(watchUnLike), fork(watchDisLikeUp), fork(watchUndisLike)]);
 }

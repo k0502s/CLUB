@@ -18,12 +18,12 @@ import {
 
 const initialState = {
     isAuthenticated: null,
-    totalItems: '',
-    postdata: '',
-    totalPages: '',
-    currentPage: '',
-    postDetail: '',
-    isLoading: '',
+    totalItems: 0,
+    postdata: [],
+    totalPages: 0,
+    currentPage: 0,
+    postDetail: {},
+    isLoading: false,
     error: '',
     writerId: '',
 };
@@ -34,7 +34,7 @@ const postReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: true,
-                postdata: ''
+                postdata: []
             };
         case POSTS_LIST_SUCCESS:
             return {
@@ -43,7 +43,7 @@ const postReducer = (state = initialState, action) => {
                 postdata: action.payload.postdata,
                 totalPages: action.payload.totalPages,
                 currentPage: action.payload.currentPage,
-                postDetail: '',
+                postDetail: {},
                 writerId: '',
                 title: '',
                 isLoading: false,
@@ -52,10 +52,10 @@ const postReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                totalItems: '',
-                postdata: '',
-                totalPages: '',
-                currentPage: '',
+                totalItems: 0,
+                postdata: [],
+                totalPages: 0,
+                currentPage: 0,
             };
         case POST_UPLOADING_REQUEST:
             return {
@@ -66,7 +66,7 @@ const postReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                postDetail: '',
+                postDetail: {},
                 writerId: '',
                 title: '',
             };
@@ -80,7 +80,7 @@ const postReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: true,
-                postdata: ''
+                postdata: []
             };
         case POST_DETAIL_LOADING_SUCCESS:
             return {
@@ -95,13 +95,13 @@ const postReducer = (state = initialState, action) => {
                 ...state,
                 error: action.payload,
                 isLoading: false,
-                postdata: ''
+                postdata: []
             };
         case POST_EDIT_LOADING_REQUEST:
             return {
                 ...state,
                 isLoading: true,
-                postdata: ''
+                postdata: []
             };
         case POST_EDIT_LOADING_SUCCESS:
             return {

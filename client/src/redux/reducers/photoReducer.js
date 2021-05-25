@@ -24,16 +24,16 @@ import {
 
 const initialState = {
     errorMsg: '',
-    isLoading: '',
-    success: '',
-    totalItems: '',
-    photodata: '',
-    totalPages: '',
-    currentPage: '',
-    bestphotodata: '',
-    bestimages: '',
-    detailphoto: '',
-    detailimages: '',
+    isLoading: false,
+    success: false,
+    totalItems: 0,
+    photodata: [],
+    totalPages: 0,
+    currentPage: 0,
+    bestphotodata: [],
+    bestimages: [],
+    detailphoto: {},
+    detailimages: [],
     writerName: '',
     writerId: '',
 };
@@ -65,8 +65,8 @@ const photoReducer = (state = initialState, action) => {
                 ...state,
                 errorMsg: '',
                 isLoading: true,
-                photodata:'',
-                bestphotodata:''
+                photodata: [],
+                bestphotodata: [],
             };
         case PHOTO_LIST_SUCCESS:
             return {
@@ -75,7 +75,7 @@ const photoReducer = (state = initialState, action) => {
                 photodata: action.payload.photodata,
                 totalPages: action.payload.totalPages,
                 currentPage: action.payload.currentPage,
-                detailphoto: '',
+                detailphoto: {},
                 isLoading: false,
             };
         case PHOTO_LIST_FAILURE:
@@ -83,10 +83,10 @@ const photoReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 errorMsg: 'error',
-                totalItems: '',
-                photodata: '',
-                totalPages: '',
-                currentPage: '',
+                totalItems: 0,
+                photodata: [],
+                totalPages: 0,
+                currentPage: 0,
             };
 
         case BESTPHOTO_IMAGES_REQUEST:
@@ -113,8 +113,8 @@ const photoReducer = (state = initialState, action) => {
                 ...state,
                 errorMsg: '',
                 isLoading: true,
-                photodata:'',
-                bestphotodata:''
+                photodata: [],
+                bestphotodata: [],
             };
         case BESTPHOTO_LIST_SUCCESS:
             return {
@@ -123,7 +123,7 @@ const photoReducer = (state = initialState, action) => {
                 bestphotodata: action.payload.bestphotodata,
                 totalPages: action.payload.totalPages,
                 currentPage: action.payload.currentPage,
-                detailphoto: '',
+                detailphoto: {},
                 isLoading: false,
             };
         case BESTPHOTO_LIST_FAILURE:
@@ -131,10 +131,10 @@ const photoReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 errorMsg: 'error',
-                totalItems: '',
-                bestphotodata: '',
-                totalPages: '',
-                currentPage: '',
+                totalItems: 0,
+                bestphotodata: [],
+                totalPages: 0,
+                currentPage: 0,
             };
 
         case PHOTO_DERAIL_REQUEST:
@@ -142,8 +142,8 @@ const photoReducer = (state = initialState, action) => {
                 ...state,
                 errorMsg: '',
                 isLoading: true,
-                photodata:'',
-                bestphotodata:''
+                photodata: [],
+                bestphotodata: [],
             };
         case PHOTO_DERAIL_SUCCESS:
             return {
@@ -159,7 +159,7 @@ const photoReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 errorMsg: 'error',
-                detailphoto: '',
+                detailphoto: {},
                 writerName: '',
                 writerId: '',
             };
@@ -172,7 +172,7 @@ const photoReducer = (state = initialState, action) => {
         case PHOTO_EDIT_UPLOADING_SUCCESS:
             return {
                 ...state,
-                detailphoto: '',
+                detailphoto: {},
                 isLoading: false,
             };
         case PHOTO_EDIT_UPLOADING_FAILURE:
@@ -186,8 +186,8 @@ const photoReducer = (state = initialState, action) => {
                 ...state,
                 errorMsg: '',
                 isLoading: true,
-                photodata:'',
-                bestphotodata:''
+                photodata: [],
+                bestphotodata: [],
             };
         case PHOTO_EDIT_LOADING_SUCCESS:
             return {
@@ -201,8 +201,8 @@ const photoReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 errorMsg: 'error',
-                detailphoto: '',
-                detailimages: '',
+                detailphoto: {},
+                detailimages: [],
             };
 
         default:

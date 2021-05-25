@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Col, Row, CardHeader, CardFooter } from 'reactstrap';
@@ -12,6 +12,7 @@ const Profile = () => {
     };
     const dispatch = useDispatch();
     const { user, userDate } = useSelector((state) => state.auth);
+    
     useEffect(() => {
         dispatch({
             type: USER_LOADING_REQUEST,

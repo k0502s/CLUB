@@ -3,7 +3,7 @@ import * as S from './Fileupload.style'
 import Dropzone from 'react-dropzone';
 import Axios from 'axios';
 
-function FileUpload(props) {
+const FileUpload = (props) => {
    
 
     const dropHandler = (files) => {

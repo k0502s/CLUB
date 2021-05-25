@@ -12,9 +12,13 @@ function LikeDislikes({ photoId, userId }) {
     const [Dislikes, setDislikes] = useState(0);
     const [LikeAction, setLikeAction] = useState(null);
     const [DislikeAction, setDislikeAction] = useState(null);
+
     let variable = {};
+
     variable = { photoId, userId };
+    
     const { uplike, unlike } = useSelector((state) => state.like);
+
     useEffect(() => {
         Axios.post('/api/like/getLikes', variable).then((response) => {
             console.log('getLikes', response.data);

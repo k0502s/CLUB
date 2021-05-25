@@ -17,7 +17,7 @@ const AddPhotoPage = () => {
     const [form, setValues] = useState({
         title: '',
         description: '',
-        genres: '',
+        genres: 0,
     });
     const [Images, setImages] = useState([]);
     const dispatch = useDispatch();
@@ -38,17 +38,13 @@ const AddPhotoPage = () => {
     const submitHandler = (e) => {
         e.preventDefault();
 
-        const titleinput = document.myform.title.value;
-        const descriptioninput = document.myform.description.value;
-        const genresinput = document.myform.genres.value;
-
-        if (titleinput === '') {
+        if (form.title === '') {
             return alert('제목 정보를 입력해야 합니다.');
         }
-        if (descriptioninput === '') {
+        if (form.description === '') {
             return alert('설명 정보를 입력해야 합니다.');
         }
-        if (genresinput === '') {
+        if (form.genres === 0) {
             return alert('장르 정보를 입력해야 합니다.');
         }
         if (Images.length === 0) {

@@ -29,6 +29,7 @@ const DetailPhotoPage = ({ match }) => {
     }, [match.params.id]);
 
     const onDeleteClick = () => {
+        if (window.confirm('해당 포토를 정말 삭제 하시겠습니까?')) {
         dispatch({
             type: PHOTO_DELETE_REQUEST,
             payload: {
@@ -37,6 +38,9 @@ const DetailPhotoPage = ({ match }) => {
                 genres: detailphoto.genres,
             },
         });
+        } else {
+            alert('삭제 취소')
+        }
     };
 
     const Body = (
@@ -47,7 +51,7 @@ const DetailPhotoPage = ({ match }) => {
                         <Helmet title={`Photo | ${detailphoto.title}`} />
                         <S.Topborder md={{ size: 5, offset: 1 }}>
                             <h5>{detailphoto.title}</h5>
-                            <Link to={`/photolist_${detailphoto.genres}`}>
+                            <Link to={`/photolist/${detailphoto.genres}`}>
                                 <S.Btn color={'#72b29c'}>
                                     <S.ListIcon />
                                     목록
@@ -55,7 +59,7 @@ const DetailPhotoPage = ({ match }) => {
                             </Link>
                         </S.Topborder>
                         <Row>
-                            <Col>
+                            <S.DetailInfoWrap>
                                 <BsPersonFill />
                                 &nbsp;
                                 <span>{writerName}</span>
@@ -67,7 +71,7 @@ const DetailPhotoPage = ({ match }) => {
                                 <BsFillEyeFill />
                                 &nbsp;
                                 <span data-testid="span-views">{detailphoto.views}</span>
-                            </Col>
+                            </S.DetailInfoWrap>
                         </Row>
                         <S.BtnWrap>
                             {writerId === userId && (

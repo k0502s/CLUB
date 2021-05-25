@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { BsImageFill } from 'react-icons/bs';
 import * as S from '../LandingPage.style';
-import { Card, Table, CardBody, CardHeader } from 'reactstrap';
+import { Table } from 'reactstrap';
 
 const MiniList_2 = () => {
     const { photodata } = useSelector((state) => state.photo);

@@ -3,7 +3,7 @@ import { Col, Button, Card } from 'reactstrap';
 
 const AddCard = styled(Card)`
     border-radius: 25px;
-    margin-bottom: 0px;
+    margin-bottom: 30px;
     margin-top: 30px;
 `;
 const BtnWrap = styled.div`

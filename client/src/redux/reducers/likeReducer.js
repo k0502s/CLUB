@@ -1,10 +1,4 @@
 import {
-    // LIKE_GET_REQUEST,
-    // LIKE_GET_FAILURE,
-    // LIKE_GET_SUCCESS,
-    // DISLIKE_GET_REQUEST,
-    // DISLIKE_GET_FAILURE,
-    // DISLIKE_GET_SUCCESS,
     LIKE_UP_REQUEST,
     LIKE_UP_FAILURE,
     LIKE_UP_SUCCESS,
@@ -20,8 +14,6 @@ import {
 } from '../types';
 
 const initialState = {
-    // likes: '',
-    // dislikes: '',
     uplike: '',
     unlike: '',
     updislike: '',
@@ -30,35 +22,6 @@ const initialState = {
 
 const likeReducer = (state = initialState, action) => {
     switch (action.type) {
-        // case LIKE_GET_REQUEST:
-        //     return {
-        //         ...state,
-        //     };
-        // case LIKE_GET_SUCCESS:
-        //     return {
-        //         ...state,
-        //         likes: action.payload.likes,
-        //     };
-        // case LIKE_GET_FAILURE:
-        //     return {
-        //         ...state,
-        //         likes: '',
-        //     };
-
-        // case DISLIKE_GET_REQUEST:
-        //     return {
-        //         ...state,
-        //     };
-        // case DISLIKE_GET_SUCCESS:
-        //     return {
-        //         ...state,
-        //         dislikes: action.payload.dislikes,
-        //     };
-        // case DISLIKE_GET_FAILURE:
-        //     return {
-        //         ...state,
-        //         dislikes: '',
-        //     };
         case LIKE_UP_REQUEST:
             return {
                 ...state,
