@@ -27,6 +27,7 @@ const CommentList = ({ id, comments, commentId, userName }) => {
             postId: id,
             userId,
         };
+        if (window.confirm('해당 댓글을 정말 삭제 하시겠습니까?')) {
         dispatch({
             type: COMMENT_DELETE_REQUEST,
             payload: body,
@@ -35,6 +36,9 @@ const CommentList = ({ id, comments, commentId, userName }) => {
             type: COMMENT_LOADING_REQUEST,
             payload: id,
         });
+    } else {
+        alert('삭제 취소')
+    }
     };
 
     const onSubmitEdit = (e) => {

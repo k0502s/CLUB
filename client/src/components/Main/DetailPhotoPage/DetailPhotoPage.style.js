@@ -13,6 +13,10 @@ const ListIcon = styled(BsTextLeft)`
 const DetailWrap = styled(Col)`
     margin-top: 30px;
 `;
+const DetailInfoWrap = styled(Col)`
+    margin-left: 30px;
+    margin-bottom: 15px;
+`;
 const Topborder = styled(Row)`
     padding: 20px;
     margin-bottom: 15px;
@@ -104,4 +108,4 @@ const Likebox = styled.div`
     }
 `;
 
-export { DetailWrap, Topborder, ListIcon, BtnWrap, Likebox, InfoTable, InfoWrap, ImageWrap, Btn };
+export { DetailWrap, Topborder, ListIcon, BtnWrap, Likebox, InfoTable, InfoWrap, ImageWrap, Btn, DetailInfoWrap };

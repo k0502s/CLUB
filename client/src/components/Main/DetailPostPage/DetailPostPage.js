@@ -36,13 +36,17 @@ const DetailPostPage = (req) => {
     }, [dispatch, req.match.params.id]);
 
     const onDeleteClick = () => {
-        dispatch({
-            type: POST_DELETE_REQUEST,
-            payload: {
-                id: req.match.params.id,
-                token: localStorage.getItem('token'),
-            },
-        });
+        if (window.confirm('해당 게시판을 정말 삭제 하시겠습니까?')) {
+            dispatch({
+                type: POST_DELETE_REQUEST,
+                payload: {
+                    id: req.match.params.id,
+                    token: localStorage.getItem('token'),
+                },
+            });
+        } else {
+            alert('삭제 취소');
+        }
     };
 
     const Body = (
@@ -55,7 +59,7 @@ const DetailPostPage = (req) => {
                 <S.DetailWrap md={7}>
                     <S.Topborder md={{ size: 5, offset: 1 }}>
                         <h5 data-testid="post-title">{postDetail.title}</h5>
-                        <Link to={`/postlist_${postDetail.category}`}>
+                        <Link to={`/postlist/${postDetail.category}`}>
                             <S.Btn color={'#72b29c'}>
                                 <S.ListIcon />
                                 목록

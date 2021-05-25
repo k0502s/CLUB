@@ -35,9 +35,9 @@ const Topborder = styled(Row)`
     }
 `;
 const InfoWrap = styled(Col)`
-
+    margin-left: 15px;
     @media only screen and (max-width: 767px) {
-        margin: 0 7px 15px 7px;
+        margin: 0 7px 15px 19px;
     }
 `;
 const DetailWrap = styled(Col)`
