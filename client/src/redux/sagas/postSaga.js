@@ -138,7 +138,7 @@ function* DeletePost(action) {
             type: POST_DELETE_SUCCESS,
             payload: result.data,
         });
-        yield put(push('/postlist_1'));
+        yield put(push('/postlist/1'));
     } catch (e) {
         yield put({
             type: POST_DELETE_FAILURE,

@@ -37,13 +37,13 @@ const MyRouter = () => {
                     <Route exact path="/addpost" component={Auth(AddPostPage, true)} />
                     <Route exact path="/editphoto/:id" component={Auth(EditPhotoPage, true)} />
                     <Route exact path="/editpost/:id" component={Auth(EditPostPage, true)} />
-                    <Route exact path="/photolist_1" component={PhotoList_1} />
-                    <Route exact path="/photolist_2" component={PhotoList_2} />
-                    <Route exact path="/photolist_3" component={PhotoList_3} />
-                    <Route exact path="/photolist_4" component={PhotoList_4} />
+                    <Route exact path="/photolist/1" component={PhotoList_1} />
+                    <Route exact path="/photolist/2" component={PhotoList_2} />
+                    <Route exact path="/photolist/3" component={PhotoList_3} />
+                    <Route exact path="/photolist/4" component={PhotoList_4} />
                     <Route exact path="/bestphotolist" component={BestPhotoList} />
-                    <Route exact path="/postlist_1" component={PostList_1} />
-                    <Route exact path="/postlist_2" component={PostList_2} />
+                    <Route exact path="/postlist/1" component={PostList_1} />
+                    <Route exact path="/postlist/2" component={PostList_2} />
                     <Route exact path="/photo/:id" component={Auth(DetailPhotoPage, true)} />
                     <Route exact path="/post/:id" component={Auth(DetailPostPage, true)} />
                     <Route exact path="/editsuccess" component={EditSuccess} />

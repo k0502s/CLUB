@@ -199,7 +199,7 @@ function* photoDelete(action) {
             type: PHOTO_DELETE_SUCCESS,
             payload: result.data,
         });
-        yield put(push(`/photolist_${genres}`));
+        yield put(push(`/photolist/${genres}`));
     } catch (e) {
         yield put({
             type: PHOTO_DELETE_FAILURE,
