@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Col, ModalHeader } from 'reactstrap';
 import Chat from '../Chat';
 import chatbotImg from '../../../assets/img/chatbot.png';
@@ -10,6 +10,7 @@ const ChatButton = () => {
     const [modal, setModal] = useState(false);
     const [start, setStart] = useState(false);
     const [reset, setReset] = useState('qu1');
+    const { isAuthenticated } = useSelector((state) => state.auth);
 
     const dispatch = useDispatch();
     const toggle = () => {
@@ -43,9 +44,13 @@ const ChatButton = () => {
                         <p>챗봇으로 문의해 보세요!</p>
                     </Col>
                     <Col>
-                        <S.ChatBtn onClick={startbutton} isOpen={start}>
-                            대화 시작하기
-                        </S.ChatBtn>
+                        {isAuthenticated ? (
+                            <S.ChatBtn onClick={startbutton} isOpen={start}>
+                                대화 시작하기
+                            </S.ChatBtn>
+                        ) : (
+                            <S.ChatBtn>로그인이 필요합니다!</S.ChatBtn>
+                        )}
                     </Col>
                 </S.ChatCard>
                 <S.ChatWrap isOpen={start}>

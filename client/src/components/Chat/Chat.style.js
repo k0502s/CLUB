@@ -83,7 +83,7 @@ const ModalBtn = styled.button`
 // Chat Input CSS //
 
 const ChatInputGroup = styled(InputGroup)`
-    width: 93%;
+    width: 94.5%;
     margin: 0 auto;
 `;
 const ChatInput = styled(Input)`
