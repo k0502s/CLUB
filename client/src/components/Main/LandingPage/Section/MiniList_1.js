@@ -16,7 +16,9 @@ const MiniList = () => {
                         <S.HelloIcon />
                         가입 인사
                         <span>
-                            <Link to={'/postlist_1'}>더보기 +</Link>
+                            <Link to={'/postlist-1'} data-testid="post-list">
+                                더보기 +
+                            </Link>
                         </span>
                     </p>
                     <small>새로 오신 분들 인사해주세요!</small>
@@ -28,12 +30,13 @@ const MiniList = () => {
                                 <S.Tr>
                                     <S.Td width={'5%'}>●</S.Td>
                                     <S.Td width={'70%'} color={'black'}>
-                                        <Link to={`/post/${post._id}`} style={{ color: 'inherit' }} data-testid="post-detail">
-                                            {post.title} <span data-testid="post-comments">[{post.comments.length}]</span> <span>{post.fileUrl != '' ? <BsImageFill /> : ''}</span>
+                                        <Link to={`/post/${post._id}`} style={{ color: 'inherit' }} data-testid="post-title">
+                                            {post.title} <span data-testid="post-comments">[{post.comments.length}]</span>{' '}
+                                            <span data-testid="post-fileUrl">{post.fileUrl != '' ? <BsImageFill /> : ''}</span>
                                         </Link>
                                     </S.Td>
-                                    <S.Td width={'30%'} text={'center'} color={'gray'} data-testid="post-date">
-                                        <small>{post.date.substring(0, 10)}</small>
+                                    <S.Td width={'30%'} text={'center'} color={'gray'}>
+                                        <small data-testid="post-date">{post.date.substring(0, 10)}</small>
                                     </S.Td>
                                 </S.Tr>
                             </tbody>

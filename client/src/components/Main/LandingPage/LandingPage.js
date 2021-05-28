@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { BESTPHOTO_IMAGES_REQUEST, POSTS_LIST_REQUEST, PHOTO_LIST_REQUEST, USER_LOADING_REQUEST } from '../../../redux/types';
 import { Row } from 'reactstrap';
 import * as S from './LandingPage.style';
+import LocationDisplay from '../../../utils/LocationDisplay';
 
 const LandingPage = () => {
     const { isLoading } = useSelector((state) => state.photo);
@@ -96,6 +97,7 @@ const LandingPage = () => {
         <>
             <Helmet title={`사진 동호회`} />
             {isLoading === true ? Loader : body}
+            <LocationDisplay />
         </>
     );
 };

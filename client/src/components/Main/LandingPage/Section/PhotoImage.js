@@ -49,12 +49,12 @@ const PhotoImage = () => {
             <S.ImgWrap Mheight={'280px'}>
                 <Slide easing="ease" {...properties}>
                     {Images.map((images, index) => (
-                        <Link to={`photo/${images.link}`}>
+                        <Link to={`photo/${images.link}`} data-testid="images-link">
                             <div className="each-slide" index={index}>
-                                <div style={{ backgroundImage: `url(${images.original})` }}>
+                                <div style={{ backgroundImage: `url(${images.original})` }} data-testid='bestimage-url'>
                                     <span>
                                         <div>
-                                            <small>
+                                            <small data-testid="images-info">
                                                 제목: {images.title} &nbsp;| &nbsp; By {images.writer}
                                             </small>
                                         </div>

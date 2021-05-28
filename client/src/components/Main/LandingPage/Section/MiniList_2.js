@@ -16,7 +16,7 @@ const MiniList_2 = () => {
                         <S.PhotoIcon />
                         최신 포토
                         <span>
-                            <Link to={'/bestphotolist'}>더보기 +</Link>
+                            <Link to={'/bestphotolist'} data-testid='photo-list'>더보기 +</Link>
                         </span>
                     </p>
                     <small>회원분들의 사진 작품들응 감상해보세요!</small>
@@ -28,12 +28,12 @@ const MiniList_2 = () => {
                                 <S.Tr>
                                     <S.Td width={'5%'}>●</S.Td>
                                     <S.Td width={'65%'} color={'black'}>
-                                        <Link to={`/photo/${photo._id}`} style={{ color: 'inherit' }} data-testid="photo-detail">
-                                            {photo.title} <span>{photo.fileUrl != '' ? <BsImageFill /> : ''}</span>
+                                        <Link to={`/photo/${photo._id}`} style={{ color: 'inherit' }} data-testid="photo-title">
+                                            {photo.title} <span data-testid='photo-fileUrl'>{photo.fileUrl != '' ? <BsImageFill /> : ''}</span>
                                         </Link>
                                     </S.Td>
-                                    <S.Td width={'30%'} text={'center'} color={'gray'} data-testid="photo-date">
-                                        <small>{photo.date.substring(0, 10)}</small>
+                                    <S.Td width={'30%'} text={'center'} color={'gray'}>
+                                        <small data-testid='photo-date'>{photo.date.substring(0, 10)}</small>
                                     </S.Td>
                                 </S.Tr>
                             </tbody>
