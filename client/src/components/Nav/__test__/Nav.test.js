@@ -41,7 +41,7 @@ describe('<AppNavbar /> 컴포넌트 테스트', () => {
 
         expect(getByTestId('location-display')).toHaveTextContent('/');
     });
-    it('라우터의 photolist_1 링크가 잘 작동하는지', () => {
+    it('라우터의 photolist/1 링크가 잘 작동하는지', () => {
         const { getByTestId } = render(
             <BrowserRouter>
                 <Provider store={store}>
@@ -53,9 +53,9 @@ describe('<AppNavbar /> 컴포넌트 테스트', () => {
 
         fireEvent.click(photolist1);
 
-        expect(getByTestId('location-display')).toHaveTextContent('/photolist_1');
+        expect(getByTestId('location-display')).toHaveTextContent('/photolist/1');
     });
-    it('라우터의 photolist_2 링크가 잘 작동하는지', () => {
+    it('라우터의 photolist/2 링크가 잘 작동하는지', () => {
         const { getByTestId } = render(
             <BrowserRouter>
                 <Provider store={store}>
@@ -67,9 +67,9 @@ describe('<AppNavbar /> 컴포넌트 테스트', () => {
 
         fireEvent.click(photolist2);
 
-        expect(getByTestId('location-display')).toHaveTextContent('/photolist_2');
+        expect(getByTestId('location-display')).toHaveTextContent('/photolist/2');
     });
-    it('라우터의 photolist_3 링크가 잘 작동하는지', () => {
+    it('라우터의 photolist/3 링크가 잘 작동하는지', () => {
         const { getByTestId } = render(
             <BrowserRouter>
                 <Provider store={store}>
@@ -81,9 +81,9 @@ describe('<AppNavbar /> 컴포넌트 테스트', () => {
 
         fireEvent.click(photolist3);
 
-        expect(getByTestId('location-display')).toHaveTextContent('/photolist_3');
+        expect(getByTestId('location-display')).toHaveTextContent('/photolist/3');
     });
-    it('라우터의 photolist_4 링크가 잘 작동하는지', () => {
+    it('라우터의 photolist/4 링크가 잘 작동하는지', () => {
         const { getByTestId } = render(
             <BrowserRouter>
                 <Provider store={store}>
@@ -95,10 +95,10 @@ describe('<AppNavbar /> 컴포넌트 테스트', () => {
 
         fireEvent.click(photolist4);
 
-        expect(getByTestId('location-display')).toHaveTextContent('/photolist_4');
+        expect(getByTestId('location-display')).toHaveTextContent('/photolist/4');
     });
 
-    it('라우터의 postlist_1 링크가 잘 작동하는지', () => {
+    it('라우터의 postlist/1 링크가 잘 작동하는지', () => {
         const { getByTestId } = render(
             <BrowserRouter>
                 <Provider store={store}>
@@ -110,9 +110,9 @@ describe('<AppNavbar /> 컴포넌트 테스트', () => {
 
         fireEvent.click(postlist1);
 
-        expect(getByTestId('location-display')).toHaveTextContent('/postlist_1');
+        expect(getByTestId('location-display')).toHaveTextContent('/postlist/1');
     });
-    it('라우터의 postlist_2 링크가 잘 작동하는지', () => {
+    it('라우터의 postlist/2 링크가 잘 작동하는지', () => {
         const { getByTestId } = render(
             <BrowserRouter>
                 <Provider store={store}>
@@ -124,6 +124,6 @@ describe('<AppNavbar /> 컴포넌트 테스트', () => {
 
         fireEvent.click(postlist2);
 
-        expect(getByTestId('location-display')).toHaveTextContent('/postlist_2');
+        expect(getByTestId('location-display')).toHaveTextContent('/postlist/2');
     });
 });
