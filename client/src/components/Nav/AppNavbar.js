@@ -91,19 +91,19 @@ const AppNavbar = () => {
                                     <DropdownItem>인기 갤러리</DropdownItem>
                                 </Link>
                                 <DropdownItem divider />
-                                <Link to="/photolist/1" data-testid="nav-photolist1">
+                                <Link to="/photolist_1" data-testid="nav-photolist1">
                                     <DropdownItem>풍경 갤러리</DropdownItem>
                                 </Link>
                                 <DropdownItem divider />
-                                <Link to="/photolist/2" data-testid="nav-photolist2">
+                                <Link to="/photolist_2" data-testid="nav-photolist2">
                                     <DropdownItem>인물 갤러리</DropdownItem>
                                 </Link>
                                 <DropdownItem divider />
-                                <Link to="/photolist/3" data-testid="nav-photolist3">
+                                <Link to="/photolist_3" data-testid="nav-photolist3">
                                     <DropdownItem>접사 갤러리</DropdownItem>
                                 </Link>
                                 <DropdownItem divider />
-                                <Link to="/photolist/4" data-testid="nav-photolist4">
+                                <Link to="/photolist_4" data-testid="nav-photolist4">
                                     <DropdownItem>습작 갤러리</DropdownItem>
                                 </Link>
                             </DropdownMenu>

@@ -51,7 +51,7 @@ const DetailPhotoPage = ({ match }) => {
                         <Helmet title={`Photo | ${detailphoto.title}`} />
                         <S.Topborder md={{ size: 5, offset: 1 }}>
                             <h5>{detailphoto.title}</h5>
-                            <Link to={`/photolist/${detailphoto.genres}`}>
+                            <Link to={`/photolist_${detailphoto.genres}`}>
                                 <S.Btn color={'#72b29c'}>
                                     <S.ListIcon />
                                     목록
