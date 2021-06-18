@@ -12,7 +12,7 @@ import photographerImg from '../../../assets/img/사진작가2.png';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import { Loader } from '../../../components/Loader/Loader';
 import BalloonEditor from '@ckeditor/ckeditor5-editor-balloon/src/ballooneditor';
-import { editorConfiguration } from '../../Editor/EditorConfig';
+import { editorConfiguration } from '../../editor/EditorConfig';
 import * as S from './DetailPostPage.style';
 
 const DetailPostPage = (req) => {
