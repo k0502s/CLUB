@@ -69,7 +69,7 @@
 
 |                        서버                        |                        DB                        |                        Transcompiler                        |               테스트 코드               | 
 |:----------------------------------------------------: | :---------------------------------------: | :---------------------------------------------------------: | :--------------------------------------------: |
-| <img src="images/node.png" width="200px"> | <img src="images/Mongo.png" width="200px"> | <img src="images/babel.jpg" width="200px"> | <img src="images/react testing library.jpeg" width="200px"> |
+| <img src="images/node.png" width="200px"> | <img src="images/Mongo.png" width="200px"> | <img src="images/babel.png" width="200px"> | <img src="images/react testing library.jpeg" width="200px"> |
 
 <br>
 
