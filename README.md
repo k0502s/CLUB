@@ -21,8 +21,8 @@
 
 <br>
 
-## 👁️ Preview
-<img src="images/Home.jpg">
+<!--## 👁️ Preview
+<img src="images/Home.jpg">--!>
 <!-- #### [웹사이트 방문하기](https://photo-club-korea.herokuapp.com/) --!>
 
 <!--<p align="center">
